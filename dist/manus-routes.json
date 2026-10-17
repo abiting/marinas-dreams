@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "Marina’s Dreams"
+    },
+    {
+      "path": "/film-reviews/",
+      "title": "Film reviews"
+    },
+    {
+      "path": "/about-marina/",
+      "title": "About Marina"
+    },
+    {
+      "path": "/lust-caution-2007-review/",
+      "title": "Lust, Caution"
+    },
+    {
+      "path": "/the-bucket-list-2007-review/",
+      "title": "The Bucket List"
+    },
+    {
+      "path": "/mewtwo-strikes-back-review/",
+      "title": "Mewtwo Strikes Back"
+    }
+  ]
+}
