@@ -6,7 +6,7 @@ const content = JSON.parse(fs.readFileSync('src/content.json', 'utf8'));
 const site = JSON.parse(fs.readFileSync('src/site.json', 'utf8'));
 const manifest = JSON.parse(fs.readFileSync('dist/manus-routes.json', 'utf8'));
 const files = manifest.routes.map((route) => [route.path, path.join('dist', route.path, 'index.html')]);
-assert.equal(files.length, 6, 'All six public pages must exist');
+assert.equal(files.length, content.reviews.length + 3, 'All public pages must exist');
 const titles = new Set();
 const descriptions = new Set();
 let articleCount = 0;
@@ -52,7 +52,7 @@ for (const [route, file] of files) {
   }
   console.log(`PASS ${route}: complete HTML, metadata, shared Person${article ? ', Article' : ''}`);
 }
-assert.equal(articleCount, 3, 'Three Article reviews');
+assert.equal(articleCount, content.reviews.length, 'Every review uses Article');
 const mewtwoHtml = fs.readFileSync('dist/mewtwo-strikes-back-review/index.html', 'utf8');
 assert.ok(mewtwoHtml.includes('href="https://list.abitingpokedex.com/pokemon/mewtwo"'));
 const aboutHtml = fs.readFileSync('dist/about-marina/index.html', 'utf8');
@@ -61,9 +61,9 @@ assert.ok(aboutHtml.includes('is not affiliated with Marina Abramović'));
 if (site.publicOrigin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 6);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, content.reviews.length + 3);
   assert.ok(robots.includes(`Sitemap: ${site.publicOrigin}/sitemap.xml`));
   console.log('PASS sitemap, robots, canonical and shared absolute author ID');
 }
 assert.ok(fs.readFileSync('dist/404.html', 'utf8').includes('noindex, follow'));
-console.log('PASS three reviews, supplied Mewtwo link, About content, footer and 404 metadata.');
+console.log(`PASS ${content.reviews.length} reviews, supplied Mewtwo link, About content, footer and 404 metadata.`);

@@ -22,13 +22,21 @@
 
 ## SEO, structured data and discoverability
 - [x] Give every public page a unique, content-appropriate SEO title, meta description and H1, plus Open Graph and Twitter Card metadata; use the supplied banner image for `og:image` throughout the site.
-- [ ] Include canonical URLs only when the real public site origin is known; do not emit a guessed or internal Preview origin as canonical or `og:url`.
+- [x] Include canonical URLs only when the real public site origin is known; do not emit a guessed or internal Preview origin as canonical or `og:url`.
 - [x] Mark Marina as one shared `Person` author entity and mark each film-review page as `Article`; every article’s `author` must reference that same Marina `Person` entity.
 - [x] Ensure each page contains meaningful, indexable HTML, with working internal links and page-appropriate metadata.
-- [ ] Provide a valid `sitemap.xml` covering the intended public pages and a `robots.txt` consistent with public indexing.
+- [x] Provide a valid `sitemap.xml` covering the intended public pages and a `robots.txt` consistent with public indexing.
 - [x] Preserve the supplied external image and Mewtwo-reference URLs; do not replace them with unrelated generated artwork or stock imagery.
 
 ## Visual direction and responsive behavior
 - [x] Follow the confirmed “台北咖啡館剪報” direction: paper ivory, coffee brown and editorial collage details; Lora is the selected display font.
 - [x] Keep the user-provided wide banner image fully legible and avoid cropping away its embedded Marina’s Dreams wordmark.
 - [x] Make the navigation, long-form reading layout, footer and imagery usable on desktop and mobile.
+
+## Additional 50 English reviews
+- [x] Add every film in the user’s 50-title list as its own English review, about 500 words each, consistent with the first three articles.
+  - Each film has an individual page, unique SEO title and description, shared Marina Person authorship, and Article structured data.
+  - Preserve the user-supplied banner and site-wide OG image.
+  - Keep the original three reviews and their URLs, and make the complete archive searchable.
+  - Do not invent movie ratings or personal biographical viewing memories.
+  - Provide a complete downloadable Markdown manuscript containing all 50 new reviews.

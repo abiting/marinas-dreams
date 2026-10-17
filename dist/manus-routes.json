@@ -23,6 +23,206 @@
     {
       "path": "/mewtwo-strikes-back-review/",
       "title": "Mewtwo Strikes Back"
+    },
+    {
+      "path": "/shawshank-redemption-review/",
+      "title": "The Shawshank Redemption"
+    },
+    {
+      "path": "/the-godfather-review/",
+      "title": "The Godfather"
+    },
+    {
+      "path": "/the-dark-knight-review/",
+      "title": "The Dark Knight"
+    },
+    {
+      "path": "/inception-review/",
+      "title": "Inception"
+    },
+    {
+      "path": "/interstellar-review/",
+      "title": "Interstellar"
+    },
+    {
+      "path": "/forrest-gump-review/",
+      "title": "Forrest Gump"
+    },
+    {
+      "path": "/titanic-review/",
+      "title": "Titanic"
+    },
+    {
+      "path": "/spirited-away-review/",
+      "title": "Spirited Away"
+    },
+    {
+      "path": "/my-neighbor-totoro-review/",
+      "title": "My Neighbor Totoro"
+    },
+    {
+      "path": "/howls-moving-castle-review/",
+      "title": "Howl’s Moving Castle"
+    },
+    {
+      "path": "/parasite-review/",
+      "title": "Parasite"
+    },
+    {
+      "path": "/the-matrix-review/",
+      "title": "The Matrix"
+    },
+    {
+      "path": "/jurassic-park-review/",
+      "title": "Jurassic Park"
+    },
+    {
+      "path": "/back-to-the-future-review/",
+      "title": "Back to the Future"
+    },
+    {
+      "path": "/fight-club-review/",
+      "title": "Fight Club"
+    },
+    {
+      "path": "/pulp-fiction-review/",
+      "title": "Pulp Fiction"
+    },
+    {
+      "path": "/schindlers-list-review/",
+      "title": "Schindler's List"
+    },
+    {
+      "path": "/saving-private-ryan-review/",
+      "title": "Saving Private Ryan"
+    },
+    {
+      "path": "/the-silence-of-the-lambs-review/",
+      "title": "The Silence of the Lambs"
+    },
+    {
+      "path": "/life-is-beautiful-review/",
+      "title": "Life Is Beautiful"
+    },
+    {
+      "path": "/the-legend-of-1900-review/",
+      "title": "The Legend of 1900"
+    },
+    {
+      "path": "/la-la-land-review/",
+      "title": "La La Land"
+    },
+    {
+      "path": "/whiplash-review/",
+      "title": "Whiplash"
+    },
+    {
+      "path": "/your-name-review/",
+      "title": "Your Name"
+    },
+    {
+      "path": "/crouching-tiger-review/",
+      "title": "Crouching Tiger, Hidden Dragon"
+    },
+    {
+      "path": "/a-city-of-sadness-review/",
+      "title": "A City of Sadness"
+    },
+    {
+      "path": "/you-are-the-apple-of-my-eye-review/",
+      "title": "You Are the Apple of My Eye"
+    },
+    {
+      "path": "/cape-no-7-review/",
+      "title": "Cape No. 7"
+    },
+    {
+      "path": "/yi-yi-review/",
+      "title": "Yi Yi"
+    },
+    {
+      "path": "/in-the-mood-for-love-review/",
+      "title": "In the Mood for Love"
+    },
+    {
+      "path": "/chungking-express-review/",
+      "title": "Chungking Express"
+    },
+    {
+      "path": "/infernal-affairs-review/",
+      "title": "Infernal Affairs"
+    },
+    {
+      "path": "/life-of-pi-review/",
+      "title": "Life of Pi"
+    },
+    {
+      "path": "/the-fellowship-of-the-ring-review/",
+      "title": "The Fellowship of the Ring"
+    },
+    {
+      "path": "/philosophers-stone-review/",
+      "title": "Harry Potter and the Philosopher’s Stone"
+    },
+    {
+      "path": "/star-wars-review/",
+      "title": "Star Wars"
+    },
+    {
+      "path": "/toy-story-review/",
+      "title": "Toy Story"
+    },
+    {
+      "path": "/up-review/",
+      "title": "Up"
+    },
+    {
+      "path": "/coco-review/",
+      "title": "Coco"
+    },
+    {
+      "path": "/inside-out-review/",
+      "title": "Inside Out"
+    },
+    {
+      "path": "/mad-max-fury-road-review/",
+      "title": "Mad Max: Fury Road"
+    },
+    {
+      "path": "/oppenheimer-review/",
+      "title": "Oppenheimer"
+    },
+    {
+      "path": "/everything-everywhere-review/",
+      "title": "Everything Everywhere All at Once"
+    },
+    {
+      "path": "/jaws-review/",
+      "title": "Jaws"
+    },
+    {
+      "path": "/alien-review/",
+      "title": "Alien"
+    },
+    {
+      "path": "/blade-runner-review/",
+      "title": "Blade Runner"
+    },
+    {
+      "path": "/the-truman-show-review/",
+      "title": "The Truman Show"
+    },
+    {
+      "path": "/eternal-sunshine-review/",
+      "title": "Eternal Sunshine of the Spotless Mind"
+    },
+    {
+      "path": "/good-will-hunting-review/",
+      "title": "Good Will Hunting"
+    },
+    {
+      "path": "/shoplifters-review/",
+      "title": "Shoplifters"
     }
   ]
 }

@@ -1,0 +1,352 @@
+[
+  {
+    "id": "film-01",
+    "chineseTitle": "刺激1995",
+    "englishTitle": "The Shawshank Redemption",
+    "year": 1994,
+    "director": "Frank Darabont"
+  },
+  {
+    "id": "film-02",
+    "chineseTitle": "教父",
+    "englishTitle": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola"
+  },
+  {
+    "id": "film-03",
+    "chineseTitle": "黑暗騎士",
+    "englishTitle": "The Dark Knight",
+    "year": 2008,
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "film-04",
+    "chineseTitle": "全面啟動",
+    "englishTitle": "Inception",
+    "year": 2010,
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "film-05",
+    "chineseTitle": "星際效應",
+    "englishTitle": "Interstellar",
+    "year": 2014,
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "film-06",
+    "chineseTitle": "阿甘正傳",
+    "englishTitle": "Forrest Gump",
+    "year": 1994,
+    "director": "Robert Zemeckis"
+  },
+  {
+    "id": "film-07",
+    "chineseTitle": "鐵達尼號",
+    "englishTitle": "Titanic",
+    "year": 1997,
+    "director": "James Cameron"
+  },
+  {
+    "id": "film-08",
+    "chineseTitle": "神隱少女",
+    "englishTitle": "Spirited Away",
+    "year": 2001,
+    "director": "Hayao Miyazaki"
+  },
+  {
+    "id": "film-09",
+    "chineseTitle": "龍貓",
+    "englishTitle": "My Neighbor Totoro",
+    "year": 1988,
+    "director": "Hayao Miyazaki"
+  },
+  {
+    "id": "film-10",
+    "chineseTitle": "霍爾的移動城堡",
+    "englishTitle": "Howl’s Moving Castle",
+    "year": 2004,
+    "director": "Hayao Miyazaki"
+  },
+  {
+    "id": "film-11",
+    "chineseTitle": "寄生上流",
+    "englishTitle": "Parasite",
+    "year": 2019,
+    "director": "Bong Joon Ho"
+  },
+  {
+    "id": "film-12",
+    "chineseTitle": "駭客任務",
+    "englishTitle": "The Matrix",
+    "year": 1999,
+    "director": "Lana and Lilly Wachowski"
+  },
+  {
+    "id": "film-13",
+    "chineseTitle": "侏羅紀公園",
+    "englishTitle": "Jurassic Park",
+    "year": 1993,
+    "director": "Steven Spielberg"
+  },
+  {
+    "id": "film-14",
+    "chineseTitle": "回到未來",
+    "englishTitle": "Back to the Future",
+    "year": 1985,
+    "director": "Robert Zemeckis"
+  },
+  {
+    "id": "film-15",
+    "chineseTitle": "鬥陣俱樂部",
+    "englishTitle": "Fight Club",
+    "year": 1999,
+    "director": "David Fincher"
+  },
+  {
+    "id": "film-16",
+    "chineseTitle": "黑色追緝令",
+    "englishTitle": "Pulp Fiction",
+    "year": 1994,
+    "director": "Quentin Tarantino"
+  },
+  {
+    "id": "film-17",
+    "chineseTitle": "辛德勒的名單",
+    "englishTitle": "Schindler’s List",
+    "year": 1993,
+    "director": "Steven Spielberg"
+  },
+  {
+    "id": "film-18",
+    "chineseTitle": "搶救雷恩大兵",
+    "englishTitle": "Saving Private Ryan",
+    "year": 1998,
+    "director": "Steven Spielberg"
+  },
+  {
+    "id": "film-19",
+    "chineseTitle": "沉默的羔羊",
+    "englishTitle": "The Silence of the Lambs",
+    "year": 1991,
+    "director": "Jonathan Demme"
+  },
+  {
+    "id": "film-20",
+    "chineseTitle": "美麗人生",
+    "englishTitle": "Life Is Beautiful",
+    "year": 1997,
+    "director": "Roberto Benigni"
+  },
+  {
+    "id": "film-21",
+    "chineseTitle": "海上鋼琴師",
+    "englishTitle": "The Legend of 1900",
+    "year": 1998,
+    "director": "Giuseppe Tornatore"
+  },
+  {
+    "id": "film-22",
+    "chineseTitle": "樂來越愛你",
+    "englishTitle": "La La Land",
+    "year": 2016,
+    "director": "Damien Chazelle"
+  },
+  {
+    "id": "film-23",
+    "chineseTitle": "進擊的鼓手",
+    "englishTitle": "Whiplash",
+    "year": 2014,
+    "director": "Damien Chazelle"
+  },
+  {
+    "id": "film-24",
+    "chineseTitle": "你的名字",
+    "englishTitle": "Your Name",
+    "year": 2016,
+    "director": "Makoto Shinkai"
+  },
+  {
+    "id": "film-25",
+    "chineseTitle": "臥虎藏龍",
+    "englishTitle": "Crouching Tiger, Hidden Dragon",
+    "year": 2000,
+    "director": "Ang Lee"
+  },
+  {
+    "id": "film-26",
+    "chineseTitle": "悲情城市",
+    "englishTitle": "A City of Sadness",
+    "year": 1989,
+    "director": "Hou Hsiao-hsien"
+  },
+  {
+    "id": "film-27",
+    "chineseTitle": "那些年，我們一起追的女孩",
+    "englishTitle": "You Are the Apple of My Eye",
+    "year": 2011,
+    "director": "Giddens Ko"
+  },
+  {
+    "id": "film-28",
+    "chineseTitle": "海角七號",
+    "englishTitle": "Cape No. 7",
+    "year": 2008,
+    "director": "Wei Te-sheng"
+  },
+  {
+    "id": "film-29",
+    "chineseTitle": "一一",
+    "englishTitle": "Yi Yi",
+    "year": 2000,
+    "director": "Edward Yang"
+  },
+  {
+    "id": "film-30",
+    "chineseTitle": "花樣年華",
+    "englishTitle": "In the Mood for Love",
+    "year": 2000,
+    "director": "Wong Kar-wai"
+  },
+  {
+    "id": "film-31",
+    "chineseTitle": "重慶森林",
+    "englishTitle": "Chungking Express",
+    "year": 1994,
+    "director": "Wong Kar-wai"
+  },
+  {
+    "id": "film-32",
+    "chineseTitle": "無間道",
+    "englishTitle": "Infernal Affairs",
+    "year": 2002,
+    "director": "Andrew Lau and Alan Mak"
+  },
+  {
+    "id": "film-33",
+    "chineseTitle": "少年Pi的奇幻漂流",
+    "englishTitle": "Life of Pi",
+    "year": 2012,
+    "director": "Ang Lee"
+  },
+  {
+    "id": "film-34",
+    "chineseTitle": "魔戒首部曲：魔戒現身",
+    "englishTitle": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "director": "Peter Jackson"
+  },
+  {
+    "id": "film-35",
+    "chineseTitle": "哈利波特：神秘的魔法石",
+    "englishTitle": "Harry Potter and the Philosopher’s Stone",
+    "year": 2001,
+    "director": "Chris Columbus"
+  },
+  {
+    "id": "film-36",
+    "chineseTitle": "星際大戰",
+    "englishTitle": "Star Wars",
+    "year": 1977,
+    "director": "George Lucas"
+  },
+  {
+    "id": "film-37",
+    "chineseTitle": "玩具總動員",
+    "englishTitle": "Toy Story",
+    "year": 1995,
+    "director": "John Lasseter"
+  },
+  {
+    "id": "film-38",
+    "chineseTitle": "天外奇蹟",
+    "englishTitle": "Up",
+    "year": 2009,
+    "director": "Pete Docter"
+  },
+  {
+    "id": "film-39",
+    "chineseTitle": "可可夜總會",
+    "englishTitle": "Coco",
+    "year": 2017,
+    "director": "Lee Unkrich"
+  },
+  {
+    "id": "film-40",
+    "chineseTitle": "腦筋急轉彎",
+    "englishTitle": "Inside Out",
+    "year": 2015,
+    "director": "Pete Docter"
+  },
+  {
+    "id": "film-41",
+    "chineseTitle": "瘋狂麥斯：憤怒道",
+    "englishTitle": "Mad Max: Fury Road",
+    "year": 2015,
+    "director": "George Miller"
+  },
+  {
+    "id": "film-42",
+    "chineseTitle": "奧本海默",
+    "englishTitle": "Oppenheimer",
+    "year": 2023,
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "film-43",
+    "chineseTitle": "媽的多重宇宙",
+    "englishTitle": "Everything Everywhere All at Once",
+    "year": 2022,
+    "director": "Daniel Kwan and Daniel Scheinert"
+  },
+  {
+    "id": "film-44",
+    "chineseTitle": "大白鯊",
+    "englishTitle": "Jaws",
+    "year": 1975,
+    "director": "Steven Spielberg"
+  },
+  {
+    "id": "film-45",
+    "chineseTitle": "異形",
+    "englishTitle": "Alien",
+    "year": 1979,
+    "director": "Ridley Scott"
+  },
+  {
+    "id": "film-46",
+    "chineseTitle": "銀翼殺手",
+    "englishTitle": "Blade Runner",
+    "year": 1982,
+    "director": "Ridley Scott"
+  },
+  {
+    "id": "film-47",
+    "chineseTitle": "楚門的世界",
+    "englishTitle": "The Truman Show",
+    "year": 1998,
+    "director": "Peter Weir"
+  },
+  {
+    "id": "film-48",
+    "chineseTitle": "王牌冤家",
+    "englishTitle": "Eternal Sunshine of the Spotless Mind",
+    "year": 2004,
+    "director": "Michel Gondry"
+  },
+  {
+    "id": "film-49",
+    "chineseTitle": "心靈捕手",
+    "englishTitle": "Good Will Hunting",
+    "year": 1997,
+    "director": "Gus Van Sant"
+  },
+  {
+    "id": "film-50",
+    "chineseTitle": "小偷家族",
+    "englishTitle": "Shoplifters",
+    "year": 2018,
+    "director": "Hirokazu Kore-eda"
+  }
+]
