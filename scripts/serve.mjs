@@ -5,6 +5,7 @@ import path from 'node:path';
 const root = path.resolve('dist');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
 const server = http.createServer((request, response) => {
+  if (request.url === '/health') { response.writeHead(200, { 'Content-Type': 'application/json' }); response.end(JSON.stringify({ status: 'ok' })); return; }
   let pathname;
   try { pathname = decodeURIComponent(new URL(request.url || '/', 'http://localhost').pathname); }
   catch { response.writeHead(400); response.end('Bad request'); return; }

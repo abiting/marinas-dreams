@@ -35,6 +35,6 @@ The original supplied banner is preserved in `assets/banner.jpg` and website sto
 
 ## Deployment
 
-The managed project builds with `node scripts/build.mjs` and publishes `dist/`. Publication uses the accepted canonical main checkpoint. Fixed CSS and JavaScript asset URLs are configured with `no-cache` so future updates do not inherit a long stale cache.
+The managed project builds with `node scripts/build.mjs` and publishes `dist/`. Publication uses the accepted canonical main checkpoint. CSS and JavaScript use content-hashed filenames so future updates cannot inherit a stale old asset. A small Node container serves prebuilt page HTML and returns a genuine 404 for unknown paths; this avoids the static gateway’s default homepage fallback. The deployment has no database or login.
 
 After connecting a custom domain, replace `src/site.json` publicOrigin with the confirmed domain, build and check, save a checkpoint, and publish again. Google Search Console verification requires access to that domain or the chosen verification method; this project does not invent verification tokens.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://marinadreams-aph2cxk5.manus.space/sitemap.xml

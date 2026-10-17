@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = process.cwd();
 const data = JSON.parse(fs.readFileSync(path.join(root, 'src/content.json'), 'utf8'));
@@ -12,8 +13,14 @@ fs.mkdirSync(path.join(output, 'assets'), { recursive: true });
 const bannerTarget = path.join(output, data.bannerPath);
 fs.mkdirSync(path.dirname(bannerTarget), { recursive: true });
 fs.copyFileSync(path.join(root, 'assets/banner.jpg'), bannerTarget);
+const assetNames = {};
 for (const name of ['styles.css', 'main.js']) {
-  fs.copyFileSync(path.join(root, 'assets', name), path.join(output, 'assets', name));
+  const bytes = fs.readFileSync(path.join(root, 'assets', name));
+  const hash = createHash('sha256').update(bytes).digest('hex').slice(0, 10);
+  const ext = path.extname(name);
+  const hashedName = `${path.basename(name, ext)}.${hash}${ext}`;
+  assetNames[name] = hashedName;
+  fs.writeFileSync(path.join(output, 'assets', hashedName), bytes);
 }
 const escape = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const absolute = (route) => origin ? `${origin}${route}` : route;
@@ -37,7 +44,7 @@ const page = ({ route, title, description, body, article, noindex = false, keywo
   }
   const structured = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="keywords" content="${escape(keywords.join(', '))}"><meta name="theme-color" content="#70483c">${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}${origin ? `<link rel="canonical" href="${escape(absolute(route))}"><meta property="og:url" content="${escape(absolute(route))}">` : ''}<meta property="og:type" content="${article ? 'article' : 'website'}"><meta property="og:title" content="${escape(article?.title || title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:site_name" content="Marina’s Dreams"><meta property="og:locale" content="en_US"><meta property="og:image" content="${data.bannerUrl}"><meta property="og:image:width" content="2560"><meta property="og:image:height" content="1086"><meta property="og:image:alt" content="Marina’s Dreams: a vintage camera, film, notebooks, and a cup of coffee in soft morning light"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(article?.title || title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${data.bannerUrl}">${article ? `<meta property="article:published_time" content="${data.publishedAt}"><meta property="article:modified_time" content="${data.publishedAt}">` : ''}<link rel="icon" href="${data.bannerUrl}" type="image/jpeg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/styles.css"><script type="application/ld+json">${structured}</script><script src="/assets/main.js" defer></script></head><body class="${article ? 'article-page' : 'journal-page'}"><a class="skip-link" href="#main">Skip to content</a>${nav(route)}<main id="main">${body}</main>${footer}</body></html>`;
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="keywords" content="${escape(keywords.join(', '))}"><meta name="theme-color" content="#70483c">${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}${origin ? `<link rel="canonical" href="${escape(absolute(route))}"><meta property="og:url" content="${escape(absolute(route))}">` : ''}<meta property="og:type" content="${article ? 'article' : 'website'}"><meta property="og:title" content="${escape(article?.title || title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:site_name" content="Marina’s Dreams"><meta property="og:locale" content="en_US"><meta property="og:image" content="${data.bannerUrl}"><meta property="og:image:width" content="2560"><meta property="og:image:height" content="1086"><meta property="og:image:alt" content="Marina’s Dreams: a vintage camera, film, notebooks, and a cup of coffee in soft morning light"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(article?.title || title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${data.bannerUrl}">${article ? `<meta property="article:published_time" content="${data.publishedAt}"><meta property="article:modified_time" content="${data.publishedAt}">` : ''}<link rel="icon" href="${data.bannerUrl}" type="image/jpeg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/${assetNames['styles.css']}"><script type="application/ld+json">${structured}</script><script src="/assets/${assetNames['main.js']}" defer></script></head><body class="${article ? 'article-page' : 'journal-page'}"><a class="skip-link" href="#main">Skip to content</a>${nav(route)}<main id="main">${body}</main>${footer}</body></html>`;
 };
 const writePage = (route, options) => {
   const target = route === '/' ? output : path.join(output, route);
