@@ -1,4 +1,4 @@
-name: Deploy client to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -20,22 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: pnpm
+          node-version: 22
 
-      - run: pnpm install --frozen-lockfile
-
-      - run: pnpm exec vite build --base=/${{ github.event.repository.name }}/
-
-      - run: cp dist/public/index.html dist/public/404.html
+      - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/public
+          path: ./dist
 
   deploy:
     needs: build
