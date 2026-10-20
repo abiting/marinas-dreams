@@ -5,14 +5,48 @@ import { createHash } from 'node:crypto';
 const root = process.cwd();
 const data = JSON.parse(fs.readFileSync(path.join(root, 'src/content.json'), 'utf8'));
 const settings = JSON.parse(fs.readFileSync(path.join(root, 'src/site.json'), 'utf8'));
-const origin = settings.publicOrigin?.replace(/\/$/, '') || '';
-if (origin && !/^https:\/\/[^/]+$/.test(origin)) throw new Error('publicOrigin must be a real HTTPS origin');
+const brand = "10eKokoro's Dream";
+const siteName = data.siteName === brand ? data.siteName : brand;
+const language = data.language || 'ja';
+const authorName = data.authorName || 'マリナ';
+
+const validateOrigin = (value) => {
+  if (!value) return '';
+  let parsed;
+  try {
+    parsed = new URL(value);
+  } catch {
+    throw new Error('PUBLIC_ORIGIN/publicOrigin must be a valid HTTPS origin');
+  }
+  if (parsed.protocol !== 'https:' || !parsed.hostname || parsed.username || parsed.password || parsed.search || parsed.hash || (parsed.pathname !== '' && parsed.pathname !== '/')) {
+    throw new Error('PUBLIC_ORIGIN/publicOrigin must be an HTTPS origin without credentials, path, query, or hash');
+  }
+  return parsed.origin;
+};
+const configuredOrigin = process.env.PUBLIC_ORIGIN?.trim() || settings.publicOrigin || '';
+const origin = validateOrigin(configuredOrigin);
+
+const safeRelativePath = (value, fallback) => {
+  const normalized = String(value || fallback).replace(/^\/+/, '');
+  if (!normalized || normalized.includes('\0') || normalized.split('/').some((part) => part === '..')) {
+    throw new Error('Asset paths must stay inside the project');
+  }
+  return normalized;
+};
+const bannerPath = `/${safeRelativePath(data.bannerPath, 'assets/banner.jpg')}`;
+const bannerAsset = safeRelativePath(data.bannerAsset, 'assets/banner.jpg');
+const positiveInteger = (value, fallback) => Number.isInteger(Number(value)) && Number(value) > 0 ? Number(value) : fallback;
+const bannerWidth = positiveInteger(data.bannerWidth, 2560);
+const bannerHeight = positiveInteger(data.bannerHeight, 1086);
 const output = path.join(root, 'dist');
-fs.mkdirSync(output, { recursive: true });
+fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(path.join(output, 'assets'), { recursive: true });
-const bannerTarget = path.join(output, data.bannerPath);
+const bannerSource = path.join(root, bannerAsset);
+if (!fs.existsSync(bannerSource)) throw new Error(`Banner asset not found: ${bannerAsset}`);
+const bannerTarget = path.join(output, safeRelativePath(bannerPath, 'assets/banner.jpg'));
 fs.mkdirSync(path.dirname(bannerTarget), { recursive: true });
-fs.copyFileSync(path.join(root, 'assets/banner.jpg'), bannerTarget);
+fs.copyFileSync(bannerSource, bannerTarget);
+
 const assetNames = {};
 for (const name of ['styles.css', 'main.js']) {
   const bytes = fs.readFileSync(path.join(root, 'assets', name));
@@ -22,80 +56,93 @@ for (const name of ['styles.css', 'main.js']) {
   assetNames[name] = hashedName;
   fs.writeFileSync(path.join(output, 'assets', hashedName), bytes);
 }
+
 const escape = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const absolute = (route) => origin ? `${origin}${route}` : route;
-const authorId = absolute('/about-marina/#marina');
+const imageUrl = data.bannerUrl || absolute(bannerPath);
+const authorId = absolute('/about-marina/#author');
 const person = {
-  '@type': 'Person', '@id': authorId, name: 'Marina', url: absolute('/about-marina/'),
-  description: 'A Taiwan-based barista who loves film, documentaries, and contemporary art.',
+  '@type': 'Person', '@id': authorId, name: authorName, url: absolute('/about-marina/'),
+  description: '台湾出身で映画を愛するバリスタ、マリナ。',
 };
 const arrow = '<span aria-hidden="true">↗</span>';
-const nav = (route) => `<header class="site-header"><a class="wordmark" href="/" aria-label="Marina’s Dreams home"><span class="brand-initial" aria-hidden="true">m.</span><span>Marina’s <i>Dreams</i></span></a><nav aria-label="Main navigation"><a href="/" ${route === '/' ? 'aria-current="page"' : ''}>Home</a><a href="/film-reviews/" ${route.includes('review') ? 'aria-current="page"' : ''}>Film reviews</a><a href="/about-marina/" ${route.includes('about') ? 'aria-current="page"' : ''}>About Marina</a></nav><span class="header-note">A personal film & art journal</span></header>`;
-const footer = `<footer class="site-footer"><div class="footer-top"><a class="footer-brand" href="/">Marina’s <i>Dreams</i></a><p>A few films. A quiet moment.<br>Something to carry with you.</p><a class="text-link" href="/about-marina/">Meet Marina ${arrow}</a></div><div class="footer-bottom"><p>Copyright © 2026 Marina’s Dreams</p><p>This website was built and is maintained by <a href="https://abiting.cc">Abiting</a>, a Taiwan-based marketing specialist.</p></div><p class="disclaimer">A personal portfolio. Not affiliated with Marina Abramović or the 2010 film <em>MARINA</em>.</p></footer>`;
-const card = (review, index, compact = false) => `<article class="review-entry ${compact ? 'compact' : ''}" data-review data-theme="${escape(review.theme)}" data-search="${escape(`${review.fullName} ${review.director} ${review.theme} ${review.title}`.toLowerCase())}"><span class="entry-number">${String(index + 1).padStart(2, '0')}</span><div class="entry-main"><p class="eyebrow">${escape(review.theme)} <span class="dot">·</span> ${review.year}</p><h3><a href="/${review.slug}/">${escape(review.name)}</a></h3><p class="entry-subtitle">${escape(review.title.split('Review: ')[1])}</p><p class="entry-description">${escape(review.description)}</p><div class="entry-meta"><span>${escape(review.director)}</span><span>${review.readMinutes} min read</span><span>Spoiler-light</span></div></div><a class="entry-link" href="/${review.slug}/" aria-label="Read ${escape(review.name)} review">Read the review ${arrow}</a></article>`;
+const nav = (route) => `<header class="site-header"><a class="wordmark" href="/" aria-label="${escape(siteName)} ホーム"><span class="brand-initial" aria-hidden="true">k.</span><span>${escape(siteName)}</span></a><nav aria-label="メインナビゲーション"><a href="/" ${route === '/' ? 'aria-current="page"' : ''}>ホーム</a><a href="/film-reviews/" ${route.includes('review') ? 'aria-current="page"' : ''}>映画レビュー</a><a href="/about-marina/" ${route.includes('about') ? 'aria-current="page"' : ''}>マリナについて</a></nav><span class="header-note">台湾発、映画をめぐる個人ノート</span></header>`;
+const footer = `<footer class="site-footer"><div class="footer-top"><a class="footer-brand" href="/">${escape(siteName)}</a><p>映画の余韻と、静かなひととき。<br>ページをめくるように、ゆっくりと。</p><a class="text-link" href="/about-marina/">マリナについて ${arrow}</a></div><div class="footer-bottom"><p>© 2026 ${escape(siteName)}</p><p>このサイトは、台湾のマーケティング専門家 <a href="https://abiting.cc">Abiting</a> が制作・運営しています。</p></div></footer>`;
+const card = (review, index, compact = false) => {
+  const searchText = [review.fullName, review.originalTitle, review.director, review.theme, review.title, review.subtitle].filter(Boolean).join(' ').toLocaleLowerCase('ja');
+  return `<article class="review-entry ${compact ? 'compact' : ''}" data-review data-theme="${escape(review.theme)}" data-search="${escape(searchText)}"><span class="entry-number">${String(index + 1).padStart(2, '0')}</span><div class="entry-main"><p class="eyebrow">${escape(review.theme)} <span class="dot">·</span> ${escape(review.year)}</p><h3><a href="/${escape(review.slug)}/">${escape(review.name)}</a></h3><p class="entry-subtitle">${escape(review.subtitle || review.title || '')}</p><p class="entry-description">${escape(review.description)}</p><div class="entry-meta"><span>${escape(review.director)}</span><span>${escape(review.readMinutes || 1)}分で読めます</span><span>ネタバレ控えめ</span></div></div><a class="entry-link" href="/${escape(review.slug)}/" aria-label="${escape(review.name)}のレビューを読む">レビューを読む ${arrow}</a></article>`;
+};
+const effectiveModified = (article) => data.modifiedAt || article?.publishedAt || data.publishedAt;
+const dateOnly = (value) => value ? String(value).slice(0, 10) : '';
+const formatDate = (value) => {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString('ja-JP', { timeZone: 'Asia/Taipei', year: 'numeric', month: 'long', day: 'numeric' });
+};
 const page = ({ route, title, description, body, article, noindex = false, keywords = [] }) => {
+  const modifiedAt = effectiveModified(article);
   const graph = [person];
   if (article) {
     graph.push({ '@type': 'Article', '@id': absolute(`${route}#article`), mainEntityOfPage: absolute(route),
-      headline: article.title, description, author: { '@id': authorId }, datePublished: article.publishedAt || data.publishedAt,
-      dateModified: article.publishedAt || data.publishedAt, image: data.bannerUrl, inLanguage: 'en', articleSection: 'Film reviews',
+      headline: article.title, description, author: { '@id': authorId, name: authorName }, datePublished: article.publishedAt || data.publishedAt,
+      dateModified: modifiedAt, image: imageUrl, inLanguage: 'ja', articleSection: '映画レビュー',
       about: { '@type': 'Movie', name: article.fullName, director: { '@type': 'Person', name: article.director } },
     });
   }
   const structured = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="keywords" content="${escape(keywords.join(', '))}"><meta name="theme-color" content="#70483c">${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}${origin ? `<link rel="canonical" href="${escape(absolute(route))}"><meta property="og:url" content="${escape(absolute(route))}">` : ''}<meta property="og:type" content="${article ? 'article' : 'website'}"><meta property="og:title" content="${escape(article?.title || title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:site_name" content="Marina’s Dreams"><meta property="og:locale" content="en_US"><meta property="og:image" content="${data.bannerUrl}"><meta property="og:image:width" content="2560"><meta property="og:image:height" content="1086"><meta property="og:image:alt" content="Marina’s Dreams: a vintage camera, film, notebooks, and a cup of coffee in soft morning light"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(article?.title || title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${data.bannerUrl}">${article ? `<meta property="article:published_time" content="${article.publishedAt || data.publishedAt}"><meta property="article:modified_time" content="${article.publishedAt || data.publishedAt}">` : ''}<link rel="icon" href="${data.bannerUrl}" type="image/jpeg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/${assetNames['styles.css']}"><script type="application/ld+json">${structured}</script><script src="/assets/${assetNames['main.js']}" defer></script></head><body class="${article ? 'article-page' : 'journal-page'}"><a class="skip-link" href="#main">Skip to content</a>${nav(route)}<main id="main">${body}</main>${footer}</body></html>`;
+<html lang="${escape(language)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="keywords" content="${escape(keywords.join(', '))}"><meta name="theme-color" content="#70483c">${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}${origin ? `<link rel="canonical" href="${escape(absolute(route))}"><meta property="og:url" content="${escape(absolute(route))}">` : ''}<meta property="og:type" content="${article ? 'article' : 'website'}"><meta property="og:title" content="${escape(article?.title || title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:site_name" content="${escape(siteName)}"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="${escape(imageUrl)}"><meta property="og:image:width" content="${bannerWidth}"><meta property="og:image:height" content="${bannerHeight}"><meta property="og:image:alt" content="${escape(`${siteName}：古いカメラとフィルム、ノート、コーヒーのある静かな机`)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(article?.title || title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${escape(imageUrl)}">${article ? `<meta property="article:published_time" content="${escape(article.publishedAt || data.publishedAt)}"><meta property="article:modified_time" content="${escape(modifiedAt)}">` : ''}<link rel="icon" href="${escape(imageUrl)}" type="image/jpeg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/${assetNames['styles.css']}"><script type="application/ld+json">${structured}</script><script src="/assets/${assetNames['main.js']}" defer></script></head><body class="${article ? 'article-page' : 'journal-page'}"><a class="skip-link" href="#main">本文へ移動</a>${nav(route)}<main id="main">${body}</main>${footer}</body></html>`;
 };
 const writePage = (route, options) => {
-  const target = route === '/' ? output : path.join(output, route);
+  const target = route === '/' ? output : path.join(output, safeRelativePath(route, ''));
   fs.mkdirSync(target, { recursive: true });
   fs.writeFileSync(path.join(target, 'index.html'), page({ route, ...options }));
 };
 
 writePage('/', {
-  title: 'Marina’s Dreams | Film Reviews & Visual Essays',
-  description: 'Film reviews, documentary notes, and visual essays by Marina, a Taiwan-based barista drawn to quiet, powerful images.',
-  keywords: ['Marina’s Dreams', 'film reviews', 'visual essays', 'Taiwan film journal'],
-  body: `<section class="home-hero"><div class="hero-image"><img src="${data.bannerPath}" alt="Marina’s Dreams: a vintage camera, rolls of film, notebooks, and coffee in soft morning light" width="2560" height="1086" fetchpriority="high"></div><div class="hero-caption"><span>Films, art & the moments in between</span><span>Written from Taiwan <span aria-hidden="true">—</span> read everywhere</span></div></section><section class="intro-section section-wrap"><div><p class="eyebrow">A notebook, not a verdict</p><h1>For the images<br>that <i>stay with us.</i></h1></div><div class="intro-note"><p>Hi, I’m Marina—a barista from Taiwan with a deep love of cinema.</p><p>This is where I put the things that linger: a glance, a silence, a scene that feels different the next morning.</p><a class="text-link" href="/about-marina/">A little about me ${arrow}</a></div></section><section class="reviews-section section-wrap" aria-labelledby="reviews-heading"><div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2 id="reviews-heading">From the screen, <i>into the notebook.</i></h2></div><a class="text-link" href="/film-reviews/">All film reviews ${arrow}</a></div><div class="review-list">${data.reviews.slice(-6).map((r, i) => card(r, i)).join('')}</div></section><section class="journal-note section-wrap" aria-labelledby="notes-heading"><div class="note-label"><span class="eyebrow">Still unfolding</span><span class="note-index">04 — ∞</span></div><div><h2 id="notes-heading">Beyond the screen</h2><p>Documentary notes, contemporary art, and short personal essays will find their way here, too. A creative notebook has room for unfinished thoughts.</p><div class="topic-labels"><span>Documentaries</span><span>Contemporary art</span><span>Personal essays</span></div></div></section><section class="closing-note"><p>“Sometimes, presence alone can tell a story.”</p><span class="eyebrow">A thought from Marina’s notebook</span></section>`,
+  title: `${siteName}｜映画レビューと映像のノート`,
+  description: '台湾出身で映画を愛するバリスタ、マリナによる映画レビューと、映像の余韻を書き留める個人ノート。',
+  keywords: [siteName, '映画レビュー', '映画ノート', '台湾'],
+  body: `<section class="home-hero"><div class="hero-image"><img src="${escape(bannerPath)}" alt="${escape(`${siteName}：古いカメラとフィルム、ノート、コーヒーのある静かな机`)}" width="${bannerWidth}" height="${bannerHeight}" fetchpriority="high"></div><div class="hero-caption"><span>映画と、あいだにある時間</span><span>台湾から綴る <span aria-hidden="true">—</span> どこからでも読める</span></div></section><section class="intro-section section-wrap"><div><p class="eyebrow">結論ではなく、ノート</p><h1>あとからも<br><i>残る映像のために。</i></h1></div><div class="intro-note"><p>台湾出身で映画を愛するバリスタ、マリナの映画ノートです。</p><p>視線や沈黙、翌朝になってもふと戻ってくる場面を、ここに書き留めています。</p><a class="text-link" href="/about-marina/">マリナについて ${arrow}</a></div></section><section class="reviews-section section-wrap" aria-labelledby="reviews-heading"><div class="section-heading"><div><p class="eyebrow">ノートから</p><h2 id="reviews-heading">スクリーンから、<i>ノートの中へ。</i></h2></div><a class="text-link" href="/film-reviews/">映画レビューをすべて見る ${arrow}</a></div><div class="review-list">${data.reviews.slice(-6).map((r, i) => card(r, i)).join('')}</div></section><section class="journal-note section-wrap" aria-labelledby="notes-heading"><div class="note-label"><span class="eyebrow">少しずつ更新中</span><span class="note-index">04 — ∞</span></div><div><h2 id="notes-heading">スクリーンの外側</h2><p>映画やドキュメンタリー、短いエッセイ。未完成の考えも置いておける、余白のあるノートです。</p><div class="topic-labels"><span>ドキュメンタリー</span><span>映画の記憶</span><span>個人的なエッセイ</span></div></div></section><section class="closing-note"><p>「静かな場面ほど、あとから長く残る。」</p><span class="eyebrow">マリナのノートより</span></section>`,
 });
 writePage('/film-reviews/', {
-  title: 'Film Reviews & Reflections | Marina’s Dreams',
-  description: 'Browse Marina’s spoiler-light film reviews, from cinema classics to animation and Taiwanese films, with personal reflections on the images that linger.',
-  keywords: ['film reviews', 'Marina’s Dreams', 'spoiler-light reviews', 'cinema reflections'],
-  body: `<section class="archive-header section-wrap"><p class="eyebrow">The film notebook</p><h1>Film reviews<br>& <i>afterthoughts.</i></h1><p class="lead">Not a score to settle. A place to look a little closer.</p><div class="archive-controls" data-archive-controls hidden><label class="search-box"><span class="sr-only">Search film reviews</span><input type="search" placeholder="Find a film, filmmaker, or thought…" data-search-input><span aria-hidden="true">⌕</span></label><span class="result-count" aria-live="polite" data-result-count>${data.reviews.length} reviews</span></div></section><section class="archive-list section-wrap" aria-labelledby="archive-list-heading"><h2 class="sr-only" id="archive-list-heading">From the notebook</h2><div class="review-list">${data.reviews.map((r, i) => card(r, i)).join('')}</div><p class="no-results" data-no-results hidden>No matching reviews yet. Try a film title or filmmaker.</p></section>`,
+  title: `映画レビューと余韻｜${siteName}`,
+  description: '映画の記憶や、心に残った場面を綴る日文レビュー。古典からアニメーション、台湾映画まで、ネタバレを抑えて紹介します。',
+  keywords: ['映画レビュー', siteName, '映画の余韻', 'ネタバレ控えめ'],
+  body: `<section class="archive-header section-wrap"><p class="eyebrow">映画ノート</p><h1>映画レビューと<br><i>そのあとの余韻。</i></h1><p class="lead">点数をつけるためではなく、もう少し近くで眺めるために。</p><div class="archive-controls" data-archive-controls hidden><label class="search-box"><span class="sr-only">映画レビューを検索</span><input type="search" placeholder="作品名・監督・言葉を検索…" data-search-input><span aria-hidden="true">⌕</span></label><span class="result-count" aria-live="polite" data-result-count>${data.reviews.length}件のレビュー</span></div></section><section class="archive-list section-wrap" aria-labelledby="archive-list-heading"><h2 class="sr-only" id="archive-list-heading">ノートから</h2><div class="review-list">${data.reviews.map((r, i) => card(r, i)).join('')}</div><p class="no-results" data-no-results hidden>一致するレビューがありません。作品名や監督名を変えてお試しください。</p></section>`,
 });
 writePage('/about-marina/', {
-  title: 'About Marina | A Film Journal from Taiwan',
-  description: 'Meet Marina, a Taiwan-based barista who loves film, documentaries, and contemporary art. Marina’s Dreams is her personal creative notebook.',
-  keywords: ['Marina', 'Taiwan-based barista', 'film journal', 'contemporary art'],
-  body: `<section class="about-heading section-wrap"><p class="eyebrow">The person behind the pages</p><h1>Hi, I’m <i>Marina.</i></h1><p class="lead">A barista, a film lover, a work in progress.</p></section><section class="about-layout section-wrap"><aside class="about-margin"><span class="margin-mark" aria-hidden="true">m.</span><p class="eyebrow">Based in Taiwan<br>Drawn to cinema</p><p class="margin-note">Quiet images.<br>Strong feelings.<br>A cup of coffee.</p></aside><div class="prose about-prose">${data.about.map(p => `<p>${p}</p>`).join('')}<div class="about-disclaimer"><h2>A note on the name</h2><p>Marina’s Dreams is a personal portfolio and is not affiliated with Marina Abramović or the 2010 film <em>MARINA</em>.</p></div><a class="text-link" href="/film-reviews/">Open the film notebook ${arrow}</a></div></section>`,
+  title: `マリナについて｜${siteName}`,
+  description: '台湾出身で映画を愛するバリスタ、マリナのプロフィールと、この映画ノートについて。',
+  keywords: ['マリナ', '台湾', 'バリスタ', '映画ノート'],
+  body: `<section class="about-heading section-wrap"><p class="eyebrow">このページを書いている人</p><h1>マリナの<br><i>映画ノート。</i></h1><p class="lead">台湾出身のバリスタ。映画が好きです。</p></section><section class="about-layout section-wrap"><aside class="about-margin"><span class="margin-mark" aria-hidden="true">m.</span><p class="eyebrow">台湾から<br>映画のそばで</p><p class="margin-note">静かな映像。<br>強く残る気持ち。<br>一杯のコーヒー。</p></aside><div class="prose about-prose">${(data.about || []).map((paragraph) => `<p>${paragraph}</p>`).join('')}<a class="text-link" href="/film-reviews/">映画ノートを読む ${arrow}</a></div></section>`,
 });
 const sectionTitles = {
-  'lust-caution-2007-review': ['Watching people watch each other', 'Intimacy, performance, and power'],
-  'the-bucket-list-2007-review': ['A friendship behind the checklist', 'What makes a life feel full?'],
-  'mewtwo-strikes-back-review': ['A beginning someone else decided', 'The compassionate core'],
+  'lust-caution-2007-review': ['互いを見つめる人々', '親密さと演技、そして力'],
+  'the-bucket-list-2007-review': ['リストの向こうにある友情', '人生を満たすもの'],
+  'mewtwo-strikes-back-review': ['誰かに決められた始まり', '思いやりの核'],
 };
 for (const review of data.reviews) {
-  const [firstHeading, secondHeading] = review.sectionHeadings || sectionTitles[review.slug];
+  const [firstHeading, secondHeading] = review.sectionHeadings || sectionTitles[review.slug] || ['もう一度近くで見る', 'そのあとに残るもの'];
+  const articleDate = review.publishedAt || data.publishedAt;
   writePage(`/${review.slug}/`, {
     title: review.seoTitle, description: review.description, article: review,
-    keywords: [review.name, `${review.name} review`, review.director, 'film review'],
-    body: `<section class="article-heading section-wrap"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/film-reviews/">Film reviews</a><span aria-hidden="true">/</span><span>${escape(review.name)}</span></nav><p class="eyebrow">${escape(review.theme)} <span class="dot">·</span> ${review.year}</p><h1>${escape(review.name)}<span>${escape(review.title.split('Review: ')[1])}</span></h1><p class="article-deck">${escape(review.description)}</p><div class="byline"><a href="/about-marina/">By Marina</a><span>${new Date(review.publishedAt || data.publishedAt).toLocaleDateString('en-US', { timeZone: 'Asia/Taipei', year: 'numeric', month: 'long', day: 'numeric' })}</span><span>${review.readMinutes} min read</span><span class="spoiler-label">Spoiler-light review</span></div></section><div class="article-layout section-wrap"><aside class="article-margin"><div class="sticky-margin"><p class="eyebrow">In this review</p><nav aria-label="Article sections"><a href="#close-look">${escape(firstHeading)}</a><a href="#afterthoughts">${escape(secondHeading)}</a><a href="#sources">Sources & references</a></nav><dl class="film-facts"><div><dt>Film</dt><dd>${escape(review.fullName)}</dd></div><div><dt>Director</dt><dd>${escape(review.director)}</dd></div><div><dt>Year</dt><dd>${review.year}${review.slug.includes('mewtwo') ? ' (original Japanese release)' : ''}</dd></div>${review.edition ? `<div><dt>Version</dt><dd>${escape(review.edition)}</dd></div>` : ''}</dl><button class="share-button" type="button" data-copy-link hidden>Copy article link ${arrow}</button><span class="share-status sr-only" aria-live="polite" data-share-status></span></div></aside><article class="prose article-prose" aria-label="${escape(review.name)} review">${review.paragraphs.map((p, i) => `${i === 1 ? `<h2 id="close-look">${escape(firstHeading)}</h2>` : ''}${i === 4 ? `<h2 id="afterthoughts">${escape(secondHeading)}</h2>` : ''}<p>${p}</p>`).join('')}<section class="source-note" id="sources"><h2>Sources & references</h2><p>Film details were checked against the following references. The reflections are Marina’s own.</p><ol>${review.sources.map(s => `<li id="source-${s.id}"><a href="${s.url}">${escape(s.title)}</a></li>`).join('')}</ol></section><div class="author-note"><span class="author-mark" aria-hidden="true">m.</span><div><p class="eyebrow">Written by Marina</p><p>A Taiwan-based barista with a deep love of cinema and the quiet moments between people.</p><a class="text-link" href="/about-marina/">About the author ${arrow}</a></div></div></article></div><section class="related-reviews section-wrap"><div class="section-heading"><div><p class="eyebrow">Keep turning the pages</p><h2>Another film, <i>another thought.</i></h2></div></div>${data.reviews.filter(r => r.slug !== review.slug).slice(0, 2).map((r, i) => card(r, i, true)).join('')}</section>`,
+    keywords: [review.name, review.originalTitle, review.director, '映画レビュー'].filter(Boolean),
+    body: `<section class="article-heading section-wrap"><nav class="breadcrumbs" aria-label="パンくず"><a href="/">ホーム</a><span aria-hidden="true">/</span><a href="/film-reviews/">映画レビュー</a><span aria-hidden="true">/</span><span>${escape(review.name)}</span></nav><p class="eyebrow">${escape(review.theme)} <span class="dot">·</span> ${escape(review.year)}</p><h1>${escape(review.title)} </h1><p class="article-deck">${escape(review.description)}</p><div class="byline"><a href="/about-marina/">マリナ</a><span>${escape(formatDate(articleDate))}公開</span><span>${escape(review.readMinutes || 1)}分で読めます</span><span class="spoiler-label">ネタバレ控えめ</span></div></section><div class="article-layout section-wrap"><aside class="article-margin"><div class="sticky-margin"><p class="eyebrow">この記事の構成</p><nav aria-label="記事内セクション"><a href="#close-look">${escape(firstHeading)}</a><a href="#afterthoughts">${escape(secondHeading)}</a><a href="#sources">参考資料</a></nav><dl class="film-facts"><div><dt>作品</dt><dd>${escape(review.fullName)}</dd></div><div><dt>監督</dt><dd>${escape(review.director)}</dd></div><div><dt>公開年</dt><dd>${escape(review.year)}${review.slug.includes('mewtwo') ? '（日本公開）' : ''}</dd></div>${review.edition ? `<div><dt>版</dt><dd>${escape(review.edition)}</dd></div>` : ''}</dl><button class="share-button" type="button" data-copy-link hidden>記事リンクをコピー ${arrow}</button><span class="share-status sr-only" aria-live="polite" data-share-status></span></div></aside><article class="prose article-prose" aria-label="${escape(review.name)}のレビュー">${review.paragraphs.map((paragraph, index) => `${index === 1 ? `<h2 id="close-look">${escape(firstHeading)}</h2>` : ''}${index === 4 ? `<h2 id="afterthoughts">${escape(secondHeading)}</h2>` : ''}<p>${paragraph}</p>`).join('')}<section class="source-note" id="sources"><h2>参考資料</h2><p>作品情報は、以下の資料を参照しています。感想はマリナ自身の言葉です。</p><ol>${review.sources.map((source) => `<li id="source-${escape(source.id)}"><a href="${escape(source.url)}">${escape(source.title)}</a>${source.edition ? ` <span>（${escape(source.edition)}）</span>` : ''}</li>`).join('')}</ol></section><div class="author-note"><span class="author-mark" aria-hidden="true">m.</span><div><p class="eyebrow">マリナが書いています</p><p>台湾出身で映画を愛するバリスタ、マリナの映画ノートです。</p><a class="text-link" href="/about-marina/">マリナについて ${arrow}</a></div></div></article></div><section class="related-reviews section-wrap"><div class="section-heading"><div><p class="eyebrow">ページをめくるように</p><h2>別の映画、<i>別の余韻。</i></h2></div></div>${data.reviews.filter((candidate) => candidate.slug !== review.slug).slice(0, 2).map((candidate, index) => card(candidate, index, true)).join('')}</section>`,
   });
 }
-fs.writeFileSync(path.join(output, '404.html'), page({ route: '/404/', title: 'Page Not Found | Marina’s Dreams', description: 'This page is not in Marina’s notebook. Return to the film reviews or the homepage.', noindex: true, keywords: ['Marina’s Dreams', 'film reviews', 'notebook'], body: '<section class="not-found section-wrap"><p class="eyebrow">A missing page</p><h1>This thought<br>isn’t here <i>yet.</i></h1><p>You may have followed an old link. Let’s turn back a page.</p><a class="button-link" href="/film-reviews/">Explore film reviews ↗</a></section>' }));
-const routes = [
-  { path: '/', title: 'Marina’s Dreams' }, { path: '/film-reviews/', title: 'Film reviews' },
-  { path: '/about-marina/', title: 'About Marina' }, ...data.reviews.map(r => ({ path: `/${r.slug}/`, title: r.name })),
+fs.writeFileSync(path.join(output, '404.html'), page({ route: '/404/', title: `ページが見つかりません｜${siteName}`, description: 'お探しのページは見つかりませんでした。映画レビューまたはホームへお戻りください。', noindex: true, keywords: [siteName, '映画レビュー'], body: '<section class="not-found section-wrap"><p class="eyebrow">ページが見つかりません</p><h1>このページは<br><i>まだありません。</i></h1><p>古いリンクから移動した可能性があります。前のページへ戻りましょう。</p><a class="button-link" href="/film-reviews/">映画レビューを見る ↗</a></section>' }));
+
+const routesWithDates = [
+  { path: '/', title: siteName, lastmod: effectiveModified() },
+  { path: '/film-reviews/', title: '映画レビュー', lastmod: effectiveModified() },
+  { path: '/about-marina/', title: 'マリナについて', lastmod: effectiveModified() },
+  ...data.reviews.map((review) => ({ path: `/${review.slug}/`, title: review.name, lastmod: effectiveModified(review) })),
 ];
+const routes = routesWithDates.map(({ path: route, title }) => ({ path: route, title }));
 fs.writeFileSync(path.join(output, 'manus-routes.json'), JSON.stringify({ routes }, null, 2));
 if (origin) {
-  fs.writeFileSync(path.join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map(r => `  <url><loc>${escape(absolute(r.path))}</loc><lastmod>${data.publishedAt.slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+  fs.writeFileSync(path.join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routesWithDates.map((route) => `  <url><loc>${escape(absolute(route.path))}</loc><lastmod>${escape(dateOnly(route.lastmod))}</lastmod></url>`).join('\n')}\n</urlset>\n`);
   fs.writeFileSync(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`);
-} else {
-  for (const name of ['sitemap.xml', 'robots.txt']) {
-    const file = path.join(output, name);
-    if (fs.existsSync(file)) fs.unlinkSync(file);
-  }
 }
-console.log(`Built ${routes.length} complete HTML pages, route manifest, and 404 page${origin ? ` for ${origin}` : ' (canonical origin pending publication)'}.`);
+fs.writeFileSync(path.join(output, '.nojekyll'), '');
+console.log(`Built ${routes.length} complete Japanese HTML pages for ${brand}${origin ? ` at ${origin}` : ' (canonical origin pending publication)'}.`);

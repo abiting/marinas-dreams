@@ -261,3 +261,23 @@ i { font-weight: 400; }
   .author-note { display: none; }
   a { text-decoration: none; }
 }
+
+/* Japanese typesetting: keep the clipping-and-coffee character while giving kana room to breathe. */
+:root {
+  --serif: 'Noto Serif JP', 'Lora', Georgia, serif;
+  --sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+body { line-height: 1.9; overflow-wrap: anywhere; }
+h1, h2, h3 { letter-spacing: 0; line-height: 1.45; }
+.wordmark, .footer-brand { letter-spacing: 0; }
+.wordmark { max-width: 100%; }
+.article-prose > p:first-child::first-letter { float: none; font-size: inherit; line-height: inherit; padding: 0; color: inherit; }
+.source-note h2, .film-facts dt, .topic-labels { letter-spacing: .08em; }
+.entry-subtitle { line-height: 1.9; }
+@media (max-width: 760px) {
+  .wordmark { font-size: clamp(16px, 4.8vw, 21px); gap: 8px; }
+  .brand-initial { flex: 0 0 auto; }
+  .site-header nav { gap: 18px; }
+  .article-heading h1 { letter-spacing: 0; line-height: 1.5; }
+  .article-heading h1 span { letter-spacing: 0; }
+}

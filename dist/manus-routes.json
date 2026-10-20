@@ -2,227 +2,227 @@
   "routes": [
     {
       "path": "/",
-      "title": "Marina’s Dreams"
+      "title": "10eKokoro's Dream"
     },
     {
       "path": "/film-reviews/",
-      "title": "Film reviews"
+      "title": "映画レビュー"
     },
     {
       "path": "/about-marina/",
-      "title": "About Marina"
+      "title": "マリナについて"
     },
     {
       "path": "/lust-caution-2007-review/",
-      "title": "Lust, Caution"
+      "title": "ラスト、コーション"
     },
     {
       "path": "/the-bucket-list-2007-review/",
-      "title": "The Bucket List"
+      "title": "最高の人生の見つけ方"
     },
     {
       "path": "/mewtwo-strikes-back-review/",
-      "title": "Mewtwo Strikes Back"
+      "title": "劇場版ポケットモンスター ミュウツーの逆襲"
     },
     {
       "path": "/shawshank-redemption-review/",
-      "title": "The Shawshank Redemption"
+      "title": "ショーシャンクの空に"
     },
     {
       "path": "/the-godfather-review/",
-      "title": "The Godfather"
+      "title": "ゴッドファーザー"
     },
     {
       "path": "/the-dark-knight-review/",
-      "title": "The Dark Knight"
+      "title": "ダークナイト"
     },
     {
       "path": "/inception-review/",
-      "title": "Inception"
+      "title": "インセプション"
     },
     {
       "path": "/interstellar-review/",
-      "title": "Interstellar"
+      "title": "インターステラー"
     },
     {
       "path": "/forrest-gump-review/",
-      "title": "Forrest Gump"
+      "title": "フォレスト・ガンプ／一期一会"
     },
     {
       "path": "/titanic-review/",
-      "title": "Titanic"
+      "title": "タイタニック"
     },
     {
       "path": "/spirited-away-review/",
-      "title": "Spirited Away"
+      "title": "千と千尋の神隠し"
     },
     {
       "path": "/my-neighbor-totoro-review/",
-      "title": "My Neighbor Totoro"
+      "title": "となりのトトロ"
     },
     {
       "path": "/howls-moving-castle-review/",
-      "title": "Howl’s Moving Castle"
+      "title": "ハウルの動く城"
     },
     {
       "path": "/parasite-review/",
-      "title": "Parasite"
+      "title": "パラサイト 半地下の家族"
     },
     {
       "path": "/the-matrix-review/",
-      "title": "The Matrix"
+      "title": "マトリックス"
     },
     {
       "path": "/jurassic-park-review/",
-      "title": "Jurassic Park"
+      "title": "ジュラシック・パーク"
     },
     {
       "path": "/back-to-the-future-review/",
-      "title": "Back to the Future"
+      "title": "バック・トゥ・ザ・フューチャー"
     },
     {
       "path": "/fight-club-review/",
-      "title": "Fight Club"
+      "title": "ファイト・クラブ"
     },
     {
       "path": "/pulp-fiction-review/",
-      "title": "Pulp Fiction"
+      "title": "パルプ・フィクション"
     },
     {
       "path": "/schindlers-list-review/",
-      "title": "Schindler's List"
+      "title": "シンドラーのリスト"
     },
     {
       "path": "/saving-private-ryan-review/",
-      "title": "Saving Private Ryan"
+      "title": "プライベート・ライアン"
     },
     {
       "path": "/the-silence-of-the-lambs-review/",
-      "title": "The Silence of the Lambs"
+      "title": "羊たちの沈黙"
     },
     {
       "path": "/life-is-beautiful-review/",
-      "title": "Life Is Beautiful"
+      "title": "ライフ・イズ・ビューティフル"
     },
     {
       "path": "/the-legend-of-1900-review/",
-      "title": "The Legend of 1900"
+      "title": "海の上のピアニスト"
     },
     {
       "path": "/la-la-land-review/",
-      "title": "La La Land"
+      "title": "ラ・ラ・ランド"
     },
     {
       "path": "/whiplash-review/",
-      "title": "Whiplash"
+      "title": "セッション"
     },
     {
       "path": "/your-name-review/",
-      "title": "Your Name"
+      "title": "君の名は。"
     },
     {
       "path": "/crouching-tiger-review/",
-      "title": "Crouching Tiger, Hidden Dragon"
+      "title": "グリーン・デスティニー"
     },
     {
       "path": "/a-city-of-sadness-review/",
-      "title": "A City of Sadness"
+      "title": "悲情城市"
     },
     {
       "path": "/you-are-the-apple-of-my-eye-review/",
-      "title": "You Are the Apple of My Eye"
+      "title": "あの頃、君を追いかけた"
     },
     {
       "path": "/cape-no-7-review/",
-      "title": "Cape No. 7"
+      "title": "海角七号 君想う、国境の南"
     },
     {
       "path": "/yi-yi-review/",
-      "title": "Yi Yi"
+      "title": "ヤンヤン夏の想い出"
     },
     {
       "path": "/in-the-mood-for-love-review/",
-      "title": "In the Mood for Love"
+      "title": "花様年華"
     },
     {
       "path": "/chungking-express-review/",
-      "title": "Chungking Express"
+      "title": "恋する惑星"
     },
     {
       "path": "/infernal-affairs-review/",
-      "title": "Infernal Affairs"
+      "title": "インファナル・アフェア"
     },
     {
       "path": "/life-of-pi-review/",
-      "title": "Life of Pi"
+      "title": "ライフ・オブ・パイ／トラと漂流した227日"
     },
     {
       "path": "/the-fellowship-of-the-ring-review/",
-      "title": "The Fellowship of the Ring"
+      "title": "ロード・オブ・ザ・リング"
     },
     {
       "path": "/philosophers-stone-review/",
-      "title": "Harry Potter and the Philosopher’s Stone"
+      "title": "ハリー・ポッターと賢者の石"
     },
     {
       "path": "/star-wars-review/",
-      "title": "Star Wars"
+      "title": "スター・ウォーズ エピソード4／新たなる希望"
     },
     {
       "path": "/toy-story-review/",
-      "title": "Toy Story"
+      "title": "トイ・ストーリー"
     },
     {
       "path": "/up-review/",
-      "title": "Up"
+      "title": "カールじいさんの空飛ぶ家"
     },
     {
       "path": "/coco-review/",
-      "title": "Coco"
+      "title": "リメンバー・ミー"
     },
     {
       "path": "/inside-out-review/",
-      "title": "Inside Out"
+      "title": "インサイド・ヘッド"
     },
     {
       "path": "/mad-max-fury-road-review/",
-      "title": "Mad Max: Fury Road"
+      "title": "マッドマックス 怒りのデス・ロード"
     },
     {
       "path": "/oppenheimer-review/",
-      "title": "Oppenheimer"
+      "title": "オッペンハイマー"
     },
     {
       "path": "/everything-everywhere-review/",
-      "title": "Everything Everywhere All at Once"
+      "title": "エブリシング・エブリウェア・オール・アット・ワンス"
     },
     {
       "path": "/jaws-review/",
-      "title": "Jaws"
+      "title": "ジョーズ"
     },
     {
       "path": "/alien-review/",
-      "title": "Alien"
+      "title": "エイリアン"
     },
     {
       "path": "/blade-runner-review/",
-      "title": "Blade Runner"
+      "title": "ブレードランナー"
     },
     {
       "path": "/the-truman-show-review/",
-      "title": "The Truman Show"
+      "title": "トゥルーマン・ショー"
     },
     {
       "path": "/eternal-sunshine-review/",
-      "title": "Eternal Sunshine of the Spotless Mind"
+      "title": "エターナル・サンシャイン"
     },
     {
       "path": "/good-will-hunting-review/",
-      "title": "Good Will Hunting"
+      "title": "グッド・ウィル・ハンティング／旅立ち"
     },
     {
       "path": "/shoplifters-review/",
-      "title": "Shoplifters"
+      "title": "万引き家族"
     }
   ]
 }

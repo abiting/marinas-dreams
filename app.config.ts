@@ -1,3 +1,4 @@
 export default {
-  logoUrl: "https://abitingdiscord.com/wp-content/uploads/2026/10/Gemini_Generated_Image_1id4lf1id4lf1id4-scaled.jpg",
+  title: "10eKokoro's Dream",
+  logoUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663217818186/APMtSsAlDOUApKbv.jpg",
 };

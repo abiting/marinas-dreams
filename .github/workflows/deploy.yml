@@ -25,6 +25,8 @@ jobs:
           node-version: 22
 
       - run: npm run build
+        env:
+          PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

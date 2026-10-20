@@ -1,3 +1,9 @@
 {
-  "publicOrigin": "https://marinadreams-aph2cxk5.manus.space"
+  "publicOrigin": "https://marinadreams-aph2cxk5.manus.space",
+  "pendingOrigin": "https://10e.org",
+  "legacyRedirects": {
+    "enabled": true,
+    "destination": "/",
+    "status": 301
+  }
 }

@@ -1,10 +1,10 @@
-# Marina’s Dreams
+# 10eKokoro's Dream
 
-An English personal film and art journal for Marina, a Taiwan-based barista. The website follows the approved Taipei café scrapbook direction: paper ivory, coffee brown, Lora typography, and restrained editorial details.
+台湾の映画好きのバリスタ「マリナ」による、日本語の映画・映像・アートノートです。既存の 53 本の映画レビューと URL を保ったまま、日本語に翻訳し、サイト名と共有画像を更新しています。紙のようなアイボリー、コーヒーブラウン、スクラップブックの雰囲気は引き継いでいます。
 
-## Run and build
+## 開発・ビルド
 
-This project uses Node.js 22+ and has no external runtime or build dependencies.
+Node.js 22 以上を使用します。実行・ビルドに外部パッケージは不要です。
 
 ```sh
 npm run dev
@@ -12,29 +12,45 @@ npm run build
 npm run check
 ```
 
-The development service listens on port 3000. `dist/` contains complete static HTML for every page, not a client-rendered shell. Unknown paths return a genuine 404 in the preview service; `404.html` is supplied for static hosting.
+開発サーバーは `0.0.0.0:3000` で待ち受けます。`dist/` は各ページの本文を含む静的 HTML で、JavaScript を実行しなくても記事を読めます。
 
-## Content and settings
+## コンテンツと構成
 
-`src/content.json` contains the English About paragraphs, the three reviews, metadata, publication dates, and reference links. Add future documentary or contemporary-art content through the same content model and extend the route builder as needed. There is no fabricated rating or empty article page.
+`src/content.json` に日本語のプロフィール、53 本のレビュー、タイトル、説明、参照資料の表示名を保存しています。各レビューは 6 段落で、元の記事 URL、映画の年、参照 URL は維持しています。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
 
-`src/site.json` holds the confirmed published public origin. Leave it unset until the platform supplies a real public URL. The builder omits guessed canonical and Open Graph URL tags while it is unset, then creates canonical URLs, sitemap.xml, robots.txt, and absolute schema IDs once the real origin is configured.
+`scripts/build.mjs` は日本語のページ、`Person` と `Article` の JSON-LD、Open Graph / Twitter metadata、`manus-routes.json`、sitemap と robots を生成します。`assets/styles.css` は日本語の組版、`assets/main.js` は検索とリンク共有を担当します。元の写真は `assets/banner.jpg` に保持し、新ブランド画像は `assets/banner-kokoro.jpg` を使用します。
 
-`scripts/build.mjs` builds all pages and their route-specific metadata. `assets/styles.css` owns the responsive reading layout. `assets/main.js` enhances the archive with search and article pages with clipboard sharing; all navigation and article content work without JavaScript.
+## 公開 URL と 10e.org
 
-The original supplied banner is preserved in `assets/banner.jpg` and website storage. The user-supplied original HTTPS URL is used for site-wide Open Graph and Twitter image metadata. Marina is a single shared `Person`; every review is an `Article` referencing that author.
+現在の確定済み公開 origin は `src/site.json` の `publicOrigin` です。`pendingOrigin` の `https://10e.org` は今後接続する予定のドメインであり、この設定だけでは DNS、HTTPS 証明書、ドメイン接続は変更されません。未接続のドメインを、現在の canonical として使用しません。
 
-## Pages
+`10e.org` を実際に接続し、DNS と HTTPS が確認できた後で、次の明示的な設定を使ってビルドします。
 
-- `/`
-- `/film-reviews/`
-- `/about-marina/`
-- `/lust-caution-2007-review/`
-- `/the-bucket-list-2007-review/`
-- `/mewtwo-strikes-back-review/`
+```sh
+PUBLIC_ORIGIN=https://10e.org npm run build
+PUBLIC_ORIGIN=https://10e.org npm run check
+```
 
-## Deployment
+または `src/site.json` の `publicOrigin` を確認済みの `https://10e.org` に変更します。その後、GitHub にチェックポイントを保存し、対象ホスティングへ公開します。canonical、og:url、作者 ID、sitemap、robots は設定された同じ origin で作成されます。実行時の内部 Host から SEO 用 URL を推測しません。
 
-The managed project builds with `node scripts/build.mjs` and publishes `dist/`. Publication uses the accepted canonical main checkpoint. CSS and JavaScript use content-hashed filenames so future updates cannot inherit a stale old asset. A small Node container serves prebuilt page HTML and returns a genuine 404 for unknown paths; this avoids the static gateway’s default homepage fallback. The deployment has no database or login.
+## 旧リンクの HTTP 301
 
-After connecting a custom domain, replace `src/site.json` publicOrigin with the confirmed domain, build and check, save a checkpoint, and publish again. Google Search Console verification requires access to that domain or the chosen verification method; this project does not invent verification tokens.
+ユーザーが確認した方針は、「既存の有効なレビュー URL は残し、新しいサイトに存在しない旧 URL をトップページへ転送する」です。`scripts/serve.mjs` を使う Webdev / Node 公開では、存在しない公開ページや旧ファイル URL は 1 回の HTTP 301 と `Location: /` でトップへ移動します。旧 URL の query は引き継ぎません。トップ自身と既存ページは 200 を返し、ループを作りません。
+
+新サイトの静的アセット、API、プラットフォーム用パス、SEO 文書、health は通常の処理を維持します。アセットや API の不足を「ページ移動」として隠しません。転送の有効・無効は `src/site.json` の `legacyRedirects.enabled` で指定します。
+
+## GitHub Pages を使う場合の重要な制約
+
+ユーザーが追加した `.github/workflows/deploy.yml` は保持しており、`dist/` を GitHub Pages に配置します。GitHub Pages は静的ホスティングなので、Node の HTTP 301 処理は実行しません。`404.html` や JavaScript / meta refresh は、本物の HTTP 301 の代わりにはなりません。
+
+`10e.org` を GitHub Pages に向ける場合は、Cloudflare Worker などの HTTP エッジ、または転送を設定できる別のホストで同じルールを実装してください。その場合も、有効なレビュー、アセット、sitemap、robots を除外し、存在しない旧 URL だけを `https://10e.org/` に 301 で送ります。DNS/CDN 管理権限と実際のホスティング先を確認してから適用します。
+
+このリポジトリを更新しただけで、`10e.org` の 301 が有効になったとは見なしません。Webdev 公開と GitHub Pages 公開は別の配置先です。
+
+## ページと参照
+
+トップ `/`、レビュー一覧 `/film-reviews/`、プロフィール `/about-marina/`、53 本の記事 URL を維持しています。全ページは日本語で、作者は共有の `Person`、各レビューはその作者を参照する `Article` です。架空の評価点は加えません。Abiting への制作・運営クレジットと、ミュウツーの指定資料 URL は保持しています。
+
+## GitHub Actions の origin 設定
+
+既存の Pages ワークフローには Repository variable `PUBLIC_ORIGIN` を読む設定を追加しています。`10e.org` の接続と HTTPS が確認できた後、その変数を `https://10e.org` に設定すると、次のビルドからそのドメインの canonical と sitemap を生成できます。未設定時は `src/site.json` の確定済み origin を使用します。この変数は DNS 接続や HTTP 301 を自動設定するものではありません。

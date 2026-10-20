@@ -1,42 +1,32 @@
-# Marina’s Dreams — TODO
+# 10eKokoro's Dream — TODO
 
-## English homepage and navigation
-- [x] Build an English homepage for the personal film-review site Marina’s Dreams.
-  - The homepage must use the user-specified image `https://abitingdiscord.com/wp-content/uploads/2026/10/Gemini_Generated_Image_1id4lf1id4lf1id4-scaled.jpg` as its banner and as the site-wide Open Graph `og:image`.
-  - Introduce Marina’s Dreams and provide clear navigation to the About page and all three film-review pages.
-  - Include an organized place for future documentary notes and contemporary-art writing, without presenting empty categories as existing reviews.
+## 已有網站與內容
+- [x] 保留 53 篇独立影評、每篇來源 URL、年份、段落結構與既有公開文章網址。
+- [x] 整合並保留使用者在 GitHub 上新增的 GitHub Pages 部署流程。
+- [x] 保留紙張米白、咖啡棕、剪報式視覺，與首頁、影評列表、自介、全文搜尋及文章分享功能。
 
-## About page, author identity and site footer
-- [x] Create an About page explaining that Marina is a Taiwan-based barista who loves film, and that the website is her creative notebook for notes on films, documentaries, contemporary-art exhibitions and short personal essays.
-  - Include Marina’s reflection that Marina Abramović’s *The Artist Is Present* showed her how presence alone can tell a story, and that this inspired her interest in quiet, powerful moments between people.
-  - State that Marina’s Dreams is a personal portfolio and is not affiliated with Marina Abramović or the 2010 film *MARINA*.
-  - Show `Copyright © 2026 Marina’s Dreams` on the About page and in the site footer.
-  - Show the exact footer credit “This website was built and is maintained by Abiting, a Taiwan-based marketing specialist.” Make “Abiting” link to `https://abiting.cc`.
+## 全站日文化與新品牌
+- [x] 所有 53 篇影評正文、電影名稱、標題、副標、小標、主題、摘要、來源顯示文字、版本資訊改為自然日文。
+- [x] 首頁、自介、導覽、頁尾、404 畫面、搜尋、結果數量、分享成功與失敗提示、aria-label 和 alt text 全部日文化。
+- [x] 站名准确為 `10eKokoro's Dream`，更新頁首、頁尾、版權、橫幅舊字樣、Open Graph 和 Twitter metadata。
+- [x] 移除使用者指定藝術家相關內容、名称由来段落和原先的相關聲明，不出现在新 HTML 或新內容資料。
+- [x] 日文自介仍使用作者原有身分：台灣出身、熱愛電影的咖啡師「マリナ」，不編造新的作者經歷。
+- [x] Abiting 的網站架設與維護說明翻成日文，且連結仍是 `https://abiting.cc`。
+- [x] 保留超夢資料來源 `https://list.abitingpokedex.com/pokemon/mewtwo`。
 
-## Three English film-review pages
-- [x] Publish separate English review pages for *Lust, Caution*, *The Bucket List*, and *Pokémon: The First Movie – Mewtwo Strikes Back* using the previously prepared spoiler-light review drafts.
-  - Do not add or invent film ratings.
-  - Preserve the first-person reflective review voice and each page’s distinct focus.
-  - The Mewtwo review must link to `https://list.abitingpokedex.com/pokemon/mewtwo` with descriptive anchor text.
-  - Keep the About page and review content in English.
+## 日文 SEO 與閱讀體驗
+- [x] 初始 HTML `lang=ja`、OG locale `ja_JP`、Article `inLanguage=ja`；每篇各有独立日文 title、description、H1/H2。
+- [x] 全站 `Person` 作者與每篇 `Article` 關聯一致，分享圖片使用新品牌橫幅。
+- [x] 日文版型字型、行距、手機字級與長片名斷行舒適；不用英文首字下沉排法破壞日文正文。
+- [x] 每個有效頁面有完整可索引 HTML、有效站內連結與 sitemap，且不新增或編造評分。
 
-## SEO, structured data and discoverability
-- [x] Give every public page a unique, content-appropriate SEO title, meta description and H1, plus Open Graph and Twitter Card metadata; use the supplied banner image for `og:image` throughout the site.
-- [x] Include canonical URLs only when the real public site origin is known; do not emit a guessed or internal Preview origin as canonical or `og:url`.
-- [x] Mark Marina as one shared `Person` author entity and mark each film-review page as `Article`; every article’s `author` must reference that same Marina `Person` entity.
-- [x] Ensure each page contains meaningful, indexable HTML, with working internal links and page-appropriate metadata.
-- [x] Provide a valid `sitemap.xml` covering the intended public pages and a `robots.txt` consistent with public indexing.
-- [x] Preserve the supplied external image and Mewtwo-reference URLs; do not replace them with unrelated generated artwork or stock imagery.
+## 歷史網址 301 與未來網域
+- [x] 採使用者確認的選項 1：保留現有有效影評網址；只有新版不存在的舊頁面路徑 301 到首頁。
+- [x] 轉址是單跳 HTTP 301，Location 指向同來源首頁，不保留舊 query，不產生首頁自我轉址或循環。
+- [x] 有效內容頁、現有圖片、CSS/JS、sitemap、robots 和健康檢查仍能正常回應；不存在的系統端點/素材不誤導回首頁。
+- [x] 為 `https://10e.org/` 準備明確建置設定；網域尚未掛上前 canonical 不假裝已切换。
+- [x] README 清楚區分 Webdev Node 伺服器的真正 301 與 GitHub Pages 靜態部署的限制，以及接上 `10e.org` 後必要步驟。
 
-## Visual direction and responsive behavior
-- [x] Follow the confirmed “台北咖啡館剪報” direction: paper ivory, coffee brown and editorial collage details; Lora is the selected display font.
-- [x] Keep the user-provided wide banner image fully legible and avoid cropping away its embedded Marina’s Dreams wordmark.
-- [x] Make the navigation, long-form reading layout, footer and imagery usable on desktop and mobile.
-
-## Additional 50 English reviews
-- [x] Add every film in the user’s 50-title list as its own English review, about 500 words each, consistent with the first three articles.
-  - Each film has an individual page, unique SEO title and description, shared Marina Person authorship, and Article structured data.
-  - Preserve the user-supplied banner and site-wide OG image.
-  - Keep the original three reviews and their URLs, and make the complete archive searchable.
-  - Do not invent movie ratings or personal biographical viewing memories.
-  - Provide a complete downloadable Markdown manuscript containing all 50 new reviews.
+## 保存與發布
+- [ ] 修改保存到已连接的 `abiting/marinas-dreams` GitHub repository，不覆蓋使用者的新提交。
+- [ ] 日文版發布後，確認正式首頁、代表性影評、分享 metadata、sitemap 與 301 回應；僅將實際成功發布的版本稱為已上線。
