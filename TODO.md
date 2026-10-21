@@ -54,3 +54,12 @@
 - [x] 保留既有 73 篇所有 slug、正文、SEO 與來源；新增 20 篇維持 Article／共用 Person、初始完整 HTML、OG、Twitter、canonical、manifest、sitemap，預期 93 篇影評與 96 個公開頁。
 - [x] 根路徑與 GitHub Pages `/marinas-dreams/` 建置相容，10e.org 未接通前不切換 canonical、不改 DNS、不變更 301 的已知部署限制。
 - [x] 推送到既有 GitHub main，確認指定 commit 的 Pages 部署成功，並抽查正式網站新文章與 SEO；僅把真正已發布版本稱為上線。
+
+## 《黑鐵的魚影》與歐美經典鬼片新增 11 篇
+- [x] 新增一篇《名探偵コナン 黒鉄の魚影》（2023）日文影評，可靠資料核對片名、立川譲導演、日本公開年及作品背景；參考來源包含 `https://coai.abiting.cc/archives/1190`，正文引用其相關觀點，不抄寫或當作官方結論。
+- [x] 新增十篇歐美經典鬼片日文影評，重點為幽靈、鬼屋、靈異感知和怪談，不用純殺人魔或怪獸片替代；正確區分《The Haunting》1963 原版、《The Changeling》1980 加拿大鬼片、《The Shining》1980 劇場版、《Poltergeist》1982 原版等版本。
+- [x] 每篇六段、兩個不同日文小標、約 1,500–2,100 日文字符、獨立標題、副標、主題、SEO title 與 50–160 字 description；2–4 個已閱讀且能支援內容的來源，註腳 ID 完整對應，不洩露關鍵反轉或犯人，不虛構作者經歷或評分。
+- [x] 新增鬼片使用可見且可搜尋的「欧米ゴースト映画10選」標籤；柯南文章屬「名探偵コナン映画ノート」。日文片名與原文名皆可搜尋，各片年份明確區分本國首映與日本公開年。
+- [x] 保留既有93篇所有資料欄位和slug；新增十一篇後共104篇、107個公開頁。各新增頁有完整初始日文HTML、Article／共用Person、SEO、canonical、OG、Twitter、來源註腳及文章末尾共享banner，manifest與sitemap同步更新。
+- [x] 根目錄和GitHub Pages `/marinas-dreams/` 建置均相容；保留現行正式網域與未接通10e.org的邊界，不修改DNS或既有301邏輯。
+- [ ] 保存到現有GitHub main，確認指定版本的Pages部署成功並核查正式索引、新影評、指定柯南來源、banner與SEO；未成功發布前不宣称已上線。

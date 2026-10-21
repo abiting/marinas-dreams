@@ -13,13 +13,20 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, 'マリナ');
-assert.equal(content.reviews.length, 93);
+assert.equal(content.reviews.length, 104);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 const horrorReviews = content.reviews.filter(r => r.collection === '日本ホラー名作20選');
 assert.equal(horrorReviews.length, 20, 'All 20 new Japanese horror reviews are present');
 const adultReviews = content.reviews.filter(r => r.collection === '日本の成人向け映画史20選');
 assert.equal(adultReviews.length, 20, 'All 20 researched Japanese adult-cinema reviews are present');
+const ghostReviews = content.reviews.filter(r => r.collection === '欧米ゴースト映画10選');
+assert.equal(ghostReviews.length, 10, 'All ten Western ghost-film reviews are present');
+const conanReviews = content.reviews.filter(r => r.collection === '名探偵コナン映画ノート');
+assert.equal(conanReviews.length, 1, 'One new Black Iron Submarine review is present');
+const conanReview = conanReviews[0];
+assert.equal(conanReview.year, 2023);
+assert.ok(conanReview.sources.some(ref => ref.url === 'https://coai.abiting.cc/archives/1190'));
 assert.equal(site.pendingOrigin, 'https://10e.org');
 assert.equal(site.legacyRedirects.enabled, true);
 assert.equal(site.legacyRedirects.destination, '/');
@@ -77,7 +84,8 @@ for (const routeInfo of manifest.routes) {
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
-    if (review.collection === '日本ホラー名作20選' || review.collection === '日本の成人向け映画史20選') {
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート'];
+    if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href="#source-([^"]+)"/g)].map(m => m[1])));
       assert.ok(review.sources.every(ref => cited.has(ref.id), `${route}: every research source is cited in the article`));
@@ -85,6 +93,16 @@ for (const routeInfo of manifest.routes) {
       if (review.collection === '日本の成人向け映画史20選') {
         assert.ok(review.categoryLabel && review.keywords?.length >= 3, `${route}: specific adult-cinema category and search terms`);
         assert.ok(html.includes('成人向けの題材を含む作品を扱う評論です。'), `${route}: non-graphic adult-topic notice`);
+      }
+      if (review.collection === '欧米ゴースト映画10選' || review.collection === '名探偵コナン映画ノート') {
+        assert.ok(review.releaseYearBasis && review.edition && review.originalTitle, `${route}: original title and release-year basis`);
+        assert.ok(html.includes(`（${review.releaseYearBasis}）`), `${route}: explicit release-year basis`);
+        assert.ok(html.includes(review.collection), `${route}: visible series label`);
+        const keywordValues = decode(html.match(/<meta name="keywords" content="([^"]+)"/)?.[1] || '').split(', ');
+        assert.ok(keywordValues.length >= 3 && keywordValues.length <= 8, `${route}: focused SEO keywords`);
+        assert.ok(review.keywords.every(keyword => keywordValues.includes(keyword)), `${route}: custom long-tail keywords rendered`);
+        assert.ok(title.length >= 30 && title.length <= 60 && description.length >= 50 && description.length <= 160, `${route}: metadata lengths`);
+        assert.ok(!html.includes('成人向けの題材を含む作品を扱う評論です。'), `${route}: no unrelated adult-film notice`);
       }
     }
   }
@@ -105,7 +123,11 @@ assert.equal(articleCount, content.reviews.length);
 assert.ok(fs.readFileSync('dist/mewtwo-strikes-back-review/index.html', 'utf8').includes('href="https://list.abitingpokedex.com/pokemon/mewtwo"'));
 const about = fs.readFileSync('dist/about-marina/index.html', 'utf8');
 assert.ok(about.includes('台湾') && about.includes('バリスタ'));
-assert.ok(fs.readFileSync('dist/film-reviews/index.html', 'utf8').includes('「三級」などを一律に当てはめず'));
+const archive = fs.readFileSync('dist/film-reviews/index.html', 'utf8');
+assert.ok(archive.includes('「三級」などを一律に当てはめず'));
+assert.ok(archive.includes('欧米ゴースト映画10選') && archive.includes('名探偵コナン映画ノート'));
+const conanHtml = fs.readFileSync(`dist/${conanReview.slug}/index.html`, 'utf8');
+assert.ok(conanHtml.includes('href="https://coai.abiting.cc/archives/1190"'), 'Required Conan reference is publicly linked');
 assert.ok(fs.readFileSync('dist/404.html', 'utf8').includes('noindex, follow'));
 assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
@@ -118,4 +140,4 @@ if (origin) {
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
-console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including 20 horror-classic and 20 adult-cinema reviews, research citations, non-graphic notice, article-end banner, SEO and shared author.`);
+console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including ten Western ghost films and Black Iron Submarine with the required reference, existing collections, article-end banner, SEO and shared author.`);

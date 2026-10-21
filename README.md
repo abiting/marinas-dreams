@@ -16,7 +16,7 @@ npm run check
 
 ## コンテンツと構成
 
-`src/content.json` に日本語のプロフィール、53 本のレビュー、タイトル、説明、参照資料の表示名を保存しています。各レビューは 6 段落で、元の記事 URL、映画の年、参照 URL は維持しています。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
+`src/content.json` に日本語のプロフィール、104 本のレビュー、タイトル、説明、参照資料の表示名を保存しています。各レビューは 6 段落で、元の記事 URL、映画の年、参照 URL は維持しています。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
 
 `scripts/build.mjs` は日本語のページ、`Person` と `Article` の JSON-LD、Open Graph / Twitter metadata、`manus-routes.json`、sitemap と robots を生成します。`assets/styles.css` は日本語の組版、`assets/main.js` は検索とリンク共有を担当します。元の写真は `assets/banner.jpg` に保持し、新ブランド画像は `assets/banner-kokoro.jpg` を使用します。
 
@@ -60,3 +60,9 @@ PUBLIC_ORIGIN=https://10e.org npm run check
 自前のドメインが未接続の場合、GitHub Pages は `https://abiting.github.io/marinas-dreams/` に公開します。ワークフローは `PUBLIC_ORIGIN=https://abiting.github.io` と `BASE_PATH=/marinas-dreams` を使用し、リンク、画像、作者 ID、canonical、sitemap、route manifest をその配置先に合わせます。ローカルと Webdev のビルドはデフォルトで根パスです。
 
 Repository variable `PUBLIC_ORIGIN` を接続確認済みの `https://10e.org` に設定すると、Pages の次のビルドでは `BASE_PATH` を空にし、カスタムドメインの根パスを使用します。これだけでドメイン接続や 301 が設定されるわけではありません。GitHub canonical のプロジェクトは現在 Webdev 公開 API では publish できないため、Webdev の公開更新は Dashboard から行います。
+
+## コナンと欧米ゴースト映画の追加
+
+2026年10月21日、劇場版『名探偵コナン 黒鉄の魚影』と欧米の幽霊・怪談映画10本を追加し、計104本・107公開ページになりました。コナンのレビューは指定の柯哀フォーラム記事を参考資料として明記し、公式作品資料と監督インタビューも参照しています。鬼映画は「欧米ゴースト映画10選」、コナンは「名探偵コナン映画ノート」のラベルで検索できます。
+
+新しい欧米作品の年は日本公開年ではなく、本国での原版初公開年です。作品情報の「公開年」と「版」に基準を示しています。既存93本のデータとURLは維持し、すべてのレビューに記事末尾のサイトバナーがあります。
