@@ -31,3 +31,7 @@ HTTP 伺服器對有效頁面回傳 200；未知公開頁面路徑回傳單跳 3
 - `assets/banner.jpg`：保留原檔；新品牌橫幅另存，建置改用新檔。
 - `scripts/check.mjs`：本次內容、SEO、轉址與品牌要求的現有檢查延伸。
 - `README.md`：日文版編輯、建置與 `10e.org` 接通後切換說明。
+
+## 實際部署後的必要修正
+
+GitHub Pages 的實際來源目前是 `https://abiting.github.io/marinas-dreams/`，不是自訂網域根目錄。已確認原 root-relative CSS 與文章連結在此來源會回傳 404，因此建置增加明確 `BASE_PATH`，统一處理 HTML href/src、canonical、OG URL、作者 ID、route manifest 與 sitemap。GitHub Actions 在尚未指定自訂網域時使用 GitHub Pages origin 和 `/marinas-dreams`；未來接通 `10e.org`、設定 `PUBLIC_ORIGIN` 後，base path 为空。Webdev／本機仍採預設根路徑，不變動原影評 slugs 或 Node 301 規則。

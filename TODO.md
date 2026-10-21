@@ -28,5 +28,10 @@
 - [x] README 清楚區分 Webdev Node 伺服器的真正 301 與 GitHub Pages 靜態部署的限制，以及接上 `10e.org` 後必要步驟。
 
 ## 保存與發布
-- [ ] 修改保存到已连接的 `abiting/marinas-dreams` GitHub repository，不覆蓋使用者的新提交。
+- [x] 修改保存到已连接的 `abiting/marinas-dreams` GitHub repository，不覆蓋使用者的新提交。
 - [ ] 日文版發布後，確認正式首頁、代表性影評、分享 metadata、sitemap 與 301 回應；僅將實際成功發布的版本稱為已上線。
+
+## 部署相容性與已知限制
+- [x] GitHub Pages 暫時使用 `/marinas-dreams/` 子目錄：build 支援 `BASE_PATH`，圖片、導覽、canonical、sitemap 與 route manifest 依部署來源產生。
+- [x] 未連接自訂網域時 GitHub Actions 使用 `https://abiting.github.io` 和 `/marinas-dreams`；接通 `10e.org` 並明確設定 `PUBLIC_ORIGIN` 後改用根路徑。
+- [ ] Webdev 正式站仍需由 Dashboard 發布最新 GitHub 版本；目前公開 API 返回 `github_canonical_active`，不更換 repository 繞過限制。

@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 const content = JSON.parse(fs.readFileSync('src/content.json', 'utf8'));
 const site = JSON.parse(fs.readFileSync('src/site.json', 'utf8'));
 const origin = (process.env.PUBLIC_ORIGIN || site.publicOrigin || '').replace(/\/$/, '');
+const basePath = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 const brand = "10eKokoro's Dream";
 const decode = (s) => s.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const japanese = (s) => /[\u3040-\u30ff\u3400-\u9fff]/.test(s);
@@ -27,7 +28,8 @@ let articleCount = 0;
 let commonAuthor;
 for (const routeInfo of manifest.routes) {
   const route = routeInfo.path;
-  const file = path.join('dist', route, 'index.html');
+  const logicalRoute = basePath ? route.slice(basePath.length) || '/' : route;
+  const file = path.join('dist', logicalRoute, 'index.html');
   const html = fs.readFileSync(file, 'utf8');
   assert.equal((html.match(/<h1(?:\s[^>]*)?>/g) || []).length, 1, `${route}: one H1`);
   assert.ok(html.includes('<html lang="ja">'), `${route}: Japanese language`);
@@ -58,7 +60,7 @@ for (const routeInfo of manifest.routes) {
     assert.equal(article.inLanguage, 'ja');
     assert.ok(!('reviewRating' in article));
     assert.ok(japanese(article.headline));
-    const review = content.reviews.find(r => `/${r.slug}/` === route);
+    const review = content.reviews.find(r => `/${r.slug}/` === logicalRoute);
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
@@ -70,7 +72,8 @@ for (const routeInfo of manifest.routes) {
   }
   for (const href of html.matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
     const target = href[1];
-    if (target.startsWith('/assets/')) assert.ok(fs.existsSync(`dist${target}`), `Asset ${target} exists`);
+    const logicalTarget = basePath ? target.slice(basePath.length) : target;
+    if (logicalTarget.startsWith('/assets/')) assert.ok(fs.existsSync(`dist${logicalTarget}`), `Asset ${target} exists`);
     else assert.ok(manifest.routes.some(r => r.path === target), `Internal link ${target} exists`);
   }
   console.log(`PASS ${route}: Japanese HTML, new brand, metadata, shared Person${article ? ', Article' : ''}`);
@@ -85,7 +88,7 @@ if (origin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
   assert.equal((sitemap.match(/<loc>/g) || []).length, 56);
-  assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
+  assert.ok(robots.includes(`Sitemap: ${origin}${basePath}/sitemap.xml`));
   assert.ok(sitemap.includes(`${origin}/`));
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');

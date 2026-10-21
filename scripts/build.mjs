@@ -25,6 +25,11 @@ const validateOrigin = (value) => {
 };
 const configuredOrigin = process.env.PUBLIC_ORIGIN?.trim() || settings.publicOrigin || '';
 const origin = validateOrigin(configuredOrigin);
+const basePath = (process.env.BASE_PATH?.trim() || '').replace(/\/+$/, '');
+if (basePath && (!/^\/[A-Za-z0-9._/-]+$/.test(basePath) || basePath.includes('//') || basePath.split('/').some(part => part === '.' || part === '..'))) {
+  throw new Error('BASE_PATH must be a safe absolute URL prefix');
+}
+const publicPath = (route) => `${basePath}${route}`;
 
 const safeRelativePath = (value, fallback) => {
   const normalized = String(value || fallback).replace(/^\/+/, '');
@@ -58,7 +63,7 @@ for (const name of ['styles.css', 'main.js']) {
 }
 
 const escape = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
-const absolute = (route) => origin ? `${origin}${route}` : route;
+const absolute = (route) => origin ? `${origin}${publicPath(route)}` : publicPath(route);
 const imageUrl = data.bannerUrl || absolute(bannerPath);
 const authorId = absolute('/about-marina/#author');
 const person = {
@@ -90,7 +95,7 @@ const page = ({ route, title, description, body, article, noindex = false, keywo
   }
   const structured = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
   return `<!doctype html>
-<html lang="${escape(language)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="keywords" content="${escape(keywords.join(', '))}"><meta name="theme-color" content="#70483c">${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}${origin ? `<link rel="canonical" href="${escape(absolute(route))}"><meta property="og:url" content="${escape(absolute(route))}">` : ''}<meta property="og:type" content="${article ? 'article' : 'website'}"><meta property="og:title" content="${escape(article?.title || title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:site_name" content="${escape(siteName)}"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="${escape(imageUrl)}"><meta property="og:image:width" content="${bannerWidth}"><meta property="og:image:height" content="${bannerHeight}"><meta property="og:image:alt" content="${escape(`${siteName}：古いカメラとフィルム、ノート、コーヒーのある静かな机`)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(article?.title || title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${escape(imageUrl)}">${article ? `<meta property="article:published_time" content="${escape(article.publishedAt || data.publishedAt)}"><meta property="article:modified_time" content="${escape(modifiedAt)}">` : ''}<link rel="icon" href="${escape(imageUrl)}" type="image/jpeg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/${assetNames['styles.css']}"><script type="application/ld+json">${structured}</script><script src="/assets/${assetNames['main.js']}" defer></script></head><body class="${article ? 'article-page' : 'journal-page'}"><a class="skip-link" href="#main">本文へ移動</a>${nav(route)}<main id="main">${body}</main>${footer}</body></html>`;
+<html lang="${escape(language)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="keywords" content="${escape(keywords.join(', '))}"><meta name="theme-color" content="#70483c">${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}${origin ? `<link rel="canonical" href="${escape(absolute(route))}"><meta property="og:url" content="${escape(absolute(route))}">` : ''}<meta property="og:type" content="${article ? 'article' : 'website'}"><meta property="og:title" content="${escape(article?.title || title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:site_name" content="${escape(siteName)}"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="${escape(imageUrl)}"><meta property="og:image:width" content="${bannerWidth}"><meta property="og:image:height" content="${bannerHeight}"><meta property="og:image:alt" content="${escape(`${siteName}：古いカメラとフィルム、ノート、コーヒーのある静かな机`)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(article?.title || title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${escape(imageUrl)}">${article ? `<meta property="article:published_time" content="${escape(article.publishedAt || data.publishedAt)}"><meta property="article:modified_time" content="${escape(modifiedAt)}">` : ''}<link rel="icon" href="${escape(imageUrl)}" type="image/jpeg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+JP:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/${assetNames['styles.css']}"><script type="application/ld+json">${structured}</script><script src="/assets/${assetNames['main.js']}" defer></script></head><body class="${article ? 'article-page' : 'journal-page'}"><a class="skip-link" href="#main">本文へ移動</a>${nav(route)}<main id="main">${body}</main>${footer}</body></html>`.replace(/\b(href|src)="\/(?!\/)/g, (_, attribute) => `${attribute}="${basePath}/`);
 };
 const writePage = (route, options) => {
   const target = route === '/' ? output : path.join(output, safeRelativePath(route, ''));
@@ -106,7 +111,7 @@ writePage('/', {
 });
 writePage('/film-reviews/', {
   title: `映画レビューと余韻｜${siteName}`,
-  description: '映画の記憶や、心に残った場面を綴る日文レビュー。古典からアニメーション、台湾映画まで、ネタバレを抑えて紹介します。',
+  description: '映画の記憶や、心に残った場面を綴る日本語レビュー。古典からアニメーション、台湾映画まで、ネタバレを抑えて紹介します。',
   keywords: ['映画レビュー', siteName, '映画の余韻', 'ネタバレ控えめ'],
   body: `<section class="archive-header section-wrap"><p class="eyebrow">映画ノート</p><h1>映画レビューと<br><i>そのあとの余韻。</i></h1><p class="lead">点数をつけるためではなく、もう少し近くで眺めるために。</p><div class="archive-controls" data-archive-controls hidden><label class="search-box"><span class="sr-only">映画レビューを検索</span><input type="search" placeholder="作品名・監督・言葉を検索…" data-search-input><span aria-hidden="true">⌕</span></label><span class="result-count" aria-live="polite" data-result-count>${data.reviews.length}件のレビュー</span></div></section><section class="archive-list section-wrap" aria-labelledby="archive-list-heading"><h2 class="sr-only" id="archive-list-heading">ノートから</h2><div class="review-list">${data.reviews.map((r, i) => card(r, i)).join('')}</div><p class="no-results" data-no-results hidden>一致するレビューがありません。作品名や監督名を変えてお試しください。</p></section>`,
 });
@@ -138,11 +143,11 @@ const routesWithDates = [
   { path: '/about-marina/', title: 'マリナについて', lastmod: effectiveModified() },
   ...data.reviews.map((review) => ({ path: `/${review.slug}/`, title: review.name, lastmod: effectiveModified(review) })),
 ];
-const routes = routesWithDates.map(({ path: route, title }) => ({ path: route, title }));
+const routes = routesWithDates.map(({ path: route, title }) => ({ path: publicPath(route), title }));
 fs.writeFileSync(path.join(output, 'manus-routes.json'), JSON.stringify({ routes }, null, 2));
 if (origin) {
   fs.writeFileSync(path.join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routesWithDates.map((route) => `  <url><loc>${escape(absolute(route.path))}</loc><lastmod>${escape(dateOnly(route.lastmod))}</lastmod></url>`).join('\n')}\n</urlset>\n`);
-  fs.writeFileSync(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`);
+  fs.writeFileSync(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}${basePath}/sitemap.xml\n`);
 }
 fs.writeFileSync(path.join(output, '.nojekyll'), '');
 console.log(`Built ${routes.length} complete Japanese HTML pages for ${brand}${origin ? ` at ${origin}` : ' (canonical origin pending publication)'}.`);

@@ -54,3 +54,9 @@ PUBLIC_ORIGIN=https://10e.org npm run check
 ## GitHub Actions の origin 設定
 
 既存の Pages ワークフローには Repository variable `PUBLIC_ORIGIN` を読む設定を追加しています。`10e.org` の接続と HTTPS が確認できた後、その変数を `https://10e.org` に設定すると、次のビルドからそのドメインの canonical と sitemap を生成できます。未設定時は `src/site.json` の確定済み origin を使用します。この変数は DNS 接続や HTTP 301 を自動設定するものではありません。
+
+## Pages のサブディレクトリ
+
+自前のドメインが未接続の場合、GitHub Pages は `https://abiting.github.io/marinas-dreams/` に公開します。ワークフローは `PUBLIC_ORIGIN=https://abiting.github.io` と `BASE_PATH=/marinas-dreams` を使用し、リンク、画像、作者 ID、canonical、sitemap、route manifest をその配置先に合わせます。ローカルと Webdev のビルドはデフォルトで根パスです。
+
+Repository variable `PUBLIC_ORIGIN` を接続確認済みの `https://10e.org` に設定すると、Pages の次のビルドでは `BASE_PATH` を空にし、カスタムドメインの根パスを使用します。これだけでドメイン接続や 301 が設定されるわけではありません。GitHub canonical のプロジェクトは現在 Webdev 公開 API では publish できないため、Webdev の公開更新は Dashboard から行います。
