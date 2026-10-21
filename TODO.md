@@ -10,7 +10,7 @@
 - [x] 首頁、自介、導覽、頁尾、404 畫面、搜尋、結果數量、分享成功與失敗提示、aria-label 和 alt text 全部日文化。
 - [x] 站名準確為 `10eKokoro's Dream`，更新頁首、頁尾、版權、橫幅舊字樣、Open Graph 和 Twitter metadata。
 - [x] 移除使用者指定藝術家相關內容、名稱由來段落和原先的相關聲明，不出現在新 HTML 或新內容資料。
-- [x] 日文自介仍使用作者原有身分：台灣出身、熱愛電影的咖啡師「マリナ」，不編造新的作者經歷。
+- [x] 日文自介仍使用作者原有身分：台灣出身、熱愛電影的咖啡師「10eKokoro」，不編造新的作者經歷。
 - [x] Abiting 的網站架設與維護說明翻成日文，且連結仍是 `https://abiting.cc`。
 - [x] 保留超夢資料來源 `https://list.abitingpokedex.com/pokemon/mewtwo`。
 
@@ -41,14 +41,14 @@
 - [x] 20 部影評為《雨月物語》（1953）、《ゴジラ》（1954）、《美女と液体人間》（1958）、《東海道四谷怪談》（1959）、《地獄》（1960）、《マタンゴ》（1963）、《鬼婆》（1964）、《怪談》（1965，日本劇場公開）、《薮の中の黒猫》（1968）、《HOUSE ハウス》（1977）、《鉄男 TETSUO》（1989）、《CURE キュア》（1997）、《PERFECT BLUE》（1998，日本劇場公開）、《リング》（1998）、《オーディション》（2000，日本劇場公開）、《回路》（2001）、《仄暗い水の底から》（2002）、《呪怨》（2003，日本劇場公開）、《着信アリ》（2004，日本劇場公開）、《ノロイ》（2005）；年份均以來源核實的日本首次院線公開年為準。
 - [x] 每篇新增獨立 slug，使用現有文章資料格式；六段實質影評，總長約 1,500–2,100 日文字符，有一個副題、兩個不同的日文 section heading、SEO title、50–160 字 description、主題標籤、年份及導演。
 - [x] 每篇附 2–4 個已閱讀且能支援正文的可靠來源 URL；正文以注碼 anchor 引用來源，來源和註腳 ID 一一對應，沒有未使用或缺失引用。
-- [x] 所有 20 篇維持網站的日文影評語調，避免只寫劇情摘要；不虛構 Marina 的私人觀影經驗、評分、獎項或個人背景。
+- [x] 所有 20 篇維持網站的日文影評語調，避免只寫劇情摘要；不虛構 10eKokoro 的私人觀影經驗、評分、獎項或個人背景。
 - [x] 保留所有現有 53 篇 slug、網址、正文、SEO 與來源；共用 `Person` author、新增 `Article`、canonical、Open Graph、Twitter Card、route manifest、sitemap、日期隨新增頁一致更新；新增「日本ホラー名作20選」可見標籤與搜尋關鍵字。
 - [x] 確認 GitHub Pages 正式來源 `/marinas-dreams/` 已發布 73 篇影評與 76 個可索引頁；網站未掛上 10e.org 前不更換 canonical。
 
 ## 日本成人電影評論 20 篇新增系列
 - [x] 新增 20 部日本成人向藝術電影、粉紅電影與 Roman Porno 的日文電影評論；核實日本片名、年份、導演與作品版本。不得把「三級」寫成日本统一分級，沒有可靠分級來源時不宣稱 Eirin／香港等級。
 - [x] 每篇約 1,500–2,100 日文字符，六段與兩個不同小標，具有獨立日文 title、description（50–160 字）、副題、長尾關鍵字與 2–3 個已閱讀的可靠來源，註腳 ID 一一對應。
-- [x] 文字是非露骨的電影史、審美與社會批評；不加入情色性行為描寫、成人圖像、觀看／下載成人片連結、不虛構 Marina 的觀影經驗；涉及暴力或強迫時非圖像化、批判性處理。
+- [x] 文字是非露骨的電影史、審美與社會批評；不加入情色性行為描寫、成人圖像、觀看／下載成人片連結、不虛構 10eKokoro 的觀影經驗；涉及暴力或強迫時非圖像化、批判性處理。
 - [x] 新系列標示「日本の成人向け映画史20選」，提供成人題材內容提醒；分類用來源確認的成人向藝術電影、粉紅電影或 Roman Porno 等脈絡，並可由搜尋找到。
 - [x] 所有 93 篇評論頁的文章尾端（作者資訊後、相關文章前）均需置入現有 banner，使用正確的日文描述性 alt、固有寬高，並能響應式縮放與延遲載入；上線後實測。
 - [x] 保留既有 73 篇所有 slug、正文、SEO 與來源；新增 20 篇維持 Article／共用 Person、初始完整 HTML、OG、Twitter、canonical、manifest、sitemap，預期 93 篇影評與 96 個公開頁。
@@ -71,4 +71,13 @@
 - [x] 使用官方資料核對片名、白瓷雕塑與德化陶瓷背景；不虛構未觀察到的電影場面或觀影經驗。
 - [x] 文章參考資料區依原樣引用使用者指定 URL https://cpaceramics.comm/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示，原樣保留使用者指定網址，作為延伸閱讀引用且不另註讀取狀態。
 - [x] 為單篇新頁補齊日文標題、副題、150字附近description、3–8個相關關鍵字、Article／共用Person、canonical、OG、Twitter、文章尾端banner、manifest與sitemap；不更動其他104篇內容或正式網域設定。
-- [ ] 保存到現有GitHub main，確認GitHub Pages指定提交部署成功並核對正式新頁、影評索引與引用連結。
+- [x] 保存到現有GitHub main，確認GitHub Pages指定提交部署成功並核對正式新頁、影評索引與引用連結。
+
+
+## 作者公開名更新為10eKokoro
+
+- [x] 作者介紹頁的可見姓名改為「10eKokoro」，About內容改成「こんにちは、10eKokoroです」。既有台灣出身、電影愛好者及咖啡師等自我介紹資訊維持不變。
+- [x] 導覽和頁尾的作者介紹連結、About頁標題和副標、首頁作者介紹、每篇文章署名與作者備註、Person結構化資料的name一致顯示為「10eKokoro」。
+- [x] 使用新About URL `/about-10ekokoro/`，同步全站內部連結、Person URL、canonical、sitemap和route manifest；移除舊 `/about-marina/` route；全部105篇影評URL、文章正文、10eKokoro's Dream網站名稱、正式網域和其他作者背景保持不變。
+- [x] 重新建置所有日文頁面，確認 Person 與 Article 共用作者 ID 且 name 為10eKokoro，首頁、About及影評索引/影評頁可見署名已更新。
+- [ ] 推送更新到現有GitHub main，確認GitHub Pages部署成功，並核對公開About頁、影評頁、manifest與sitemap。舊 `/about-marina/` 在GitHub Pages靜態託管上沒有真實HTTP301；不得用meta refresh或JavaScript冒充301，舊路徑會是404。

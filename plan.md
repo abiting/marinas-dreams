@@ -10,7 +10,7 @@
 ## 實作方式
 使用既有 Node.js 無依賴靜態產生器與輕量 HTTP 伺服器；不加入資料庫、登入或額外 CMS。保留既有 53 篇日文影評的六段正文、來源 URL、既有 slug、影片年份與原有立場。影片顯示名稱和導演名稱日文化，必要時保留原文名作搜尋匹配；不新增電影評分。
 
-原有作者是使用者本人，日文顯示為「マリナ」。僅移除指定藝術家內容，不編造作者的新姓名、國籍或經歷。About 寫成日文並保留台灣、咖啡師、電影和創作筆記本的真實設定。頁尾 Abiting 連結保持 `https://abiting.cc`。
+作者公開顯示名依使用者後續指示為「10eKokoro」。About 寫成日文並保留已提供的台灣出身、咖啡師、電影和創作筆記本設定；不增添其他個人資料。頁尾 Abiting 連結保持 `https://abiting.cc`。
 
 沿用米白、咖啡棕和剪報式排版；加上適合日文的明朝體與無襯線字型、日文斷行和行距，保留原攝影構圖，將橫幅舊站名替換為新品牌。
 
@@ -38,7 +38,7 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 ## 新增日本經典恐怖電影影評系列（本次請求）
 新增 20 篇自然日文、獨立資料查證的長篇影評，涵蓋日本怪談／幽靈電影、怪獸科幻恐怖、身體與實驗電影、1990 年代末 J-horror、心理恐怖與偽紀錄片。片單涵蓋 1953–2005 年；年份統一使用來源確認的日本首次劇場公開年份。部分作品的常見製作年／國際上映年不同，研究紀錄保留差異理由，新 slug 使用已核實的日本院線年。每篇有獨立 SEO、一個副題、兩個不同的 section heading、六段約 1,500–2,100 日文字符評論及 2–4 條能支援正文的來源。創作重點為影像、聲音、節奏、恐怖方法和主題詮釋，不虛構作者本人的私人觀影經歷、評分、未獲來源支持的細節或劇透。
 
-保留原有 53 篇、恐怖系列 20 篇與其所有 slug／正文；成人電影系列另加 20 個獨立 slug，按核實後日本公開年排列，總數現為 93 篇。首頁精選、可搜尋影評索引與可見的「日本ホラー名作20選」系列標籤、每篇 canonical／Open Graph／Twitter metadata、共同的 `Person`（マリナ）與 `Article` JSON-LD、`manus-routes.json`、sitemap 對新增頁同步擴充。保留目前 Pages `/marinas-dreams/` base path 與網站將來切換 10e.org 根路徑的做法；新長內容仍使用完整 HTML，網站不新增資料庫或 CMS。
+保留原有 53 篇、恐怖系列 20 篇與其所有 slug／正文；成人電影系列另加 20 個獨立 slug，按核實後日本公開年排列，總數現為 93 篇。首頁精選、可搜尋影評索引與可見的「日本ホラー名作20選」系列標籤、每篇 canonical／Open Graph／Twitter metadata、共同的 `Person`（10eKokoro）與 `Article` JSON-LD、`manus-routes.json`、sitemap 對新增頁同步擴充。保留目前 Pages `/marinas-dreams/` base path 與網站將來切換 10e.org 根路徑的做法；新長內容仍使用完整 HTML，網站不新增資料庫或 CMS。
 
 ## 新增日本成人電影評論 20 篇（2026-10-21）
 使用者要求再增加 20 部經典日本成人三級片。本次以日本成人電影史及藝術電影評論處理，涵蓋成人向藝術電影、粉紅電影與日活 Roman Porno；不把香港「三級」誤當日本的統一分級，不編造 Eirin／香港分級或各地合法性。評論保持分析性、非露骨，不加入情色圖像、性行為細節、觀看或下載成人影片的連結；涉及暴力或強迫情节時，以批判性、非圖像化方式討論。
@@ -59,3 +59,7 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 - 使用官方德化縣政府、福建東南網與中新網福建來源核實拍攝完成年、導演與2025年上映；博物館／陶瓷背景來源只用於通史觀點；文章為原創分析，不假裝曾觀看無法取得的影片，不編造場景。
 - 逐字保留使用者指定參考網址 https://cpaceramics.comm/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示為延伸閱讀；依使用者要求，不在頁面註明可讀取狀態。
 - 影評以日文約 1,500–2,100 字、六段與兩個小標撰寫，提供符合既有品牌與 SEO 的日文題目、副題、摘要、關鍵字；舊有104篇文章和slug不變。
+
+
+## 作者公開名更新
+將全站作者可見名稱及 `Person.name` 設為「10eKokoro」，同步 About、首頁、導覽、文章署名及作者卡片；About新URL為 `/about-10ekokoro/`，舊 `/about-marina/` 從 route manifest、canonical 和 sitemap 移除，105篇影評 URL 保持不變；GitHub Pages 無法設定真實HTTP301，Node/Webdev未知舊路徑仍依既有規則301至首頁。重新產生每頁初始 HTML、Person/Article JSON-LD、網站地圖及route manifest，透過既有 GitHub Pages 工作流程發布。
