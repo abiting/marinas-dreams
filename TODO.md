@@ -80,4 +80,4 @@
 - [x] 導覽和頁尾的作者介紹連結、About頁標題和副標、首頁作者介紹、每篇文章署名與作者備註、Person結構化資料的name一致顯示為「10eKokoro」。
 - [x] 使用新About URL `/about-10ekokoro/`，同步全站內部連結、Person URL、canonical、sitemap和route manifest；移除舊 `/about-marina/` route；全部105篇影評URL、文章正文、10eKokoro's Dream網站名稱、正式網域和其他作者背景保持不變。
 - [x] 重新建置所有日文頁面，確認 Person 與 Article 共用作者 ID 且 name 為10eKokoro，首頁、About及影評索引/影評頁可見署名已更新。
-- [ ] 推送更新到現有GitHub main，確認GitHub Pages部署成功，並核對公開About頁、影評頁、manifest與sitemap。舊 `/about-marina/` 在GitHub Pages靜態託管上沒有真實HTTP301；不得用meta refresh或JavaScript冒充301，舊路徑會是404。
+- [x] 推送更新到現有GitHub main，確認GitHub Pages部署成功，並核對公開About頁、影評頁、manifest與sitemap。舊 `/about-marina/` 在GitHub Pages靜態託管上沒有真實HTTP301；不得用meta refresh或JavaScript冒充301，舊路徑會是404。
