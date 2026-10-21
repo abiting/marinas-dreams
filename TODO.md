@@ -84,6 +84,7 @@
 
 
 ## Inception 的 BFI 來源改用短網址
-- [ ] 在 `inception-review` 的 BFI 來源保留標題「『インセプション』（2010）｜BFI」與引用 ID，只將網址 `https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception` 替換為 `https://abiurl.me/VdCbIO`。
-- [ ] 只更換這一個來源目標；保持影評正文、其他來源和105篇既有文章不變，確認文章 HTML 出現新網址且不再出現舊 BFI 網址。
-- [ ] 建置並檢查網站，推送既有 GitHub main，確認 GitHub Pages 部署及公開 Inception 影評的新連結。
+
+- [x] 在 `inception-review` 的 BFI 來源保留標題「『インセプション』（2010）｜BFI」與引用 ID，只將網址 `https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception` 替換為 `https://abiurl.me/VdCbIO`。
+- [x] 只更換這一個來源目標；保持影評正文、其他來源和105篇既有文章不變，確認文章 HTML 出現新網址且不再出現舊 BFI 網址。
+- [x] 建置並檢查網站，推送既有 GitHub main，確認 GitHub Pages 部署及公開 Inception 影評的新連結。
