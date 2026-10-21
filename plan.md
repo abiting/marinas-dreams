@@ -4,11 +4,11 @@
 - 全站內容改為日文，包含既有 53 篇影評、首頁、自介、導覽、互動訊息、無障礙標籤與 SEO 欄位。
 - 站名改為 `10eKokoro's Dream`；更新頁首、頁尾、圖片中的舊站名、搜尋分享 metadata 和結構化資料。
 - 移除先前指定藝術家相關內容、名字由來及免責聲明，不把該段翻譯帶回網站。
-- 保留現有影評頁網址；新版不存在的歷史頁面路徑 301 到首頁，不將有效文章轉址。
+- 保留現有影評頁網址；新版不存在的歷史頁面路徑在 Node HTTP 伺服器中 301 到首頁，不將有效文章轉址。
 - 為未來 `https://10e.org/` 準備設定，但該網域尚未連接，不提前宣稱轉址或 canonical 已在該網域生效。
 
 ## 實作方式
-使用既有 Node.js 無依賴靜態產生器與輕量 HTTP 伺服器；不加入資料庫、登入或額外 CMS。批次翻譯在 Sandbox 執行，使用結構化 JSON、適度並行、逐篇結果保存與段落數檢查；網站部署本身不呼叫模型。保留每篇六段正文、來源 URL、既有 slug、影片年份與原有立場。影片顯示名稱和導演名稱日文化，必要時保留原文名作搜尋匹配；不新增電影評分。
+使用既有 Node.js 無依賴靜態產生器與輕量 HTTP 伺服器；不加入資料庫、登入或額外 CMS。保留既有 53 篇日文影評的六段正文、來源 URL、既有 slug、影片年份與原有立場。影片顯示名稱和導演名稱日文化，必要時保留原文名作搜尋匹配；不新增電影評分。
 
 原有作者是使用者本人，日文顯示為「マリナ」。僅移除指定藝術家內容，不編造作者的新姓名、國籍或經歷。About 寫成日文並保留台灣、咖啡師、電影和創作筆記本的真實設定。頁尾 Abiting 連結保持 `https://abiting.cc`。
 
@@ -19,19 +19,23 @@ HTTP 伺服器對有效頁面回傳 200；未知公開頁面路徑回傳單跳 3
 ## 網域與部署限制
 - 現在已發布的正式來源仍為 Manus 網域；`10e.org` 是待啟用的明確目標，而不是目前已接通的 canonical。
 - 自訂網域接通後，用明確的 `PUBLIC_ORIGIN=https://10e.org` 建置選項或 `src/site.json` 的確認網域設定產生正式 canonical、og:url、schema ID、sitemap 和 robots。
-- 已整合並保留使用者新增的 `.github/workflows/deploy.yml`，會將 `dist` 部署至 GitHub Pages。Pages 只能提供靜態檔案，不能自行回傳應用程式的真正 HTTP 301；若 `10e.org` 最後接到 Pages，需在 DNS/CDN/其他 HTTP 邊界實作相同轉址規則，而不是宣称 404 HTML 或 JavaScript 是 301。
+- GitHub Pages 的既有部署流程會將 `dist` 部署成靜態檔案，不能自行回傳真正 HTTP 301。若 `10e.org` 最後接到 Pages，需在 DNS/CDN／其他 HTTP 邊界實作相同轉址規則，而不是宣稱 404 HTML 或 JavaScript 是 301。
 - 不修改 DNS、不替使用者選擇未確認的網域供應商、不停用其部署流程。
 
 ## 專案結構
-- `src/content.json`：日文自介、53 篇影評與每頁 metadata。
+- `src/content.json`：日文自介、73 篇影評與每頁 metadata。
 - `src/site.json`：目前確認的 canonical 来源、待啟用自訂網域與轉址設定。
 - `scripts/build.mjs`：完整初始 HTML、日文 JSON-LD、路由清單與 SEO 文件。
 - `scripts/serve.mjs`：200、301、400/404/405 等正確 HTTP 回應。
 - `assets/styles.css`、`assets/main.js`：日文響應式排版、全文索引搜尋和分享訊息。
 - `assets/banner.jpg`：保留原檔；新品牌橫幅另存，建置改用新檔。
-- `scripts/check.mjs`：本次內容、SEO、轉址與品牌要求的現有檢查延伸。
+- `scripts/check.mjs`：內容、SEO、轉址與品牌要求的自動檢查。
 - `README.md`：日文版編輯、建置與 `10e.org` 接通後切換說明。
 
 ## 實際部署後的必要修正
+GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是自訂網域根目錄。建置流程使用明確 `BASE_PATH` 統一處理 HTML href/src、canonical、OG URL、作者 ID、route manifest 與 sitemap。GitHub Actions 在尚未指定自訂網域時使用 GitHub Pages origin 和 `/marinas-dreams`；未來接通 `10e.org`、設定 `PUBLIC_ORIGIN` 後，base path 為空。Webdev／本機仍採預設根路徑，不變動原影評 slugs 或 Node 301 規則。
 
-GitHub Pages 的實際來源目前是 `https://abiting.github.io/marinas-dreams/`，不是自訂網域根目錄。已確認原 root-relative CSS 與文章連結在此來源會回傳 404，因此建置增加明確 `BASE_PATH`，统一處理 HTML href/src、canonical、OG URL、作者 ID、route manifest 與 sitemap。GitHub Actions 在尚未指定自訂網域時使用 GitHub Pages origin 和 `/marinas-dreams`；未來接通 `10e.org`、設定 `PUBLIC_ORIGIN` 後，base path 为空。Webdev／本機仍採預設根路徑，不變動原影評 slugs 或 Node 301 規則。
+## 新增日本經典恐怖電影影評系列（本次請求）
+新增 20 篇自然日文、獨立資料查證的長篇影評，涵蓋日本怪談／幽靈電影、怪獸科幻恐怖、身體與實驗電影、1990 年代末 J-horror、心理恐怖與偽紀錄片。片單涵蓋 1953–2005 年；年份統一使用來源確認的日本首次劇場公開年份。部分作品的常見製作年／國際上映年不同，研究紀錄保留差異理由，新 slug 使用已核實的日本院線年。每篇有獨立 SEO、一個副題、兩個不同的 section heading、六段約 1,500–2,100 日文字符評論及 2–4 條能支援正文的來源。創作重點為影像、聲音、節奏、恐怖方法和主題詮釋，不虛構作者本人的私人觀影經歷、評分、未獲來源支持的細節或劇透。
+
+保留已經發布的 53 個影評 slug 和正文資料；新增文章為獨立 slug，按選定電影年份排列於原資料之後。首頁精選、可搜尋影評索引與可見的「日本ホラー名作20選」系列標籤、每篇 canonical／Open Graph／Twitter metadata、共同的 `Person`（マリナ）與 `Article` JSON-LD、`manus-routes.json`、sitemap 對新增頁同步擴充。保留目前 Pages `/marinas-dreams/` base path 與網站將來切換 10e.org 根路徑的做法；新長內容仍使用完整 HTML，網站不新增資料庫或 CMS。

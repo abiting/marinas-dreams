@@ -13,9 +13,11 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, 'マリナ');
-assert.equal(content.reviews.length, 53);
+assert.equal(content.reviews.length, 73);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
+const horrorReviews = content.reviews.filter(r => r.collection === '日本ホラー名作20選');
+assert.equal(horrorReviews.length, 20, 'All 20 new Japanese horror reviews are present');
 assert.equal(site.pendingOrigin, 'https://10e.org');
 assert.equal(site.legacyRedirects.enabled, true);
 assert.equal(site.legacyRedirects.destination, '/');
@@ -64,6 +66,12 @@ for (const routeInfo of manifest.routes) {
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
+    if (review.collection === '日本ホラー名作20選') {
+      assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
+      const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href="#source-([^"]+)"/g)].map(m => m[1])));
+      assert.ok(review.sources.every(ref => cited.has(ref.id)), `${route}: every research source is cited in the article`);
+      assert.ok(review.paragraphs.every(p => !/<\s*(script|iframe|style|object|embed)\b/i.test(p)), `${route}: safe HTML fragments`);
+    }
   }
   if (origin) {
     assert.ok(html.includes(`<link rel="canonical" href="${origin}${route}">`));
@@ -78,7 +86,7 @@ for (const routeInfo of manifest.routes) {
   }
   console.log(`PASS ${route}: Japanese HTML, new brand, metadata, shared Person${article ? ', Article' : ''}`);
 }
-assert.equal(articleCount, 53);
+assert.equal(articleCount, content.reviews.length);
 assert.ok(fs.readFileSync('dist/mewtwo-strikes-back-review/index.html', 'utf8').includes('href="https://list.abitingpokedex.com/pokemon/mewtwo"'));
 const about = fs.readFileSync('dist/about-marina/index.html', 'utf8');
 assert.ok(about.includes('台湾') && about.includes('バリスタ'));
@@ -87,11 +95,11 @@ assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 56);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, content.reviews.length + 3);
   assert.ok(robots.includes(`Sitemap: ${origin}${basePath}/sitemap.xml`));
   assert.ok(sitemap.includes(`${origin}/`));
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
-console.log('PASS 53 Japanese reviews / 318 paragraphs, 56 routes, new brand image, canonical, sitemap, author and retained source links.');
+console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes including 20 horror-classic reviews, research citations, new brand image, canonical, sitemap and shared author.`);
