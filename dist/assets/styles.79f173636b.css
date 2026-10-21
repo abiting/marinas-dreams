@@ -111,6 +111,9 @@ i { font-weight: 400; }
 .prose h2 { font-size: 26px; line-height: 1.5; letter-spacing: -.025em; margin: 43px 0 20px; scroll-margin-top: 35px; }
 .prose a { color: var(--coffee); }
 .prose sup { font: 9px var(--sans); }
+.content-note { max-width: 780px; border-left: 2px solid var(--coffee); background: var(--cream); padding: 15px 20px; color: var(--muted); font: 11px/1.9 var(--sans); }
+.archive-content-note { margin: 22px 0 0; }
+.article-prose > .content-note { margin: 0 0 30px; }
 .about-prose > p:first-child { font-size: 24px; line-height: 1.6; }
 .about-disclaimer { margin: 45px 0 35px; padding: 25px 30px; background: var(--cream); }
 .about-disclaimer h2 { margin: 0 0 14px; font-size: 18px; }
@@ -273,6 +276,8 @@ h1, h2, h3 { letter-spacing: 0; line-height: 1.45; }
 .wordmark { max-width: 100%; }
 .article-prose > p:first-child::first-letter { float: none; font-size: inherit; line-height: inherit; padding: 0; color: inherit; }
 .source-note h2, .film-facts dt, .topic-labels { letter-spacing: .08em; }
+.article-banner { width: 100%; margin: clamp(28px, 5vw, 48px) 0 0; }
+.article-banner img { width: 100%; height: auto; border: 1px solid var(--line); }
 .entry-subtitle { line-height: 1.9; }
 @media (max-width: 760px) {
   .wordmark { font-size: clamp(16px, 4.8vw, 21px); gap: 8px; }

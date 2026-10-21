@@ -13,11 +13,13 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, 'マリナ');
-assert.equal(content.reviews.length, 73);
+assert.equal(content.reviews.length, 93);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 const horrorReviews = content.reviews.filter(r => r.collection === '日本ホラー名作20選');
 assert.equal(horrorReviews.length, 20, 'All 20 new Japanese horror reviews are present');
+const adultReviews = content.reviews.filter(r => r.collection === '日本の成人向け映画史20選');
+assert.equal(adultReviews.length, 20, 'All 20 researched Japanese adult-cinema reviews are present');
 assert.equal(site.pendingOrigin, 'https://10e.org');
 assert.equal(site.legacyRedirects.enabled, true);
 assert.equal(site.legacyRedirects.destination, '/');
@@ -62,15 +64,28 @@ for (const routeInfo of manifest.routes) {
     assert.equal(article.inLanguage, 'ja');
     assert.ok(!('reviewRating' in article));
     assert.ok(japanese(article.headline));
+    const articleBanners = [...html.matchAll(/<figure class="article-banner"><img src="([^"]+)" alt="([^"]+)" width="(\d+)" height="(\d+)" loading="lazy" decoding="async"><\/figure>/g)];
+    assert.equal(articleBanners.length, 1, `${route}: one article-end banner`);
+    const bannerMatch = articleBanners[0];
+    assert.equal(bannerMatch[1], `${basePath}${content.bannerPath}`, `${route}: banner asset path`);
+    assert.equal(Number(bannerMatch[3]), content.bannerWidth, `${route}: intrinsic banner width`);
+    assert.equal(Number(bannerMatch[4]), content.bannerHeight, `${route}: intrinsic banner height`);
+    assert.ok(decode(bannerMatch[2]).includes(brand) && japanese(decode(bannerMatch[2])), `${route}: descriptive Japanese banner alt`);
+    assert.ok(bannerMatch.index > html.indexOf('<div class="author-note">'), `${route}: banner follows author note`);
+    assert.ok(bannerMatch.index < html.indexOf('</article>', bannerMatch.index), `${route}: banner is at article end`);
     const review = content.reviews.find(r => `/${r.slug}/` === logicalRoute);
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
-    if (review.collection === '日本ホラー名作20選') {
+    if (review.collection === '日本ホラー名作20選' || review.collection === '日本の成人向け映画史20選') {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href="#source-([^"]+)"/g)].map(m => m[1])));
-      assert.ok(review.sources.every(ref => cited.has(ref.id)), `${route}: every research source is cited in the article`);
+      assert.ok(review.sources.every(ref => cited.has(ref.id), `${route}: every research source is cited in the article`));
       assert.ok(review.paragraphs.every(p => !/<\s*(script|iframe|style|object|embed)\b/i.test(p)), `${route}: safe HTML fragments`);
+      if (review.collection === '日本の成人向け映画史20選') {
+        assert.ok(review.categoryLabel && review.keywords?.length >= 3, `${route}: specific adult-cinema category and search terms`);
+        assert.ok(html.includes('成人向けの題材を含む作品を扱う評論です。'), `${route}: non-graphic adult-topic notice`);
+      }
     }
   }
   if (origin) {
@@ -90,6 +105,7 @@ assert.equal(articleCount, content.reviews.length);
 assert.ok(fs.readFileSync('dist/mewtwo-strikes-back-review/index.html', 'utf8').includes('href="https://list.abitingpokedex.com/pokemon/mewtwo"'));
 const about = fs.readFileSync('dist/about-marina/index.html', 'utf8');
 assert.ok(about.includes('台湾') && about.includes('バリスタ'));
+assert.ok(fs.readFileSync('dist/film-reviews/index.html', 'utf8').includes('「三級」などを一律に当てはめず'));
 assert.ok(fs.readFileSync('dist/404.html', 'utf8').includes('noindex, follow'));
 assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
@@ -102,4 +118,4 @@ if (origin) {
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
-console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes including 20 horror-classic reviews, research citations, new brand image, canonical, sitemap and shared author.`);
+console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including 20 horror-classic and 20 adult-cinema reviews, research citations, non-graphic notice, article-end banner, SEO and shared author.`);
