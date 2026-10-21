@@ -62,4 +62,4 @@
 - [x] 新增鬼片使用可見且可搜尋的「欧米ゴースト映画10選」標籤；柯南文章屬「名探偵コナン映画ノート」。日文片名與原文名皆可搜尋，各片年份明確區分本國首映與日本公開年。
 - [x] 保留既有93篇所有資料欄位和slug；新增十一篇後共104篇、107個公開頁。各新增頁有完整初始日文HTML、Article／共用Person、SEO、canonical、OG、Twitter、來源註腳及文章末尾共享banner，manifest與sitemap同步更新。
 - [x] 根目錄和GitHub Pages `/marinas-dreams/` 建置均相容；保留現行正式網域與未接通10e.org的邊界，不修改DNS或既有301邏輯。
-- [ ] 保存到現有GitHub main，確認指定版本的Pages部署成功並核查正式索引、新影評、指定柯南來源、banner與SEO；未成功發布前不宣称已上線。
+- [x] 保存到現有GitHub main，確認指定版本的Pages部署成功並核查正式索引、新影評、指定柯南來源、banner與SEO；未成功發布前不宣称已上線。
