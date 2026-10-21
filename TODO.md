@@ -63,3 +63,12 @@
 - [x] 保留既有93篇所有資料欄位和slug；新增十一篇後共104篇、107個公開頁。各新增頁有完整初始日文HTML、Article／共用Person、SEO、canonical、OG、Twitter、來源註腳及文章末尾共享banner，manifest與sitemap同步更新。
 - [x] 根目錄和GitHub Pages `/marinas-dreams/` 建置均相容；保留現行正式網域與未接通10e.org的邊界，不修改DNS或既有301邏輯。
 - [x] 保存到現有GitHub main，確認指定版本的Pages部署成功並核查正式索引、新影評、指定柯南來源、banner與SEO；未成功發布前不宣称已上線。
+
+## 《無界之界》（2023）單篇紀錄片影評
+
+- [x] 新增一篇日文《無界之界》影評，維持網站既有格式（六段、兩個小標、約 1,500–2,100 日文字符）。
+- [x] 按德化縣政府確認影片在2023-09-25拍攝完成，並以中新網福建2025-09-23正式上映報導核實公映年2025；片頁明確區分拍攝完成年與公開年。
+- [x] 使用官方資料核對片名、白瓷雕塑與德化陶瓷背景；不虛構未觀察到的電影場面或觀影經驗。
+- [x] 文章參考資料區依原樣引用使用者指定 URL https://cpaceramics.comm/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示，原樣保留使用者指定網址，作為延伸閱讀引用且不另註讀取狀態。
+- [x] 為單篇新頁補齊日文標題、副題、150字附近description、3–8個相關關鍵字、Article／共用Person、canonical、OG、Twitter、文章尾端banner、manifest與sitemap；不更動其他104篇內容或正式網域設定。
+- [ ] 保存到現有GitHub main，確認GitHub Pages指定提交部署成功並核對正式新頁、影評索引與引用連結。

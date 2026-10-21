@@ -51,3 +51,11 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 另增十篇歐美經典鬼片，選片重點為幽靈、鬼屋、靈異感知和怪談，包含《The Uninvited》（1944）、《The Innocents》（1961）、《The Haunting》（1963 原版）、《The Changeling》（1980 加拿大鬼片）、《The Shining》（1980）、《Poltergeist》（1982 原版）、《The Sixth Sense》（1999）、《The Others》（2001）、《The Devil's Backbone》（2001）和《The Orphanage》（2007）。日文正式片名、導演、版本及最初本國院線公開年由獨立研究核實，避免與日本上映年、影展年、重拍年混用；《黑鐵的魚影》使用日本首次公開年。系列名為「欧米ゴースト映画10選」。
 
 每篇沿用現有六段、兩個小標、約 1,500–2,100 日文字符、獨立 SEO title、50–160 字摘要、主題、副標與 2–4 個全文讀取來源；評論以影像、聲音、情緒、電影史和主題為核心，不披露重要反轉或犯人，不虛構作者私人經歷。保留既有 93 篇所有內容欄位與網址。新增十一篇後共 104 篇影評、107 個公開頁，每篇保留文章尾端 banner、共用 Person 與 Article、canonical、OG、Twitter、manifest 和 sitemap。仍以 GitHub Pages `/marinas-dreams/` 發布，不修改 DNS、不提前切換 10e.org。
+
+
+## 《無界之界》（2023）單篇紀錄片評論
+- 延續現有日文完整 HTML、Article／Person 結構化資料、SEO、canonical、OG、Twitter、manifest、sitemap、共用文章尾端 banner 和 GitHub Pages 子路徑。
+- 新增一篇日文評論，影評對象為德化白瓷紀錄電影《無界之界》（原名「无界之界」）。官方資料記載2023-09-25殺青、2025年在中國正式上映；文章以2025年作公映年，並明確提及2023年拍攝完成。
+- 使用官方德化縣政府、福建東南網與中新網福建來源核實拍攝完成年、導演與2025年上映；博物館／陶瓷背景來源只用於通史觀點；文章為原創分析，不假裝曾觀看無法取得的影片，不編造場景。
+- 逐字保留使用者指定參考網址 https://cpaceramics.comm/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示為延伸閱讀；依使用者要求，不在頁面註明可讀取狀態。
+- 影評以日文約 1,500–2,100 字、六段與兩個小標撰寫，提供符合既有品牌與 SEO 的日文題目、副題、摘要、關鍵字；舊有104篇文章和slug不變。

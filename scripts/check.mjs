@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, 'マリナ');
-assert.equal(content.reviews.length, 104);
+assert.equal(content.reviews.length, 105);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 const horrorReviews = content.reviews.filter(r => r.collection === '日本ホラー名作20選');
@@ -22,6 +22,13 @@ const adultReviews = content.reviews.filter(r => r.collection === '日本の成�
 assert.equal(adultReviews.length, 20, 'All 20 researched Japanese adult-cinema reviews are present');
 const ghostReviews = content.reviews.filter(r => r.collection === '欧米ゴースト映画10選');
 assert.equal(ghostReviews.length, 10, 'All ten Western ghost-film reviews are present');
+const ceramicsReviews = content.reviews.filter(r => r.collection === '中国陶磁ドキュメンタリー映画ノート');
+assert.equal(ceramicsReviews.length, 1, 'One Wujie Zhijie ceramics documentary review is present');
+const ceramicsReview = ceramicsReviews[0];
+assert.equal(ceramicsReview.year, 2025, '2025 is the verified Chinese theatrical-release year');
+assert.equal(ceramicsReview.productionYear, 2023, '2023 is shown separately as the shooting-completion year');
+assert.ok(ceramicsReview.sources.some(ref => ref.url === 'https://cpaceramics.comm/blog/chinese-ceramics/'));
+assert.ok(ceramicsReview.sources.some(ref => ref.title === 'Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」'));
 const conanReviews = content.reviews.filter(r => r.collection === '名探偵コナン映画ノート');
 assert.equal(conanReviews.length, 1, 'One new Black Iron Submarine review is present');
 const conanReview = conanReviews[0];
@@ -84,7 +91,7 @@ for (const routeInfo of manifest.routes) {
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート'];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート'];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href="#source-([^"]+)"/g)].map(m => m[1])));
@@ -126,6 +133,10 @@ assert.ok(about.includes('台湾') && about.includes('バリスタ'));
 const archive = fs.readFileSync('dist/film-reviews/index.html', 'utf8');
 assert.ok(archive.includes('「三級」などを一律に当てはめず'));
 assert.ok(archive.includes('欧米ゴースト映画10選') && archive.includes('名探偵コナン映画ノート'));
+const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
+assert.ok(ceramicsHtml.includes('https://cpaceramics.comm/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link is publicly included exactly as supplied');
+assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
+assert.ok(ceramicsHtml.includes('<dt>撮影完了年</dt><dd>2023年</dd>'), '2023 completion year is distinct from 2025 public-release year');
 const conanHtml = fs.readFileSync(`dist/${conanReview.slug}/index.html`, 'utf8');
 assert.ok(conanHtml.includes('href="https://coai.abiting.cc/archives/1190"'), 'Required Conan reference is publicly linked');
 assert.ok(fs.readFileSync('dist/404.html', 'utf8').includes('noindex, follow'));
@@ -140,4 +151,4 @@ if (origin) {
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
-console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including ten Western ghost films and Black Iron Submarine with the required reference, existing collections, article-end banner, SEO and shared author.`);
+console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including ten Western ghost films, Black Iron Submarine and Wujie Zhijie with their references, 2023 production / 2025 release, existing collections, article-end banner, SEO and shared author.`);
