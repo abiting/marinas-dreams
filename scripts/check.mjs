@@ -43,6 +43,12 @@ assert.equal(manifest.routes.length, content.reviews.length + 3);
 assert.ok(manifest.routes.some(route => route.path.endsWith('/about-10ekokoro/')));
 assert.ok(!manifest.routes.some(route => route.path.includes('/about-marina/')));
 
+const inceptionReview = content.reviews.find(r => r.slug === 'inception-review');
+assert.ok(inceptionReview, 'Inception review is present');
+const inceptionBfi = inceptionReview.sources.find(ref => ref.id === '1' && ref.title === '『インセプション』（2010）｜BFI');
+assert.equal(inceptionBfi?.url, 'https://abiurl.me/VdCbIO', 'BFI source uses the requested short URL');
+assert.ok(!JSON.stringify(inceptionReview).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'));
+
 assert.ok(fs.existsSync('dist/.nojekyll'));
 const titles = new Set();
 const descriptions = new Set();
@@ -101,6 +107,10 @@ for (const routeInfo of manifest.routes) {
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
+    if (review.slug === 'inception-review') {
+      assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
+      assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
+    }
     const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート'];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);

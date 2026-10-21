@@ -63,3 +63,7 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 
 ## 作者公開名更新
 將全站作者可見名稱及 `Person.name` 設為「10eKokoro」，同步 About、首頁、導覽、文章署名及作者卡片；About新URL為 `/about-10ekokoro/`，舊 `/about-marina/` 從 route manifest、canonical 和 sitemap 移除，105篇影評 URL 保持不變；GitHub Pages 無法設定真實HTTP301，Node/Webdev未知舊路徑仍依既有規則301至首頁。重新產生每頁初始 HTML、Person/Article JSON-LD、網站地圖及route manifest，透過既有 GitHub Pages 工作流程發布。
+
+
+## Inception BFI 引用網址更新
+只修改 `inception-review` 的 BFI 來源網址：由 `https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception` 改為使用者指定的 `https://abiurl.me/VdCbIO`；保留來源標題、來源ID、影評正文、其他來源、路由與網站SEO設定。重新建置靜態頁面，更新內容檢查並透過既有 GitHub Pages 工作流程發布。

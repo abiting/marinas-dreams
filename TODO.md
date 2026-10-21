@@ -81,3 +81,9 @@
 - [x] 使用新About URL `/about-10ekokoro/`，同步全站內部連結、Person URL、canonical、sitemap和route manifest；移除舊 `/about-marina/` route；全部105篇影評URL、文章正文、10eKokoro's Dream網站名稱、正式網域和其他作者背景保持不變。
 - [x] 重新建置所有日文頁面，確認 Person 與 Article 共用作者 ID 且 name 為10eKokoro，首頁、About及影評索引/影評頁可見署名已更新。
 - [x] 推送更新到現有GitHub main，確認GitHub Pages部署成功，並核對公開About頁、影評頁、manifest與sitemap。舊 `/about-marina/` 在GitHub Pages靜態託管上沒有真實HTTP301；不得用meta refresh或JavaScript冒充301，舊路徑會是404。
+
+
+## Inception 的 BFI 來源改用短網址
+- [ ] 在 `inception-review` 的 BFI 來源保留標題「『インセプション』（2010）｜BFI」與引用 ID，只將網址 `https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception` 替換為 `https://abiurl.me/VdCbIO`。
+- [ ] 只更換這一個來源目標；保持影評正文、其他來源和105篇既有文章不變，確認文章 HTML 出現新網址且不再出現舊 BFI 網址。
+- [ ] 建置並檢查網站，推送既有 GitHub main，確認 GitHub Pages 部署及公開 Inception 影評的新連結。
