@@ -1,6 +1,6 @@
 # 10eKokoro's Dream
 
-台湾の映画好きのバリスタ「10eKokoro」による、日本語の映画・映像・アートノートです。既存の 53 本の映画レビューと URL を保ったまま、日本語に翻訳し、サイト名と共有画像を更新しています。紙のようなアイボリー、コーヒーブラウン、スクラップブックの雰囲気は引き継いでいます。
+台湾の映画好きのバリスタ「10eKokoro」による、日本語の映画・映像・アートノートです。2026年10月時点で映画レビュー125本を掲載し、ホラー、怪談、恋愛、成人指定アクションなどのシリーズを整理しています。紙のようなアイボリー、コーヒーブラウン、スクラップブックの雰囲気を引き継いでいます。
 
 ## 開発・ビルド
 
@@ -16,7 +16,7 @@ npm run check
 
 ## コンテンツと構成
 
-`src/content.json` に日本語のプロフィール、105 本のレビュー、タイトル、説明、参照資料の表示名を保存しています。各レビューは 6 段落で、元の記事 URL、映画の年、参照 URL は維持しています。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
+`src/content.json` に日本語のプロフィール、映画レビュー125本、タイトル、説明、参照資料の表示名を保存しています。各レビューは6段落で、映画の年、参照 URL、注釈つきの出典を保持します。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
 
 `scripts/build.mjs` は日本語のページ、`Person` と `Article` の JSON-LD、Open Graph / Twitter metadata、`manus-routes.json`、sitemap と robots を生成します。`assets/styles.css` は日本語の組版、`assets/main.js` は検索とリンク共有を担当します。元の写真は `assets/banner.jpg` に保持し、新ブランド画像は `assets/banner-kokoro.jpg` を使用します。
 
@@ -35,7 +35,7 @@ PUBLIC_ORIGIN=https://10e.org npm run check
 
 ## 旧リンクの HTTP 301
 
-ユーザーが確認した方針は、「既存の有効なレビュー URL は残し、新しいサイトに存在しない旧 URL をトップページへ転送する」です。`scripts/serve.mjs` を使う Webdev / Node 公開では、存在しない公開ページや旧ファイル URL は 1 回の HTTP 301 と `Location: /` でトップへ移動します。旧 URL の query は引き継ぎません。トップ自身と既存ページは 200 を返し、ループを作りません。
+ユーザーが確認した方針は、「既存の有効なレビュー URL は残し、新しいサイトに存在しない旧 URL をトップページへ転送する」です。`scripts/serve.mjs` を使う Webdev / Node 公開では、存在しない公開ページや旧ファイル URL は1回の HTTP 301 と `Location: /` でトップへ移動します。旧 URL の query は引き継ぎません。トップ自身と既存ページは200を返し、ループを作りません。
 
 新サイトの静的アセット、API、プラットフォーム用パス、SEO 文書、health は通常の処理を維持します。アセットや API の不足を「ページ移動」として隠しません。転送の有効・無効は `src/site.json` の `legacyRedirects.enabled` で指定します。
 
@@ -43,13 +43,13 @@ PUBLIC_ORIGIN=https://10e.org npm run check
 
 ユーザーが追加した `.github/workflows/deploy.yml` は保持しており、`dist/` を GitHub Pages に配置します。GitHub Pages は静的ホスティングなので、Node の HTTP 301 処理は実行しません。`404.html` や JavaScript / meta refresh は、本物の HTTP 301 の代わりにはなりません。
 
-`10e.org` を GitHub Pages に向ける場合は、Cloudflare Worker などの HTTP エッジ、または転送を設定できる別のホストで同じルールを実装してください。その場合も、有効なレビュー、アセット、sitemap、robots を除外し、存在しない旧 URL だけを `https://10e.org/` に 301 で送ります。DNS/CDN 管理権限と実際のホスティング先を確認してから適用します。
+`10e.org` を GitHub Pages に向ける場合は、Cloudflare Worker などの HTTP エッジ、または転送を設定できる別のホストで同じルールを実装してください。その場合も、有効なレビュー、アセット、sitemap、robots を除外し、存在しない旧 URL だけを `https://10e.org/` に301で送ります。DNS/CDN 管理権限と実際のホスティング先を確認してから適用します。
 
-このリポジトリを更新しただけで、`10e.org` の 301 が有効になったとは見なしません。Webdev 公開と GitHub Pages 公開は別の配置先です。
+このリポジトリを更新しただけで、`10e.org` の301が有効になったとは見なしません。Webdev 公開と GitHub Pages 公開は別の配置先です。
 
 ## ページと参照
 
-トップ `/`、レビュー一覧 `/film-reviews/`、プロフィール `/about-10ekokoro/`、105 本の記事 URL を維持しています。全ページは日本語で、作者は共有の `Person`、各レビューはその作者を参照する `Article` です。架空の評価点は加えません。Abiting への制作・運営クレジットと、ミュウツーの指定資料 URL は保持しています。
+トップ `/`、レビュー一覧 `/film-reviews/`、プロフィール `/about-10ekokoro/`、125本の記事 URL を維持しています。全ページは日本語で、作者は共有の `Person`、各レビューはその作者を参照する `Article` です。架空の評価点は加えません。Abiting への制作・運営クレジットと、ミュウツーの指定資料 URL は保持しています。
 
 ## GitHub Actions の origin 設定
 
@@ -59,18 +59,22 @@ PUBLIC_ORIGIN=https://10e.org npm run check
 
 自前のドメインが未接続の場合、GitHub Pages は `https://abiting.github.io/marinas-dreams/` に公開します。ワークフローは `PUBLIC_ORIGIN=https://abiting.github.io` と `BASE_PATH=/marinas-dreams` を使用し、リンク、画像、作者 ID、canonical、sitemap、route manifest をその配置先に合わせます。ローカルと Webdev のビルドはデフォルトで根パスです。
 
-Repository variable `PUBLIC_ORIGIN` を接続確認済みの `https://10e.org` に設定すると、Pages の次のビルドでは `BASE_PATH` を空にし、カスタムドメインの根パスを使用します。これだけでドメイン接続や 301 が設定されるわけではありません。GitHub canonical のプロジェクトは現在 Webdev 公開 API では publish できないため、Webdev の公開更新は Dashboard から行います。
+Repository variable `PUBLIC_ORIGIN` を接続確認済みの `https://10e.org` に設定すると、Pages の次のビルドでは `BASE_PATH` を空にし、カスタムドメインの根パスを使用します。これだけでドメイン接続や301が設定されるわけではありません。GitHub canonical のプロジェクトは現在 Webdev 公開 API では publish できないため、Webdev の公開更新は Dashboard から行います。
 
 ## コナンと欧米ゴースト映画の追加
 
 2026年10月21日、劇場版『名探偵コナン 黒鉄の魚影』と欧米の幽霊・怪談映画10本を追加し、計105本・108公開ページになりました。コナンのレビューは指定の柯哀フォーラム記事を参考資料として明記し、公式作品資料と監督インタビューも参照しています。鬼映画は「欧米ゴースト映画10選」、コナンは「名探偵コナン映画ノート」のラベルで検索できます。
 
-新しい欧米作品の年は日本公開年ではなく、本国での原版初公開年です。作品情報の「公開年」と「版」に基準を示しています。既存93本のデータとURLは維持し、すべてのレビューに記事末尾のサイトバナーがあります。
+新しい欧米作品の年は日本公開年ではなく、本国での原版初公開年です。作品情報の「公開年」と「版」に基準を示しています。当時の既存93本のデータと URL は維持し、すべてのレビューに記事末尾のサイトバナーがあります。
 
 ## 中国陶磁ドキュメンタリーの追加
 
-2026年10月21日、白磁記録映画『無界之界』のレビューを追加しました。撮影完了年2023と中国劇場初公開年2025を区別し、映画情報と徳化白磁の制作に関する資料を掲載しています。指定されたCeramics Practice Alliance「Chinese ceramics: the reason we call it china」も、原URLのまま参照資料に加えています。
+2026年10月21日、白磁記録映画『無界之界』のレビューを追加しました。撮影完了年2023と中国劇場初公開年2025を区別し、映画情報と徳化白磁の制作に関する資料を掲載しています。指定された Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」も、原 URL のまま参照資料に加えています。
 
 ## 作者名とAbout URL
 
-作者の公開名は10eKokoroです。プロフィールのURLは `/about-10ekokoro/` へ変更し、ナビゲーション、全記事の署名、構造化データ、canonical、sitemapとroute manifestも同じパスを使用します。全105本のレビューURLは変更しません。旧 `/about-marina/` はサイト上から削除します。GitHub Pagesは静的ホスティングのため旧URLにHTTP 301は設定できず、古いAboutリンクは404になります。Node/Webdev HTTPサーバーでは旧ルートは既存の未定義URLルールによりトップページへ301されます。
+作者の公開名は10eKokoroです。プロフィールの URL は `/about-10ekokoro/` へ変更し、ナビゲーション、全記事の署名、構造化データ、canonical、sitemapとroute manifestも同じパスを使用します。作者名変更時点で105本だったレビュー URL は変更していません。旧 `/about-marina/` はサイト上から削除します。GitHub Pagesは静的ホスティングのため旧URLにHTTP 301は設定できず、古いAboutリンクは404になります。Node/Webdev HTTPサーバーでは旧ルートは既存の未定義URLルールによりトップページへ301されます。
+
+## 欧州映画三シリーズの追加
+
+2026年10月26日、欧州の幽霊・怪談・超自然映画10本、恋愛映画5本、成人指定アクション映画5本を追加し、サイトは合計125本のレビューと128公開ページになりました。新しい日本語レビューは各6段落、約1,400–1,650字で、作品資料と複数の出典注を掲載しています。年齢区分は国・審査機関・公開版を個別に明記し、別の国や版へ一律に当てはめません。たとえば『Sisu』はドイツのHome Entertainment版がFSK 18で、日本版はR15+です。
