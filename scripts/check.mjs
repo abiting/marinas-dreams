@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 105);
+assert.equal(content.reviews.length, 125);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -35,6 +35,27 @@ assert.equal(conanReviews.length, 1, 'One new Black Iron Submarine review is pre
 const conanReview = conanReviews[0];
 assert.equal(conanReview.year, 2023);
 assert.ok(conanReview.sources.some(ref => ref.url === 'https://coai.abiting.cc/archives/1190'));
+const europeanReviewCollections = ['欧州ホラー映画名作10選', '欧州恋愛映画名作5選', '欧州成人指定アクション映画5選'];
+const europeanGhosts = content.reviews.filter(r => r.collection === europeanReviewCollections[0]);
+const europeanRomance = content.reviews.filter(r => r.collection === europeanReviewCollections[1]);
+const europeanAction = content.reviews.filter(r => r.collection === europeanReviewCollections[2]);
+assert.equal(europeanGhosts.length, 10, 'All ten new European ghost/supernatural reviews are present');
+assert.equal(europeanRomance.length, 5, 'All five new European romance reviews are present');
+assert.equal(europeanAction.length, 5, 'All five new restricted-rated European action reviews are present');
+const sisuReview = europeanAction.find(r => r.originalTitle === 'Sisu');
+assert.ok(sisuReview, 'Sisu replaces the less genre-specific Irréversible entry');
+assert.equal(sisuReview.year, '2022');
+assert.ok(sisuReview.productionCountries.includes('フィンランド'));
+assert.equal(sisuReview.classification.territory, 'ドイツ');
+assert.ok(sisuReview.classification.edition.includes('Home Entertainment'));
+assert.ok(sisuReview.sources.some(ref => ref.url === sisuReview.classification.sourceUrl && ref.url.includes('fsk.de')));
+assert.ok(!europeanAction.some(r => r.originalTitle === 'Irréversible'));
+for (const review of europeanAction) {
+  const rating = review.classification;
+  assert.ok(rating?.territory && rating.authority && rating.rating && rating.edition && rating.sourceUrl && rating.sourceId);
+  assert.ok(/18|NC-17|FSK\s*18|X指定|成人/i.test(rating.rating), `${review.slug}: verified adults-only rating`);
+  assert.ok(review.sources.some(ref => ref.id === rating.sourceId && ref.url === rating.sourceUrl), `${review.slug}: official rating source cited`);
+}
 assert.equal(site.pendingOrigin, 'https://10e.org');
 assert.equal(site.legacyRedirects.enabled, true);
 assert.equal(site.legacyRedirects.destination, '/');
@@ -111,12 +132,28 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート'];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', ...europeanReviewCollections];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
-      const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href="#source-([^"]+)"/g)].map(m => m[1])));
+      const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
+      if (review.classification?.sourceId) cited.add(String(review.classification.sourceId));
       assert.ok(review.sources.every(ref => cited.has(ref.id), `${route}: every research source is cited in the article`));
       assert.ok(review.paragraphs.every(p => !/<\s*(script|iframe|style|object|embed)\b/i.test(p)), `${route}: safe HTML fragments`);
+      if (europeanReviewCollections.includes(review.collection)) {
+        const plainReview = review.paragraphs.join('').replace(/<[^>]+>/g, '').replace(/\[\d+\]/g, '').replace(/\s+/g, '');
+        assert.ok(plainReview.length >= 1400 && plainReview.length <= 1650, `${route}: Japanese review is 1,400–1,650 characters`);
+        assert.ok(review.productionCountries?.length && review.categoryLabel, `${route}: European scope and category label`);
+        assert.ok(review.keywords?.length >= 3 && review.keywords.length <= 8, `${route}: European long-tail keywords`);
+        assert.ok(title.length >= 30 && title.length <= 60 && description.length >= 50 && description.length <= 160, `${route}: European metadata lengths`);
+        assert.ok(html.includes(review.collection), `${route}: visible European collection label`);
+        assert.ok(!html.includes('成人向けの題材を含む作品を扱う評論です。'), `${route}: no unrelated Japanese adult-film notice`);
+        if (review.collection === europeanReviewCollections[2]) {
+          const rating = review.classification;
+          assert.ok(rating?.rating && rating.sourceId && rating.edition, `${route}: exact adult rating and edition`);
+          assert.ok(decode(html).includes(`${rating.territory}・${rating.authority}：${rating.rating}`), `${route}: country-specific rating rendered`);
+          assert.ok(html.includes(`href="#source-${rating.sourceId}"`), `${route}: rating source linked`);
+        }
+      }
       if (review.collection === '日本の成人向け映画史20選') {
         assert.ok(review.categoryLabel && review.keywords?.length >= 3, `${route}: specific adult-cinema category and search terms`);
         assert.ok(html.includes('成人向けの題材を含む作品を扱う評論です。'), `${route}: non-graphic adult-topic notice`);
@@ -152,8 +189,11 @@ const about = fs.readFileSync('dist/about-10ekokoro/index.html', 'utf8');
 assert.ok(about.includes('<h1>10eKokoroの'));
 assert.ok(about.includes('10eKokoro') && about.includes('台湾') && about.includes('バリスタ'));
 const archive = fs.readFileSync('dist/film-reviews/index.html', 'utf8');
-assert.ok(archive.includes('「三級」などを一律に当てはめず'));
+assert.ok(archive.includes('公開国・地域・時期・版によって年齢区分が異なります'));
+assert.ok(archive.includes('区分を単一基準に置き換えません'));
+assert.ok(archive.includes('批評に必要な範囲で非露骨に扱います'));
 assert.ok(archive.includes('欧米ゴースト映画10選') && archive.includes('名探偵コナン映画ノート'));
+for (const collection of europeanReviewCollections) assert.ok(archive.includes(collection), `Archive exposes ${collection}`);
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.comm/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link is publicly included exactly as supplied');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -174,4 +214,4 @@ if (origin) {
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
-console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including ten Western ghost films, Black Iron Submarine and Wujie Zhijie with their references, 2023 production / 2025 release, existing collections, article-end banner, SEO and shared author.`);
+console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including the three researched European film collections, earlier series, article-end banner, SEO and shared author.`);
