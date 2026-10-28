@@ -26,8 +26,7 @@ jobs:
 
       - run: npm run build
         env:
-          PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN || 'https://abiting.github.io' }}
-          BASE_PATH: ${{ vars.PUBLIC_ORIGIN == '' && '/marinas-dreams' || '' }}
+          PUBLIC_ORIGIN: https://10e.org
 
       - uses: actions/upload-pages-artifact@v3
         with:
