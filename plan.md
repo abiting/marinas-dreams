@@ -87,11 +87,16 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 ## 舊 iTunes 頁面單一路徑 HTTP 301 與陶瓷引用 URL 更正（2026-10-29）
 使用者最初指定只把 `http://10e.org/mt2/archives/201002/282300.php` 導向 `https://app.abiting.cc/archives/tag/apple-music`，因為舊頁內容是 iTunes、與 Apple Music 有關；當時所有其他失效頁必須繼續回 HTTP 404，之後只有使用者明確指定的第二條路徑例外。`10e.org` 經 Cloudflare proxy，原站由 GitHub Pages 靜態提供。Cloudflare 官方 [Single Redirects API 文件](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-api/) 說明規則可設靜態目標與 301，且需要 Cloudflare proxy；[Single Redirects settings 文件](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/settings/)列出 redirect 設定，另有 [dashboard 指引](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-dashboard/)。
 
-Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只新增一個 zone-level ruleset 及一條啟用中的規則，不修改既有 managed rulesets。表達式精確限定 `http.host eq "10e.org" and http.request.uri.path eq "/mt2/archives/201002/282300.php"`；靜態目標為指定的 `app.abiting.cc` 頁面，狀態碼 301，`preserve_query_string=false`，不使用通配符。以 dry run 驗證後建立。建立前目標及相鄰舊頁均為 404；建立後，HTTP 與 HTTPS 來源各回 301 且 Location 正確，query 測試不傳遞，相鄰頁與尾斜線變體仍回 404，redirect 目標回應 200。Full Access OAuth 目前仍有效；使用者可在 Cloudflare 的 Manage OAuth authorizations 撤銷 Manus 授權，撤銷不會刪除已建立的規則。
+Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只新增一個 zone-level ruleset 及一條啟用中的規則，不修改既有 managed rulesets。表達式精確限定 `http.host eq "10e.org" and http.request.uri.path eq "/mt2/archives/201002/282300.php"`；靜態目標為指定的 `app.abiting.cc` 頁面，狀態碼 301，`preserve_query_string=false`，不使用通配符。以 dry run 驗證後建立。建立前目標及相鄰舊頁均為 404；建立後，HTTP 與 HTTPS 來源各回 301 且 Location 正確，query 測試不傳遞，相鄰頁與尾斜線變體仍回 404，redirect 目標回應 200。Cloudflare Full Access OAuth 在全部轉址完成後已由 Manus logout 清除 token；若 Cloudflare 的 Manage OAuth authorizations 仍列有 Manus app grant，使用者可另外撤銷；撤銷不會刪除已建立的規則。
 
 `.com` 引用修正已完成：`src/content.json` 的 source 4 只更改 URL，原英文標題與 ID 不變；`npm run build`、`npm run check` 通過。GitHub Pages commit `7aef60f` 由 workflow `40808420362` 部署成功；正式《無界之界》頁回應 200，顯示 `.com` 且沒有 `.comm`。單頁 301 規則已完成並以直接 HTTP 請求驗證；來源 URL 修正和規則設定均符合本次需求。
 
 ## 第二條舊頁單一路徑 HTTP 301（2026-10-29）
-使用者新增指定來源 `http://10e.org/mt2/archives/200808/170209.php`，目標為 `https://app.abiting.cc`。已核對來源原 HTTPS 回 404、HTTP 原先只升級到同路徑的 HTTPS，目標首頁回 200；接著在現有 `http_request_dynamic_redirect` zone ruleset 中追加一條精確 `host`＋`path` 規則，狀態碼 301、不保留 query，沒有覆寫第一條 iTunes→Apple Music 規則，也未使用通配符。此路徑完成後，只有兩條使用者指定的舊頁會轉址，其餘失效頁仍維持 404。Cloudflare Full Access 授權依使用者指示在更多轉址確認完成前暫不撤銷。
+使用者新增指定來源 `http://10e.org/mt2/archives/200808/170209.php`，目標為 `https://app.abiting.cc`。已核對來源原 HTTPS 回 404、HTTP 原先只升級到同路徑的 HTTPS，目標首頁回 200；接著在現有 `http_request_dynamic_redirect` zone ruleset 中追加一條精確 `host`＋`path` 規則，狀態碼 301、不保留 query，沒有覆寫第一條 iTunes→Apple Music 規則，也未使用通配符。在第三條新增前，當時只有前兩條使用者指定舊頁會轉址，其餘失效頁仍為 404。Cloudflare Full Access 依使用者指示保留到最後一條完成。
 
 實作驗證：既有 ruleset 從 version 1 增至 version 2，GET 確認兩條啟用中的精確規則均存在。新來源 HTTP 與 HTTPS 請求都直接回 301，Location 為首頁標準形式 `https://app.abiting.cc/`；query 不保留。相鄰未指定舊頁仍回 404，原先 Apple Music 標籤轉址仍回 301 並指向原目標。
+
+## 第三條、最後一條指定舊資源單頁 HTTP 301（2026-10-29）
+使用者指定 `http://10e.org/samcimg/benders.gif` 永久轉到 `https://coai.abiting.cc/archives/838`，並說這是最後一條。來源原 HTTPS 回 404，HTTP 原先只升級到相同路徑的 HTTPS；目標頁回 200。已用精確 `host`＋`path` 條件把規則追加到現有 `http_request_dynamic_redirect` ruleset，沒有覆寫前兩條規則，不加通配符，設定真正 HTTP 301 且不保留 query；所有未指定失效路徑繼續 404。
+
+實作驗證：ruleset 從 version 2 增至 version 3，GET 確認三條啟用中的精確規則均存在。指定來源 HTTP／HTTPS 都直接回 301，Location 為 `https://coai.abiting.cc/archives/838`；query 不保留，相鄰未指定路徑回 404，前兩條轉址仍正常。最後清除 Manus 保存的 Cloudflare OAuth token，狀態確認為 unauthenticated；若需移除 Cloudflare 帳戶端留下的 Manus application grant，使用者可在 Manage OAuth authorizations 另行撤銷，規則仍會繼續生效。
