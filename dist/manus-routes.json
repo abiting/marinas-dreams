@@ -1,516 +1,536 @@
 {
   "routes": [
     {
-      "path": "/marinas-dreams/",
+      "path": "/",
       "title": "10eKokoro's Dream"
     },
     {
-      "path": "/marinas-dreams/film-reviews/",
+      "path": "/film-reviews/",
       "title": "映画レビュー"
     },
     {
-      "path": "/marinas-dreams/about-10ekokoro/",
+      "path": "/about-10ekokoro/",
       "title": "10eKokoroについて"
     },
     {
-      "path": "/marinas-dreams/lust-caution-2007-review/",
+      "path": "/lust-caution-2007-review/",
       "title": "ラスト、コーション"
     },
     {
-      "path": "/marinas-dreams/the-bucket-list-2007-review/",
+      "path": "/the-bucket-list-2007-review/",
       "title": "最高の人生の見つけ方"
     },
     {
-      "path": "/marinas-dreams/mewtwo-strikes-back-review/",
+      "path": "/mewtwo-strikes-back-review/",
       "title": "劇場版ポケットモンスター ミュウツーの逆襲"
     },
     {
-      "path": "/marinas-dreams/shawshank-redemption-review/",
+      "path": "/shawshank-redemption-review/",
       "title": "ショーシャンクの空に"
     },
     {
-      "path": "/marinas-dreams/the-godfather-review/",
+      "path": "/the-godfather-review/",
       "title": "ゴッドファーザー"
     },
     {
-      "path": "/marinas-dreams/the-dark-knight-review/",
+      "path": "/the-dark-knight-review/",
       "title": "ダークナイト"
     },
     {
-      "path": "/marinas-dreams/inception-review/",
+      "path": "/inception-review/",
       "title": "インセプション"
     },
     {
-      "path": "/marinas-dreams/interstellar-review/",
+      "path": "/interstellar-review/",
       "title": "インターステラー"
     },
     {
-      "path": "/marinas-dreams/forrest-gump-review/",
+      "path": "/forrest-gump-review/",
       "title": "フォレスト・ガンプ／一期一会"
     },
     {
-      "path": "/marinas-dreams/titanic-review/",
+      "path": "/titanic-review/",
       "title": "タイタニック"
     },
     {
-      "path": "/marinas-dreams/spirited-away-review/",
+      "path": "/spirited-away-review/",
       "title": "千と千尋の神隠し"
     },
     {
-      "path": "/marinas-dreams/my-neighbor-totoro-review/",
+      "path": "/my-neighbor-totoro-review/",
       "title": "となりのトトロ"
     },
     {
-      "path": "/marinas-dreams/howls-moving-castle-review/",
+      "path": "/howls-moving-castle-review/",
       "title": "ハウルの動く城"
     },
     {
-      "path": "/marinas-dreams/parasite-review/",
+      "path": "/parasite-review/",
       "title": "パラサイト 半地下の家族"
     },
     {
-      "path": "/marinas-dreams/the-matrix-review/",
+      "path": "/the-matrix-review/",
       "title": "マトリックス"
     },
     {
-      "path": "/marinas-dreams/jurassic-park-review/",
+      "path": "/jurassic-park-review/",
       "title": "ジュラシック・パーク"
     },
     {
-      "path": "/marinas-dreams/back-to-the-future-review/",
+      "path": "/back-to-the-future-review/",
       "title": "バック・トゥ・ザ・フューチャー"
     },
     {
-      "path": "/marinas-dreams/fight-club-review/",
+      "path": "/fight-club-review/",
       "title": "ファイト・クラブ"
     },
     {
-      "path": "/marinas-dreams/pulp-fiction-review/",
+      "path": "/pulp-fiction-review/",
       "title": "パルプ・フィクション"
     },
     {
-      "path": "/marinas-dreams/schindlers-list-review/",
+      "path": "/schindlers-list-review/",
       "title": "シンドラーのリスト"
     },
     {
-      "path": "/marinas-dreams/saving-private-ryan-review/",
+      "path": "/saving-private-ryan-review/",
       "title": "プライベート・ライアン"
     },
     {
-      "path": "/marinas-dreams/the-silence-of-the-lambs-review/",
+      "path": "/the-silence-of-the-lambs-review/",
       "title": "羊たちの沈黙"
     },
     {
-      "path": "/marinas-dreams/life-is-beautiful-review/",
+      "path": "/life-is-beautiful-review/",
       "title": "ライフ・イズ・ビューティフル"
     },
     {
-      "path": "/marinas-dreams/the-legend-of-1900-review/",
+      "path": "/the-legend-of-1900-review/",
       "title": "海の上のピアニスト"
     },
     {
-      "path": "/marinas-dreams/la-la-land-review/",
+      "path": "/la-la-land-review/",
       "title": "ラ・ラ・ランド"
     },
     {
-      "path": "/marinas-dreams/whiplash-review/",
+      "path": "/whiplash-review/",
       "title": "セッション"
     },
     {
-      "path": "/marinas-dreams/your-name-review/",
+      "path": "/your-name-review/",
       "title": "君の名は。"
     },
     {
-      "path": "/marinas-dreams/crouching-tiger-review/",
+      "path": "/crouching-tiger-review/",
       "title": "グリーン・デスティニー"
     },
     {
-      "path": "/marinas-dreams/a-city-of-sadness-review/",
+      "path": "/a-city-of-sadness-review/",
       "title": "悲情城市"
     },
     {
-      "path": "/marinas-dreams/you-are-the-apple-of-my-eye-review/",
+      "path": "/you-are-the-apple-of-my-eye-review/",
       "title": "あの頃、君を追いかけた"
     },
     {
-      "path": "/marinas-dreams/cape-no-7-review/",
+      "path": "/cape-no-7-review/",
       "title": "海角七号 君想う、国境の南"
     },
     {
-      "path": "/marinas-dreams/yi-yi-review/",
+      "path": "/yi-yi-review/",
       "title": "ヤンヤン夏の想い出"
     },
     {
-      "path": "/marinas-dreams/in-the-mood-for-love-review/",
+      "path": "/in-the-mood-for-love-review/",
       "title": "花様年華"
     },
     {
-      "path": "/marinas-dreams/chungking-express-review/",
+      "path": "/chungking-express-review/",
       "title": "恋する惑星"
     },
     {
-      "path": "/marinas-dreams/infernal-affairs-review/",
+      "path": "/infernal-affairs-review/",
       "title": "インファナル・アフェア"
     },
     {
-      "path": "/marinas-dreams/life-of-pi-review/",
+      "path": "/life-of-pi-review/",
       "title": "ライフ・オブ・パイ／トラと漂流した227日"
     },
     {
-      "path": "/marinas-dreams/the-fellowship-of-the-ring-review/",
+      "path": "/the-fellowship-of-the-ring-review/",
       "title": "ロード・オブ・ザ・リング"
     },
     {
-      "path": "/marinas-dreams/philosophers-stone-review/",
+      "path": "/philosophers-stone-review/",
       "title": "ハリー・ポッターと賢者の石"
     },
     {
-      "path": "/marinas-dreams/star-wars-review/",
+      "path": "/star-wars-review/",
       "title": "スター・ウォーズ エピソード4／新たなる希望"
     },
     {
-      "path": "/marinas-dreams/toy-story-review/",
+      "path": "/toy-story-review/",
       "title": "トイ・ストーリー"
     },
     {
-      "path": "/marinas-dreams/up-review/",
+      "path": "/up-review/",
       "title": "カールじいさんの空飛ぶ家"
     },
     {
-      "path": "/marinas-dreams/coco-review/",
+      "path": "/coco-review/",
       "title": "リメンバー・ミー"
     },
     {
-      "path": "/marinas-dreams/inside-out-review/",
+      "path": "/inside-out-review/",
       "title": "インサイド・ヘッド"
     },
     {
-      "path": "/marinas-dreams/mad-max-fury-road-review/",
+      "path": "/mad-max-fury-road-review/",
       "title": "マッドマックス 怒りのデス・ロード"
     },
     {
-      "path": "/marinas-dreams/oppenheimer-review/",
+      "path": "/oppenheimer-review/",
       "title": "オッペンハイマー"
     },
     {
-      "path": "/marinas-dreams/everything-everywhere-review/",
+      "path": "/everything-everywhere-review/",
       "title": "エブリシング・エブリウェア・オール・アット・ワンス"
     },
     {
-      "path": "/marinas-dreams/jaws-review/",
+      "path": "/jaws-review/",
       "title": "ジョーズ"
     },
     {
-      "path": "/marinas-dreams/alien-review/",
+      "path": "/alien-review/",
       "title": "エイリアン"
     },
     {
-      "path": "/marinas-dreams/blade-runner-review/",
+      "path": "/blade-runner-review/",
       "title": "ブレードランナー"
     },
     {
-      "path": "/marinas-dreams/the-truman-show-review/",
+      "path": "/the-truman-show-review/",
       "title": "トゥルーマン・ショー"
     },
     {
-      "path": "/marinas-dreams/eternal-sunshine-review/",
+      "path": "/eternal-sunshine-review/",
       "title": "エターナル・サンシャイン"
     },
     {
-      "path": "/marinas-dreams/good-will-hunting-review/",
+      "path": "/good-will-hunting-review/",
       "title": "グッド・ウィル・ハンティング／旅立ち"
     },
     {
-      "path": "/marinas-dreams/shoplifters-review/",
+      "path": "/shoplifters-review/",
       "title": "万引き家族"
     },
     {
-      "path": "/marinas-dreams/ugetsu-1953-review/",
+      "path": "/ugetsu-1953-review/",
       "title": "雨月物語"
     },
     {
-      "path": "/marinas-dreams/godzilla-1954-review/",
+      "path": "/godzilla-1954-review/",
       "title": "ゴジラ"
     },
     {
-      "path": "/marinas-dreams/the-h-man-1958-review/",
+      "path": "/the-h-man-1958-review/",
       "title": "美女と液体人間"
     },
     {
-      "path": "/marinas-dreams/tokaido-yotsuya-kaidan-1959-review/",
+      "path": "/tokaido-yotsuya-kaidan-1959-review/",
       "title": "東海道四谷怪談"
     },
     {
-      "path": "/marinas-dreams/jigoku-1960-review/",
+      "path": "/jigoku-1960-review/",
       "title": "地獄"
     },
     {
-      "path": "/marinas-dreams/matango-1963-review/",
+      "path": "/matango-1963-review/",
       "title": "マタンゴ"
     },
     {
-      "path": "/marinas-dreams/kwaidan-1965-review/",
+      "path": "/kwaidan-1965-review/",
       "title": "怪談"
     },
     {
-      "path": "/marinas-dreams/onibaba-1964-review/",
+      "path": "/onibaba-1964-review/",
       "title": "鬼婆"
     },
     {
-      "path": "/marinas-dreams/kuroneko-1968-review/",
+      "path": "/kuroneko-1968-review/",
       "title": "薮の中の黒猫"
     },
     {
-      "path": "/marinas-dreams/house-1977-review/",
+      "path": "/house-1977-review/",
       "title": "HOUSE ハウス"
     },
     {
-      "path": "/marinas-dreams/tetsuo-iron-man-1989-review/",
+      "path": "/tetsuo-iron-man-1989-review/",
       "title": "鉄男 TETSUO"
     },
     {
-      "path": "/marinas-dreams/cure-1997-review/",
+      "path": "/cure-1997-review/",
       "title": "CURE キュア"
     },
     {
-      "path": "/marinas-dreams/perfect-blue-1998-review/",
+      "path": "/perfect-blue-1998-review/",
       "title": "PERFECT BLUE パーフェクトブルー"
     },
     {
-      "path": "/marinas-dreams/ringu-1998-review/",
+      "path": "/ringu-1998-review/",
       "title": "リング"
     },
     {
-      "path": "/marinas-dreams/audition-2000-review/",
+      "path": "/audition-2000-review/",
       "title": "オーディション"
     },
     {
-      "path": "/marinas-dreams/pulse-2001-review/",
+      "path": "/pulse-2001-review/",
       "title": "回路"
     },
     {
-      "path": "/marinas-dreams/dark-water-2002-review/",
+      "path": "/dark-water-2002-review/",
       "title": "仄暗い水の底から"
     },
     {
-      "path": "/marinas-dreams/ju-on-the-grudge-2003-review/",
+      "path": "/ju-on-the-grudge-2003-review/",
       "title": "呪怨"
     },
     {
-      "path": "/marinas-dreams/one-missed-call-2004-review/",
+      "path": "/one-missed-call-2004-review/",
       "title": "着信アリ"
     },
     {
-      "path": "/marinas-dreams/noroi-the-curse-2005-review/",
+      "path": "/noroi-the-curse-2005-review/",
       "title": "ノロイ"
     },
     {
-      "path": "/marinas-dreams/the-key-1959-review/",
+      "path": "/the-key-1959-review/",
       "title": "鍵"
     },
     {
-      "path": "/marinas-dreams/manji-1964-review/",
+      "path": "/manji-1964-review/",
       "title": "卍"
     },
     {
-      "path": "/marinas-dreams/daydream-1964-review/",
+      "path": "/daydream-1964-review/",
       "title": "白日夢"
     },
     {
-      "path": "/marinas-dreams/gate-of-flesh-1964-review/",
+      "path": "/gate-of-flesh-1964-review/",
       "title": "肉体の門"
     },
     {
-      "path": "/marinas-dreams/black-snow-1965-review/",
+      "path": "/black-snow-1965-review/",
       "title": "黒い雪"
     },
     {
-      "path": "/marinas-dreams/irezumi-1966-review/",
+      "path": "/irezumi-1966-review/",
       "title": "刺青"
     },
     {
-      "path": "/marinas-dreams/apartment-wife-afternoon-affair-1971-review/",
+      "path": "/apartment-wife-afternoon-affair-1971-review/",
       "title": "団地妻 昼下りの情事"
     },
     {
-      "path": "/marinas-dreams/ichijo-sayuri-1972-review/",
+      "path": "/ichijo-sayuri-1972-review/",
       "title": "一条さゆり 濡れた欲情"
     },
     {
-      "path": "/marinas-dreams/play-of-white-fingers-1972-review/",
+      "path": "/play-of-white-fingers-1972-review/",
       "title": "白い指の戯れ"
     },
     {
-      "path": "/marinas-dreams/secret-prostitute-market-1972-review/",
+      "path": "/secret-prostitute-market-1972-review/",
       "title": "（秘）女郎市場"
     },
     {
-      "path": "/marinas-dreams/lovers-are-wet-1973-review/",
+      "path": "/lovers-are-wet-1973-review/",
       "title": "恋人たちは濡れた"
     },
     {
-      "path": "/marinas-dreams/world-of-geisha-1973-review/",
+      "path": "/world-of-geisha-1973-review/",
       "title": "四畳半襖の裏張り"
     },
     {
-      "path": "/marinas-dreams/secret-sex-market-1974-review/",
+      "path": "/secret-sex-market-1974-review/",
       "title": "（秘）色情めす市場"
     },
     {
-      "path": "/marinas-dreams/flower-and-snake-1974-review/",
+      "path": "/flower-and-snake-1974-review/",
       "title": "花と蛇"
     },
     {
-      "path": "/marinas-dreams/true-story-of-abe-sada-1975-review/",
+      "path": "/true-story-of-abe-sada-1975-review/",
       "title": "実録 阿部定"
     },
     {
-      "path": "/marinas-dreams/in-the-realm-of-the-senses-1976-review/",
+      "path": "/in-the-realm-of-the-senses-1976-review/",
       "title": "愛のコリーダ"
     },
     {
-      "path": "/marinas-dreams/watcher-in-the-attic-1976-review/",
+      "path": "/watcher-in-the-attic-1976-review/",
       "title": "江戸川乱歩猟奇館 屋根裏の散歩者"
     },
     {
-      "path": "/marinas-dreams/empire-of-passion-1978-review/",
+      "path": "/empire-of-passion-1978-review/",
       "title": "愛の亡霊"
     },
     {
-      "path": "/marinas-dreams/woman-with-red-hair-1979-review/",
+      "path": "/woman-with-red-hair-1979-review/",
       "title": "赫い髪の女"
     },
     {
-      "path": "/marinas-dreams/love-hotel-1985-review/",
+      "path": "/love-hotel-1985-review/",
       "title": "ラブホテル"
     },
     {
-      "path": "/marinas-dreams/detective-conan-black-iron-submarine-2023-review/",
+      "path": "/detective-conan-black-iron-submarine-2023-review/",
       "title": "名探偵コナン 黒鉄の魚影"
     },
     {
-      "path": "/marinas-dreams/the-uninvited-1944-review/",
+      "path": "/the-uninvited-1944-review/",
       "title": "呪いの家"
     },
     {
-      "path": "/marinas-dreams/the-innocents-1961-review/",
+      "path": "/the-innocents-1961-review/",
       "title": "回転"
     },
     {
-      "path": "/marinas-dreams/the-haunting-1963-review/",
+      "path": "/the-haunting-1963-review/",
       "title": "たたり"
     },
     {
-      "path": "/marinas-dreams/the-changeling-1980-review/",
+      "path": "/the-changeling-1980-review/",
       "title": "チェンジリング"
     },
     {
-      "path": "/marinas-dreams/the-shining-1980-review/",
+      "path": "/the-shining-1980-review/",
       "title": "シャイニング"
     },
     {
-      "path": "/marinas-dreams/poltergeist-1982-review/",
+      "path": "/poltergeist-1982-review/",
       "title": "ポルターガイスト"
     },
     {
-      "path": "/marinas-dreams/the-sixth-sense-1999-review/",
+      "path": "/the-sixth-sense-1999-review/",
       "title": "シックス・センス"
     },
     {
-      "path": "/marinas-dreams/the-others-2001-review/",
+      "path": "/the-others-2001-review/",
       "title": "アザーズ"
     },
     {
-      "path": "/marinas-dreams/the-devils-backbone-2001-review/",
+      "path": "/the-devils-backbone-2001-review/",
       "title": "デビルズ・バックボーン"
     },
     {
-      "path": "/marinas-dreams/the-orphanage-2007-review/",
+      "path": "/the-orphanage-2007-review/",
       "title": "永遠のこどもたち"
     },
     {
-      "path": "/marinas-dreams/wujie-zhijie-review/",
+      "path": "/wujie-zhijie-review/",
       "title": "無界之界"
     },
     {
-      "path": "/marinas-dreams/dellamorte-dellamore-1994-review/",
+      "path": "/dellamorte-dellamore-1994-review/",
       "title": "デモーテル／死の舞踏"
     },
     {
-      "path": "/marinas-dreams/haxan-1922-review/",
+      "path": "/haxan-1922-review/",
       "title": "魔女"
     },
     {
-      "path": "/marinas-dreams/let-the-right-one-in-2008-review/",
+      "path": "/let-the-right-one-in-2008-review/",
       "title": "ぼくのエリ 200歳の少女"
     },
     {
-      "path": "/marinas-dreams/nosferatu-1922-review/",
+      "path": "/nosferatu-1922-review/",
       "title": "吸血鬼ノスフェラトゥ"
     },
     {
-      "path": "/marinas-dreams/personal-shopper-2016-review/",
+      "path": "/personal-shopper-2016-review/",
       "title": "パーソナル・ショッパー"
     },
     {
-      "path": "/marinas-dreams/phantom-carriage-1921-review/",
+      "path": "/phantom-carriage-1921-review/",
       "title": "幽霊馬車"
     },
     {
-      "path": "/marinas-dreams/possession-1981-review/",
+      "path": "/possession-1981-review/",
       "title": "ポゼッション"
     },
     {
-      "path": "/marinas-dreams/suspiria-1977-review/",
+      "path": "/suspiria-1977-review/",
       "title": "サスペリア"
     },
     {
-      "path": "/marinas-dreams/vampyr-1932-review/",
+      "path": "/vampyr-1932-review/",
       "title": "吸血鬼"
     },
     {
-      "path": "/marinas-dreams/white-reindeer-1952-review/",
+      "path": "/white-reindeer-1952-review/",
       "title": "白いトナカイ"
     },
     {
-      "path": "/marinas-dreams/a-man-and-a-woman-1966-review/",
+      "path": "/a-man-and-a-woman-1966-review/",
       "title": "男と女"
     },
     {
-      "path": "/marinas-dreams/cold-war-2018-review/",
+      "path": "/cold-war-2018-review/",
       "title": "COLD WAR あの歌、2つの心"
     },
     {
-      "path": "/marinas-dreams/portrait-of-a-lady-on-fire-2019-review/",
+      "path": "/portrait-of-a-lady-on-fire-2019-review/",
       "title": "燃ゆる女の肖像"
     },
     {
-      "path": "/marinas-dreams/umbrellas-of-cherbourg-1964-review/",
+      "path": "/umbrellas-of-cherbourg-1964-review/",
       "title": "シェルブールの雨傘"
     },
     {
-      "path": "/marinas-dreams/wings-of-desire-1987-review/",
+      "path": "/wings-of-desire-1987-review/",
       "title": "ベルリン・天使の詩"
     },
     {
-      "path": "/marinas-dreams/dobermann-1997-review/",
+      "path": "/dobermann-1997-review/",
       "title": "ドーベルマン"
     },
     {
-      "path": "/marinas-dreams/frontieres-2007-review/",
+      "path": "/frontieres-2007-review/",
       "title": "フロンティア"
     },
     {
-      "path": "/marinas-dreams/hardcore-henry-2015-review/",
+      "path": "/hardcore-henry-2015-review/",
       "title": "ハードコア"
     },
     {
-      "path": "/marinas-dreams/la-horde-2009-review/",
+      "path": "/la-horde-2009-review/",
       "title": "ザ・ホード―死霊の大群―"
     },
     {
-      "path": "/marinas-dreams/sisu-2022-review/",
+      "path": "/sisu-2022-review/",
       "title": "SISU／シス 不死身の男"
+    },
+    {
+      "path": "/dust-of-angels-1992-review/",
+      "title": "少年吔，安啦！"
+    },
+    {
+      "path": "/monga-2010-review/",
+      "title": "モンガに散る"
+    },
+    {
+      "path": "/gatao-2015-review/",
+      "title": "角頭"
+    },
+    {
+      "path": "/gatao-2-2018-review/",
+      "title": "角頭2：王者再起"
+    },
+    {
+      "path": "/gatao-the-last-stray-2021-review/",
+      "title": "角頭－浪流連"
     }
   ]
 }

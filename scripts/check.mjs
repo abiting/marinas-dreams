@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 125);
+assert.equal(content.reviews.length, 130);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -42,6 +42,10 @@ const europeanAction = content.reviews.filter(r => r.collection === europeanRevi
 assert.equal(europeanGhosts.length, 10, 'All ten new European ghost/supernatural reviews are present');
 assert.equal(europeanRomance.length, 5, 'All five new European romance reviews are present');
 assert.equal(europeanAction.length, 5, 'All five new restricted-rated European action reviews are present');
+const taiwanGangsterCollection = '台湾ギャング映画名作5選';
+const taiwanGangsterReviews = content.reviews.filter(r => r.collection === taiwanGangsterCollection);
+assert.equal(taiwanGangsterReviews.length, 5, 'Five researched Taiwan gangster-film reviews are present');
+assert.equal(new Set(taiwanGangsterReviews.map(r => r.slug)).size, 5);
 const sisuReview = europeanAction.find(r => r.originalTitle === 'Sisu');
 assert.ok(sisuReview, 'Sisu replaces the less genre-specific Irréversible entry');
 assert.equal(sisuReview.year, '2022');
@@ -132,13 +136,24 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', ...europeanReviewCollections];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
       if (review.classification?.sourceId) cited.add(String(review.classification.sourceId));
       assert.ok(review.sources.every(ref => cited.has(ref.id), `${route}: every research source is cited in the article`));
       assert.ok(review.paragraphs.every(p => !/<\s*(script|iframe|style|object|embed)\b/i.test(p)), `${route}: safe HTML fragments`);
+      if (review.collection === taiwanGangsterCollection) {
+        const plainReview = decode(review.paragraphs.join('')).replace(/<[^>]+>/g, '').replace(/\[\d+\]/g, '').replace(/\s+/g, '');
+        assert.ok(plainReview.length >= 500 && plainReview.length <= 800, `${route}: 500–800 Japanese characters`);
+        assert.ok(review.productionCountries.includes('台湾'), `${route}: verified Taiwan production`);
+        assert.ok(review.originalTitle && review.releaseYearBasis && review.edition, `${route}: clear title, release basis and version`);
+        assert.ok(review.keywords.length >= 3 && review.keywords.length <= 8, `${route}: specific long-tail keywords`);
+        assert.ok(review.keywords.every(keyword => routeKeywords.includes(keyword)), `${route}: custom keywords are rendered`);
+        assert.ok(title.length >= 30 && title.length <= 60, `${route}: unique 30–60 character SEO title`);
+        assert.ok(html.includes(review.collection) && html.includes(`（${review.releaseYearBasis}）`), `${route}: visible series and release-year basis`);
+        assert.ok(Date.parse(article.dateModified) >= Date.parse(article.datePublished), `${route}: modification date does not precede publication`);
+      }
       if (europeanReviewCollections.includes(review.collection)) {
         const plainReview = review.paragraphs.join('').replace(/<[^>]+>/g, '').replace(/\[\d+\]/g, '').replace(/\s+/g, '');
         assert.ok(plainReview.length >= 1400 && plainReview.length <= 1650, `${route}: Japanese review is 1,400–1,650 characters`);
@@ -194,6 +209,7 @@ assert.ok(archive.includes('区分を単一基準に置き換えません'));
 assert.ok(archive.includes('批評に必要な範囲で非露骨に扱います'));
 assert.ok(archive.includes('欧米ゴースト映画10選') && archive.includes('名探偵コナン映画ノート'));
 for (const collection of europeanReviewCollections) assert.ok(archive.includes(collection), `Archive exposes ${collection}`);
+assert.ok(archive.includes(taiwanGangsterCollection), 'Archive exposes the Taiwan gangster-film series');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.comm/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link is publicly included exactly as supplied');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');

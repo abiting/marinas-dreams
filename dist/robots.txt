@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://abiting.github.io/marinas-dreams/sitemap.xml
+Sitemap: https://10e.org/sitemap.xml

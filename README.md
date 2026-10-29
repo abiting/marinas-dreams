@@ -1,6 +1,6 @@
 # 10eKokoro's Dream
 
-台湾の映画好きのバリスタ「10eKokoro」による、日本語の映画・映像・アートノートです。2026年10月時点で映画レビュー125本を掲載し、ホラー、怪談、恋愛、成人指定アクションなどのシリーズを整理しています。紙のようなアイボリー、コーヒーブラウン、スクラップブックの雰囲気を引き継いでいます。
+台湾の映画好きのバリスタ「10eKokoro」による、日本語の映画・映像・アートノートです。2026年10月29日時点で映画レビュー130本を掲載し、台湾ギャング映画、ホラー、怪談、恋愛、成人指定アクションなどのシリーズを整理しています。紙のようなアイボリー、コーヒーブラウン、スクラップブックの雰囲気を引き継いでいます。
 
 ## 開発・ビルド
 
@@ -16,50 +16,34 @@ npm run check
 
 ## コンテンツと構成
 
-`src/content.json` に日本語のプロフィール、映画レビュー125本、タイトル、説明、参照資料の表示名を保存しています。各レビューは6段落で、映画の年、参照 URL、注釈つきの出典を保持します。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
+`src/content.json` に日本語のプロフィール、映画レビュー130本、タイトル、説明、参照資料の表示名を保存しています。各レビューは6段落で、映画の年、参照 URL、注釈つきの出典を保持します。`subtitle` は一覧や見出しに使う日本語の副題です。`originalTitle` は検索補助として原題を保持しますが、英語の旧本文は公開しません。
 
 `scripts/build.mjs` は日本語のページ、`Person` と `Article` の JSON-LD、Open Graph / Twitter metadata、`manus-routes.json`、sitemap と robots を生成します。`assets/styles.css` は日本語の組版、`assets/main.js` は検索とリンク共有を担当します。元の写真は `assets/banner.jpg` に保持し、新ブランド画像は `assets/banner-kokoro.jpg` を使用します。
 
 ## 公開 URL と 10e.org
 
-現在の確定済み公開 origin は `src/site.json` の `publicOrigin` です。`pendingOrigin` の `https://10e.org` は今後接続する予定のドメインであり、この設定だけでは DNS、HTTPS 証明書、ドメイン接続は変更されません。未接続のドメインを、現在の canonical として使用しません。
-
-`10e.org` を実際に接続し、DNS と HTTPS が確認できた後で、次の明示的な設定を使ってビルドします。
+正式な公開サイトは `https://10e.org/` です。ユーザーがカスタムドメインの接続を完了し、GitHub Pages のワークフローは `PUBLIC_ORIGIN: https://10e.org` でビルドします。`BASE_PATH` は未設定（根パス）で、canonical、og:url、作者 ID、sitemap、robots は同じ公開 origin を使います。
 
 ```sh
 PUBLIC_ORIGIN=https://10e.org npm run build
 PUBLIC_ORIGIN=https://10e.org npm run check
 ```
 
-または `src/site.json` の `publicOrigin` を確認済みの `https://10e.org` に変更します。その後、GitHub にチェックポイントを保存し、対象ホスティングへ公開します。canonical、og:url、作者 ID、sitemap、robots は設定された同じ origin で作成されます。実行時の内部 Host から SEO 用 URL を推測しません。
+`src/site.json` の `publicOrigin` は旧 Webdev 配置用のデフォルト、`pendingOrigin` は接続前から保存していた予定値です。現在の GitHub Pages 公開ではワークフローの明示値が優先されます。この設定だけでは DNS や HTTPS 証明書は変更されません。
 
-## 旧リンクの HTTP 301
+## 存在しない旧 URL と HTTP ステータス
 
-ユーザーが確認した方針は、「既存の有効なレビュー URL は残し、新しいサイトに存在しない旧 URL をトップページへ転送する」です。`scripts/serve.mjs` を使う Webdev / Node 公開では、存在しない公開ページや旧ファイル URL は1回の HTTP 301 と `Location: /` でトップへ移動します。旧 URL の query は引き継ぎません。トップ自身と既存ページは200を返し、ループを作りません。
+正式サイトは GitHub Pages の静的ホスティングです。存在しない `/mt2/archives/*` など、対応する新しい記事がない旧 URL は404のままにします。無関係な旧記事を一括でホームへ301転送する方針ではありません。HTTPからHTTPSへの転送は同じパスを維持し、HTTPS上の不存在ページは404を返します。
 
-新サイトの静的アセット、API、プラットフォーム用パス、SEO 文書、health は通常の処理を維持します。アセットや API の不足を「ページ移動」として隠しません。転送の有効・無効は `src/site.json` の `legacyRedirects.enabled` で指定します。
+GitHub Pages は `scripts/serve.mjs` の Node 処理を実行しません。JavaScriptやmeta refreshを本物のHTTP301として扱わないでください。リポジトリ内のNode/Webdevサーバーには過去に設定した旧URL→ホームの301処理が残っていますが、これは正式なPagesサイトの動作ではありません。将来Nodeへ移す場合は、移行前に公開サイトの404方針へ合わせてください。
 
-## GitHub Pages を使う場合の重要な制約
+## GitHub Pages の配置
 
-ユーザーが追加した `.github/workflows/deploy.yml` は保持しており、`dist/` を GitHub Pages に配置します。GitHub Pages は静的ホスティングなので、Node の HTTP 301 処理は実行しません。`404.html` や JavaScript / meta refresh は、本物の HTTP 301 の代わりにはなりません。
-
-`10e.org` を GitHub Pages に向ける場合は、Cloudflare Worker などの HTTP エッジ、または転送を設定できる別のホストで同じルールを実装してください。その場合も、有効なレビュー、アセット、sitemap、robots を除外し、存在しない旧 URL だけを `https://10e.org/` に301で送ります。DNS/CDN 管理権限と実際のホスティング先を確認してから適用します。
-
-このリポジトリを更新しただけで、`10e.org` の301が有効になったとは見なしません。Webdev 公開と GitHub Pages 公開は別の配置先です。
+`.github/workflows/deploy.yml` はmainへのpushで静的ページをビルドし、`dist/` を公開します。現在はカスタムドメインの根パスを使用します。カスタムドメインを使わず `https://abiting.github.io/marinas-dreams/` に戻す場合だけ、`PUBLIC_ORIGIN=https://abiting.github.io` と `BASE_PATH=/marinas-dreams` を両方指定します。Webdev公開とGitHub Pages公開は別の配置先です。
 
 ## ページと参照
 
-トップ `/`、レビュー一覧 `/film-reviews/`、プロフィール `/about-10ekokoro/`、125本の記事 URL を維持しています。全ページは日本語で、作者は共有の `Person`、各レビューはその作者を参照する `Article` です。架空の評価点は加えません。Abiting への制作・運営クレジットと、ミュウツーの指定資料 URL は保持しています。
-
-## GitHub Actions の origin 設定
-
-既存の Pages ワークフローには Repository variable `PUBLIC_ORIGIN` を読む設定を追加しています。`10e.org` の接続と HTTPS が確認できた後、その変数を `https://10e.org` に設定すると、次のビルドからそのドメインの canonical と sitemap を生成できます。未設定時は `src/site.json` の確定済み origin を使用します。この変数は DNS 接続や HTTP 301 を自動設定するものではありません。
-
-## Pages のサブディレクトリ
-
-自前のドメインが未接続の場合、GitHub Pages は `https://abiting.github.io/marinas-dreams/` に公開します。ワークフローは `PUBLIC_ORIGIN=https://abiting.github.io` と `BASE_PATH=/marinas-dreams` を使用し、リンク、画像、作者 ID、canonical、sitemap、route manifest をその配置先に合わせます。ローカルと Webdev のビルドはデフォルトで根パスです。
-
-Repository variable `PUBLIC_ORIGIN` を接続確認済みの `https://10e.org` に設定すると、Pages の次のビルドでは `BASE_PATH` を空にし、カスタムドメインの根パスを使用します。これだけでドメイン接続や301が設定されるわけではありません。GitHub canonical のプロジェクトは現在 Webdev 公開 API では publish できないため、Webdev の公開更新は Dashboard から行います。
+トップ `/`、レビュー一覧 `/film-reviews/`、プロフィール `/about-10ekokoro/`、130本の記事 URL を掲載しています。全ページは日本語で、作者は共有の `Person`、各レビューはその作者を参照する `Article` です。架空の評価点は加えません。Abiting への制作・運営クレジットと、ミュウツーの指定資料 URL は保持しています。
 
 ## コナンと欧米ゴースト映画の追加
 
@@ -78,3 +62,8 @@ Repository variable `PUBLIC_ORIGIN` を接続確認済みの `https://10e.org` �
 ## 欧州映画三シリーズの追加
 
 2026年10月26日、欧州の幽霊・怪談・超自然映画10本、恋愛映画5本、成人指定アクション映画5本を追加し、サイトは合計125本のレビューと128公開ページになりました。新しい日本語レビューは各6段落、約1,400–1,650字で、作品資料と複数の出典注を掲載しています。年齢区分は国・審査機関・公開版を個別に明記し、別の国や版へ一律に当てはめません。たとえば『Sisu』はドイツのHome Entertainment版がFSK 18で、日本版はR15+です。
+
+
+## 台湾ギャング映画5本の追加
+
+2026年10月29日、『少年吔，安啦！』（1992）、『モンガに散る／艋舺』（2010）、『角頭』（2015）、『角頭2：王者再起』（2018）、『角頭－浪流連』（2021）を追加し、合計130本のレビューと133公開ページになりました。「台湾ギャング映画名作5選」で検索できます。今回の5本は6段落・約500–800字の日本語評論で、2–3件の出典と中長尾キーワードを掲載しています。既存125本のレビュー記録とURLは変更していません。映画の人物や抗争をそのまま史実として読まず、仲間意識と権力の帰結を批評的に扱います。

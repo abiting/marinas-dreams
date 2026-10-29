@@ -80,7 +80,7 @@ const card = (review, index, compact = false) => {
   const searchText = [review.fullName, review.originalTitle, review.director, review.collection, review.categoryLabel, review.theme, review.title, review.subtitle].filter(Boolean).join(' ').toLocaleLowerCase('ja');
   return `<article class="review-entry ${compact ? 'compact' : ''}" data-review data-theme="${escape(review.theme)}" data-search="${escape(searchText)}"><span class="entry-number">${String(index + 1).padStart(2, '0')}</span><div class="entry-main"><p class="eyebrow">${collectionPrefix(review)}${categoryPrefix(review)}${escape(review.theme)} <span class="dot">·</span> ${escape(review.year)}</p><h3><a href="/${escape(review.slug)}/">${escape(review.name)}</a></h3><p class="entry-subtitle">${escape(review.subtitle || review.title || '')}</p><p class="entry-description">${escape(review.description)}</p><div class="entry-meta"><span>${escape(review.director)}</span><span>${escape(review.readMinutes || 1)}分で読めます</span><span>ネタバレ控えめ</span></div></div><a class="entry-link" href="/${escape(review.slug)}/" aria-label="${escape(review.name)}のレビューを読む">レビューを読む ${arrow}</a></article>`;
 };
-const effectiveModified = (article) => data.modifiedAt || article?.publishedAt || data.publishedAt;
+const effectiveModified = (article) => article?.modifiedAt || article?.publishedAt || data.modifiedAt || data.publishedAt;
 const dateOnly = (value) => value ? String(value).slice(0, 10) : '';
 const formatDate = (value) => {
   const date = new Date(value);
@@ -114,8 +114,8 @@ writePage('/', {
 });
 writePage('/film-reviews/', {
   title: `映画レビューと余韻｜${siteName}`,
-  description: '欧州のホラー映画、恋愛映画、成人指定アクションから名探偵コナン、日本ホラー、陶磁ドキュメンタリーまで。映像と物語の余韻を読み解く日本語レビュー。',
-  keywords: ['映画レビュー', '欧州ホラー映画名作', '欧州恋愛映画名作', '欧州R18アクション映画', '欧米ゴースト映画', '日本ホラー名作', '日本成人映画史', '中国陶磁ドキュメンタリー'],
+  description: '台湾の角頭・ギャング映画から欧州ホラー、恋愛、成人指定アクション、名探偵コナン、日本映画、陶磁ドキュメンタリーまで。映像と物語の余韻を読み解く日本語レビュー。',
+  keywords: ['台湾角頭映画レビュー', '欧州ホラー映画名作', '欧州恋愛映画名作', '欧州R18アクション映画', '欧米ゴースト映画', '日本ホラー名作', '日本成人映画史', '中国陶磁ドキュメンタリー'],
   body: `<section class="archive-header section-wrap"><p class="eyebrow">映画ノート</p><h1>映画レビューと<br><i>そのあとの余韻。</i></h1><p class="lead">点数をつけるためではなく、もう少し近くで眺めるために。</p><p class="content-note archive-content-note">成人向け作品や制限区分の作品は、公開国・地域・時期・版によって年齢区分が異なります。確認できた審査機関と版を各記事で個別に示し、区分を単一基準に置き換えません。成人向けの題材や暴力は、批評に必要な範囲で非露骨に扱います。</p><div class="archive-controls" data-archive-controls hidden><label class="search-box"><span class="sr-only">映画レビューを検索</span><input type="search" placeholder="作品名・監督・言葉を検索…" data-search-input><span aria-hidden="true">⌕</span></label><span class="result-count" aria-live="polite" data-result-count>${data.reviews.length}件のレビュー</span></div></section><section class="archive-list section-wrap" aria-labelledby="archive-list-heading"><h2 class="sr-only" id="archive-list-heading">ノートから</h2><div class="review-list">${data.reviews.map((r, i) => card(r, i)).join('')}</div><p class="no-results" data-no-results hidden>一致するレビューがありません。作品名や監督名を変えてお試しください。</p></section>`,
 });
 writePage('/about-10ekokoro/', {
