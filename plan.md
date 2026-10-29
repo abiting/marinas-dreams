@@ -120,3 +120,8 @@ Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只
 使用者指定 `http://10e.org/mt/archives/img2/mitubishi.jpg` → `https://abiting.cc/wp-content/uploads/2026/10/image0083819.jpg`。只在既有 `http_request_dynamic_redirect` ruleset 追加一條精確 host/path 的 HTTP 301，query 不保留；保留原 8 條規則，不覆蓋或擴大其他路徑。設定前 HTTPS 來源回 404，HTTP 僅升級至同一 URL 的 HTTPS；目標圖片回 200、`image/jpeg`。
 
 實作驗證：ruleset 從 version 8 增至 version 9，9 條規則全部啟用。HTTP、HTTPS 及含 query 的請求均直接回 301，Location 精確指向 `image0083819.jpg` 且不帶 query；目標回 200、`image/jpeg`。鄰近未指定的 `/mt/archives/img2/mitubishi2.jpg` 仍回 404，既有 `catt2_8.jpg` 規則仍正常。使用者仍在盤點舊 URL，因此依其先前指示保留 Cloudflare 授權，待其確認清單完整後再移除。
+
+## 追加一條舊圖片精確301（2026-10-29）
+使用者指定 `http://10e.org/samcimg3/macchomachomacho.jpg` → `https://abiting.cc/wp-content/uploads/2026/10/image9999810.jpeg`。只在既有 `http_request_dynamic_redirect` ruleset 追加精確 host/path 的 HTTP 301，query 不保留；保留原 9 條規則，不擴大到其他圖片路徑。設定前 HTTPS 來源回 404，HTTP 只升級到同一 URL 的 HTTPS；目標回 200、`image/jpeg`。
+
+實作驗證：ruleset 從 version 9 增至 version 10，10 條規則全部啟用，原 9 條未變。HTTP、HTTPS 及帶 query 的請求都直接回 301，Location 精確指向指定 JPEG 且不帶 query；目標回 200、`image/jpeg`。未指定的 `/samcimg3/macchomachomacho2.jpg` 仍回 404，前一條 `mitubishi.jpg` 轉址仍正常。使用者仍在整理舊 URL，因此暫時保留 Cloudflare 授權，待其確認清單完整後再移除。
