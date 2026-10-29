@@ -112,5 +112,5 @@
 - [x] 保持全站來源 URL、來源 ID、正文、文章 slug 和其餘內容不變（截至原題修正完成時）；基線比較確認只改 `sources[].title`，`npm run build`、`npm run check` 及本機預覽通過。GitHub Pages commit `09222b7`／workflow `40807054519` 部署成功；`10e.org` 正式頁實測繁中 CoAi、簡中《無界之界》、English Inception 縮址、德文 FSK 及 `cpaceramics.com` 引用均正確。公開 route manifest 含 130 篇評論加 3 個工具頁，共 133 條路由；sitemap 的 133 筆 URL 與 manifest 完全一致，全部 canonical 指向 `10e.org`。
 
 ## 單一路徑舊頁 301 與引用網址修正
-- [ ] 將已失效的 `http://10e.org/mt2/archives/201002/282300.php` 以真正 HTTP 301 轉到 `https://app.abiting.cc/archives/tag/apple-music`；該頁原始內容是 iTunes，與 Apple Music 相關。只轉址這一頁，其他失效頁一律維持 HTTP 404。
+- [x] 將已失效的 `http://10e.org/mt2/archives/201002/282300.php` 以真正 HTTP 301 轉到 `https://app.abiting.cc/archives/tag/apple-music`；該頁原始內容是 iTunes，與 Apple Music 相關。只轉址這一頁，其他失效頁一律維持 HTTP 404。精確 host/path 規則已建立；HTTP 及 HTTPS 來源都回 301 並指向指定的 Location，query 不保留；相鄰舊頁和尾斜線變體仍回 404，目標頁回應 200。
 - [x] 將《無界之界》引用 `https://cpaceramics.comm/blog/chinese-ceramics/` 更正為 `https://cpaceramics.com/blog/chinese-ceramics/`（移除多餘的 m），保留來源標題、ID 和其他引用資料，更新回歸檢查並在正式頁核實。`npm run build` 與 `npm run check` 通過；GitHub Pages commit `7aef60f`／workflow `40808420362` 成功，正式文章頁回應 200，包含 `.com` 且不含錯誤的 `.comm`。
