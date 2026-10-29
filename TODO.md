@@ -131,3 +131,7 @@
 ## 另一條指定舊圖片精確轉址
 - [x] 將 `http://10e.org/samcimg/nekocat2.jpg` 以真正 HTTP 301 轉到 `https://abitingpokedex.com/wp-content/uploads/2026/10/IMG_4611.jpg`；只匹配此精確 host/path，不保留 query，不影響其他路徑。HTTP／HTTPS來源均直接回 301 至指定圖片，query 不傳遞；圖片目標回 200、`image/jpeg`。
 - [x] 保留既有七條 Cloudflare 轉址規則，只追加這一條精確規則；ruleset version 8 含 8 條啟用規則。未指定的 `/samcimg/nekocat3.jpg` 仍回 404，原有 `benders.gif` 轉址仍正常。依使用者先前指示，在其確認舊URL清單完整之前暫不清除Manus端授權。
+
+## 另一條指定舊圖片精確轉址
+- [x] 將 `http://10e.org/mt/archives/img2/mitubishi.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/image0083819.jpg`；只匹配此精確 host/path，不保留 query，不影響其他路徑。HTTP 及 HTTPS 來源均直接回 301 至指定圖片，query 不傳遞；目標回 200、`image/jpeg`。
+- [x] 保留既有 8 條 Cloudflare 規則，只追加這一條精確規則；ruleset version 9 含 9 條啟用規則。未指定的 `/mt/archives/img2/mitubishi2.jpg` 仍回 404，既有 `catt2_8.jpg` 轉址仍正常。依使用者先前指示，仍保留授權至其確認舊URL清單完整後再移除。
