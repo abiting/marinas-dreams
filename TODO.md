@@ -122,3 +122,8 @@
 - [x] 將 `https://10e.org/samcimg4/ainshuuma3.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/577bc2069f52728261b170214ee1423a_0.jpeg`；只匹配此 exact host/path，不保留 query，不改其他舊路徑。HTTP 與 HTTPS 均回 301 至使用者更正的 `abiting.cc` 圖片，query 不傳遞；圖片目標回 200。
 - [x] 將 `https://10e.org/samcimg3/iguananeko.jpg` 以真正 HTTP 301 轉到 `https://abitingpokedex.com/wp-content/uploads/2026/10/e88a75f2c608249c1116dc6b2207f254_0.jpeg`；只匹配此 exact host/path，不保留 query，不改其他舊路徑。HTTP 與 HTTPS 均回 301 至指定圖片，query 不傳遞；圖片目標回 200。
 - [x] 保留既有三條舊頁轉址，只新增上述三條精確規則；Cloudflare ruleset 為 version 6，含 6 條啟用中的精確規則。三個目標可用、三個來源直接回 301，未指定控制路徑仍為 404，原三條仍正常。完成後 Manus 端 Cloudflare OAuth token 已清除；狀態為 unknown、stored token 為 no。Cloudflare 帳戶端若仍列有 Manus app grant，可另外在 Manage OAuth authorizations 檢查或撤銷；這不會刪除已建立的轉址規則。
+
+## 單一舊圖片精確轉址
+- [x] 將 `http://10e.org/mt/archives/img2/catt2_8.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/Bazaart_2026-10-18_132913.jpeg`；只匹配此精確 host/path，不保留 query，不影響其他路徑。設定前 HTTP／HTTPS 來源均回 404，目標 JPEG 回 200；設定後 HTTP／HTTPS 都直接回 301 並指向原指定圖片，query 不傳遞。
+- [x] 保留既有六條 Cloudflare 轉址規則，只追加這一條精確規則；ruleset version 7 含 7 條啟用規則。相鄰未指定的 `/mt/archives/img2/catt2_9.jpg` 仍回 404，先前的 `samcimg4/ainshuuma3.jpg` 轉址仍正常。
+- [ ] 依使用者「一起做完再拿掉權限」的指示，暫時保留 Cloudflare 授權以便處理後續發現的舊URL；待使用者確認清單已完整後，再清除 Manus 端 OAuth token，並核對授權狀態。

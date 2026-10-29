@@ -105,3 +105,8 @@ Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只
 使用者指定文章舊路徑 `http://10e.org/mt/archives/200603/142154.php` 導向 `https://list.abitingpokedex.com`；第一張圖片 `https://10e.org/samcimg4/ainshuuma3.jpg` 導向 `https://abiting.cc/wp-content/uploads/2026/10/577bc2069f52728261b170214ee1423a_0.jpeg`；第二張圖片 `https://10e.org/samcimg3/iguananeko.jpg` 導向 `https://abitingpokedex.com/wp-content/uploads/2026/10/e88a75f2c608249c1116dc6b2207f254_0.jpeg`。第一張圖片目的網域依使用者更正使用 `abiting.cc`，第二張則依最新明確指示使用 `abitingpokedex.com`。三條規則均以精確 host/path 條件追加至既有 `http_request_dynamic_redirect` ruleset，回真正 HTTP 301、不保留 query，不覆寫原有三條、不使用通配符；所有其他未指定失效路徑仍須 404。
 
 實作驗證：ruleset 從 version 3 增至 version 6，包含原三條與新增三條共 6 條啟用規則。三個來源的 HTTP／HTTPS 請求均直接回 301 並指向各自指定目標，query 不傳遞；三個目標在驗證時均回 200。`/mt/archives/200603/142155.php` 與 `/samcimg3/other.jpg` 等未指定控制路徑仍回 404；前三條舊轉址也逐一回歸測試正常。完成後以 Cloudflare MCP logout 清除 Manus 端 token；授權狀態為 unknown 且 stored token 為 no。若 Cloudflare Dashboard 仍列有 Manus app grant，使用者可另行撤銷；此操作不影響已建立的 6 條規則。
+
+## 單一圖片舊路徑精確301（2026-10-29）
+使用者指定 `http://10e.org/mt/archives/img2/catt2_8.jpg` 轉到 `https://abiting.cc/wp-content/uploads/2026/10/Bazaart_2026-10-18_132913.jpeg`。設定前來源HTTP／HTTPS均回404，目標圖片回200且為JPEG；唯讀 `whoami` 成功確認Cloudflare API可用。只在既有 `http_request_dynamic_redirect` ruleset 追加一條精確host/path的301規則，不保留query、不覆寫現有六條；其他未指定路徑維持404。
+
+實作驗證：ruleset 從 version 6 增至 version 7，七條規則均啟用。來源 HTTP 回 301，HTTPS 含 query 也直接回 301 至完全指定的 `abiting.cc` 圖片且不帶 query；圖片目標回 200、`image/jpeg`。相鄰未指定路徑 `/mt/archives/img2/catt2_9.jpg` 仍回 404，先前圖片轉址仍正常。`auth.status` 初始回報 unauthenticated、stored token yes，但唯讀 `whoami` 成功，確認 API 可用。依使用者「一起做完再拿掉權限」的指示，暫時保留 Cloudflare token，待使用者確認舊URL清單已完整後再登出。
