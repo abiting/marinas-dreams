@@ -143,3 +143,7 @@
 ## 追加一條舊圖片精確301
 - [x] 將 `http://10e.org/samcimg/nekocat1.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/IMG_4608.jpeg`；只匹配此精確 host/path，不傳遞 query，不影響其他路徑。正式驗收：HTTP 與 HTTPS（含 `?check=1`）均直接回 301，Location 精確指向目標且不含 query；鄰近未指定路徑回 404；指定 JPEG 目標回 200、`image/jpeg`。
 - [x] 保留既有 10 條 Cloudflare Dynamic Redirect 規則（zone ruleset version 10，讀回仍正好 10 條）；因 phase 配額已滿且帳戶原本沒有 Bulk Redirect 清單或 entrypoint，建立只含此 mapping 的 `ten_e_exact_legacy_redirects` 清單，以及僅一條、限制 `http.host eq "10e.org"` 的 account-level `kind:"root"`／`phase:"http_request_redirect"` 規則。既有 `/samcimg/benders.gif` 和 `/samcimg3/macchomachomacho.jpg` 仍各自回原 301；Cloudflare OAuth 依先前指示暫留，待使用者確認舊 URL 清單完整後再移除。
+
+## 最後一條舊圖片精確301（2026-10-29）
+- [x] 將 `http://10e.org/samcimg3/wain12.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/sicilian.jpgLarge.jpg`；只匹配此精確 host/path，不傳遞 query，不影響其他路徑。驗收：HTTP 與 HTTPS（含 `?check=1`）均直接回 301，Location 精確指向目標且不含 query；鄰近未指定的 `/samcimg3/wain12x.jpg` 回 404；指定 JPEG 目標回 200、`image/jpeg`。
+- [x] 免費方案尚有Bulk Redirect容量：保留既有 10 條 Dynamic Redirect，將此一精確mapping加到現有 `ten_e_exact_legacy_redirects` list，不新增list或rule；完成後為 1／15 Bulk Redirect rules、1／5 lists、2／10,000 URL mappings。Cloudflare OAuth依先前指示暫留，待使用者確認舊 URL 清單完整後再移除。
