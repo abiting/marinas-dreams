@@ -28,13 +28,16 @@ assert.equal(ceramicsReviews.length, 1, 'One Wujie Zhijie ceramics documentary r
 const ceramicsReview = ceramicsReviews[0];
 assert.equal(ceramicsReview.year, 2025, '2025 is the verified Chinese theatrical-release year');
 assert.equal(ceramicsReview.productionYear, 2023, '2023 is shown separately as the shooting-completion year');
+const chinaNewsSource = ceramicsReview.sources.find(ref => ref.url === 'https://www.fj.chinanews.com.cn/news/2025/2025-09-23/572731.html');
+assert.equal(chinaNewsSource?.title, '中国首部白瓷纪录电影《无界之界》正式上映');
 assert.ok(ceramicsReview.sources.some(ref => ref.url === 'https://cpaceramics.comm/blog/chinese-ceramics/'));
 assert.ok(ceramicsReview.sources.some(ref => ref.title === 'Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」'));
 const conanReviews = content.reviews.filter(r => r.collection === '名探偵コナン映画ノート');
 assert.equal(conanReviews.length, 1, 'One new Black Iron Submarine review is present');
 const conanReview = conanReviews[0];
 assert.equal(conanReview.year, 2023);
-assert.ok(conanReview.sources.some(ref => ref.url === 'https://coai.abiting.cc/archives/1190'));
+const coaiSource = conanReview.sources.find(ref => ref.url === 'https://coai.abiting.cc/archives/1190');
+assert.equal(coaiSource?.title, '《黑鐵的魚影》甜在哪？深度評論《名偵探柯南》M26 八大嗑點');
 const europeanReviewCollections = ['欧州ホラー映画名作10選', '欧州恋愛映画名作5選', '欧州成人指定アクション映画5選'];
 const europeanGhosts = content.reviews.filter(r => r.collection === europeanReviewCollections[0]);
 const europeanRomance = content.reviews.filter(r => r.collection === europeanReviewCollections[1]);
@@ -52,7 +55,9 @@ assert.equal(sisuReview.year, '2022');
 assert.ok(sisuReview.productionCountries.includes('フィンランド'));
 assert.equal(sisuReview.classification.territory, 'ドイツ');
 assert.ok(sisuReview.classification.edition.includes('Home Entertainment'));
-assert.ok(sisuReview.sources.some(ref => ref.url === sisuReview.classification.sourceUrl && ref.url.includes('fsk.de')));
+const sisuFskSource = sisuReview.sources.find(ref => ref.url === sisuReview.classification.sourceUrl);
+assert.ok(sisuFskSource?.url.includes('fsk.de'));
+assert.equal(sisuFskSource?.title, 'Sisu - FSK', 'FSK citation title remains in its original source wording');
 assert.ok(!europeanAction.some(r => r.originalTitle === 'Irréversible'));
 for (const review of europeanAction) {
   const rating = review.classification;
@@ -70,7 +75,8 @@ assert.ok(!manifest.routes.some(route => route.path.includes('/about-marina/')))
 
 const inceptionReview = content.reviews.find(r => r.slug === 'inception-review');
 assert.ok(inceptionReview, 'Inception review is present');
-const inceptionBfi = inceptionReview.sources.find(ref => ref.id === '1' && ref.title === '『インセプション』（2010）｜BFI');
+const inceptionBfi = inceptionReview.sources.find(ref => ref.id === '1' && ref.url === 'https://abiurl.me/VdCbIO');
+assert.equal(inceptionBfi?.title, 'Inception (2010)', 'Source title remains in the cited page’s original language');
 assert.equal(inceptionBfi?.url, 'https://abiurl.me/VdCbIO', 'BFI source uses the requested short URL');
 assert.ok(!JSON.stringify(inceptionReview).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'));
 
@@ -213,9 +219,11 @@ assert.ok(archive.includes(taiwanGangsterCollection), 'Archive exposes the Taiwa
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.comm/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link is publicly included exactly as supplied');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
+assert.ok(ceramicsHtml.includes('中国首部白瓷纪录电影《无界之界》正式上映'), 'The Chinese News citation uses the directly verified Simplified Chinese title');
 assert.ok(ceramicsHtml.includes('<dt>撮影完了年</dt><dd>2023年</dd>'), '2023 completion year is distinct from 2025 public-release year');
 const conanHtml = fs.readFileSync(`dist/${conanReview.slug}/index.html`, 'utf8');
 assert.ok(conanHtml.includes('href="https://coai.abiting.cc/archives/1190"'), 'Required Conan reference is publicly linked');
+assert.ok(conanHtml.includes('《黑鐵的魚影》甜在哪？深度評論《名偵探柯南》M26 八大嗑點'), 'CoAi citation uses the directly verified Traditional Chinese title');
 assert.ok(fs.readFileSync('dist/404.html', 'utf8').includes('noindex, follow'));
 assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
