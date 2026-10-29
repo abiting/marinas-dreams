@@ -116,3 +116,9 @@
 - [x] 將《無界之界》引用 `https://cpaceramics.comm/blog/chinese-ceramics/` 更正為 `https://cpaceramics.com/blog/chinese-ceramics/`（移除多餘的 m），保留來源標題、ID 和其他引用資料，更新回歸檢查並在正式頁核實。`npm run build` 與 `npm run check` 通過；GitHub Pages commit `7aef60f`／workflow `40808420362` 成功，正式文章頁回應 200，包含 `.com` 且不含錯誤的 `.comm`。
 - [x] 將 `http://10e.org/mt2/archives/200808/170209.php` 以真正 HTTP 301 轉到 `https://app.abiting.cc`；保留前一條指定舊頁的轉址規則，只新增這個精確 host/path，不加通配符；除後續明確指定的第三條外，其他失效頁仍維持 HTTP 404。HTTP 與 HTTPS 皆直接 301 至 `https://app.abiting.cc/`（首頁的標準尾斜線），query 不保留；相鄰未指定舊頁維持 404，第一條轉址仍正確。
 - [x] 將 `http://10e.org/samcimg/benders.gif` 以真正 HTTP 301 轉到 `https://coai.abiting.cc/archives/838`；保留前兩條指定路徑規則，只新增這個精確 host/path，不加通配符；其他未指定失效路徑維持 HTTP 404。這是使用者指定的最後一條；HTTP／HTTPS 均直接回 301 到指定頁，query 不保留，相鄰未指定路徑仍回 404，前兩條轉址仍正常。完成驗證後已清除 Manus 保存的 Cloudflare OAuth token，授權狀態為 unauthenticated。
+
+## 寶可夢相關舊頁／圖片精確轉址
+- [x] 將 `http://10e.org/mt/archives/200603/142154.php` 以真正 HTTP 301 轉到 `https://list.abitingpokedex.com`；只匹配此 exact host/path，不保留 query，不改其他舊路徑。來源的 HTTP 與 HTTPS 請求均回 301 至 `https://list.abitingpokedex.com/`，query 不傳遞；目標首頁回 200。
+- [x] 將 `https://10e.org/samcimg4/ainshuuma3.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/577bc2069f52728261b170214ee1423a_0.jpeg`；只匹配此 exact host/path，不保留 query，不改其他舊路徑。HTTP 與 HTTPS 均回 301 至使用者更正的 `abiting.cc` 圖片，query 不傳遞；圖片目標回 200。
+- [x] 將 `https://10e.org/samcimg3/iguananeko.jpg` 以真正 HTTP 301 轉到 `https://abitingpokedex.com/wp-content/uploads/2026/10/e88a75f2c608249c1116dc6b2207f254_0.jpeg`；只匹配此 exact host/path，不保留 query，不改其他舊路徑。HTTP 與 HTTPS 均回 301 至指定圖片，query 不傳遞；圖片目標回 200。
+- [x] 保留既有三條舊頁轉址，只新增上述三條精確規則；Cloudflare ruleset 為 version 6，含 6 條啟用中的精確規則。三個目標可用、三個來源直接回 301，未指定控制路徑仍為 404，原三條仍正常。完成後 Manus 端 Cloudflare OAuth token 已清除；狀態為 unknown、stored token 為 no。Cloudflare 帳戶端若仍列有 Manus app grant，可另外在 Manage OAuth authorizations 檢查或撤銷；這不會刪除已建立的轉址規則。

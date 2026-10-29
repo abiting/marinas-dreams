@@ -100,3 +100,8 @@ Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只
 使用者指定 `http://10e.org/samcimg/benders.gif` 永久轉到 `https://coai.abiting.cc/archives/838`，並說這是最後一條。來源原 HTTPS 回 404，HTTP 原先只升級到相同路徑的 HTTPS；目標頁回 200。已用精確 `host`＋`path` 條件把規則追加到現有 `http_request_dynamic_redirect` ruleset，沒有覆寫前兩條規則，不加通配符，設定真正 HTTP 301 且不保留 query；所有未指定失效路徑繼續 404。
 
 實作驗證：ruleset 從 version 2 增至 version 3，GET 確認三條啟用中的精確規則均存在。指定來源 HTTP／HTTPS 都直接回 301，Location 為 `https://coai.abiting.cc/archives/838`；query 不保留，相鄰未指定路徑回 404，前兩條轉址仍正常。最後清除 Manus 保存的 Cloudflare OAuth token，狀態確認為 unauthenticated；若需移除 Cloudflare 帳戶端留下的 Manus application grant，使用者可在 Manage OAuth authorizations 另行撤銷，規則仍會繼續生效。
+
+## 寶可夢相關的三條精確舊URL轉址（2026-10-29）
+使用者指定文章舊路徑 `http://10e.org/mt/archives/200603/142154.php` 導向 `https://list.abitingpokedex.com`；第一張圖片 `https://10e.org/samcimg4/ainshuuma3.jpg` 導向 `https://abiting.cc/wp-content/uploads/2026/10/577bc2069f52728261b170214ee1423a_0.jpeg`；第二張圖片 `https://10e.org/samcimg3/iguananeko.jpg` 導向 `https://abitingpokedex.com/wp-content/uploads/2026/10/e88a75f2c608249c1116dc6b2207f254_0.jpeg`。第一張圖片目的網域依使用者更正使用 `abiting.cc`，第二張則依最新明確指示使用 `abitingpokedex.com`。三條規則均以精確 host/path 條件追加至既有 `http_request_dynamic_redirect` ruleset，回真正 HTTP 301、不保留 query，不覆寫原有三條、不使用通配符；所有其他未指定失效路徑仍須 404。
+
+實作驗證：ruleset 從 version 3 增至 version 6，包含原三條與新增三條共 6 條啟用規則。三個來源的 HTTP／HTTPS 請求均直接回 301 並指向各自指定目標，query 不傳遞；三個目標在驗證時均回 200。`/mt/archives/200603/142155.php` 與 `/samcimg3/other.jpg` 等未指定控制路徑仍回 404；前三條舊轉址也逐一回歸測試正常。完成後以 Cloudflare MCP logout 清除 Manus 端 token；授權狀態為 unknown 且 stored token 為 no。若 Cloudflare Dashboard 仍列有 Manus app grant，使用者可另行撤銷；此操作不影響已建立的 6 條規則。
