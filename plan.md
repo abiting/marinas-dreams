@@ -110,3 +110,8 @@ Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只
 使用者指定 `http://10e.org/mt/archives/img2/catt2_8.jpg` 轉到 `https://abiting.cc/wp-content/uploads/2026/10/Bazaart_2026-10-18_132913.jpeg`。設定前來源HTTP／HTTPS均回404，目標圖片回200且為JPEG；唯讀 `whoami` 成功確認Cloudflare API可用。只在既有 `http_request_dynamic_redirect` ruleset 追加一條精確host/path的301規則，不保留query、不覆寫現有六條；其他未指定路徑維持404。
 
 實作驗證：ruleset 從 version 6 增至 version 7，七條規則均啟用。來源 HTTP 回 301，HTTPS 含 query 也直接回 301 至完全指定的 `abiting.cc` 圖片且不帶 query；圖片目標回 200、`image/jpeg`。相鄰未指定路徑 `/mt/archives/img2/catt2_9.jpg` 仍回 404，先前圖片轉址仍正常。`auth.status` 初始回報 unauthenticated、stored token yes，但唯讀 `whoami` 成功，確認 API 可用。依使用者「一起做完再拿掉權限」的指示，暫時保留 Cloudflare token，待使用者確認舊URL清單已完整後再登出。
+
+## 追加一條舊圖片精確301（2026-10-29）
+使用者新增 `http://10e.org/samcimg/nekocat2.jpg` → `https://abitingpokedex.com/wp-content/uploads/2026/10/IMG_4611.jpg`。僅在既有 `http_request_dynamic_redirect` ruleset 追加一條精確host/path的HTTP 301，query不保留；保留原七條，不修改其餘規則，也不擴大到其他 `samcimg` 圖片。
+
+實作驗證：ruleset 從 version 7 增至 version 8，含 8 條啟用規則。來源HTTP及HTTPS（含query）均直接回 301，Location 精確指向指定 `IMG_4611.jpg` 且不傳query；目標回 200、`image/jpeg`。未指定鄰近路徑 `/samcimg/nekocat3.jpg` 仍回 404，既有 `benders.gif` 規則仍回 301。依使用者先前「一起做完再拿掉權限」指示，Cloudflare授權暫時保留，待其確認舊URL清單完整後再清除。

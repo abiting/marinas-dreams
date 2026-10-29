@@ -127,3 +127,7 @@
 - [x] 將 `http://10e.org/mt/archives/img2/catt2_8.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/Bazaart_2026-10-18_132913.jpeg`；只匹配此精確 host/path，不保留 query，不影響其他路徑。設定前 HTTP／HTTPS 來源均回 404，目標 JPEG 回 200；設定後 HTTP／HTTPS 都直接回 301 並指向原指定圖片，query 不傳遞。
 - [x] 保留既有六條 Cloudflare 轉址規則，只追加這一條精確規則；ruleset version 7 含 7 條啟用規則。相鄰未指定的 `/mt/archives/img2/catt2_9.jpg` 仍回 404，先前的 `samcimg4/ainshuuma3.jpg` 轉址仍正常。
 - [ ] 依使用者「一起做完再拿掉權限」的指示，暫時保留 Cloudflare 授權以便處理後續發現的舊URL；待使用者確認清單已完整後，再清除 Manus 端 OAuth token，並核對授權狀態。
+
+## 另一條指定舊圖片精確轉址
+- [x] 將 `http://10e.org/samcimg/nekocat2.jpg` 以真正 HTTP 301 轉到 `https://abitingpokedex.com/wp-content/uploads/2026/10/IMG_4611.jpg`；只匹配此精確 host/path，不保留 query，不影響其他路徑。HTTP／HTTPS來源均直接回 301 至指定圖片，query 不傳遞；圖片目標回 200、`image/jpeg`。
+- [x] 保留既有七條 Cloudflare 轉址規則，只追加這一條精確規則；ruleset version 8 含 8 條啟用規則。未指定的 `/samcimg/nekocat3.jpg` 仍回 404，原有 `benders.gif` 轉址仍正常。依使用者先前指示，在其確認舊URL清單完整之前暫不清除Manus端授權。
