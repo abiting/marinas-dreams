@@ -80,6 +80,6 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 
 
 ## 全站參考資料標題原文化（2026-10-29）
-使用者要求參考資料顯示來源頁本身的原文標題，不再把中文或其他語言題名翻成日文。更正《名偵探柯南 黑鐵的魚影》影評中的柯哀論壇來源標題，並以有界並行方式盤點全部130篇評論中的來源URL及現存title標籤／og:title／文章標題；逐一檢視語言疑似不符項目，只依可讀到的來源頁原文修正，無法讀取時保留原資料並註明未核實，不猜測，不改來源URL、文章內容、引用ID或既有文章slug。網站維持日本語內容，分享／參考資料標題依來源原文語言呈現。
+使用者要求參考資料顯示來源頁本身的原文標題，不再把中文或其他語言題名翻成日文。更正《名偵探柯南 黑鐵的魚影》影評中的柯哀論壇來源標題，並以有界並行方式盤點全部 130 篇評論中的來源 URL 及現存 title 標籤／og:title／頁面標題；逐一檢視語言疑似不符項目，只依可讀到的來源頁原文修正，無法讀取時保留原資料並註明未核實，不猜測，不改來源 URL、文章內容、引用 ID 或既有文章 slug。網站維持日本語內容，分享／參考資料標題依來源原文語言呈現。
 
-實作結果：檢查343筆引用列、342個唯一來源URL；將318個有直接可歸屬頁面標題差異的URL修正為原頁標題，共變更319筆`sources[].title`。17個無法由頁面直接確認標題的來源維持原標籤，包含使用者指定的`cpaceramics.comm`引用。workflow的99個補查項目全部按index／URL重新對位，其中96項直接核實、3項未核實；兩筆錯配結果不採用，改由預期來源頁直接核實。回歸檢查覆蓋繁中CoAi、簡中《無界之界》、英文Inception、德文FSK來源；基線比較確認來源URL、ID、正文、slug、metadata等非title資料完全不變。以`PUBLIC_ORIGIN=https://10e.org`建置並執行`npm run check`，130篇影評、133條route manifest與133筆sitemap均通過；GitHub Pages正式部署及10e.org live驗證仍待完成。
+實作結果：檢查 343 筆引用列、342 個唯一來源 URL；將 318 個有直接可歸屬頁面標題差異的 URL 修正為原頁標題，共變更 319 筆 `sources[].title`。17 個無法由頁面直接確認標題的來源維持原標籤，包含使用者指定的 `cpaceramics.comm` 引用。workflow 的 99 個補查項目全部按 index／URL 重新對位，其中 96 項直接核實、3 項未核實；兩筆錯配結果不採用，改由預期來源頁直接核實。回歸檢查覆蓋繁中 CoAi、簡中《無界之界》、英文 Inception、德文 FSK 來源；基線比較確認來源 URL、ID、正文、slug、metadata 等非 title 資料完全不變。以 `PUBLIC_ORIGIN=https://10e.org` 建置並執行 `npm run check`，130 篇影評、133 條 route manifest 與 133 筆 sitemap 均通過。GitHub Pages commit `09222b7` 由 workflow `40807054519` 成功部署；正式 `10e.org` 上直接驗證 CoAi、《無界之界》、Inception、Sisu FSK 頁面與指定引用均正確，130 篇評論 route 及 3 個工具 route 共 133 條，sitemap 的 133 筆 URL 與 manifest 完全一致，robots／canonical 均使用 `https://10e.org`。
