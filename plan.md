@@ -57,7 +57,7 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 - 延續現有日文完整 HTML、Article／Person 結構化資料、SEO、canonical、OG、Twitter、manifest、sitemap、共用文章尾端 banner 和 GitHub Pages 子路徑。
 - 新增一篇日文評論，影評對象為德化白瓷紀錄電影《無界之界》（原名「无界之界」）。官方資料記載2023-09-25殺青、2025年在中國正式上映；文章以2025年作公映年，並明確提及2023年拍攝完成。
 - 使用官方德化縣政府、福建東南網與中新網福建來源核實拍攝完成年、導演與2025年上映；博物館／陶瓷背景來源只用於通史觀點；文章為原創分析，不假裝曾觀看無法取得的影片，不編造場景。
-- 逐字保留使用者指定參考網址 https://cpaceramics.comm/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示為延伸閱讀；依使用者要求，不在頁面註明可讀取狀態。
+- 陶瓷延伸閱讀目前使用 https://cpaceramics.com/blog/chinese-ceramics/，標題為 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」；使用者於2026-10-29更正先前URL中多打一個 m，標題保持英文原文。
 - 影評以日文約 1,500–2,100 字、六段與兩個小標撰寫，提供符合既有品牌與 SEO 的日文題目、副題、摘要、關鍵字；舊有104篇文章和slug不變。
 
 
@@ -82,4 +82,7 @@ GitHub Pages 的來源為 `https://abiting.github.io/marinas-dreams/`，不是�
 ## 全站參考資料標題原文化（2026-10-29）
 使用者要求參考資料顯示來源頁本身的原文標題，不再把中文或其他語言題名翻成日文。更正《名偵探柯南 黑鐵的魚影》影評中的柯哀論壇來源標題，並以有界並行方式盤點全部 130 篇評論中的來源 URL 及現存 title 標籤／og:title／頁面標題；逐一檢視語言疑似不符項目，只依可讀到的來源頁原文修正，無法讀取時保留原資料並註明未核實，不猜測，不改來源 URL、文章內容、引用 ID 或既有文章 slug。網站維持日本語內容，分享／參考資料標題依來源原文語言呈現。
 
-實作結果：檢查 343 筆引用列、342 個唯一來源 URL；將 318 個有直接可歸屬頁面標題差異的 URL 修正為原頁標題，共變更 319 筆 `sources[].title`。17 個無法由頁面直接確認標題的來源維持原標籤，包含使用者指定的 `cpaceramics.comm` 引用。workflow 的 99 個補查項目全部按 index／URL 重新對位，其中 96 項直接核實、3 項未核實；兩筆錯配結果不採用，改由預期來源頁直接核實。回歸檢查覆蓋繁中 CoAi、簡中《無界之界》、英文 Inception、德文 FSK 來源；基線比較確認來源 URL、ID、正文、slug、metadata 等非 title 資料完全不變。以 `PUBLIC_ORIGIN=https://10e.org` 建置並執行 `npm run check`，130 篇影評、133 條 route manifest 與 133 筆 sitemap 均通過。GitHub Pages commit `09222b7` 由 workflow `40807054519` 成功部署；正式 `10e.org` 上直接驗證 CoAi、《無界之界》、Inception、Sisu FSK 頁面與指定引用均正確，130 篇評論 route 及 3 個工具 route 共 133 條，sitemap 的 133 筆 URL 與 manifest 完全一致，robots／canonical 均使用 `https://10e.org`。
+實作結果：檢查 343 筆引用列、342 個唯一來源 URL；將 318 個有直接可歸屬頁面標題差異的 URL 修正為原頁標題，共變更 319 筆 `sources[].title`。17 個無法由頁面直接確認標題的來源維持原標籤；其中陶瓷文章 URL 先前為 `cpaceramics.comm`，於後續依使用者更正為 `.com`，其標題維持英文原文。workflow 的 99 個補查項目全部按 index／URL 重新對位，其中 96 項直接核實、3 項未核實；兩筆錯配結果不採用，改由預期來源頁直接核實。回歸檢查覆蓋繁中 CoAi、簡中《無界之界》、英文 Inception、德文 FSK 來源；基線比較確認來源 URL、ID、正文、slug、metadata 等非 title 資料完全不變。以 `PUBLIC_ORIGIN=https://10e.org` 建置並執行 `npm run check`，130 篇影評、133 條 route manifest 與 133 筆 sitemap 均通過。GitHub Pages commit `09222b7` 由 workflow `40807054519` 成功部署；正式 `10e.org` 上直接驗證 CoAi、《無界之界》、Inception、Sisu FSK 頁面與指定引用均正確，130 篇評論 route 及 3 個工具 route 共 133 條，sitemap 的 133 筆 URL 與 manifest 完全一致，robots／canonical 均使用 `https://10e.org`。
+
+## 舊 iTunes 頁面單一路徑 HTTP 301 與陶瓷引用 URL 更正（2026-10-29）
+使用者指定只把 `http://10e.org/mt2/archives/201002/282300.php` 導向 `https://app.abiting.cc/archives/tag/apple-music`，因為舊頁內容是 iTunes、與 Apple Music 有關；所有其他失效頁必須繼續回 HTTP 404。`10e.org` 經 Cloudflare proxy，原站由 GitHub Pages 靜態提供；為回傳真正 HTTP 301，應在 Cloudflare Single Redirects 建立精確 host/path 規則（`http.host eq "10e.org" and http.request.uri.path eq "/mt2/archives/201002/282300.php"`），靜態目標 URL 設為指定的 `app.abiting.cc` 頁面、status 設為 301、不保留 query string，絕不使用會回 HTTP 200 的靜態 meta refresh，也不加通配符。Cloudflare connector 目前未啟用，建立規則需先取得使用者對帳號的授權。同步只把 `src/content.json` 中《無界之界》source 4 的網址從多打一個 m 的 `.comm` 修正為 `.com`，維持原英文標題、來源 ID 與其他資料不變，並更新回歸檢查。Cloudflare 官方 [Single Redirects settings](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/settings/) 說明靜態 redirect 可設為 301；[dashboard 指引](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-dashboard/) 說明規則需符合 Cloudflare proxy 條件。

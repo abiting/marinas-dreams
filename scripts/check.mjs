@@ -30,7 +30,7 @@ assert.equal(ceramicsReview.year, 2025, '2025 is the verified Chinese theatrical
 assert.equal(ceramicsReview.productionYear, 2023, '2023 is shown separately as the shooting-completion year');
 const chinaNewsSource = ceramicsReview.sources.find(ref => ref.url === 'https://www.fj.chinanews.com.cn/news/2025/2025-09-23/572731.html');
 assert.equal(chinaNewsSource?.title, '中国首部白瓷纪录电影《无界之界》正式上映');
-assert.ok(ceramicsReview.sources.some(ref => ref.url === 'https://cpaceramics.comm/blog/chinese-ceramics/'));
+assert.ok(ceramicsReview.sources.some(ref => ref.url === 'https://cpaceramics.com/blog/chinese-ceramics/'));
 assert.ok(ceramicsReview.sources.some(ref => ref.title === 'Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」'));
 const conanReviews = content.reviews.filter(r => r.collection === '名探偵コナン映画ノート');
 assert.equal(conanReviews.length, 1, 'One new Black Iron Submarine review is present');
@@ -217,10 +217,12 @@ assert.ok(archive.includes('欧米ゴースト映画10選') && archive.includes(
 for (const collection of europeanReviewCollections) assert.ok(archive.includes(collection), `Archive exposes ${collection}`);
 assert.ok(archive.includes(taiwanGangsterCollection), 'Archive exposes the Taiwan gangster-film series');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
-assert.ok(ceramicsHtml.includes('https://cpaceramics.comm/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link is publicly included exactly as supplied');
+assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
 assert.ok(ceramicsHtml.includes('中国首部白瓷纪录电影《无界之界》正式上映'), 'The Chinese News citation uses the directly verified Simplified Chinese title');
 assert.ok(ceramicsHtml.includes('<dt>撮影完了年</dt><dd>2023年</dd>'), '2023 completion year is distinct from 2025 public-release year');
+assert.ok(!fs.existsSync('dist/mt2/archives/201002/282300.php'), 'Legacy 301 path must not be emitted as a static 200 page');
+assert.ok(!fs.existsSync('dist/mt2/archives/201002/282301.php'), 'Other retired legacy paths must remain outside the static output and return 404');
 const conanHtml = fs.readFileSync(`dist/${conanReview.slug}/index.html`, 'utf8');
 assert.ok(conanHtml.includes('href="https://coai.abiting.cc/archives/1190"'), 'Required Conan reference is publicly linked');
 assert.ok(conanHtml.includes('《黑鐵的魚影》甜在哪？深度評論《名偵探柯南》M26 八大嗑點'), 'CoAi citation uses the directly verified Traditional Chinese title');

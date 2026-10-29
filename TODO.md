@@ -69,7 +69,7 @@
 - [x] 新增一篇日文《無界之界》影評，維持網站既有格式（六段、兩個小標、約 1,500–2,100 日文字符）。
 - [x] 按德化縣政府確認影片在2023-09-25拍攝完成，並以中新網福建2025-09-23正式上映報導核實公映年2025；片頁明確區分拍攝完成年與公開年。
 - [x] 使用官方資料核對片名、白瓷雕塑與德化陶瓷背景；不虛構未觀察到的電影場面或觀影經驗。
-- [x] 文章參考資料區依原樣引用使用者指定 URL https://cpaceramics.comm/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示，原樣保留使用者指定網址，作為延伸閱讀引用且不另註讀取狀態。
+- [x] 文章參考資料區引用網址為 https://cpaceramics.com/blog/chinese-ceramics/，以 Ceramics Practice Alliance「Chinese ceramics: the reason we call it china」標示；原先輸入的網址多一個 m，已依使用者後續更正修正，保留原英文標題。
 - [x] 為單篇新頁補齊日文標題、副題、150字附近description、3–8個相關關鍵字、Article／共用Person、canonical、OG、Twitter、文章尾端banner、manifest與sitemap；不更動其他104篇內容或正式網域設定。
 - [x] 保存到現有GitHub main，確認GitHub Pages指定提交部署成功並核對正式新頁、影評索引與引用連結。
 
@@ -108,5 +108,9 @@
 
 ## 全站參考資料標題依來源原文顯示
 - [x] 盤點全部 130 篇影評中所有參考資料 URL 及標題，核對來源頁原始語言和可讀到的 `og:title`／頁面標題；全站 343 筆引用列、342 個唯一 URL 均已檢查，找出並更正頁面標題被翻寫或引用成其他語言的項目。
-- [x] 將可核實的來源標題逐筆對回來源原文，只修正有直接頁面證據的標題；柯哀論壇來源依原頁改為「《黑鐵的魚影》甜在哪？深度評論《名偵探柯南》M26 八大嗑點」。318 個來源 URL 共 319 筆引用的 `title` 欄位更新；17 個無法從頁面直接確認標題的來源不猜測、不自行翻譯並保留原資料，包含使用者指定的 `cpaceramics.comm` 引用。
-- [x] 保持所有參考 URL、來源 ID、正文、文章 slug 和其餘網站內容不變；基線比較確認只改 `sources[].title`，`npm run build`、`npm run check` 及本機預覽通過。GitHub Pages commit `09222b7`／workflow `40807054519` 部署成功；`10e.org` 正式頁實測繁中 CoAi、簡中《無界之界》、English Inception 縮址、德文 FSK 及 `cpaceramics.comm` 引用均正確，首頁、影評索引與 robots 可讀。公開 route manifest 含 130 篇評論加 3 個工具頁，共 133 條路由；sitemap 的 133 筆 URL 與 manifest 完全一致，全部 canonical 指向 `10e.org`。
+- [x] 將可核實的來源標題逐筆對回來源原文，只修正有直接頁面證據的標題；柯哀論壇來源依原頁改為「《黑鐵的魚影》甜在哪？深度評論《名偵探柯南》M26 八大嗑點」。318 個來源 URL 共 319 筆引用的 `title` 欄位更新；17 個無法從頁面直接確認標題的來源不猜測、不自行翻譯並保留原資料，其中陶瓷文章網址後來由使用者更正為 `cpaceramics.com`，標題維持英文原文。
+- [x] 保持全站來源 URL、來源 ID、正文、文章 slug 和其餘內容不變（截至原題修正完成時）；基線比較確認只改 `sources[].title`，`npm run build`、`npm run check` 及本機預覽通過。GitHub Pages commit `09222b7`／workflow `40807054519` 部署成功；`10e.org` 正式頁實測繁中 CoAi、簡中《無界之界》、English Inception 縮址、德文 FSK 及 `cpaceramics.com` 引用均正確。公開 route manifest 含 130 篇評論加 3 個工具頁，共 133 條路由；sitemap 的 133 筆 URL 與 manifest 完全一致，全部 canonical 指向 `10e.org`。
+
+## 單一路徑舊頁 301 與引用網址修正
+- [ ] 將已失效的 `http://10e.org/mt2/archives/201002/282300.php` 以真正 HTTP 301 轉到 `https://app.abiting.cc/archives/tag/apple-music`；該頁原始內容是 iTunes，與 Apple Music 相關。只轉址這一頁，其他失效頁一律維持 HTTP 404。
+- [ ] 將《無界之界》引用 `https://cpaceramics.comm/blog/chinese-ceramics/` 更正為 `https://cpaceramics.com/blog/chinese-ceramics/`（移除多餘的 m），保留來源標題、ID 和其他引用資料，更新回歸檢查並在正式頁核實。
