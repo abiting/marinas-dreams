@@ -147,3 +147,9 @@
 ## 最後一條舊圖片精確301（2026-10-29）
 - [x] 將 `http://10e.org/samcimg3/wain12.jpg` 以真正 HTTP 301 轉到 `https://abiting.cc/wp-content/uploads/2026/10/sicilian.jpgLarge.jpg`；只匹配此精確 host/path，不傳遞 query，不影響其他路徑。驗收：HTTP 與 HTTPS（含 `?check=1`）均直接回 301，Location 精確指向目標且不含 query；鄰近未指定的 `/samcimg3/wain12x.jpg` 回 404；指定 JPEG 目標回 200、`image/jpeg`。
 - [x] 免費方案尚有Bulk Redirect容量：保留既有 10 條 Dynamic Redirect，將此一精確mapping加到現有 `ten_e_exact_legacy_redirects` list，不新增list或rule；完成後為 1／15 Bulk Redirect rules、1／5 lists、2／10,000 URL mappings。Cloudflare OAuth依先前指示暫留，待使用者確認舊 URL 清單完整後再移除。
+
+## 新增知名日本動畫電影評論 5 篇（2026-10-30）
+- [x] 新增恰好五篇不與現有評論重複的日本動畫長片影評：『AKIRA』（1988）、『もののけ姫』（1997）、『時をかける少女』（2006）、『劇場版「鬼滅の刃」無限列車編』（2020）、『すずめの戸締まり』（2022）；片名、導演、製作國與日本首次劇場公開年均按可靠來源核實。
+- [x] 五篇均以日文沿用網站評論風格；每篇 500–800 個日文字、六段正文、兩個不同的小標、一個副題及不含虛構評分或作者私人觀影經驗的影像／敘事評論。實測正文長度為 694–756 個日文字。
+- [x] 每篇提供 2–4 個已閱讀且能支持作品資料或評論脈絡的可靠來源；正文均以來源ID注碼引用；來源標題依來源頁原文保留，未翻譯成日文。內容不捏造事實或不必要揭露重大劇透。
+- [x] 使用「日本アニメ映画名作5選」collection，提供獨立slug、30–60字SEO title、50–160字description、3–8個keywords、`Article`／共用`Person`、canonical、OG、Twitter Card、文章尾端banner、manifest與sitemap；既有130篇文章內容及slug保持不變。`PUBLIC_ORIGIN=https://10e.org npm run build`及`npm run check`通過，總數為135篇評論與138條公開路由，索引可見且可搜尋新系列。

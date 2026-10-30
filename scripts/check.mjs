@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 130);
+assert.equal(content.reviews.length, 135);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -49,6 +49,13 @@ const taiwanGangsterCollection = '台湾ギャング映画名作5選';
 const taiwanGangsterReviews = content.reviews.filter(r => r.collection === taiwanGangsterCollection);
 assert.equal(taiwanGangsterReviews.length, 5, 'Five researched Taiwan gangster-film reviews are present');
 assert.equal(new Set(taiwanGangsterReviews.map(r => r.slug)).size, 5);
+const animeCollection = '日本アニメ映画名作5選';
+const animeReviews = content.reviews.filter(r => r.collection === animeCollection);
+assert.equal(animeReviews.length, 5, 'Five Japanese anime feature-film reviews are present');
+assert.deepEqual(animeReviews.map(r => r.slug).sort(), [
+  'akira-1988-review', 'demon-slayer-mugen-train-2020-review', 'girl-who-leapt-through-time-2006-review',
+  'princess-mononoke-1997-review', 'suzume-2022-review',
+].sort());
 const sisuReview = europeanAction.find(r => r.originalTitle === 'Sisu');
 assert.ok(sisuReview, 'Sisu replaces the less genre-specific Irréversible entry');
 assert.equal(sisuReview.year, '2022');
@@ -136,13 +143,13 @@ for (const routeInfo of manifest.routes) {
     assert.ok(bannerMatch.index < html.indexOf('</article>', bannerMatch.index), `${route}: banner is at article end`);
     const review = content.reviews.find(r => `/${r.slug}/` === logicalRoute);
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
-    assert.ok(japanese(review.name) && japanese(review.director) && review.paragraphs.every(japanese));
+    assert.ok((japanese(review.name) || review.collection === animeCollection) && japanese(review.director) && review.paragraphs.every(japanese));
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
     if (review.slug === 'inception-review') {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -159,6 +166,16 @@ for (const routeInfo of manifest.routes) {
         assert.ok(title.length >= 30 && title.length <= 60, `${route}: unique 30–60 character SEO title`);
         assert.ok(html.includes(review.collection) && html.includes(`（${review.releaseYearBasis}）`), `${route}: visible series and release-year basis`);
         assert.ok(Date.parse(article.dateModified) >= Date.parse(article.datePublished), `${route}: modification date does not precede publication`);
+      }
+      if (review.collection === animeCollection) {
+        const plainReview = decode(review.paragraphs.join('')).replace(/<[^>]+>/g, '').replace(/\[\d+\]/g, '').replace(/\s+/g, '');
+        assert.ok(plainReview.length >= 500 && plainReview.length <= 800, `${route}: 500–800 Japanese characters`);
+        assert.ok(review.productionCountries?.includes('日本'), `${route}: verified Japanese production`);
+        assert.ok(review.releaseYearBasis?.startsWith('日本劇場公開') && review.edition && review.originalTitle, `${route}: Japanese release basis, edition and original title`);
+        assert.ok(review.keywords?.length >= 3 && review.keywords.length <= 8, `${route}: focused long-tail keywords`);
+        assert.ok(review.keywords.every(keyword => routeKeywords.includes(keyword)), `${route}: custom keywords are rendered`);
+        assert.ok(title.length >= 30 && title.length <= 60 && description.length >= 50 && description.length <= 160, `${route}: metadata lengths`);
+        assert.ok(html.includes(review.collection) && html.includes(`（${review.releaseYearBasis}）`), `${route}: visible series and release-year basis`);
       }
       if (europeanReviewCollections.includes(review.collection)) {
         const plainReview = review.paragraphs.join('').replace(/<[^>]+>/g, '').replace(/\[\d+\]/g, '').replace(/\s+/g, '');
@@ -216,6 +233,7 @@ assert.ok(archive.includes('批評に必要な範囲で非露骨に扱います'
 assert.ok(archive.includes('欧米ゴースト映画10選') && archive.includes('名探偵コナン映画ノート'));
 for (const collection of europeanReviewCollections) assert.ok(archive.includes(collection), `Archive exposes ${collection}`);
 assert.ok(archive.includes(taiwanGangsterCollection), 'Archive exposes the Taiwan gangster-film series');
+assert.ok(archive.includes(animeCollection), 'Archive exposes the Japanese anime-film series');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -240,4 +258,4 @@ if (origin) {
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
-console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including the three researched European film collections, earlier series, article-end banner, SEO and shared author.`);
+console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including the Japanese anime and researched European film collections, earlier series, article-end banner, SEO and shared author.`);

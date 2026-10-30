@@ -23,7 +23,7 @@ HTTP 伺服器對有效頁面回傳 200；未知公開頁面路徑回傳單跳 3
 - 不修改 DNS、不替使用者選擇未確認的網域供應商、不停用其部署流程。
 
 ## 專案結構
-- `src/content.json`：日文自介、累計 130 篇影評與每頁 metadata。
+- `src/content.json`：日文自介、累計 135 篇影評與每頁 metadata。
 - `src/site.json`：目前確認的 canonical 来源、待啟用自訂網域與轉址設定。
 - `scripts/build.mjs`：完整初始 HTML、日文 JSON-LD、路由清單與 SEO 文件。
 - `scripts/serve.mjs`：200、301、400/404/405 等正確 HTTP 回應。
@@ -131,3 +131,10 @@ Cloudflare 原本沒有 `http_request_dynamic_redirect` entrypoint ruleset。只
 
 ## 最後一條舊圖片精確301（2026-10-29）
 Cloudflare官方文件確認Free方案有15條Bulk Redirect Rules、5個Bulk Redirect Lists、跨清單10,000個URL mappings；這些額度足以今天完成，不必等到次日。新增來源 `10e.org/samcimg3/wain12.jpg`（item ID `4f1769beb05f4204add68148f2b0e972`）→ `https://abiting.cc/wp-content/uploads/2026/10/sicilian.jpgLarge.jpg`，301，`include_subdomains:false`、`subpath_matching:false`、`preserve_query_string:false`、`preserve_path_suffix:false`。將mapping加入既有list `ten_e_exact_legacy_redirects`（ID `a71cfa967ef34b54b37235cebe066279`），未新增規則或清單；account-level Bulk Redirect維持一條rule，zone Dynamic Redirect維持10條。Live no-follow驗收：HTTP／HTTPS原網址及帶`?check=1`均直接301至指定target且不傳query；鄰近未指定`/samcimg3/wain12x.jpg`回404；target回200、`image/jpeg`。Cloudflare授權仍保留，待使用者確認URL清單完整後再移除。
+
+## 新增知名日本動畫電影評論 5 篇（2026-10-30）
+沿用既有日本語靜態影評站，不新增CMS或更動文章路由架構。從現有130篇片單排除重複後，新增『AKIRA』（1988）、『もののけ姫』（1997）、『時をかける少女』（2006）、『劇場版「鬼滅の刃」無限列車編』（2020）與『すずめの戸締まり』（2022）。每部作品的正式片名、導演、製作國與日本首次劇場公開年由獨立可靠來源核實；評論聚焦影像、聲音、敘事與主題，不虛構作者觀影經驗或評分。
+
+每篇沿用六段、兩個小標及2–4個正文引註來源，篇幅500–800日文字；來源標題依來源頁原文保留。使用collection「日本アニメ映画名作5選」，提供原文／國際片名、年份依據、獨立SEO欄位與搜尋keywords。資料只新增到 `src/content.json`；同步更新影評索引SEO與`check.mjs`斷言。既有130篇的slug、正文及來源保持不變；新增後總數為135篇與138條公開路由，沿用現有Article／共用Person、canonical、OG、Twitter Card、banner、manifest及sitemap產生方式。
+
+實作結果：已附加五個獨立slug，逐篇以日本官方／製作或發行方頁、電影資料庫與電影機構／影評來源交叉查證。年份分別採日本初次劇場公開：1988-07-16、1997-07-12、2006-07-15、2020-10-16、2022-11-11；未將《AKIRA》《時をかける少女》《無限列車編》的後期重映日期誤作初映。每篇有三個可讀來源及全部正文注碼，來源標題保留原頁可見原文；六段淨日文字數為694–756。`src/content.json`基線比較確認原有130個review object完全未變。`PUBLIC_ORIGIN=https://10e.org npm run build`、`PUBLIC_ORIGIN=https://10e.org npm run check`均通過；產物含135篇文章、138條route與138筆sitemap URL，新增頁的canonical、Article／Person JSON-LD、來源標題與URL均已另行讀回驗證。
