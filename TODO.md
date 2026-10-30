@@ -157,3 +157,7 @@
 ## 指定一筆舊圖片URL精確301（2026-10-30）
 - [x] 將 `http://10e.org/mt2/archives/200712/230337.php` 與 HTTPS 同路徑以真正 HTTP 301 導向 `https://abiting.cc/wp-content/uploads/2026/10/mecca1da1.jpg`；只匹配此精確host/path、不傳遞query、不影響其他路徑。驗收：HTTP／HTTPS原網址及`?check=1`均直接回301且Location不含query；相鄰未指定`/mt2/archives/200712/230337x.php`仍404；目標回200、`image/jpeg`。
 - [x] 將唯一mapping加入既有 `ten_e_exact_legacy_redirects` Bulk Redirect清單；不新增list或Bulk rule、不更動zone Dynamic Redirect。新增後清單有3筆mapping、account-level Bulk Redirect仍1條rule，zone `http_request_dynamic_redirect`仍為version 10與10條；既有benders.gif和macchomachomacho.jpg仍導向原目標。Cloudflare OAuth依先前指示暫留，待使用者確認舊URL清單完整後再移除。
+
+## 指定一筆舊圖片URL精確301（2026-10-30）
+- [x] 將 `https://10e.org/samcimg/no_hair_cat.jpg` 及 HTTP 同路徑以真正 HTTP 301 導向 `https://abiting.cc/wp-content/uploads/2026/10/No-hair-cat-scaled.jpeg`；只匹配此精確host/path、不傳遞query、不影響其他路徑。驗收：HTTP／HTTPS原網址及`?check=1`均直接回301且Location不含query；相鄰`/samcimg/no_hair_catx.jpg`與路徑後綴`/samcimg/no_hair_cat.jpg/extra`仍404；目標回200、`image/jpeg`。
+- [x] 將唯一mapping加入既有 `ten_e_exact_legacy_redirects` Bulk Redirect清單；不新增list或Bulk rule、不更動zone Dynamic Redirect。新增後清單有4筆mapping、account-level Bulk Redirect仍1條rule，zone `http_request_dynamic_redirect`仍為version 10與10條；既有benders.gif和macchomachomacho.jpg仍導向原目標。Cloudflare OAuth依先前指示暫留，待使用者確認舊URL清單完整後再移除。
