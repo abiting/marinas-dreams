@@ -165,3 +165,8 @@
 ## 指定一個舊文章URL精確301（2026-10-30）
 - [x] 將 `http://10e.org/mt2/archives/200701/050537.php` 與 HTTPS 同路徑以真正 HTTP 301 導向 `https://scrabby.abiting.cc/archives/299`；只匹配此精確host/path，不傳遞query，不影響其他路徑。驗收：HTTP／HTTPS原網址及`?check=1`均直接回301且Location不含query；相鄰`/mt2/archives/200701/050537x.php`與`/mt2/archives/200701/050537.php/extra`仍404；目標回200、`text/html`。
 - [x] 將唯一mapping加入既有 `ten_e_exact_legacy_redirects` Bulk Redirect清單；不新增list或Bulk rule、不更動zone Dynamic Redirect。新增後清單有5筆mapping、account-level Bulk Redirect仍1條rule，zone `http_request_dynamic_redirect`仍為version 10與10條；既有benders.gif和macchomachomacho.jpg仍導向原目標。Cloudflare OAuth依先前指示暫留，待使用者確認舊URL清單完整後再移除。
+
+## 10e.org 方形 favicon
+- [ ] 將目前同時作為Open Graph圖和favicon的非方形1925×817 JPG，替換為一張專為 `10eKokoro's Dream` 設計的原創1:1 icon PNG。圖像使用簡化的電影光圈／單格畫面符號，沿用米白、咖啡棕與少量陶土玫瑰色；不含文字，縮小至32 px仍可辨識；實際輸出192×192。
+- [ ] 由網站穩定地在同一個host提供 `/favicon.png`，首頁及各頁HTML head以唯一 `rel="icon"` 標籤指向它。符合Google Search Central方形圖示至少8×8 px、建議大於48×48 px的規格，且favicon可由Googlebot與Googlebot-Image讀取；Open Graph/Twitter banner和文章尾端banner維持不變。
+- [ ] 自動檢查確認產出PNG為192×192正方形、head指向正確的same-host路徑且每頁只有一個favicon link；建置和check通過，部署後 `https://10e.org/favicon.png` 回200及 `image/png`。

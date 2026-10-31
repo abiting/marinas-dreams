@@ -147,3 +147,8 @@ Cloudflare官方文件確認Free方案有15條Bulk Redirect Rules、5個Bulk Red
 
 ## 指定一個舊文章URL精確301（2026-10-30）
 新增使用者指定 `10e.org/mt2/archives/200701/050537.php` → `https://scrabby.abiting.cc/archives/299`，Bulk Redirect list item ID `141a0bbfdf294be6a0ac2d308772e6b3`，共用既有 `ten_e_exact_legacy_redirects` list ID `a71cfa967ef34b54b37235cebe066279`。scheme-less精確來源匹配HTTP／HTTPS；設定301、`include_subdomains:false`、`subpath_matching:false`、`preserve_query_string:false`、`preserve_path_suffix:false`。operation `bd3506520d71471a8e4e464193048aa9`回報completed，清單讀回5筆。未新增list或Bulk rule；account-level `http_request_redirect`仍1條規則，zone Dynamic Redirect仍version 10／10條。Live no-follow驗收：HTTP／HTTPS來源及`?check=1`均直接301到指定Location且不帶query；相鄰路徑與path suffix仍404；目標回200、`text/html`；既有benders.gif及macchomachomacho.jpg仍導向原目標。Cloudflare OAuth依使用者先前指示保留。
+
+## 10e.org square favicon（2026-10-31）
+Google Search Central官方要求favicon為正方形、至少8×8 px，建議大於48×48 px；首頁HTML需有`rel="icon"`標籤，網站和圖示檔須可被Googlebot／Googlebot-Image抓取，且Google不保證一定在搜尋結果顯示。[Google Search Central favicon guidelines](https://developers.google.com/search/docs/appearance/favicon-in-search)。目前首頁把寬1925×817的同一張品牌banner JPG同時指定為Open Graph圖片與favicon，比例不符合Google要求。
+
+依網站米白、咖啡棕和剪報／電影筆記美學，生成單一方形無字品牌符號：簡化的電影光圈／靜格標記配一點陶土玫瑰色，保留強輪廓以利小尺寸辨認；將最終PNG定為192×192。把源資產放在`assets/favicon.png`並於`src/site.json`明確設定；`scripts/build.mjs`將它複製到輸出根目錄`/favicon.png`，而每頁head只輸出一個same-host `rel="icon"` PNG連結。`src/content.json`中banner及`og:image`、Twitter image和文章banner皆維持原圖；`scripts/check.mjs`驗證PNG signature、192×192尺寸及輸出連結。

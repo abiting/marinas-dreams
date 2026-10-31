@@ -88,6 +88,10 @@ assert.equal(inceptionBfi?.url, 'https://abiurl.me/VdCbIO', 'BFI source uses the
 assert.ok(!JSON.stringify(inceptionReview).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'));
 
 assert.ok(fs.existsSync('dist/.nojekyll'));
+const faviconBytes = fs.readFileSync('dist/favicon.png');
+assert.equal(faviconBytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', 'Favicon is a PNG file');
+assert.equal(faviconBytes.readUInt32BE(16), 192, 'Favicon width is 192px');
+assert.equal(faviconBytes.readUInt32BE(20), 192, 'Favicon height is 192px and square');
 const titles = new Set();
 const descriptions = new Set();
 let articleCount = 0;
@@ -97,6 +101,8 @@ for (const routeInfo of manifest.routes) {
   const logicalRoute = basePath ? route.slice(basePath.length) || '/' : route;
   const file = path.join('dist', logicalRoute, 'index.html');
   const html = fs.readFileSync(file, 'utf8');
+  assert.equal((html.match(/<link rel="icon"/g) || []).length, 1, `${route}: exactly one favicon link`);
+  assert.ok(html.includes(`<link rel="icon" href="${basePath}/favicon.png" type="image/png" sizes="192x192">`), `${route}: same-host square PNG favicon`);
   assert.equal((html.match(/<h1(?:\s[^>]*)?>/g) || []).length, 1, `${route}: one H1`);
   assert.ok(html.includes('<html lang="ja">'), `${route}: Japanese language`);
   assert.ok(!forbidden.test(decode(html)), `${route}: old branding and artist removed`);
@@ -216,7 +222,7 @@ for (const routeInfo of manifest.routes) {
   for (const href of html.matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
     const target = href[1];
     const logicalTarget = basePath ? target.slice(basePath.length) : target;
-    if (logicalTarget.startsWith('/assets/')) assert.ok(fs.existsSync(`dist${logicalTarget}`), `Asset ${target} exists`);
+    if (logicalTarget === '/favicon.png' || logicalTarget.startsWith('/assets/')) assert.ok(fs.existsSync(`dist${logicalTarget}`), `Asset ${target} exists`);
     else assert.ok(manifest.routes.some(r => r.path === target), `Internal link ${target} exists`);
   }
   console.log(`PASS ${route}: Japanese HTML, new brand, metadata, shared Person${article ? ', Article' : ''}`);

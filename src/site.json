@@ -1,6 +1,7 @@
 {
   "publicOrigin": "https://marinadreams-aph2cxk5.manus.space",
   "pendingOrigin": "https://10e.org",
+  "faviconAsset": "assets/favicon.png",
   "legacyRedirects": {
     "enabled": true,
     "destination": "/",
