@@ -157,3 +157,5 @@ Google Search Central官方要求favicon為正方形、至少8×8 px，建議大
 
 ## Favicon圖案比例修正（2026-11-01）
 依使用者回饋「logo太小」，維持原始生成的電影光圈與配色，只裁除多餘米白外框並以高品質濾鏡放大中央符號；保持方形192×192、不裁切圖案本身，穩定URL仍為`/favicon.png`，Open Graph／Twitter banner不變。
+
+實作及驗收結果：由保留的1920×1920原始圖以安全方形範圍`(234, 233, 1685, 1684)`重新裁切，而非放大原192px檔，再以Lanczos縮放成192×192 PNG。最終深棕／玫瑰符號的可見邊界為160×159 px，最小安全邊距16 px。`PUBLIC_ORIGIN=https://10e.org npm run build`與`npm run check`通過；本機HTTP圖檔回200、`image/png`且與source asset位元組相同。commit `3dc8767`（`Enlarge 10e.org favicon mark`）的GitHub Pages workflow [`41276754643`](https://github.com/abiting/marinas-dreams/actions/runs/41276754643)成功；正式`https://10e.org/favicon.png`在`Cache-Control: no-cache`請求下回200、PNG 192×192、主符號160×159，SHA-256與最新`dist/favicon.png`一致；首頁仍只含一個root favicon link，OG／Twitter banner未變。
