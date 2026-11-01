@@ -170,3 +170,7 @@
 - [x] 已將目前同時作為Open Graph圖和favicon的非方形1925×817 JPG，替換為一張專為 `10eKokoro's Dream` 設計的原創1:1 icon PNG。圖像使用簡化的電影光圈／單格畫面符號，沿用米白、咖啡棕與少量陶土玫瑰色；不含文字，縮小至32 px仍可辨識；實際輸出192×192。
 - [x] 已由網站在同一host穩定提供 `/favicon.png`，首頁及各頁HTML head以唯一 `rel="icon"` 標籤指向它。符合Google Search Central方形圖示至少8×8 px、建議大於48×48 px的規格；正式驗收以Googlebot讀取`robots.txt`回200／`Allow: /`，Googlebot-Image讀取favicon回200／`image/png`／192×192。Open Graph/Twitter banner和文章尾端banner均維持不變。
 - [x] 自動檢查確認產出PNG為192×192正方形、head指向正確same-host路徑且每頁只有一個favicon link；`PUBLIC_ORIGIN=https://10e.org npm run build`與`npm run check`通過。GitHub Pages workflow `41185501600`成功部署commit `5329536`；正式 `https://10e.org/favicon.png` 回200、`image/png`，並與本機產物SHA-256一致。Google收錄／顯示仍取決於其後續重新抓取，非網站端可保證。
+
+## 方形 favicon 圖案放大（2026-11-01）
+- [ ] 保留目前電影光圈圖案、配色與192×192正方形畫布，裁除多餘外圍留白並等比例放大中央符號，不切到圖案邊緣。
+- [ ] 以同一穩定URL `/favicon.png` 重新部署；正式檔維持192×192 `image/png`，首頁favicon link與Open Graph/Twitter banner不變。

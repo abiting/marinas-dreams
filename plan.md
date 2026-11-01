@@ -154,3 +154,6 @@ Google Search Central官方要求favicon為正方形、至少8×8 px，建議大
 依網站米白、咖啡棕和剪報／電影筆記美學，生成單一方形無字品牌符號：簡化的電影光圈／靜格標記配一點陶土玫瑰色，保留強輪廓以利小尺寸辨認；將最終PNG定為192×192。把源資產放在`assets/favicon.png`並於`src/site.json`明確設定；`scripts/build.mjs`將它複製到輸出根目錄`/favicon.png`，而每頁head只輸出一個same-host `rel="icon"` PNG連結。`src/content.json`中banner及`og:image`、Twitter image和文章banner皆維持原圖；`scripts/check.mjs`驗證PNG signature、192×192尺寸及輸出連結。
 
 實作及驗收結果：已建立並視覺檢查無字192×192 PNG，實際使用於`assets/favicon.png`及編譯後`dist/favicon.png`。`app.config.ts`平台logo metadata同步使用穩定URL `https://10e.org/favicon.png`。`PUBLIC_ORIGIN=https://10e.org npm run build`與`npm run check`通過，並以本機HTTP確認圖檔回200、`image/png`、192×192，首頁僅有一個`rel="icon"`且OG banner未變。commit `5329536`（`Add square favicon for 10e.org`）觸發的GitHub Pages workflow [`41185501600`](https://github.com/abiting/marinas-dreams/actions/runs/41185501600)成功。正式站再次驗證：`https://10e.org/favicon.png`回200、`image/png`、PNG 192×192，內容SHA-256與建置產物相同；首頁只含此icon link並保留舊OG banner；Googlebot的`/robots.txt`和Googlebot-Image的`/favicon.png`均可讀取。Google實際何時更新搜尋結果仍取決於重新抓取，無法由站方保證。
+
+## Favicon圖案比例修正（2026-11-01）
+依使用者回饋「logo太小」，維持原始生成的電影光圈與配色，只裁除多餘米白外框並以高品質濾鏡放大中央符號；保持方形192×192、不裁切圖案本身，穩定URL仍為`/favicon.png`，Open Graph／Twitter banner不變。
