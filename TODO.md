@@ -176,5 +176,5 @@
 - [x] 已以同一穩定URL `/favicon.png` 重新部署；正式檔維持192×192 `image/png`。GitHub Pages workflow `41276754643`成功部署commit `3dc8767`；正式圖檔回200，SHA-256與最新建置產物一致，首頁唯一favicon link與Open Graph/Twitter banner均不變。
 
 ## 方形 favicon 再放大（2026-11-01）
-- [ ] 保留目前圖案、配色與192×192畫布，再縮減外圍留白，讓電影光圈符號約180×178 px（約93%畫布），仍完整不切邊，保持均勻安全距離。
-- [ ] 以原穩定URL `/favicon.png` 重新建置部署；正式站需提供最新192×192 `image/png`，首頁favicon標記和OG/Twitter banner不變。
+- [x] 已保留目前圖案、配色與192×192畫布，再縮減外圍留白，電影光圈符號實測180×178 px，仍完整不切邊，四邊安全距離6–7 px。
+- [x] 已以原穩定URL `/favicon.png` 重新建置部署；正式站提供最新192×192 `image/png`。GitHub Pages workflow `41285254656`成功部署commit `b809956`；正式圖檔回200、SHA-256與最新build產物一致，首頁favicon標記和OG/Twitter banner不變。
