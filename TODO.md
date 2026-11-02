@@ -192,3 +192,9 @@
 ## 指定圖片檔精確301（2026-11-02）
 - [x] 最終更正為 `http://10e.org/mt2/archives/200903/310230.php` 以真正HTTP 301導向 `https://app.abiting.cc/archives/5371`；只匹配此精確host/path，HTTP與HTTPS皆direct 301、不傳遞query。`?probe=1`的Location不含query；相鄰`310230x.php`及子路徑`310230.php/extra`仍404；新目標回200、`text/html`。兩次誤植來源`200904/072253.php`在HTTPS均恢復404，HTTP僅升級至同一路徑HTTPS後回404。
 - [x] 依序移除最初誤植來源item `351cadcb7be84571b0ea420d3a47a614`（delete `949ec71e4d844bc5acdb21cce4d4d534`）、移除錯誤圖片目標item `30349a5f32cc43198a7bf5844269c0a9`（delete `7b8b152d02ef4eaa8c609bdebe0e87aa`），並新增最終item `b9f77d27eb3d402dbbf075be51b9b6e8`（create `c7f62f5fa8ea490181894df037a5e52f`）。最終status 301、`include_subdomains:false`、`subpath_matching:false`、`preserve_query_string:false`、`preserve_path_suffix:false`；list仍9筆、account Bulk rule 1條、zone Dynamic Redirect 10條/version 10。既有`benders.gif`與`macchomachomacho.jpg`回歸正常；Cloudflare OAuth依先前指示暫留。
+
+
+## The Good, The Bad, The Hungry（2019）日文影評與舊URL 301（2026-11-02）
+- [ ] 新增一篇不覆寫既有138篇的日文評論，官方英文片名按ESPN原文記為`The Good, The Bad, The Hungry`，年份2019、導演Nicole Lucas Haimes；以小林尊六連霸、2007年Chestnut終止其連勝與影片對競食／媒體包裝的呈現為主題，避免把賽事宣傳詞當成史實或將小林簡化成「輸家」。
+- [ ] 正文500–800個日文字、六段、兩個小標；無虛構評分或私人觀影經驗。以2–4個已查讀可靠來源支援片名／導演／年份及小林故事，正文注碼對應來源ID，來源標題保留來源頁原文。新頁須具獨立slug、原題／公開年份依據／版次、3–8個keywords、30–60字SEO title及50–160字description，沿用Article與共用Person、canonical、OG、Twitter Card、manus-routes及sitemap。
+- [ ] 將 `http://10e.org/mt/archives/200508/160103.php` 以精確HTTP 301轉至 `https://10e.org/the-good-the-bad-the-hungry-2019-review/`；HTTP與HTTPS均命中同一新頁、不傳query，只匹配指定host/path。其他未指定舊路徑維持404；優先將此唯一mapping加入既有Bulk Redirect list，不更動zone內10條Dynamic Redirect。

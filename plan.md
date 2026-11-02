@@ -188,3 +188,12 @@ Cloudflare實作及驗收：在重新讀取5筆既有list item、唯一account B
 
 ## 最終目標更正（2026-11-02）
 上段是更正過程中的中間狀態，使用者之後明確指定目標為`https://app.abiting.cc/archives/5371`，不是pia17566_2.jpg.webp。已刪除指向圖片的中間item `30349a5f32cc43198a7bf5844269c0a9`（operation `7b8b152d02ef4eaa8c609bdebe0e87aa`），以final item `b9f77d27eb3d402dbbf075be51b9b6e8`重新加入相同正確來源`10e.org/mt2/archives/200903/310230.php`，新增operation `c7f62f5fa8ea490181894df037a5e52f`已completed。最終來源HTTP／HTTPS均direct 301至app文章且丟棄query，目標回200 `text/html`；曾經誤植的`200904/072253.php`仍為HTTPS 404、HTTP僅升級至HTTPS後404，正確來源相鄰`310230x.php`與子路徑保持404。Bulk list 9筆、account rule 1條、zone Dynamic rules 10條/version 10，其他既有redirect未變。
+
+
+## The Good, The Bad, The Hungry（2019）日文影評與精確轉址
+
+ESPN Watch及Apple TV均將片名列為`The Good, The Bad, The Hungry`，並列導演Nicole Lucas Haimes；Apple TV標示2019年及約77分鐘。Washington Post的2019年同期評論與ESPN 2024年對Kobayashi的訪談補足內容脈絡：小林尊連續六次贏得Nathan's賽事，2007年Chestnut終止其連勝；文章可討論競食的訓練與媒體如何建構日美對抗敘事，但須將評論觀點和影片／史料事實分開。研究URL和各來源頁原文標題保存於`/home/ubuntu/source-title-audit/the-good-the-bad-the-hungry-2026-11-02.md`。
+
+實作沿用`src/content.json`既有評論資料，使用原題slug `the-good-the-bad-the-hungry-2019-review`及單篇`スポーツドキュメンタリー映画ノート` collection；提供日文六段、兩個小標、500–800字正文、2–4個來源、合規SEO metadata和既有Article/Person／canonical／OG／Twitter Card／sitemap輸出。只需在`src/content.json`附加一筆並在`scripts/check.mjs`把138篇更新為139篇、路由141更新為142，並為新collection／原文英文片名加入精確斷言；既有review URL和內容保持不變。
+
+文章目標先部署並確認正式`https://10e.org/the-good-the-bad-the-hungry-2019-review/`可用，再將指定舊來源`10e.org/mt/archives/200508/160103.php`以唯一Bulk Redirect item映射至該目標；使用現有Bulk list，按API所需陣列payload，只設status 301、精確host/path、不含subdomain／subpath／suffix且丟棄query。設定前讀回9筆現有項目、單一account-level Bulk rule與10條zone Dynamic rules，寫入後不更動後兩者。
