@@ -180,5 +180,5 @@
 - [x] 已以原穩定URL `/favicon.png` 重新建置部署；正式站提供最新192×192 `image/png`。GitHub Pages workflow `41285254656`成功部署commit `b809956`；正式圖檔回200、SHA-256與最新build產物一致，首頁favicon標記和OG/Twitter banner不變。
 
 ## Footer Abiting 超連結（2026-11-02）
-- [ ] 將所有公開頁footer顯示文字「Abiting」的目的網址由 `https://abiting.cc` 精確替換為 `https://abitingdiscord.com`；不更改其他內容中的外部連結、footer文字、版面或SEO metadata。
-- [ ] 重新建置與檢查，驗證所有生成頁含新網址且無footer舊網址；部署後直接驗證正式首頁的連結目的網址。
+- [x] 已將所有公開頁footer顯示文字「Abiting」的目的網址由 `https://abiting.cc` 精確替換為 `https://abitingdiscord.com`；未更改其他內容中的外部連結、footer文字、版面或SEO metadata。
+- [x] 已重新建置與檢查，138個生成頁皆含新網址且無footer舊網址。GitHub Pages workflow `41372989656`成功部署commit `f490ee5`；正式首頁、About頁和文章頁均直接驗證「Abiting」連向新目的網址。

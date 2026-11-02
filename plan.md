@@ -167,3 +167,5 @@ Google Search Central官方要求favicon為正方形、至少8×8 px，建議大
 
 ## Footer Abiting連結更新（2026-11-02）
 使用者指定將全站共用footer中顯示為「Abiting」的網站製作／維護者連結，從`https://abiting.cc`改為`https://abitingdiscord.com`。變更只放在`scripts/build.mjs`的共用footer模板；保留日文footer文案、內部導覽、其他文章或引用的外部網址、Open Graph／Twitter／canonical與SEO metadata。同步修訂`scripts/check.mjs`，使所有輸出頁回歸檢查新的指定目的網址。
+
+實作及驗收：`PUBLIC_ORIGIN=https://10e.org npm run build`及`npm run check`通過；138個生成HTML頁皆含`href="https://abitingdiscord.com"`，沒有任何footer保留`href="https://abiting.cc"`。commit `f490ee5`（`Update footer Abiting link`）已由GitHub Pages workflow [`41372989656`](https://github.com/abiting/marinas-dreams/actions/runs/41372989656)成功部署；以no-cache請求驗證正式首頁`/`、About頁`/about-10ekokoro/`及文章頁`/akira-1988-review/`皆回200，且各自唯一的Abiting文字連結均精確導至`https://abitingdiscord.com`。
