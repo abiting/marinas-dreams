@@ -121,7 +121,7 @@ for (const routeInfo of manifest.routes) {
   assert.ok(html.includes(`<meta property="og:image" content="${content.bannerUrl}">`));
   assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
   assert.ok(decode(html).includes(`© 2026 ${brand}`), `${route}: new copyright`);
-  assert.ok(html.includes('href="https://abiting.cc"'), `${route}: Abiting link retained`);
+  assert.ok(html.includes('href="https://abitingdiscord.com"'), `${route}: Abiting link uses the requested destination`);
   assert.ok(!html.includes('YOUR-DOMAIN') && !html.includes('YYYY-MM-DD'));
   const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)?.[1] || '{}')['@graph'];
   assert.ok(Array.isArray(graph));

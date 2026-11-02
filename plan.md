@@ -164,3 +164,6 @@ Google Search Central官方要求favicon為正方形、至少8×8 px，建議大
 依使用者後續回饋「再大」，保留已接受的電影光圈圖案及配色，從1920×1920原始生成圖再安全縮小方形裁切範圍，使符號約180×178 px（約93%畫布），周圍留均勻約6 px安全邊距；繼續輸出192×192 PNG並使用原穩定URL`/favicon.png`，不改動favicon head標記或OG/Twitter banner。
 
 實作及驗收：以原圖安全裁切`(315, 314, 1605, 1604)`並Lanczos縮放，正式產物`assets/favicon.png`／`dist/favicon.png`為192×192 PNG，符號邊界`(6, 7, 186, 185)`（180×178 px），四邊留白6–7 px。`PUBLIC_ORIGIN=https://10e.org npm run build`和`npm run check`通過；重啟本機開發伺服器後HTTP讀取favicon與首頁均通過。commit `b809956`（`Enlarge 10e favicon again`）的GitHub Pages workflow [`41285254656`](https://github.com/abiting/marinas-dreams/actions/runs/41285254656)成功。正式站`https://10e.org/favicon.png`在no-cache request下回200、`image/png`、192×192、180×178主符號，SHA-256與最新`dist/favicon.png`完全一致；首頁只有一個穩定favicon link，OG banner保持不變。
+
+## Footer Abiting連結更新（2026-11-02）
+使用者指定將全站共用footer中顯示為「Abiting」的網站製作／維護者連結，從`https://abiting.cc`改為`https://abitingdiscord.com`。變更只放在`scripts/build.mjs`的共用footer模板；保留日文footer文案、內部導覽、其他文章或引用的外部網址、Open Graph／Twitter／canonical與SEO metadata。同步修訂`scripts/check.mjs`，使所有輸出頁回歸檢查新的指定目的網址。
