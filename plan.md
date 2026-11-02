@@ -182,5 +182,9 @@ Google Search Central官方要求favicon為正方形、至少8×8 px，建議大
 Cloudflare實作及驗收：在重新讀取5筆既有list item、唯一account Bulk rule及10條Dynamic Redirect後，初次單物件payload遭API以`filters.api.invalid_json`拒絕，未寫入任何項目；依OpenAPI確認`Create list items`需陣列payload，再以單一operation `d068709f439e45469debf80a56b8e30c`追加三筆並完成。新增item為`113555bc1df04edcb27b50042869e83e`（152304→Crucible）、`80923441b9334746bd5171ccaac9bd85`（250337→Chaos）、`30351e74e49846e5a4a824a63344bedf`（112333→Pearls）。讀回list共8筆、account rule仍1條，zone Dynamic version仍10、規則數仍10。以不跟隨redirect的HTTP請求驗證每個新來源在HTTP和HTTPS均direct 301、帶`?probe=1`仍丟棄query、每個10e.org目標回200；三個相鄰未指定`x.php`路徑皆回真正404，既有`/samcimg/benders.gif`與`/samcimg3/macchomachomacho.jpg`仍準確301至原先目標。
 
 
-## 追加pia17566_2.jpg.webp舊網址301（2026-11-02）
+## 追加pia17566_2.jpg.webp舊網址301（2026-11-02；目標更正前的中間狀態）
 使用者後續更正來源為`http://10e.org/mt2/archives/200903/310230.php`，目標仍是`https://abiting.cc/wp-content/uploads/2026/11/pia17566_2.jpg.webp`。最初誤植的`10e.org/mt2/archives/200904/072253.php` item `351cadcb7be84571b0ea420d3a47a614`已由delete operation `949ec71e4d844bc5acdb21cce4d4d534`移除；其HTTPS現回404，HTTP僅升級至同一路徑HTTPS後回404。正確來源item `30349a5f32cc43198a7bf5844269c0a9`由operation `0835dc62301c4298aa1ff0d7e4ae40db`新增並完成；規則為301、`include_subdomains:false`、`subpath_matching:false`、`preserve_query_string:false`、`preserve_path_suffix:false`。清單以8筆暫時移除舊項，之後回到9筆；account Bulk rule仍1條，zone Dynamic Redirect仍10條/version 10。正式HTTP及HTTPS正確來源均direct 301，`?probe=1`丟棄；目標200 `image/webp`；相鄰`310230x.php`與子路徑`310230.php/extra`維持404，既有`benders.gif`和`macchomachomacho.jpg`Dynamic 301不變。Cloudflare OAuth仍按先前指示保留。
+
+
+## 最終目標更正（2026-11-02）
+上段是更正過程中的中間狀態，使用者之後明確指定目標為`https://app.abiting.cc/archives/5371`，不是pia17566_2.jpg.webp。已刪除指向圖片的中間item `30349a5f32cc43198a7bf5844269c0a9`（operation `7b8b152d02ef4eaa8c609bdebe0e87aa`），以final item `b9f77d27eb3d402dbbf075be51b9b6e8`重新加入相同正確來源`10e.org/mt2/archives/200903/310230.php`，新增operation `c7f62f5fa8ea490181894df037a5e52f`已completed。最終來源HTTP／HTTPS均direct 301至app文章且丟棄query，目標回200 `text/html`；曾經誤植的`200904/072253.php`仍為HTTPS 404、HTTP僅升級至HTTPS後404，正確來源相鄰`310230x.php`與子路徑保持404。Bulk list 9筆、account rule 1條、zone Dynamic rules 10條/version 10，其他既有redirect未變。
