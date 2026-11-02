@@ -182,3 +182,8 @@
 ## Footer Abiting 超連結（2026-11-02）
 - [x] 已將所有公開頁footer顯示文字「Abiting」的目的網址由 `https://abiting.cc` 精確替換為 `https://abitingdiscord.com`；未更改其他內容中的外部連結、footer文字、版面或SEO metadata。
 - [x] 已重新建置與檢查，138個生成頁皆含新網址且無footer舊網址。GitHub Pages workflow `41372989656`成功部署commit `f490ee5`；正式首頁、About頁和文章頁均直接驗證「Abiting」連向新目的網址。
+
+## 魔女狩り影評、兩篇紀錄片介紹與精確舊URL轉址（2026-11-02）
+- [ ] 新增三篇研究型日文影評／介紹且不得覆寫原有135篇：代表性魔女狩り電影『クルーシブル』（The Crucible，作品年1996；日本院線首映1997-04-26，導演ニコラス・ハイトナー），官方日本Netflix頁未譯名的紀錄片Chaos: The Manson Murders（2025，導演Errol Morris；Netflix於2025-03-07上線），以及官方頁未譯名的`Secret Life of Pearls`（2016，為National Geographic製作）。魔女裁判文章須區分戲劇改編與史料；Manson紀錄片文章不得把未證實的CIA／MKUltra因果說法寫成事實；珍珠紀錄片不可把品牌宣傳主張擴大為未核實的環境或市場事實。
+- [ ] 每篇使用日文、500–800個日文字、六段正文、兩個小標與不虛構評分或作者私人觀影經驗；各有2–4個已查讀的可靠來源，正文引用來源ID且來源標題保留來源頁原文。每篇須有獨立slug、原題／公開年份依據／版次、3–8個keywords、30–60字SEO title及50–160字description；Article與共用Person、canonical、OG、Twitter Card、manus-routes和sitemap沿用現有build。
+- [ ] 將 `http://10e.org/mt2/archives/200912/152304.php` 精確HTTP 301至 `https://10e.org/the-crucible-1996-review/`，`http://10e.org/mt2/archives/200911/250337.php` 精確HTTP 301至 `https://10e.org/chaos-the-manson-murders-2025-review/`，`http://10e.org/mt2/archives/200705/112333.php` 精確HTTP 301至 `https://10e.org/secret-life-of-pearls-2016-review/`；三個來源均應涵蓋HTTP／HTTPS、丟棄query且只匹配指定host/path，不影響未指定舊路徑的404。優先將三筆mapping加入既有Bulk Redirect list，不改動zone內10條Dynamic Redirect。
