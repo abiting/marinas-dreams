@@ -197,3 +197,10 @@ ESPN Watch及Apple TV均將片名列為`The Good, The Bad, The Hungry`，並列�
 實作沿用`src/content.json`既有評論資料，使用原題slug `the-good-the-bad-the-hungry-2019-review`及單篇`スポーツドキュメンタリー映画ノート` collection；提供日文六段、兩個小標、500–800字正文、2–4個來源、合規SEO metadata和既有Article/Person／canonical／OG／Twitter Card／sitemap輸出。只需在`src/content.json`附加一筆並在`scripts/check.mjs`把138篇更新為139篇、路由141更新為142，並為新collection／原文英文片名加入精確斷言；既有review URL和內容保持不變。
 
 文章目標先部署並確認正式`https://10e.org/the-good-the-bad-the-hungry-2019-review/`可用，再將指定舊來源`10e.org/mt/archives/200508/160103.php`以唯一Bulk Redirect item映射至該目標；使用現有Bulk list，按API所需陣列payload，只設status 301、精確host/path、不含subdomain／subpath／suffix且丟棄query。設定前讀回9筆現有項目、單一account-level Bulk rule與10條zone Dynamic rules，寫入後不更動後兩者。
+
+
+### 實作與驗收結果（2026-11-02）
+
+`src/content.json`已在既有138筆後附加第139篇，slug為`the-good-the-bad-the-hungry-2019-review`，內容為771字、六段和兩個由建置器輸出的`h2`小標；資料內重複的inline `<strong>`小標已在審核後移除。三個來源均直接查讀且以原文標題保存，正文引用全部對應。`scripts/check.mjs`同步補強尾端新增、來源原文、無評分／私人觀影措辭、非「小林為輸家」敘事，以及新slug在manifest與sitemap的精確斷言。`PUBLIC_ORIGIN=https://10e.org npm run build`和`npm run check`通過（139篇、142條路由）；獨立唯讀審核也通過。commit `9245c21`已推送，GitHub Pages run `41399476283`成功，正式文章HTTP 200且canonical、Article JSON-LD、來源均正確。
+
+部署後才寫入Cloudflare：現有redirect list `a71cfa967ef34b54b37235cebe066279`先讀回9筆、account-level root ruleset `d7f89eee1bfd4202a63f8bed78ab0690`仍僅1條、zone Dynamic ruleset `f20f7eda0c24494aa29382a2fd4f97b7`仍10條/version 10。以陣列POST新增唯一item `842ea3fbcd0e4725a9c6630e3091adc9`：`10e.org/mt/archives/200508/160103.php` → `https://10e.org/the-good-the-bad-the-hungry-2019-review/`，旗標為301、`include_subdomains:false`、`subpath_matching:false`、`preserve_query_string:false`、`preserve_path_suffix:false`。operation `aa21379707be41b1abe86f4a99bfa86e`已completed。HTTP、HTTPS和帶`?check=1`的來源均direct 301到無query的目標；相鄰`160103x.php`和子路徑仍為HTTPS 404，目標頁200，既有Dynamic的benders和macchomachomacho mapping回歸正確。清單現為10筆，未改動其他規則。

@@ -195,6 +195,6 @@
 
 
 ## The Good, The Bad, The Hungry（2019）日文影評與舊URL 301（2026-11-02）
-- [ ] 新增一篇不覆寫既有138篇的日文評論，官方英文片名按ESPN原文記為`The Good, The Bad, The Hungry`，年份2019、導演Nicole Lucas Haimes；以小林尊六連霸、2007年Chestnut終止其連勝與影片對競食／媒體包裝的呈現為主題，避免把賽事宣傳詞當成史實或將小林簡化成「輸家」。
-- [ ] 正文500–800個日文字、六段、兩個小標；無虛構評分或私人觀影經驗。以2–4個已查讀可靠來源支援片名／導演／年份及小林故事，正文注碼對應來源ID，來源標題保留來源頁原文。新頁須具獨立slug、原題／公開年份依據／版次、3–8個keywords、30–60字SEO title及50–160字description，沿用Article與共用Person、canonical、OG、Twitter Card、manus-routes及sitemap。
-- [ ] 將 `http://10e.org/mt/archives/200508/160103.php` 以精確HTTP 301轉至 `https://10e.org/the-good-the-bad-the-hungry-2019-review/`；HTTP與HTTPS均命中同一新頁、不傳query，只匹配指定host/path。其他未指定舊路徑維持404；優先將此唯一mapping加入既有Bulk Redirect list，不更動zone內10條Dynamic Redirect。
+- [x] 新增一篇不覆寫既有138篇的日文評論，官方英文片名按ESPN原文記為`The Good, The Bad, The Hungry`，年份2019、導演Nicole Lucas Haimes；以小林尊六連霸、2007年Chestnut終止其連勝與影片對競食／媒體包裝的呈現為主題，避免把賽事宣傳詞當成史實或將小林簡化成「輸家」。既有138篇前綴保持不變，新篇為第139篇尾端資料；Git commit `9245c21`與GitHub Pages run `41399476283`均已成功。
+- [x] 正文500–800個日文字、六段、兩個小標；無虛構評分或私人觀影經驗。以2–4個已查讀可靠來源支援片名／導演／年份及小林故事，正文注碼對應來源ID，來源標題保留來源頁原文。新頁具獨立slug、原題／公開年份依據／版次、4個keywords、55字SEO title、87字description，沿用Article與共用Person、canonical、OG、Twitter Card、manus-routes及sitemap；正式頁與獨立唯讀審核均通過，正文為771字且重複inline小標已移除。
+- [x] 將 `http://10e.org/mt/archives/200508/160103.php` 以精確HTTP 301轉至 `https://10e.org/the-good-the-bad-the-hungry-2019-review/`；HTTP與HTTPS均命中同一新頁、不傳query，只匹配指定host/path。Bulk list item `842ea3fbcd0e4725a9c6630e3091adc9`（operation `aa21379707be41b1abe86f4a99bfa86e`）已completed；HTTP／HTTPS與`?check=1`均為direct 301，兩個相鄰／子路徑為404，Bulk list為10筆、account Bulk rule為1條、zone Dynamic rules仍為10條/version 10。
