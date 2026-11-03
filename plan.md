@@ -244,3 +244,8 @@ Underwater完成證據：commit `0441661a605ec30aeaf74286bb233b73bd5c57cb` 的 P
 
 
 Tremors研究與實作決策：日本正式名「トレマーズ」、原題`Tremors`、ロン・アンダーウッド導演，採映画.com的日本首次院線公開日1990年6月15日；限定1990年第1作，版本片長依映画.com與Universal為96分。新增唯一slug `tremors-1990-review`，沿用Underwater剛新增的「SF・怪物映画ノート」collection，評論以地表恐怖、雙人喜劇、實體特效與居民合作為核心。來源為映画.com、Universal Pictures At Home、Set The Tape與Guardian，原文題名不翻譯。新增後141篇／144公開路由；內容只append而保留現有140篇，check補精確片名與引用／SEO斷言。先發布正式新頁並確認200，再只POST指定201007/270356.php精確301；研究筆記在repo外`/home/ubuntu/source-title-audit/tremors-1990-2026-11-04.md`。
+
+
+Tremors完成證據：内容commit `854ac0a0eba6d26e5a00af3895b9bd51c6d33774`／Pages run `41742719260`成功部署。新文731字（去HTML／注碼／空白）、6段／2個section headings／4來源，既有140篇與top-level metadata完全不變；build/check和唯讀審核通過141篇／846段／144路由。正式 `/tremors-1990-review/` 對一般訪客、Googlebot與Twitterbot均200，原文來源題名、canonical、Article、manifest與sitemap核對完整。
+
+正式頁公開後才POST新增精確item `f7864d6f685e4deaacbc9e0a29b4b377`，operation `2b20c223a04947bb97043ad9390e7f4e` completed，source `10e.org/mt2/archives/201007/270356.php` → `https://10e.org/tremors-1990-review/`，301且include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix均false。list14筆、原13筆ID保留；Bulk規則1條version1／Dynamic10條version10均未改。現場HTTP／HTTPS及兩者含query均direct301並丟棄query，x.php、/extra與未指定xxx均404，目標200；Scrabby和benders回歸正常。Cloudflare OAuth仍保留，不logout／撤銷。

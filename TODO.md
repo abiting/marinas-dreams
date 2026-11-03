@@ -228,8 +228,10 @@
 - [x] 新頁先部署並在正式站確認回應 200、canonical、Article 結構化資料及來源標題正確，再將使用者指定的 `http://10e.org/mt2/archives/200807/042305.php` 精確 HTTP 301 至該新文章正式 URL；同一路徑 HTTPS 亦須直接 301。query 不傳遞；相鄰 `042305x.php`、`042305.php/extra` 必須維持真正 404，其他未指定舊路徑保持 404。只新增此一筆 Cloudflare Bulk Redirect，不修改或刪除任何既有 Bulk/Dynamic 規則。
 
 
-## 後續：《從地心竄出》影評與指定舊URL精確301（2026-11-04）
-- [ ] 待《アンダーウォーター》影評正式上線、其指定301完成驗收後，再研究並新增一篇 1990 年電影《Tremors》（使用者中文辨識名《從地心竄出》）的日文影評。使用核實日本正式片名「トレマーズ」、原題 `Tremors`、導演ロン・アンダーウッド與日本劇場公開日1990年6月15日；來源保留原文標題／URL，6段日文正文500–800字、2個section H2、2–4個已查讀來源且注碼完整，不虚構評分或私人觀影經驗。只新增此片一篇，不改既有140篇文章或URL，維持既有SEO、canonical、OG／Twitter、Article／Person、sitemap與route manifest，共141篇／144個公開路由，build/check通過；正式頁先發布並確認200。
-- [ ] 將使用者指定的 `http://10e.org/mt2/archives/201007/270356.php` 和 HTTPS 同路徑精確直接301至該新文章正式URL；query 不傳遞，僅新增單一Bulk Redirect item。相鄰檔名與子路徑、其他未指定舊路徑均維持真正404；不改其他Bulk/Dynamic規則。
-
 Underwater完成證據：內容commit `0441661`／Pages run `41741644315`成功，正式 `/underwater-2020-review/` 回200且原文來源、canonical、Article、143路由／sitemap核對通過。Bulk item `71e25e0e84a343a18292cf0b2108dc84`，operation `9f24514ed19b470d9c8ea0e64e4c5671` completed；HTTP／HTTPS含query皆direct301至新頁並丟棄query，x.php和/extra及未指定xxx均404，Scrabby和benders回歸正常。清單13筆／Bulk1條version1／Dynamic10條version10；未改既有mapping，OAuth仍保留。
+
+## 後續：《從地心竄出》影評與指定舊URL精確301（2026-11-04）
+- [x] 待《アンダーウォーター》影評正式上線、其指定301完成驗收後，再研究並新增一篇 1990 年電影《Tremors》（使用者中文辨識名《從地心竄出》）的日文影評。使用核實日本正式片名「トレマーズ」、原題 `Tremors`、導演ロン・アンダーウッド與日本劇場公開日1990年6月15日；來源保留原文標題／URL，6段日文正文500–800字、2個section H2、2–4個已查讀來源且注碼完整，不虚構評分或私人觀影經驗。只新增此片一篇，不改既有140篇文章或URL，維持既有SEO、canonical、OG／Twitter、Article／Person、sitemap與route manifest，共141篇／144個公開路由，build/check通過；正式頁先發布並確認200。
+- [x] 將使用者指定的 `http://10e.org/mt2/archives/201007/270356.php` 和 HTTPS 同路徑精確直接301至該新文章正式URL；query 不傳遞，僅新增單一Bulk Redirect item。相鄰檔名與子路徑、其他未指定舊路徑均維持真正404；不改其他Bulk/Dynamic規則。
+
+Tremors完成證據：正文731字、六段與4個原文來源；既有140篇object及metadata不變，build/check與唯讀審核通過，141篇／846段／144路由。commit `854ac0a`／Pages run `41742719260`成功，正式 `/tremors-1990-review/` 一般訪客／Googlebot／Twitterbot皆200，來源、canonical、Article與144筆sitemap核對通過。之後新增Bulk item `f7864d6f685e4deaacbc9e0a29b4b377`，operation `2b20c223a04947bb97043ad9390e7f4e` completed；指定201007/270356.php的HTTP／HTTPS和query變體皆direct301到新文章，query丟棄，x.php、/extra及未指定xxx均404。清單只從13增至14筆，原13筆ID全保留，Bulk1條version1／Dynamic10條version10未变，Scrabby和benders回歸正常。OAuth依使用者要求保留。
