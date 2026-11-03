@@ -218,3 +218,7 @@
 - [x] 全站頁尾 `© 2026 10eKokoro's Dream` 中的品牌名稱加上回首頁的連結 `href="/"`，保留文字與樣式、原有頁尾大品牌連結及 Abiting 指向 `https://abitingdiscord.com` 的連結。其他內容、SEO、路由、favicon與靜態圖片不變；完整build/check通過並在正式首頁與影評頁驗收。
 
 完成證據：143個HTML（含404）僅版權品牌新增anchor，其他dist檔案原樣；139篇／142路由及完整build/check通過。commit `2b02086`／Pages run `41610237676`成功，正式首頁、影評及索引頁200，版權品牌和原大品牌均連首頁，Abiting原目的網址不變。
+
+## 指定Scrabby文章舊URL精確301（2026-11-04）
+- [x] 將 `http://10e.org/mt2/archives/200612/210159.php` 及HTTPS同路徑直接301至 `https://scrabby.abiting.cc/archives/299`；HTTP／HTTPS含`?probe=1`皆命中相同Location且query已丟棄，只匹配指定host/path。鄰近`210159x.php`及`210159.php/extra`回404，目標文章回200。
+- [x] 新增Bulk list item `f71638dcfe614b1ea12017d78005030d`；清單由11筆增至12筆、account Bulk rule仍1條、zone Dynamic Redirect仍10條/version 10。既有`200701/050537.php` Scrabby mapping與`benders.gif`回歸正常，未改動其他規則。

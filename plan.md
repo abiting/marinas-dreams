@@ -222,3 +222,8 @@ ESPN Watch及Apple TV均將片名列為`The Good, The Bad, The Hungry`，並列�
 頁尾上方 `.footer-brand` 已是回首頁連結；本次把版權列中的 `10eKokoro's Dream` 也包在 `href="/"` 的anchor內，沿用共用footer輸出及現有basePath重寫，不改文字、樣式或其他URL。重建全站HTML並補一條所有頁面的footer連首頁斷言，其他静態資產與內容保持原樣。
 
 完成結果：共143個HTML（含404）只包入版權品牌回首頁anchor，其他dist資產逐位元組不變；build/check通過。commit `2b02086`由Pages run `41610237676`成功部署；正式 `/`、`/crouching-tiger-review/`與`/film-reviews/`驗收兩處footer品牌均連首頁，Abiting連至abitingdiscord.com保持不變。
+
+
+## 2026-11-04 Scrabby article redirect
+
+Added one exact item to the existing account Bulk Redirect list `ten_e_exact_legacy_redirects`: source `10e.org/mt2/archives/200612/210159.php`, target `https://scrabby.abiting.cc/archives/299`, status 301, `include_subdomains:false`, `subpath_matching:false`, `preserve_query_string:false`, `preserve_path_suffix:false`. Item ID `f71638dcfe614b1ea12017d78005030d`; operation `b725a38b6ab94242b1d5d428904eb216` completed. The source is same-host exact; HTTP, HTTPS, and query-bearing variants returned direct 301 with the exact target and no query. The adjacent path and suffix remained 404; the target returned 200. The list now has 12 items, the account phase remains one Bulk rule, and the zone Dynamic ruleset remains at 10 rules/version 10; previous Scrabby and benders redirects passed regression checks.
