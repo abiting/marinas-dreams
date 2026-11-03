@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 140);
+assert.equal(content.reviews.length, 141);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -62,9 +62,10 @@ const newResearchSlugs = [
   'secret-life-of-pearls-2016-review',
   'the-good-the-bad-the-hungry-2019-review',
   'underwater-2020-review',
+  'tremors-1990-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All five requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All six requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -75,7 +76,8 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'underwater-2020-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-1)?.slug, 'tremors-1990-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-2)?.slug, 'underwater-2020-review', 'The preceding Underwater review is preserved');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -94,6 +96,16 @@ assert.equal(underwaterReview.releaseYearBasis, '米国劇場公開年（2020年
 assert.equal(underwaterReview.collection, 'SF・怪物映画ノート');
 assert.deepEqual(underwaterReview.sources.map(ref => ref.title), ['Underwater', 'アンダーウォーター', 'Underwater', '‘Underwater’: Film Review']);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(underwaterReview)));
+const tremorsReview = newResearchReviews[5];
+assert.equal(content.reviews.filter(r => r.originalTitle === 'Tremors').length, 1, 'Exactly one Tremors review');
+assert.equal(tremorsReview.name, 'トレマーズ');
+assert.equal(tremorsReview.year, '1990');
+assert.equal(tremorsReview.director, 'ロン・アンダーウッド');
+assert.equal(tremorsReview.releaseYearBasis, '日本劇場公開年（1990年6月15日）');
+assert.equal(tremorsReview.edition, '1990年のシリーズ第1作（映画.com・Universal表記：96分）');
+assert.equal(tremorsReview.collection, 'SF・怪物映画ノート');
+assert.deepEqual(tremorsReview.sources.map(ref => ref.title), ['トレマーズ', 'Tremors', 'Tremors (1990) – Blu-ray Review', 'Tremors']);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(tremorsReview)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -319,6 +331,10 @@ assert.ok(manifest.routes.some(route => route.path === `${basePath}/underwater-2
 assert.ok(!fs.existsSync('dist/mt2/archives/200807/042305.php'), 'Underwater legacy source must not be emitted as static 200');
 const underwaterHtml = fs.readFileSync('dist/underwater-2020-review/index.html', 'utf8');
 for (const ref of underwaterReview.sources) assert.ok(decode(underwaterHtml).includes(`>${ref.title}</a>`), 'Underwater source titles stay in the original language');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/tremors-1990-review/`), 'Tremors route is declared');
+assert.ok(!fs.existsSync('dist/mt2/archives/201007/270356.php'), 'Tremors legacy source must not be emitted as static 200');
+const tremorsHtml = fs.readFileSync('dist/tremors-1990-review/index.html', 'utf8');
+for (const ref of tremorsReview.sources) assert.ok(decode(tremorsHtml).includes(`>${ref.title}</a>`), 'Tremors source titles stay in the original language');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -341,6 +357,7 @@ if (origin) {
   assert.ok(sitemap.includes(`${origin}/`));
   assert.ok(sitemap.includes(`${origin}${basePath}/the-good-the-bad-the-hungry-2019-review/`), 'Competitive-eating review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/underwater-2020-review/`), 'Underwater review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/tremors-1990-review/`), 'Tremors review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

@@ -238,3 +238,9 @@ Added one exact item to the existing account Bulk Redirect list `ten_e_exact_leg
 
 ## 後續影評請求：《Tremors》（2026-11-04）
 使用者在Underwater進行中新增後續需求：待Underwater影評、上線和指定301完成後，再研究新增1990年《Tremors》（中文辨識名《從地心竄出》）日文影評。屆時先核實日本正式片名、年份和來源原文標題，單篇新增至既有生成器，不改先前文章URL；文章正式頁200後，才把精確指定的 `http://10e.org/mt2/archives/201007/270356.php`（含HTTPS）301至新文章canonical，丟棄query，鄰近及suffix路徑維持404，只加一個Bulk Redirect item。此階段排在Underwater部署及mapping驗收之後。
+
+
+Underwater完成證據：commit `0441661a605ec30aeaf74286bb233b73bd5c57cb` 的 Pages run `41741644315` 成功部署；正式 `/underwater-2020-review/` 對一般訪客、Googlebot與Twitterbot均回200，原文來源標題、canonical、Article、143條manifest與143筆sitemap完整。正文711字（去HTML／注碼／空白）、140篇／840段，既有139篇資料完全相同。之後追加Bulk item `71e25e0e84a343a18292cf0b2108dc84`、operation `9f24514ed19b470d9c8ea0e64e4c5671` completed，指定200807/042305.php的HTTP／HTTPS與query變體均直接301到新canonical且query丟棄，相鄰x.php、suffix /extra及未指定/mt2/archives/xxx均404；Scrabby與benders舊轉址回歸正常。Bulk清單13筆／account規則1條version1；Dynamic規則10條version10未變。OAuth依使用者要求保留，接著才進行Tremors請求。
+
+
+Tremors研究與實作決策：日本正式名「トレマーズ」、原題`Tremors`、ロン・アンダーウッド導演，採映画.com的日本首次院線公開日1990年6月15日；限定1990年第1作，版本片長依映画.com與Universal為96分。新增唯一slug `tremors-1990-review`，沿用Underwater剛新增的「SF・怪物映画ノート」collection，評論以地表恐怖、雙人喜劇、實體特效與居民合作為核心。來源為映画.com、Universal Pictures At Home、Set The Tape與Guardian，原文題名不翻譯。新增後141篇／144公開路由；內容只append而保留現有140篇，check補精確片名與引用／SEO斷言。先發布正式新頁並確認200，再只POST指定201007/270356.php精確301；研究筆記在repo外`/home/ubuntu/source-title-audit/tremors-1990-2026-11-04.md`。
