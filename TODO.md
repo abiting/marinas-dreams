@@ -215,4 +215,6 @@
 正式驗收：commit `5254ce8`由Pages run `41608680394`成功部署。`https://10e.org/assets/venusaur-weakness-evolution.png`回200／image/png，183897 bytes且SHA256與原附件完全相同；正式首頁、影評、文章索引、sitemap及manifest均無圖檔引用。
 
 ## 頁尾品牌名稱回首頁（2026-11-03）
-- [ ] 全站頁尾 `© 2026 10eKokoro's Dream` 中的品牌名稱加上回首頁的連結 `href="/"`，保留文字與樣式、原有頁尾大品牌連結及 Abiting 指向 `https://abitingdiscord.com` 的連結。其他內容、SEO、路由、favicon與靜態圖片不變；完整build/check通過並在正式首頁與影評頁驗收。
+- [x] 全站頁尾 `© 2026 10eKokoro's Dream` 中的品牌名稱加上回首頁的連結 `href="/"`，保留文字與樣式、原有頁尾大品牌連結及 Abiting 指向 `https://abitingdiscord.com` 的連結。其他內容、SEO、路由、favicon與靜態圖片不變；完整build/check通過並在正式首頁與影評頁驗收。
+
+完成證據：143個HTML（含404）僅版權品牌新增anchor，其他dist檔案原樣；139篇／142路由及完整build/check通過。commit `2b02086`／Pages run `41610237676`成功，正式首頁、影評及索引頁200，版權品牌和原大品牌均連首頁，Abiting原目的網址不變。
