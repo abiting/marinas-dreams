@@ -172,7 +172,7 @@ for (const routeInfo of manifest.routes) {
   assert.ok(html.includes('<meta property="og:locale" content="ja_JP">'));
   assert.ok(html.includes(`<meta property="og:image" content="${content.bannerUrl}">`));
   assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
-  assert.ok(decode(html).includes(`© 2026 ${brand}`), `${route}: new copyright`);
+  assert.ok(decode(html).includes(`<div class="footer-bottom"><p>© 2026 <a href="${basePath}/">${brand}</a></p>`), `${route}: copyright brand links to the homepage`);
   assert.ok(html.includes('href="https://abitingdiscord.com"'), `${route}: Abiting link uses the requested destination`);
   assert.ok(!html.includes('YOUR-DOMAIN') && !html.includes('YYYY-MM-DD'));
   const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)?.[1] || '{}')['@graph'];
