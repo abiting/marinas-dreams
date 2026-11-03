@@ -208,6 +208,8 @@
 
 ## 使用者提供的圖片作為靜態網站資產（2026-11-03）
 - [x] 將使用者提供的PNG原樣放入網站可公開的靜態資產目錄，命名為 `assets/venusaur-weakness-evolution.png`；不裁切、不重新繪製，也不放進首頁、文章或任何可視版面。
-- [ ] Build 將原始檔複製至 `dist/assets/venusaur-weakness-evolution.png`，不產生HTML `<img>`或頁面引用；部署後直接網址 `https://10e.org/assets/venusaur-weakness-evolution.png`回200、`image/png`且圖檔位元組不變。既有文章數、路由和其他內容不變。
+- [x] Build 將原始檔複製至 `dist/assets/venusaur-weakness-evolution.png`，不產生HTML `<img>`或頁面引用；部署後直接網址 `https://10e.org/assets/venusaur-weakness-evolution.png`回200、`image/png`且圖檔位元組不變。既有文章數、路由和其他內容不變。
 
-本機驗收：原PNG與assets／dist完全相同（1780×708、183897 bytes、SHA256 `1d2ab1b94196eedd8a8acbbf06f6fd84d44d526e918d8e7b0399091648782d7e`）；build/check通過，139篇／142路由不变，既有dist檔案逐筆與HEAD相同，HTML／manifest／sitemap無圖片引用。待正式發布驗收。
+本機驗收：原PNG與assets／dist完全相同（1780×708、183897 bytes、SHA256 `1d2ab1b94196eedd8a8acbbf06f6fd84d44d526e918d8e7b0399091648782d7e`）；build/check通過，139篇／142路由不变，既有dist檔案逐筆與HEAD相同，HTML／manifest／sitemap無圖片引用。正式發布亦已驗收。
+
+正式驗收：commit `5254ce8`由Pages run `41608680394`成功部署。`https://10e.org/assets/venusaur-weakness-evolution.png`回200／image/png，183897 bytes且SHA256與原附件完全相同；正式首頁、影評、文章索引、sitemap及manifest均無圖檔引用。

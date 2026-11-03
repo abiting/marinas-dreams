@@ -215,3 +215,5 @@ ESPN Watch及Apple TV均將片名列為`The Good, The Bad, The Hungry`，並列�
 
 ## 使用者提供的單張PNG靜態資產（2026-11-03）
 將附件原樣納入 `assets/venusaur-weakness-evolution.png`，Build 明確複製到 `dist/assets/`，但不把圖片插入首頁、文章或其他HTML，因此只可透過穩定的10e.org靜態資產URL直接讀取。保留原始1780×708畫面，不轉檔或縮放；回歸檢查可比較來源與dist位元組並保證頁面HTML不引用檔名。
+
+實作結果：PNG原樣公開於 `https://10e.org/assets/venusaur-weakness-evolution.png`，僅新增一個來源資產、一個dist資產及build複製與check斷言；全站139篇／142路由及既有dist檔案未變。commit `5254ce8`／Pages run `41608680394`成功；正式圖片200、image/png、183897 bytes，SHA256 `1d2ab1b94196eedd8a8acbbf06f6fd84d44d526e918d8e7b0399091648782d7e`與原檔相同。正式HTML與sitemap／manifest無圖片引用。
