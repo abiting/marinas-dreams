@@ -59,6 +59,10 @@ const faviconBytes = fs.readFileSync(faviconSource);
 if (faviconBytes.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' || faviconBytes.readUInt32BE(16) !== 192 || faviconBytes.readUInt32BE(20) !== 192) throw new Error('Favicon must be a 192x192 PNG');
 fs.copyFileSync(faviconSource, path.join(output, 'favicon.png'));
 
+// Public image asset only; deliberately not embedded in any page.
+const screenshotAsset = 'assets/venusaur-weakness-evolution.png';
+fs.copyFileSync(path.join(root, screenshotAsset), path.join(output, screenshotAsset));
+
 const assetNames = {};
 for (const name of ['styles.css', 'main.js']) {
   const bytes = fs.readFileSync(path.join(root, 'assets', name));

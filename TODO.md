@@ -205,3 +205,9 @@
 - [x] `http://10e.org/mt2/archives/200812/122337.php` 精確 HTTP 301 至 `https://10e.org/crouching-tiger-review/`，HTTP／HTTPS 均命中且不傳 query；只追加此 mapping，其他 Bulk／Dynamic 規則不更動，相鄰與子路徑維持真正 404。Cloudflare 授權按先前指示保留。
 
 完成證據：778 字六段日文影評及四來源引註通過完整 build/check 與唯讀整合審核，139 篇／142 路由不變、其他 138 篇資料與原 publishedAt 不變。內容 commit `929f8f5` 由 Pages run `41575429248` 成功部署；一般 UA 與 Googlebot 讀取更新頁回 200，正文、四個原文来源標題、canonical、Article、footer 和 sitemap 正確。Cloudflare 新 item `753c959d12324673843f7446d35d10ba`／operation `ce5ecd7cd31848b28bd0daee2c073dbb` 已 completed；HTTP／HTTPS 與 `?check=1` 全部 direct 301 至無 query 的文章，`122337x.php` 與 `122337.php/extra` 為 404。Bulk 清單為 11 筆、Bulk rule 1 條/version 1、Dynamic 10 條/version 10；benders 與小林尊轉址回歸不變，OAuth 暫留。
+
+## 使用者提供的圖片作為靜態網站資產（2026-11-03）
+- [x] 將使用者提供的PNG原樣放入網站可公開的靜態資產目錄，命名為 `assets/venusaur-weakness-evolution.png`；不裁切、不重新繪製，也不放進首頁、文章或任何可視版面。
+- [ ] Build 將原始檔複製至 `dist/assets/venusaur-weakness-evolution.png`，不產生HTML `<img>`或頁面引用；部署後直接網址 `https://10e.org/assets/venusaur-weakness-evolution.png`回200、`image/png`且圖檔位元組不變。既有文章數、路由和其他內容不變。
+
+本機驗收：原PNG與assets／dist完全相同（1780×708、183897 bytes、SHA256 `1d2ab1b94196eedd8a8acbbf06f6fd84d44d526e918d8e7b0399091648782d7e`）；build/check通過，139篇／142路由不变，既有dist檔案逐筆與HEAD相同，HTML／manifest／sitemap無圖片引用。待正式發布驗收。

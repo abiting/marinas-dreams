@@ -212,3 +212,6 @@ ESPN Watch及Apple TV均將片名列為`The Good, The Bad, The Hungry`，並列�
 ### 實作與驗收結果
 原 `crouching-tiger-review` 已更新為778字六段日文評論，兩個小標、四個已讀來源均有正文注碼，來源標題原文保留；既有 publishedAt `2026-10-17T09:18:45+08:00`、slug、其餘138篇資料與142條manifest不變。`PUBLIC_ORIGIN=https://10e.org npm run build`／`npm run check`和唯讀整合審核通過。內容 commit `929f8f5e582ebf193f479142c8c97285d1903deb`由Pages run `41575429248`成功部署。一般UA及Googlebot讀取正式更新頁皆200，canonical、Article日期、四個來源、正文、footer與sitemap正確。
 先完成文章正式HTTP驗收，再以現有list `a71cfa967ef34b54b37235cebe066279`的單筆陣列POST新增item `753c959d12324673843f7446d35d10ba`：`10e.org/mt2/archives/200812/122337.php` → `https://10e.org/crouching-tiger-review/`。operation `ce5ecd7cd31848b28bd0daee2c073dbb`已completed；301、include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix全false。讀回確認其餘10筆Bulk項目未變，account ruleset仍1條/version1、zone Dynamic仍10條/version10。HTTP／HTTPS來源及帶query測試均direct301至exact目標且無query；相鄰122337x.php與子路徑仍404，既有benders Dynamic及小林尊Bulk轉址不變。授權依先前指示保留。
+
+## 使用者提供的單張PNG靜態資產（2026-11-03）
+將附件原樣納入 `assets/venusaur-weakness-evolution.png`，Build 明確複製到 `dist/assets/`，但不把圖片插入首頁、文章或其他HTML，因此只可透過穩定的10e.org靜態資產URL直接讀取。保留原始1780×708畫面，不轉檔或縮放；回歸檢查可比較來源與dist位元組並保證頁面HTML不引用檔名。
