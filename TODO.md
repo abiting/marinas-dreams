@@ -200,6 +200,8 @@
 - [x] 將 `http://10e.org/mt/archives/200508/160103.php` 以精確HTTP 301轉至 `https://10e.org/the-good-the-bad-the-hungry-2019-review/`；HTTP與HTTPS均命中同一新頁、不傳query，只匹配指定host/path。Bulk list item `842ea3fbcd0e4725a9c6630e3091adc9`（operation `aa21379707be41b1abe86f4a99bfa86e`）已completed；HTTP／HTTPS與`?check=1`均為direct 301，兩個相鄰／子路徑為404，Bulk list為10筆、account Bulk rule為1條、zone Dynamic rules仍為10條/version 10。
 
 ## 臥虎藏龍／グリーン・デスティニー影評與舊 URL 301（2026-11-03）
-- [ ] 依使用者指定的《臥虎藏龍》（正式英文片名 Crouching Tiger, Hidden Dragon）撰寫查證後的日文影評。已有同片文章，更新 `crouching-tiger-review` 而不建立重複評論，保留既有網址及 publishedAt；其他 138 篇資料、全站 favicon、banner 與 footer 不變。本文六段、兩小標，沿用日文 500–800 字規格，正確辨識日本片名グリーン・デスティニー、2000 年、アン・リー與日本公開依據；來源按來源頁原文標題並有正文注碼，無虛構評分或私人觀影經驗。
-- [ ] 更新頁沿用既有 Article／Person、獨立 SEO title／description／keywords、10e.org canonical、OG／Twitter Card、manifest 與 sitemap。正式頁部署後回 200，評論維持 139 篇、公開路由 142 條。
-- [ ] `http://10e.org/mt2/archives/200812/122337.php` 精確 HTTP 301 至 `https://10e.org/crouching-tiger-review/`，HTTP／HTTPS 均命中且不傳 query；只追加此 mapping，其他 Bulk／Dynamic 規則不更動，相鄰與子路徑維持真正 404。Cloudflare 授權按先前指示保留。
+- [x] 依使用者指定的《臥虎藏龍》（正式英文片名 Crouching Tiger, Hidden Dragon）撰寫查證後的日文影評。已有同片文章，更新 `crouching-tiger-review` 而不建立重複評論，保留既有網址及 publishedAt；其他 138 篇資料、全站 favicon、banner 與 footer 不變。本文六段、兩小標，沿用日文 500–800 字規格，正確辨識日本片名グリーン・デスティニー、2000 年、アン・リー與日本公開依據；來源按來源頁原文標題並有正文注碼，無虛構評分或私人觀影經驗。
+- [x] 更新頁沿用既有 Article／Person、獨立 SEO title／description／keywords、10e.org canonical、OG／Twitter Card、manifest 與 sitemap。正式頁部署後回 200，評論維持 139 篇、公開路由 142 條。
+- [x] `http://10e.org/mt2/archives/200812/122337.php` 精確 HTTP 301 至 `https://10e.org/crouching-tiger-review/`，HTTP／HTTPS 均命中且不傳 query；只追加此 mapping，其他 Bulk／Dynamic 規則不更動，相鄰與子路徑維持真正 404。Cloudflare 授權按先前指示保留。
+
+完成證據：778 字六段日文影評及四來源引註通過完整 build/check 與唯讀整合審核，139 篇／142 路由不變、其他 138 篇資料與原 publishedAt 不變。內容 commit `929f8f5` 由 Pages run `41575429248` 成功部署；一般 UA 與 Googlebot 讀取更新頁回 200，正文、四個原文来源標題、canonical、Article、footer 和 sitemap 正確。Cloudflare 新 item `753c959d12324673843f7446d35d10ba`／operation `ce5ecd7cd31848b28bd0daee2c073dbb` 已 completed；HTTP／HTTPS 與 `?check=1` 全部 direct 301 至無 query 的文章，`122337x.php` 與 `122337.php/extra` 為 404。Bulk 清單為 11 筆、Bulk rule 1 條/version 1、Dynamic 10 條/version 10；benders 與小林尊轉址回歸不變，OAuth 暫留。
