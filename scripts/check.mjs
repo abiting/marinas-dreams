@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 139);
+assert.equal(content.reviews.length, 140);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -61,9 +61,10 @@ const newResearchSlugs = [
   'chaos-the-manson-murders-2025-review',
   'secret-life-of-pearls-2016-review',
   'the-good-the-bad-the-hungry-2019-review',
+  'underwater-2020-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All four requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All five requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -74,7 +75,7 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'the-good-the-bad-the-hungry-2019-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-1)?.slug, 'underwater-2020-review', 'New review is appended without rewriting earlier reviews');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -84,6 +85,15 @@ const hungryBody = newResearchReviews[3].paragraphs.join('');
 assert.ok(hungryBody.includes('敵役として描かれた'), 'Hungry keeps Kobayashi’s promotional-villain experience distinct from a scoreline');
 assert.ok(!/(星[1-5]|点満点|点をつけ|私[はが]|僕[はが]|鑑賞した|観ました)/.test(hungryBody), 'Hungry adds neither a fabricated rating nor a personal-viewing claim');
 assert.ok(!/小林尊[^。]*(敗者|輸家)/.test(hungryBody), 'Hungry does not reduce Kobayashi to a loser');
+const underwaterReview = newResearchReviews[4];
+assert.equal(content.reviews.filter(r => r.originalTitle === 'Underwater').length, 1, 'Exactly one Underwater review');
+assert.equal(underwaterReview.name, 'アンダーウォーター');
+assert.equal(underwaterReview.year, '2020');
+assert.equal(underwaterReview.director, 'ウィリアム・ユーバンク');
+assert.equal(underwaterReview.releaseYearBasis, '米国劇場公開年（2020年1月10日）');
+assert.equal(underwaterReview.collection, 'SF・怪物映画ノート');
+assert.deepEqual(underwaterReview.sources.map(ref => ref.title), ['Underwater', 'アンダーウォーター', 'Underwater', '‘Underwater’: Film Review']);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(underwaterReview)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -207,7 +217,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -304,6 +314,11 @@ assert.ok(archive.includes(taiwanGangsterCollection), 'Archive exposes the Taiwa
 assert.ok(archive.includes(animeCollection), 'Archive exposes the Japanese anime-film series');
 assert.ok(archive.includes('スポーツドキュメンタリー映画ノート'), 'Archive exposes the competitive-eating documentary review');
 assert.ok(manifest.routes.some(route => route.path === '/the-good-the-bad-the-hungry-2019-review/'), 'Competitive-eating review route is declared');
+assert.ok(archive.includes('SF・怪物映画ノート'), 'Archive exposes the Underwater collection');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/underwater-2020-review/`), 'Underwater route is declared');
+assert.ok(!fs.existsSync('dist/mt2/archives/200807/042305.php'), 'Underwater legacy source must not be emitted as static 200');
+const underwaterHtml = fs.readFileSync('dist/underwater-2020-review/index.html', 'utf8');
+for (const ref of underwaterReview.sources) assert.ok(decode(underwaterHtml).includes(`>${ref.title}</a>`), 'Underwater source titles stay in the original language');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -325,6 +340,7 @@ if (origin) {
   assert.ok(!sitemap.includes('about-marina'));
   assert.ok(sitemap.includes(`${origin}/`));
   assert.ok(sitemap.includes(`${origin}${basePath}/the-good-the-bad-the-hungry-2019-review/`), 'Competitive-eating review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/underwater-2020-review/`), 'Underwater review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

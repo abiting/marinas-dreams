@@ -222,3 +222,12 @@
 ## 指定Scrabby文章舊URL精確301（2026-11-04）
 - [x] 將 `http://10e.org/mt2/archives/200612/210159.php` 及HTTPS同路徑直接301至 `https://scrabby.abiting.cc/archives/299`；HTTP／HTTPS含`?probe=1`皆命中相同Location且query已丟棄，只匹配指定host/path。鄰近`210159x.php`及`210159.php/extra`回404，目標文章回200。
 - [x] 新增Bulk list item `f71638dcfe614b1ea12017d78005030d`；清單由11筆增至12筆、account Bulk rule仍1條、zone Dynamic Redirect仍10條/version 10。既有`200701/050537.php` Scrabby mapping與`benders.gif`回歸正常，未改動其他規則。
+
+## 《Underwater／深海終劫站》影評與指定舊URL精確301（2026-11-04）
+- [ ] 新增一篇 2020 年電影《アンダーウォーター》（原題 `Underwater`）的日文影評；中文「深海終劫站」只供辨識，不誤當日文正式片名。僅新增一篇，不修改既有 139 篇評論或既有文章URL。內容依查證來源撰寫，約 500–800 個日文字元、6 個段落、2 個 H2；不虛構評分或資料。新增唯一安全slug／文章URL、2–4 個來源引用，保留各來源的原文標題和原始 URL。新頁須維持既有 SEO、正式 canonical、Open Graph、Twitter Card、Article JSON-LD、sitemap 與 `dist/manus-routes.json` 規格；全站總數應精確增加至 140 篇／143 個公開路由，build/check 通過。
+- [ ] 新頁先部署並在正式站確認回應 200、canonical、Article 結構化資料及來源標題正確，再將使用者指定的 `http://10e.org/mt2/archives/200807/042305.php` 精確 HTTP 301 至該新文章正式 URL；同一路徑 HTTPS 亦須直接 301。query 不傳遞；相鄰 `042305x.php`、`042305.php/extra` 必須維持真正 404，其他未指定舊路徑保持 404。只新增此一筆 Cloudflare Bulk Redirect，不修改或刪除任何既有 Bulk/Dynamic 規則。
+
+
+## 後續：《從地心竄出》影評與指定舊URL精確301（2026-11-04）
+- [ ] 待《アンダーウォーター》影評正式上線、其指定301完成驗收後，再研究並新增一篇 1990 年電影《Tremors》（使用者中文辨識名《從地心竄出》）的日文影評。核實日本正式片名與來源原文標題／URL；只新增此片一篇，不改既有文章或URL，維持網站既有日文影評格式、SEO與Article結構化資料，正式頁先發布並確認200。
+- [ ] 將使用者指定的 `http://10e.org/mt2/archives/201007/270356.php` 和 HTTPS 同路徑精確直接301至該新文章正式URL；query 不傳遞，僅新增單一Bulk Redirect item。相鄰檔名與子路徑、其他未指定舊路徑均維持真正404；不改其他Bulk/Dynamic規則。

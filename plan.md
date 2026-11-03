@@ -227,3 +227,14 @@ ESPN Watch及Apple TV均將片名列為`The Good, The Bad, The Hungry`，並列�
 ## 2026-11-04 Scrabby article redirect
 
 Added one exact item to the existing account Bulk Redirect list `ten_e_exact_legacy_redirects`: source `10e.org/mt2/archives/200612/210159.php`, target `https://scrabby.abiting.cc/archives/299`, status 301, `include_subdomains:false`, `subpath_matching:false`, `preserve_query_string:false`, `preserve_path_suffix:false`. Item ID `f71638dcfe614b1ea12017d78005030d`; operation `b725a38b6ab94242b1d5d428904eb216` completed. The source is same-host exact; HTTP, HTTPS, and query-bearing variants returned direct 301 with the exact target and no query. The adjacent path and suffix remained 404; the target returned 200. The list now has 12 items, the account phase remains one Bulk rule, and the zone Dynamic ruleset remains at 10 rules/version 10; previous Scrabby and benders redirects passed regression checks.
+
+
+## Underwater影評與指定舊URL精確301（2026-11-04）
+
+追加一筆《アンダーウォーター》（原題 `Underwater`，2020）日文影評；「深海終劫站」是使用者提供的中文辨識名稱，不替代日本正式片名。依映画.com、20th Century Studios、Variety及RogerEbert.com已查讀來源撰寫，引用標題依各來源原文保留。沿用`src/content.json`既有評論物件與靜態頁建置器，確認slug唯一後只追加一筆；`scripts/check.mjs`更新至140篇／143個公開路由並核對新頁的Article資料、原文來源標題、canonical、SEO、sitemap和route manifest，既有139篇及原URL不變。
+
+使用者指定的 `http://10e.org/mt2/archives/200807/042305.php` 只在新文章先推送並正式部署、確認公開頁200後，才新增精確Cloudflare Bulk Redirect；同一路徑HTTPS亦直接301到該文章canonical，丟棄query。相鄰檔名與子路徑維持404，其他未指定舊路徑維持404。僅追加一筆item，不覆寫現有account Bulk規則或zone Dynamic Redirect ruleset。研究與標題查核筆記保存於repo外`/home/ubuntu/source-title-audit/underwater-2020-2026-11-04.md`。
+
+
+## 後續影評請求：《Tremors》（2026-11-04）
+使用者在Underwater進行中新增後續需求：待Underwater影評、上線和指定301完成後，再研究新增1990年《Tremors》（中文辨識名《從地心竄出》）日文影評。屆時先核實日本正式片名、年份和來源原文標題，單篇新增至既有生成器，不改先前文章URL；文章正式頁200後，才把精確指定的 `http://10e.org/mt2/archives/201007/270356.php`（含HTTPS）301至新文章canonical，丟棄query，鄰近及suffix路徑維持404，只加一個Bulk Redirect item。此階段排在Underwater部署及mapping驗收之後。
