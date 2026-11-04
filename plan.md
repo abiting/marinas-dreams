@@ -255,3 +255,8 @@ Tremors完成證據：内容commit `854ac0a0eba6d26e5a00af3895b9bd51c6d33774`／
 使用者要求再寫一篇《蟻人與黃蜂女：量子狂熱》，並將`http://10e.org/mt2/archives/200804/280059.php` 301至新文章。網站內容維持日文，正式片名／年份／導演及劇情需由日本電影資料與官方資料核實，評論再依專業來源補充類型分析；舊網址僅在新頁已發布且公開200後，才加入既有專用Bulk Redirect list的一筆精確mapping。保留HTTP／HTTPS雙scheme、query丟棄及相鄰／suffix 404，不改既有文章與Dynamic ruleset。
 
 Quantumania研究決策：使用Marvel日本官方的「アントマン＆ワスプ：クアントマニア」（含全形冒號），原題 `Ant-Man and the Wasp: Quantumania`，2023年、ペイトン・リード導演、日本劇場公開日2023年2月17日。映画.com所列片長125分；引用官方與映画.com各自原文片名表記，另附RogerEbert.com與Guardian已查讀影評。獨立slug `ant-man-and-the-wasp-quantumania-2023-review`，新增合理collection「スーパーヒーロー映画ノート」，不改原有collection的文章。沿用builder，只append一筆並保護既有141篇與metadata；check更新至142篇／145路由、來源題名與新頁精確斷言。本日截至此請求新增3篇，符合每日最多5篇偏好。研究筆記保存在repo外`/home/ubuntu/source-title-audit/quantumania-2023-2026-11-04.md`。
+
+
+Quantumania完成證據：commit `5283acd945bd946e5834406478d6ec7b0802d7ae`／Pages run `41744964049`成功部署。正文785字（去HTML／注碼／空白）、6段／2個section H2／4筆原文來源；既有141篇object与metadata不變，142篇／852段／145路由build/check及唯讀審核通過。正式`/ant-man-and-the-wasp-quantumania-2023-review/` 對一般訪客、Googlebot、Twitterbot皆200；原文來源題名、canonical、Article、manifest與sitemap確認完整。
+
+正式頁200後才追加Bulk item `c350858a20e54c3488726af316e3be82`，operation `5332f956366e4a688cc4837f4adfb941` completed：`10e.org/mt2/archives/200804/280059.php` → `https://10e.org/ant-man-and-the-wasp-quantumania-2023-review/`，301且include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix均false。讀回15筆、原14筆ID保留，Bulk1條version1／Dynamic10條version10原樣。HTTPS（含query）direct301且query丟棄，x.php、/extra及未指定xxx404。主Sandbox HTTP驗收遇Trustpositif網路過濾頁200，連舊的已驗收HTTP映射也受影響；未改任何網路或Cloudflare規則。獨立雲端環境正常requests GET確認指定HTTP與含query皆直接由Cloudflare回301至新頁（無query），HTTPS也正確；Underwater HTTP對照和benders HTTPS回歸通過。另一路公共抽取也從舊HTTP URL讀到正確新影評。原始失敗及獨立成功證據均保留repo外，OAuth仍保留。

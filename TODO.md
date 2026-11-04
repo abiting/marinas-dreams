@@ -238,5 +238,7 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 ## 《蟻人與黃蜂女：量子狂熱》日文影評與精確舊URL 301（2026-11-04）
-- [ ] 研究後新增一篇2023年《蟻人與黃蜂女：量子狂熱》日文影評，使用已查證的日本正式片名及原題；約500–800日文字元、6段、2個H2、2–4個已閱讀來源和完整注碼，保留來源原文標題與URL，不虛構評分、私人觀影經驗或未查證事實。僅新增一篇，既有141篇與其URL／內容不變；沿用全站SEO、canonical、OG、Twitter Card、Article／Person schema、sitemap與route manifest。新文章通過build/check後先推送並確認正式頁200；總數預期142篇／145個公開路由。
-- [ ] 文章正式上線後，將使用者指定 `http://10e.org/mt2/archives/200804/280059.php`（同路徑HTTPS亦命中）精確直接301至新文章canonical URL。HTTP／HTTPS含query的Location一致且丟棄query；相鄰 `280059x.php`、`280059.php/extra` 和其他未指定舊路徑仍為真正404。只新增一筆既有Cloudflare Bulk Redirect list item，不更動既有Bulk/Dynamic規則；保留Cloudflare OAuth。
+- [x] 研究後新增一篇2023年《蟻人與黃蜂女：量子狂熱》日文影評，使用已查證的日本正式片名及原題；約500–800日文字元、6段、2個H2、2–4個已閱讀來源和完整注碼，保留來源原文標題與URL，不虛構評分、私人觀影經驗或未查證事實。僅新增一篇，既有141篇與其URL／內容不變；沿用全站SEO、canonical、OG、Twitter Card、Article／Person schema、sitemap與route manifest。新文章通過build/check後先推送並確認正式頁200；總數預期142篇／145個公開路由。
+- [x] 文章正式上線後，將使用者指定 `http://10e.org/mt2/archives/200804/280059.php`（同路徑HTTPS亦命中）精確直接301至新文章canonical URL。HTTP／HTTPS含query的Location一致且丟棄query；相鄰 `280059x.php`、`280059.php/extra` 和其他未指定舊路徑仍為真正404。只新增一筆既有Cloudflare Bulk Redirect list item，不更動既有Bulk/Dynamic規則；保留Cloudflare OAuth。
+
+完成證據：正文785字、6段、2個section H2、4個已查讀原文來源；既有141篇object與metadata完全不變。build/check與唯讀整合審核通過142篇／852段／145公開路由。内容commit `5283acd`／Pages run `41744964049`成功，正式新頁對一般訪客、Googlebot與Twitterbot回200，canonical、Article、原文來源、145條manifest／sitemap完整。新頁上線後才新增Bulk item `c350858a20e54c3488726af316e3be82`，operation `5332f956366e4a688cc4837f4adfb941` completed。HTTPS含query直接301，x.php／extra／未指定xxx404；主環境HTTP測試收到Trustpositif網路過濾頁，獨立環境普通GET另確認HTTP及含query均為Cloudflare direct301至新頁且query丟棄，既有Underwater HTTP301與benders HTTPS301回歸正常。清單15筆、原14筆ID全保留，Bulk1條version1、Dynamic10條version10未變；OAuth保留。
