@@ -249,3 +249,9 @@ Tremors研究與實作決策：日本正式名「トレマーズ」、原題`Tre
 Tremors完成證據：内容commit `854ac0a0eba6d26e5a00af3895b9bd51c6d33774`／Pages run `41742719260`成功部署。新文731字（去HTML／注碼／空白）、6段／2個section headings／4來源，既有140篇與top-level metadata完全不變；build/check和唯讀審核通過141篇／846段／144路由。正式 `/tremors-1990-review/` 對一般訪客、Googlebot與Twitterbot均200，原文來源題名、canonical、Article、manifest與sitemap核對完整。
 
 正式頁公開後才POST新增精確item `f7864d6f685e4deaacbc9e0a29b4b377`，operation `2b20c223a04947bb97043ad9390e7f4e` completed，source `10e.org/mt2/archives/201007/270356.php` → `https://10e.org/tremors-1990-review/`，301且include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix均false。list14筆、原13筆ID保留；Bulk規則1條version1／Dynamic10條version10均未改。現場HTTP／HTTPS及兩者含query均direct301並丟棄query，x.php、/extra與未指定xxx均404，目標200；Scrabby和benders回歸正常。Cloudflare OAuth仍保留，不logout／撤銷。
+
+
+## Quantumania影評與指定舊URL精確301（2026-11-04）
+使用者要求再寫一篇《蟻人與黃蜂女：量子狂熱》，並將`http://10e.org/mt2/archives/200804/280059.php` 301至新文章。網站內容維持日文，正式片名／年份／導演及劇情需由日本電影資料與官方資料核實，評論再依專業來源補充類型分析；舊網址僅在新頁已發布且公開200後，才加入既有專用Bulk Redirect list的一筆精確mapping。保留HTTP／HTTPS雙scheme、query丟棄及相鄰／suffix 404，不改既有文章與Dynamic ruleset。
+
+Quantumania研究決策：使用Marvel日本官方的「アントマン＆ワスプ：クアントマニア」（含全形冒號），原題 `Ant-Man and the Wasp: Quantumania`，2023年、ペイトン・リード導演、日本劇場公開日2023年2月17日。映画.com所列片長125分；引用官方與映画.com各自原文片名表記，另附RogerEbert.com與Guardian已查讀影評。獨立slug `ant-man-and-the-wasp-quantumania-2023-review`，新增合理collection「スーパーヒーロー映画ノート」，不改原有collection的文章。沿用builder，只append一筆並保護既有141篇與metadata；check更新至142篇／145路由、來源題名與新頁精確斷言。本日截至此請求新增3篇，符合每日最多5篇偏好。研究筆記保存在repo外`/home/ubuntu/source-title-audit/quantumania-2023-2026-11-04.md`。

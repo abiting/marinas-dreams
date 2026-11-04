@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 141);
+assert.equal(content.reviews.length, 142);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -63,9 +63,10 @@ const newResearchSlugs = [
   'the-good-the-bad-the-hungry-2019-review',
   'underwater-2020-review',
   'tremors-1990-review',
+  'ant-man-and-the-wasp-quantumania-2023-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All six requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All seven requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -76,8 +77,9 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'tremors-1990-review', 'New review is appended without rewriting earlier reviews');
-assert.equal(content.reviews.at(-2)?.slug, 'underwater-2020-review', 'The preceding Underwater review is preserved');
+assert.equal(content.reviews.at(-1)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-2)?.slug, 'tremors-1990-review', 'The preceding Tremors review is preserved');
+assert.equal(content.reviews.at(-3)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -106,6 +108,16 @@ assert.equal(tremorsReview.edition, '1990年のシリーズ第1作（映画.com�
 assert.equal(tremorsReview.collection, 'SF・怪物映画ノート');
 assert.deepEqual(tremorsReview.sources.map(ref => ref.title), ['トレマーズ', 'Tremors', 'Tremors (1990) – Blu-ray Review', 'Tremors']);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(tremorsReview)));
+const quantumaniaReview = newResearchReviews[6];
+assert.equal(content.reviews.filter(r => r.originalTitle === 'Ant-Man and the Wasp: Quantumania').length, 1, 'Exactly one Quantumania review');
+assert.equal(quantumaniaReview.name, 'アントマン＆ワスプ：クアントマニア');
+assert.equal(quantumaniaReview.year, '2023');
+assert.equal(quantumaniaReview.director, 'ペイトン・リード');
+assert.equal(quantumaniaReview.releaseYearBasis, '日本劇場公開年（2023年2月17日）');
+assert.equal(quantumaniaReview.edition, '2023年のアントマン映画第3作（映画.com表記：125分）');
+assert.equal(quantumaniaReview.collection, 'スーパーヒーロー映画ノート');
+assert.deepEqual(quantumaniaReview.sources.map(ref => ref.title), ['アントマン＆ワスプ：クアントマニア', 'アントマン＆ワスプ クアントマニア', 'Ant-Man and the Wasp: Quantumania', 'Ant-Man and the Wasp: Quantumania review – mini Paul Rudd faces a threequel villain']);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(quantumaniaReview)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -229,7 +241,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -335,6 +347,11 @@ assert.ok(manifest.routes.some(route => route.path === `${basePath}/tremors-1990
 assert.ok(!fs.existsSync('dist/mt2/archives/201007/270356.php'), 'Tremors legacy source must not be emitted as static 200');
 const tremorsHtml = fs.readFileSync('dist/tremors-1990-review/index.html', 'utf8');
 for (const ref of tremorsReview.sources) assert.ok(decode(tremorsHtml).includes(`>${ref.title}</a>`), 'Tremors source titles stay in the original language');
+assert.ok(archive.includes('スーパーヒーロー映画ノート'), 'Archive exposes the Quantumania collection');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/ant-man-and-the-wasp-quantumania-2023-review/`), 'Quantumania route is declared');
+assert.ok(!fs.existsSync('dist/mt2/archives/200804/280059.php'), 'Quantumania legacy source must not be emitted as static 200');
+const quantumaniaHtml = fs.readFileSync('dist/ant-man-and-the-wasp-quantumania-2023-review/index.html', 'utf8');
+for (const ref of quantumaniaReview.sources) assert.ok(decode(quantumaniaHtml).includes(`>${ref.title}</a>`), 'Quantumania source titles stay in the original language');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -358,6 +375,7 @@ if (origin) {
   assert.ok(sitemap.includes(`${origin}${basePath}/the-good-the-bad-the-hungry-2019-review/`), 'Competitive-eating review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/underwater-2020-review/`), 'Underwater review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/tremors-1990-review/`), 'Tremors review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/ant-man-and-the-wasp-quantumania-2023-review/`), 'Quantumania review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
