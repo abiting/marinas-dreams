@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 144);
+assert.equal(content.reviews.length, 145);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -66,9 +66,10 @@ const newResearchSlugs = [
   'ant-man-and-the-wasp-quantumania-2023-review',
   'ghost-in-the-shell-1995-review',
   'satoyama-water-2004-review',
+  'god-of-gamblers-iii-back-to-shanghai-1991-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All nine requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All ten requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -79,11 +80,12 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'satoyama-water-2004-review', 'New review is appended without rewriting earlier reviews');
-assert.equal(content.reviews.at(-2)?.slug, 'ghost-in-the-shell-1995-review', 'The preceding Ghost in the Shell review is preserved');
-assert.equal(content.reviews.at(-3)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The earlier Quantumania review is preserved');
-assert.equal(content.reviews.at(-4)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
-assert.equal(content.reviews.at(-5)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
+assert.equal(content.reviews.at(-1)?.slug, 'god-of-gamblers-iii-back-to-shanghai-1991-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-2)?.slug, 'satoyama-water-2004-review', 'The preceding Satoyama review is preserved');
+assert.equal(content.reviews.at(-3)?.slug, 'ghost-in-the-shell-1995-review', 'The earlier Ghost in the Shell review is preserved');
+assert.equal(content.reviews.at(-4)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The earlier Quantumania review is preserved');
+assert.equal(content.reviews.at(-5)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
+assert.equal(content.reviews.at(-6)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -146,6 +148,18 @@ assert.equal(satoyamaReview.releaseYearBasis, '日本初回放送年（2004年4�
 assert.equal(satoyamaReview.collection, '日本の自然・環境ドキュメンタリー');
 assert.deepEqual(satoyamaReview.sources.map(ref => ref.title), ['ＮＨＫスペシャル 映像詩 里山 命めぐる水辺', '選『映像詩 里山 命めぐる水辺』', 'ＮＨＫスペシャル 映像詩 里山 命めぐる水辺', '「野山のくらし」特集']);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(satoyamaReview)));
+const shanghaiReview = newResearchReviews[9];
+assert.equal(content.reviews.filter(r => r.originalTitle === '賭俠2之上海灘賭聖').length, 1, 'Exactly one Shanghai gambling comedy review');
+assert.equal(shanghaiReview.name, 'ゴッド・ギャンブラー III');
+assert.equal(shanghaiReview.year, '1991');
+assert.equal(shanghaiReview.director, 'ウォン・ジン（王晶）');
+assert.equal(shanghaiReview.releaseYearBasis, '香港劇場初公開年（1991年8月22日）');
+assert.equal(shanghaiReview.edition, '1991年の香港映画（日本題：ゴッド・ギャンブラー III）');
+assert.equal(shanghaiReview.collection, '香港コメディ映画ノート');
+assert.deepEqual(shanghaiReview.productionCountries, ['香港']);
+assert.deepEqual(shanghaiReview.sources.map(ref => ref.title), ['God of Gamblers Part III: Back to Shanghai', 'ゴッド・ギャンブラー III', '【超清国语】上海滩赌圣周星星一技猴子偷桃完美化解无敌绝技霹雳追魂锁', '猴子偷桃']);
+assert.ok(shanghaiReview.paragraphs.join('').includes('サルの桃盗み（猴子偷桃）'), 'Requested classic slapstick move is discussed');
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(shanghaiReview)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -278,7 +292,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -402,6 +416,12 @@ for (const ref of satoyamaReview.sources) assert.ok(decode(satoyamaHtml).include
 assert.ok(satoyamaHtml.includes('<dt>制作</dt><dd>NHK・NHKエンタープライズ</dd>'));
 assert.ok(satoyamaHtml.includes('<dt>初回放送年</dt><dd>2004'));
 assert.ok(!satoyamaHtml.includes('監督名未確認'), 'Unknown director is not misrepresented in visible HTML or schema');
+assert.ok(archive.includes('香港コメディ映画ノート'), 'Archive exposes the Shanghai comedy collection');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/god-of-gamblers-iii-back-to-shanghai-1991-review/`), 'Shanghai comedy route is declared');
+assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy source must not be emitted as static 200');
+const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
+for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
+assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -428,6 +448,7 @@ if (origin) {
   assert.ok(sitemap.includes(`${origin}${basePath}/ant-man-and-the-wasp-quantumania-2023-review/`), 'Quantumania review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/ghost-in-the-shell-1995-review/`), 'Ghost in the Shell review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/satoyama-water-2004-review/`), 'Satoyama review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/god-of-gamblers-iii-back-to-shanghai-1991-review/`), 'Shanghai comedy review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

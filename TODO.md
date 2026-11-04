@@ -252,8 +252,10 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 完成證據：正文785字／6段／4來源；143篇／858段／146路由build/check及唯讀審核通過，既有142篇與metadata原樣。內容commit `0fece23`／Pages run `41747016909`成功，正式新頁200（普通訪客／Googlebot／Twitterbot）、來源原文題名、canonical／Article／146路由／sitemap完整。Bulk item `9431607770c943d1b05aef8b166b13a0`，operation `6882ef28e4a6483b9e632939983c1ced` completed；原15筆ID保留、現16筆，Bulk1條version1／Dynamic10條version10未變。HTTPS含query301、x.php／extra／xxx404、benders／Scrabby回歸通過；獨立環境普通GET確認HTTP及含query由Cloudflare直接301且query丟棄，Quantumania HTTP对照正確。OAuth保留。
 
 ## 後續一：《映像詩 里山 〜命めぐる水辺〜》與200904/072253.php（2026-11-04追加）
-- [ ] 完成1995年《攻殻機動隊》後新增日文《映像詩 里山 〜命めぐる水辺〜》影評。查核正式題名、首播／公開年、紀錄片或電視版身分與製作credit，不虛構導演或劇場上映資訊。正文500–800字、6段、2個section H2、2–4筆已查讀來源、原文標題／URL與注碼保留。只新增或若已有同版則完善該篇，保留其餘文章與URL／metadata；SEO、canonical、OG／Twitter、Article／Person、sitemap／manifest完整，先正式新頁200再轉址。
-- [ ] 按使用者本次明確指定，使 `http://10e.org/mt2/archives/200904/072253.php` 及HTTPS同路徑直接301至里山新頁；query丟棄，x.php／extra與未指定舊路徑404。此來源曾有中間設定與撤回更正，先唯讀查明目前是否存在；若仍404僅新增一筆，若确有既有項則只更新此項目，保留所有其他Bulk／Dynamic規則，不改ruleset與OAuth。
+- [x] 完成1995年《攻殻機動隊》後新增日文《映像詩 里山 〜命めぐる水辺〜》影評。查核正式題名、首播／公開年、紀錄片或電視版身分與製作credit，不虛構導演或劇場上映資訊。正文500–800字、6段、2個section H2、2–4筆已查讀來源、原文標題／URL與注碼保留。只新增或若已有同版則完善該篇，保留其餘文章與URL／metadata；SEO、canonical、OG／Twitter、Article／Person、sitemap／manifest完整，先正式新頁200再轉址。
+- [x] 按使用者本次明確指定，使 `http://10e.org/mt2/archives/200904/072253.php` 及HTTPS同路徑直接301至里山新頁；query丟棄，x.php／extra與未指定舊路徑404。此來源曾有中間設定與撤回更正，先唯讀查明目前是否存在；若仍404僅新增一筆，若确有既有項則只更新此項目，保留所有其他Bulk／Dynamic規則，不改ruleset與OAuth。
+
+完成證據：正文790字／6段／4筆原文來源，2004-04-03初回放送NHKスペシャル版，制作NHK・NHKエンタープライズ，Article.about正確TVEpisode／Organization／TVSeries，無假導演。build/check通過144篇／864段／147路由，原143篇data與articleHTML逐篇byte原樣。内容commit `97c609a`／Pages run `41748367416`成功，正式新頁普通訪客／Googlebot／Twitterbot皆200、canonical／來源原題／schema／manifest／sitemap通過。第17筆item `d4e81bc51b0a463a82a87bd281c4895e`，operation `4e893340508c42a2ba71d224a68815c8` completed；HTTP（獨立普通GET）及HTTPS含query direct301、query丟棄，x.php／extra／xxx404，benders／Scrabby與Ghost HTTP回歸正確。原16筆全保留，更正App來源200903/310230.php不變；Bulk1條version1／Dynamic10條version10不變，OAuth保留。
 
 ## 後續二：《賭俠2之上海灘賭聖》與200503/022253.php（2026-11-04追加）
 - [ ] 里山完成後新增日文《賭俠2之上海灘賭聖》影評，查核原題／英題／日本正式片名、1991年版本和製作資料。必須提到使用者指定的經典「サルの桃盗み（猴子偷桃）」招式，查核其電影脈絡，僅以非露骨的喜劇笑點評論，不描寫實際攻擊操作，也不編造台詞、時間碼或未查證角色。正文500–800字、6段、2個section H2、2–4筆已查讀來源、原文標題／URL及完整注碼；不虛構評分／私人觀影聲稱。只新增一篇（已有同版則保留URL修訂），其他文章與URL／metadata不變，沿用完整SEO、Article／Person、sitemap／manifest並先確認正式新頁200。
