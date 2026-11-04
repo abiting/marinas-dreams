@@ -307,3 +307,9 @@ Slotherhouse完成：實際6段正文795字（非另附摘要）、4已讀原題
 
 
 `hackedpage2/`前綴301完成：新增Bulk item `07f752b2ca424c65a49aa8255d27a9b7`／operation `1ae26909d1b1468eaf907f44ae23f36e` completed。source `10e.org/hackedpage2/`（尾斜線）→ `https://10e.org/the-uninvited-1944-review/`；subpath_matching=true、preserve_path_suffix=false、preserve_query_string=false、include_subdomains=false。Cloudflare官方reference確認prefix匹配語義。HTTPS目錄根、單層、巢狀與nested?probe=1均direct301到固定文章，不留suffix/query；獨立一般HTTP單層與nested query亦direct301。HTTPS近似prefix `/hackedpage2x/sample.php`、無尾slash `/hackedpage2`、`/hackedpage3/sample.php`及未指定`/mt2/archives/xxx`均404；HTTP對前兩者只執行zone原有scheme-upgrade301至自身HTTPS路徑，再最終404，沒有到評論頁。目標`/the-uninvited-1944-review/`200 canonical。Cloudflare list21 items，舊20 IDs全保留，Bulk1條version1、Dynamic10條version10未改；既有Vietnam HTTP、Scrabby HTTPS與benders redirect回歸正確。OAuth保留。
+
+
+<h2>2026-11-04《熊貓計劃》（Panda Plan）</h2>
+使用者明確追加此一篇日文影評及`10e.org/mt/archives/200512/050511.php`轉址。核實2024首部Panda Plan（原題／日本正式名／導演／上映版本），沿用網站日文6段500–800字、2H2、2–4已讀原文來源与中長尾keywords。研究稿／source audit存repo外；slug和collection待研究後確認、唯一碰撞保護，只append一筆，148篇／151路由。原147篇資料／metadata／文章URL和HTML逐頁保持，check只增加精確新片斷言。先push main→Pages成功→正式新頁200／SEO，再POST現有Bulk list唯一source，四flagsfalse且query丟棄；list21到22 items、Bulk1條version1／Dynamic10條version10不改，hackedpage2/前綴映射仍保留。此明確追加要求按目前授權處理，不自行建排程或改日文網站語言，Cloudflare OAuth保留。
+
+Panda Plan核實決策：日本配給Twins／映画.com共同「パンダプラン」、directorチャン・ルアン、中國2024製作、日本2026-01-23公開、99分。slug `panda-plan-2024-review`、collection「アクションコメディ映画ノート」，四已查讀原題sources「パンダプラン」（配給元）、「パンダプラン」（映画.com）、「Panda Plan (2024) Review」（The Action Elite）、「MAAC Review: Panda Plan」。正文評析本人役Jackie自我諷刺、practical身體喜劇與CG熊貓／人物腳本限制；年份用2024製作basis，日本公開2026註明。初稿版次有未核實續集日本2026公開說法已刪，首段查證旁白與工場fight護熊貓細節精確去除，其餘採研究證據不重新搜尋。唯一append一篇並保護原147篇data／HTML／URL，148篇151路由，先正式200再精確POST舊source；hackedpage2prefix回歸必保留。
