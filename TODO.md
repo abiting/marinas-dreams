@@ -300,3 +300,8 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 <h2>後續：《仲夏魘》（Midsommar，2019）研究影評</h2>
 - [x] 研究2019年《Midsommar》的日本正式片名／原題、導演、年份、發行版本與民俗恐怖脈絡；新增一篇日文評論（6段500–800字、2個H2、2–4筆已查讀來源及來源原文題名），正文必須明確含「生贄」，分析其敘事／主題作用，不僅列詞。只append一篇、不改其他文章URL／內容，保持初始SEO/canonical/OG/Twitter/Article/sitemap/manifest與無虛構評分或觀影經驗。年份依2019原始版，不混淆2020年日本上映或Director’s Cut；slug在查重後確定。
 完成證據：日本正式題『ミッドサマー』；2019年美國劇場版（147分），日本2020-02-21公開，另版171分Director’s Cut分清。日文正文504字／6段並明確以「生贄」分析共同體秩序與犠牲；4來源標題保留原文，Hårga為架空教團。149篇／894段／152路由build/check通過，原148篇data／metadata／文章HTML byte-identical；唯讀整合review PASS。文章commit `b504c8f49b9e48b51abd01fbf2971ad4826cfac8`／Pages run `41768090956`success；正式頁200，爬蟲首屏、canonical、source links、Article／Person、sitemap／robots與152 routes驗收通過。未新增任何legacy redirect；未指定舊路徑維持404。
+
+
+<h2>指定舊URL：200709/100347.php精確301</h2>
+- [x] 將使用者明確指定 `10e.org/mt2/archives/200709/100347.php`（HTTP／HTTPS）直接301至 `https://abiurl.me/sAAOui`；不保留query、路徑suffix、子網域或其他host。先確認目標可達及Bulk清單/source不存在，只新增一筆唯一mapping，保留現有23筆（含hackedpage2 prefix、Panda Plan與App mapping），Bulk仍1條version1、Dynamic仍10條version10。驗證HTTP／HTTPS含query的Location完全等於指定短網址；相鄰 `100347x.php`、`100347.php/extra` 和其他未指定舊路徑維持404。保持Cloudflare OAuth，不覆寫任何existing rule/list。
+完成證據：新增item `d5aa7ca3a9ee43749f3bdc1eea3725c8`、operation `53e03fcef78d425d89ac24dc708920e2` completed：`10e.org/mt2/archives/200709/100347.php`→`https://abiurl.me/sAAOui`，四flagsfalse。HTTP與HTTPS、含query皆direct301，Location完全等於短網址且不傳query；近似100347x.php、suffix `/extra`、未指定100348.php均404。HTTPS回歸App與Panda mapping通過，獨立HTTP也回歸二者。短網址本身另回301至`https://10e.org/midsommar-2019-review/`（頁面200），保留使用者指定的短網址作第一跳。原23items ID全保留，list24items、Bulk1條version1、Dynamic10條version10；OAuth保留。

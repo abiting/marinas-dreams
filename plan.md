@@ -330,3 +330,9 @@ Panda Plan完成：commit `02ff4fb3c992b8acbeeebb5d2eadd70874671aca`／Pages run
 Midsommar內容審核PASS：A24原始美國劇場公開日2019-07-03／作品年2019；日本正式片名『ミッドサマー』、日本上映2020-02-21，映画.com日本劇場版147分。A24另標明171分Director's Cut；不把該時長套用原劇場版。RogerEbert頁首140分與三方147／171版本資料衝突，不採用。Hårga寫成電影架空共同體，未代表真實瑞典民俗；日文評論明確分析「生贄」如何在共同體以秩序與歸屬為名把人身代價化。新review slug `midsommar-2019-review`、collection「フォークホラー映画ノート」、四筆來源標題／URL採原文，段落504字／6段／4 source IDs、兩H2；build/check PASS，149篇／894段／152 routes，原148篇data／metadata與已生成HTML逐篇byte-identical。只依使用者請求新增review，沒有指定任何舊URL，故不建Midsommar redirect；待Pages確認後完成TODO。
 
 正式Midsommar頁已部署驗收：commit `b504c8f49b9e48b51abd01fbf2971ad4826cfac8`／Pages run `41768090956`success，`https://10e.org/midsommar-2019-review/`200。production verifier讀到正文、四原文source links、canonical／og:url／Article author 10eKokoro、Googlebot／Twitterbot初始內容、manifest／sitemap／robots全部200，routes152且含新頁；本篇無使用者指定舊source，未建任何Cloudflare redirect，其他未知舊路徑仍404。TODO標記完成前版本研究、147／171分支及Hårga文化限制均有原始來源支持。
+
+
+2026-11-04 Midsommar完成後，使用者追加唯一redirect：`10e.org/mt2/archives/200709/100347.php`→`https://abiurl.me/sAAOui`。source限定完整pathname；scheme省略匹配HTTP／HTTPS，所有四個precision flags false（include_subdomains、subpath_matching、preserve_query_string、preserve_path_suffix），query丟棄。先確認abiurl目標可達與目前23筆Bulk items尚無此source，再增加一筆；保留目前的hackedpage2/ prefix、Panda Plan與App items，Bulk1／Dynamic10規則不變。HTTP／HTTPS直達301；x.php／suffix與其他未指定路徑404；不登出Cloudflare OAuth。
+
+
+2026-11-04指定abiurl redirect現場驗收完成。item `d5aa7ca3a9ee43749f3bdc1eea3725c8`／operation `53e03fcef78d425d89ac24dc708920e2`completed，`10e.org/mt2/archives/200709/100347.php`→`https://abiurl.me/sAAOui`，301及四flagsfalse。HTTP／HTTPS exact、含query均直接回301且Location保留使用者指定短網址原樣、query丟棄；相鄰100347x.php、suffix extra、未指定100348.php404。已確認短網址自身下一跳為301至`https://10e.org/midsommar-2019-review/`（200）；故保留短網址作第一跳，無替換目標。App archive 3263與Panda Plan mapping HTTP／HTTPS回歸PASS。第24筆後list24、舊23 IDs全保留，Bulk1version1／Dynamic10version10不變；Cloudflare OAuth保留。
