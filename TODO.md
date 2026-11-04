@@ -285,5 +285,11 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 <h2>《熊貓計劃》（Panda Plan）日文影評與指定舊URL精確301</h2>
-- [ ] 核實Panda Plan首部2024電影版本、日本正式片名、導演與公開資料，新增一篇日文影評：6段正文500–800字、builder兩個H2、2–4筆實際查讀來源且source標題保留原文、3–8中長尾keywords，完整初始HTML SEO／canonical https://10e.org／OG／Twitter／Article／sitemap／manifest。只append此一篇，不改原147篇data／metadata／articleURL；預期148篇／151路由。日本片名使用核實正式題，不把中文《熊貓計劃》自譯當官方日文名，不能混入續集或自造評分／私人觀影經歷。
-- [ ] 先發布新影評、Pages成功並確認正式200與SEO，再只將 `10e.org/mt/archives/200512/050511.php`（HTTP／HTTPS含query）direct301到新影評URL。include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix全false；query丟棄、相鄰050511x.php／050511.php/extra和未指定路徑仍404。新增前核對Bulk21筆且source不存在，保留原21筆（含hackedpage2/目錄前綴）、Bulk1條version1／Dynamic10條version10，不覆寫ruleset／不massredirect／不擴host。OAuth依前指示保留，完成紀錄安全提交既有main。
+- [x] 核實Panda Plan首部2024電影版本、日本正式片名、導演與公開資料，新增一篇日文影評：6段正文500–800字、builder兩個H2、2–4筆實際查讀來源且source標題保留原文、3–8中長尾keywords，完整初始HTML SEO／canonical https://10e.org／OG／Twitter／Article／sitemap／manifest。只append此一篇，不改原147篇data／metadata／articleURL；預期148篇／151路由。日本片名使用核實正式題，不把中文《熊貓計劃》自譯當官方日文名，不能混入續集或自造評分／私人觀影經歷。
+- [x] 先發布新影評、Pages成功並確認正式200與SEO，再只將 `10e.org/mt/archives/200512/050511.php`（HTTP／HTTPS含query）direct301到新影評URL。include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix全false；query丟棄、相鄰050511x.php／050511.php/extra和未指定路徑仍404。新增前核對Bulk21筆且source不存在，保留原21筆（含hackedpage2/目錄前綴）、Bulk1條version1／Dynamic10條version10，不覆寫ruleset／不massredirect／不擴host。OAuth依前指示保留，完成紀錄安全提交既有main。
+
+
+完成證據：日本片名パンダプラン、製作年2024／日本上映2026-01-23分開；日文正文751字／6段、4筆來源原文題名。148篇／888段／151路由build/check通過，原147篇data／metadata／HTML byte-identical。文章commit `02ff4fb`／Pages run `41765986891`success；正式頁200，normal／Googlebot／Twitterbot、來源／canonical／Article／manifest／sitemap驗收通過。其後僅新增item `86be7b2400004c23937ad7bec74f086f`、operation `1d002b382a094ea596ea66483e3f3a75`completed：`10e.org/mt/archives/200512/050511.php` → `https://10e.org/panda-plan-2024-review/`，四flagsfalse。HTTP/HTTPS direct301、query丟棄；x.php／extra／未指定xxx404，原有redirect及hackedpage2 prefix保持。Cloudflare原21筆ID全保留，22 items、Bulk1條version1、Dynamic10條version10。
+
+<h2>後續：指定App頁200511/260117精確301（Panda Plan完成後）</h2>
+- [ ] 僅在本次Panda Plan新文章先正式上線、`/mt/archives/200512/050511.php`→新文章的精確301完成後，再將使用者指定 `10e.org/mt/archives/200511/260117.php`（HTTP與HTTPS）直接301至 `https://app.abiting.cc/archives/3263`。query與路徑suffix不保留；相鄰260117x.php、260117.php/extra與其他未指定路徑仍404。執行前確認目標合理可達、Cloudflare list現有所有mapping保留，只新增一筆精確source，Bulk1條version1／Dynamic10條version10不變；不得提前執行，不修改其他mapping，OAuth保留。
