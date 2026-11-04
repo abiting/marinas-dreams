@@ -265,5 +265,12 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 ## 《早安越南》日文影評與指定舊URL精確301（2026-11-04）
-- [ ] 新增《Good Morning, Vietnam》（1987）一篇日文影評，核實日本正式片名、製作／初公開年與導演；6段正文500–800字、2個由builder產生的H2、2–4筆已查讀來源，來源題名保留原文。只append一篇，不改既有145篇內容／metadata／URL；完整首屏SEO、canonical https://10e.org、OG／Twitter／Article、manifest與sitemap。預期146篇／149路由，不虛構評分或私人觀影經歷。
-- [ ] 先發布並確認新文章正式200與SEO，再只將 `http://10e.org/mt2/archives/201005/040329.php`（及HTTPS）精確HTTP301到新文章正式URL。query丟棄、include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix全部false，相鄰`040329x.php`／`040329.php/extra`與其他未指定失效路徑保持真正404。新增前核對Bulk18筆來源不存在、Bulk1條version1與Dynamic10條version10不變，不覆寫／刪除任何ruleset或舊mapping。保留Cloudflare OAuth；文章新需求立即依序完成，不自動建立排程。
+- [x] 新增《Good Morning, Vietnam》（1987）一篇日文影評，核實日本正式片名、製作／初公開年與導演；6段正文500–800字、2個由builder產生的H2、2–4筆已查讀來源，來源題名保留原文。只append一篇，不改既有145篇內容／metadata／URL；完整首屏SEO、canonical https://10e.org、OG／Twitter／Article、manifest與sitemap。預期146篇／149路由，不虛構評分或私人觀影經歷。
+- [x] 先發布並確認新文章正式200與SEO，再只將 `http://10e.org/mt2/archives/201005/040329.php`（及HTTPS）精確HTTP301到新文章正式URL。query丟棄、include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix全部false，相鄰`040329x.php`／`040329.php/extra`與其他未指定失效路徑保持真正404。新增前核對Bulk18筆來源不存在、Bulk1條version1與Dynamic10條version10不變，不覆寫／刪除任何ruleset或舊mapping。保留Cloudflare OAuth；文章新需求立即依序完成，不自動建立排程。
+
+
+完成證據：日文正文784字／6段／2H2／3原文來源，D23核實1987-12-23首映、映画.com日本1988-10-08公開。146篇／876段／149路由build/check通過，原145篇data／metadata／articleHTML逐頁byte不變，唯讀整合審核PASS。內容commit `782c8de`／Pages run `41760672768`success，新頁正常訪客／Googlebot／Twitterbot200，原文引用題名／完整正文／canonical／Article／149manifest與sitemap驗收後，新增第19筆item `62dcd66b9a4a44c28b9d4acb38ca4cfd`、operation `057d224c4584487ea838551ffa1a5ee2`completed。HTTP獨立normalGET及HTTPS含query均direct301至https://10e.org/good-morning-vietnam-1987-review/，query丟棄；x.php／extra／xxx404，benders／ScrabbyHTTPS、上海灘賭聖HTTP回歸正確。原18筆ID全保留，Bulk1條version1／Dynamic10條version10不變，OAuth保留。
+
+## 後續：《樹懶殺三小》（Slotherhouse, 2023）日文影評與精確301
+- [ ] 仔細研究2023年Slotherhouse的正式日本片名（如無日本正式名則用核實原題，不亂譯）、導演、年份／版本與恐怖喜劇脈絡；新增一篇日文影評6段／500–800字／2H2、2–4筆已查讀來源，引用題名保留原文，長尾關鍵字、首屏SEO／canonical／OG／Twitter／Article／sitemap／manifest完整。只append此一篇，不改目前146篇或metadata與既有URL；預期147篇／150路由。無虛构評分／私人觀影經歷、不得把《樹懶殺三小》中文譯名當日本正式片名。
+- [ ] 《早安越南》全部完成後發布此新頁，確認正式200與SEO後，將 `http://10e.org/mt2/archives/200805/280244.php`（及HTTPS、含query）direct HTTP301到Slotherhouse新文正式URL。query丟棄、四旗標false，280244x.php／280244.php/extra與未指定路徑仍真正404。新增前核對Bulk19筆且來源不存在、Bulk1條version1／Dynamic10條version10保留；原19筆不覆寫或刪除，不擴張host／不mass redirect，OAuth保留。
