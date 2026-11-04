@@ -260,3 +260,14 @@ Quantumania研究決策：使用Marvel日本官方的「アントマン＆ワス
 Quantumania完成證據：commit `5283acd945bd946e5834406478d6ec7b0802d7ae`／Pages run `41744964049`成功部署。正文785字（去HTML／注碼／空白）、6段／2個section H2／4筆原文來源；既有141篇object与metadata不變，142篇／852段／145路由build/check及唯讀審核通過。正式`/ant-man-and-the-wasp-quantumania-2023-review/` 對一般訪客、Googlebot、Twitterbot皆200；原文來源題名、canonical、Article、manifest與sitemap確認完整。
 
 正式頁200後才追加Bulk item `c350858a20e54c3488726af316e3be82`，operation `5332f956366e4a688cc4837f4adfb941` completed：`10e.org/mt2/archives/200804/280059.php` → `https://10e.org/ant-man-and-the-wasp-quantumania-2023-review/`，301且include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix均false。讀回15筆、原14筆ID保留，Bulk1條version1／Dynamic10條version10原樣。HTTPS（含query）direct301且query丟棄，x.php、/extra及未指定xxx404。主Sandbox HTTP驗收遇Trustpositif網路過濾頁200，連舊的已驗收HTTP映射也受影響；未改任何網路或Cloudflare規則。獨立雲端環境正常requests GET確認指定HTTP與含query皆直接由Cloudflare回301至新頁（無query），HTTPS也正確；Underwater HTTP對照和benders HTTPS回歸通過。另一路公共抽取也從舊HTTP URL讀到正確新影評。原始失敗及獨立成功證據均保留repo外，OAuth仍保留。
+
+
+## Ghost in the Shell1995影評與指定舊URL 301（2026-11-04）
+已確認既有142篇中無此片，故只追加1995年押井守動畫長片，不混同2008年2.0版本或2017年真人電影；本日新增第4篇，仍符合最多5篇偏好。核實日本正式名、年份與製作資料，查讀可靠評論以身體、記憶、城市和身份為主軸；維持6段500–800字／2個section H2與來源原文題名。以新collection區分於數量固定5篇的既有日本動漫電影選輯；builder不改，source只append且保留142篇，check更新143篇／146路由。先發布正式新頁200，再精確把200707/120351.php（HTTP／HTTPS、query丟棄）301到新canonical，只POST一筆既有Bulk list item，未指定／相鄰／suffix仍404。
+
+研究與實作決策：日本正式名採 `GHOST IN THE SHELL / 攻殻機動隊`，原題 `Ghost in the Shell`、押井守導演、日本初公開1995年11月18日。movie資料頁的2025年是4K再上映，不改1995原年；edition明示1995劇場動畫版，80分僅依Production I.G／松竹表記。新增slug `ghost-in-the-shell-1995-review` 和collection「SFアニメーション映画ノート」，原有動漫5選數量不變。四引用為Production I.G、松竹、映画.com五所光太郎評論原文headline與RogerEbert30周年專文；研究筆記repo外`/home/ubuntu/source-title-audit/ghost-in-the-shell-1995-2026-11-04.md`。近期主Sandbox普通HTTP曾收到Trustpositif網路過濾，若仍有現場限制，用獨立環境普通請求驗收HTTP，不改DNS／網路或放寬規則。
+
+
+## 使用者追加：里山與上海灘賭聖（2026-11-04 08:24）
+先完成Ghost in the Shell的新頁與301，再依序發布《映像詩 里山 〜命めぐる水辺〜》和《賭俠2之上海灘賭聖》。後者需提「サルの桃盗み（猴子偷桃）」經典招式，以查證的非露骨喜劇分析呈現。用独立研究筆記準備題名／版本／年份與製作credit，避免把電視紀錄片當劇場長片，或把1991上海灘賭聖與其他賭俠混同；查不到具名導演不虛構。兩篇sourceappend、check新增精確斷言與數量，其他頁資料与URL不動。沿用main／Pages，毎頁先確認200才設精確Cloudflare301。
+200904/072253.php曾是中間設定而後續更正撤回；plan第190行記錄當時已404，故必須唯讀查清現有list，不能依早期片段或記憶直接覆寫。200503/022253.php則先查是否已有精確項。最新明確追加兩篇為本次工作，不自動建立隔日排程，也不讓舊每日篇數偏好阻止本次使用者明確要求。所有未指定相鄰與suffix仍404，OAuth保留。

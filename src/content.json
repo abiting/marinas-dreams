@@ -7183,6 +7183,70 @@
       "publishedAt": "2026-11-04",
       "modifiedAt": "2026-11-04",
       "readMinutes": 3
+    },
+    {
+      "slug": "ghost-in-the-shell-1995-review",
+      "title": "『GHOST IN THE SHELL / 攻殻機動隊』レビュー：身体と記憶の境界にいる私",
+      "name": "GHOST IN THE SHELL / 攻殻機動隊",
+      "fullName": "GHOST IN THE SHELL / 攻殻機動隊 (1995)",
+      "originalTitle": "Ghost in the Shell",
+      "year": "1995",
+      "director": "押井守",
+      "theme": "身体と記憶、自己の境界",
+      "seoTitle": "『攻殻機動隊』身体と記憶の境界を読む｜10eKokoro's Dream",
+      "description": "押井守監督の『GHOST IN THE SHELL / 攻殻機動隊』（1995）を読む。草薙素子の義体と記憶、緻密な都市美術、川井憲次の音楽から、機械と人間の境界を問い続けるSFアニメーションの魅力を考える。",
+      "subtitle": "身体を替え、記憶を書き換えても、私は私なのか",
+      "sectionHeadings": [
+        "追跡する者も、自分を確かめられない",
+        "都市と声が、問いに重さを与える"
+      ],
+      "paragraphs": [
+        "押井守の『GHOST IN THE SHELL / 攻殻機動隊』（1995）は、士郎正宗の漫画を原作とする劇場アニメだ。2029年、公安９課の草薙素子が謎のハッカー「人形使い」を追う。記憶や行動を操る事件は、捜査官自身の存在を揺さぶる。追跡劇が、私とは何かを確かめる時間へ変わっていく。<sup><a href=\"#source-1\">[1]</a></sup> <sup><a href=\"#source-2\">[2]</a></sup>",
+        "素子の強さは、迷いがないこととは違う。身体の大半が義体である彼女にとって、交換できる体と自分だけの記憶の間に、確かな境界はない。人形使いが他者の記憶へ侵入するなら、思い出さえ自分を保証しない。この疑いが、能力の高い主人公を遠い存在にせず、不安を持つ人として近づける。<sup><a href=\"#source-2\">[2]</a></sup> <sup><a href=\"#source-4\">[4]</a></sup>",
+        "都市の描写は、その問いを背景へ押しやらない。香港の取材をもとにした街並みは細部に満ち、人物の輪郭を巨大な環境の中へ置く。<sup><a href=\"#source-3\">[3]</a></sup>整った未来都市ではなく、生活の重なりを感じる景色だからこそ、体を機械に替えた人にも、そこに暮らす実感が生まれる。",
+        "川井憲次の音楽も、技術の世界を冷たさだけで包まない。合唱の響きが映像に加わると、義体を持つ人物の姿にも、説明では届かない重みが宿る。銃撃や追跡の緊張とは別の時間が流れ、観客は答えを急ぐより、その存在を見つめるようになる。映像と声が、哲学を感覚へ近づける。<sup><a href=\"#source-3\">[3]</a></sup>",
+        "一方、専門用語と長い対話が重なるため、事件の筋を追うだけでは置いていかれやすい。人物の感情も、分かりやすい告白としては差し出されない。しかし義体の実在感と動作の緊張があるので、思考だけが宙に浮かない。難しさを消さず、身体を通じて考えさせるところに、この映画の手応えがある。<sup><a href=\"#source-3\">[3]</a></sup>",
+        "人間と機械を単純な敵味方に分けない姿勢も重要だ。<sup><a href=\"#source-4\">[4]</a></sup>技術に支えられた素子が、それでも自分を問うからこそ、便利さの中に残る不安が見える。未来を予言したかどうかより、記憶と身体を頼りに生きる私たちへ、何を自分の根拠にするのかと問い返す。その静かな鋭さが、動きの迫力と並んで残る。"
+      ],
+      "sources": [
+        {
+          "id": "1",
+          "title": "GHOST IN THE SHELL/攻殻機動隊",
+          "url": "https://www.production-ig.co.jp/works/ghost-in-the-shell/"
+        },
+        {
+          "id": "2",
+          "title": "GHOST IN THE SHELL / 攻殻機動隊",
+          "url": "https://www.shochiku.co.jp/cinema/database/04433/"
+        },
+        {
+          "id": "3",
+          "title": "ハリウッドに影響を与えた日本アニメのマスターピース、哲学的な問いをエンタメに昇華",
+          "url": "https://eiga.com/movie/36406/critic/"
+        },
+        {
+          "id": "4",
+          "title": "The Puppet Master Was Right: “Ghost in the Shell” at 30",
+          "url": "https://www.rogerebert.com/far-flung-correspondents/the-puppet-master-was-right-ghost-in-the-shell-at-30"
+        }
+      ],
+      "collection": "SFアニメーション映画ノート",
+      "categoryLabel": "サイバーパンク・哲学的SF",
+      "productionCountries": [
+        "日本"
+      ],
+      "releaseYearBasis": "日本初公開年（1995年11月18日）",
+      "edition": "1995年の劇場アニメーション版（Production I.G・松竹表記：80分）",
+      "keywords": [
+        "攻殻機動隊 1995 映画レビュー",
+        "Ghost in the Shell 1995",
+        "押井守",
+        "草薙素子 義体 記憶",
+        "川井憲次 サイバーパンク"
+      ],
+      "publishedAt": "2026-11-04",
+      "modifiedAt": "2026-11-04",
+      "readMinutes": 3
     }
   ],
   "authorName": "10eKokoro",

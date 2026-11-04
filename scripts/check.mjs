@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 142);
+assert.equal(content.reviews.length, 143);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -64,9 +64,10 @@ const newResearchSlugs = [
   'underwater-2020-review',
   'tremors-1990-review',
   'ant-man-and-the-wasp-quantumania-2023-review',
+  'ghost-in-the-shell-1995-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All seven requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All eight requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -77,9 +78,10 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'New review is appended without rewriting earlier reviews');
-assert.equal(content.reviews.at(-2)?.slug, 'tremors-1990-review', 'The preceding Tremors review is preserved');
-assert.equal(content.reviews.at(-3)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
+assert.equal(content.reviews.at(-1)?.slug, 'ghost-in-the-shell-1995-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-2)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The preceding Quantumania review is preserved');
+assert.equal(content.reviews.at(-3)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
+assert.equal(content.reviews.at(-4)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -118,6 +120,17 @@ assert.equal(quantumaniaReview.edition, '2023年のアントマン映画第3作�
 assert.equal(quantumaniaReview.collection, 'スーパーヒーロー映画ノート');
 assert.deepEqual(quantumaniaReview.sources.map(ref => ref.title), ['アントマン＆ワスプ：クアントマニア', 'アントマン＆ワスプ クアントマニア', 'Ant-Man and the Wasp: Quantumania', 'Ant-Man and the Wasp: Quantumania review – mini Paul Rudd faces a threequel villain']);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(quantumaniaReview)));
+const ghostShellReview = newResearchReviews[7];
+assert.equal(content.reviews.filter(r => r.originalTitle === 'Ghost in the Shell').length, 1, 'Exactly one Ghost in the Shell1995 review');
+assert.equal(ghostShellReview.name, 'GHOST IN THE SHELL / 攻殻機動隊');
+assert.equal(ghostShellReview.year, '1995');
+assert.equal(ghostShellReview.director, '押井守');
+assert.equal(ghostShellReview.releaseYearBasis, '日本初公開年（1995年11月18日）');
+assert.equal(ghostShellReview.edition, '1995年の劇場アニメーション版（Production I.G・松竹表記：80分）');
+assert.equal(ghostShellReview.collection, 'SFアニメーション映画ノート');
+assert.deepEqual(ghostShellReview.productionCountries, ['日本']);
+assert.deepEqual(ghostShellReview.sources.map(ref => ref.title), ['GHOST IN THE SHELL/攻殻機動隊', 'GHOST IN THE SHELL / 攻殻機動隊', 'ハリウッドに影響を与えた日本アニメのマスターピース、哲学的な問いをエンタメに昇華', 'The Puppet Master Was Right: “Ghost in the Shell” at 30']);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|(?:私|僕)[はが][^。]{0,30}(?:観た|見た|観て|見て|鑑賞))/.test(JSON.stringify(ghostShellReview)), 'Philosophical first-person questions are not fabricated personal-viewing claims');
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -241,7 +254,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -352,6 +365,11 @@ assert.ok(manifest.routes.some(route => route.path === `${basePath}/ant-man-and-
 assert.ok(!fs.existsSync('dist/mt2/archives/200804/280059.php'), 'Quantumania legacy source must not be emitted as static 200');
 const quantumaniaHtml = fs.readFileSync('dist/ant-man-and-the-wasp-quantumania-2023-review/index.html', 'utf8');
 for (const ref of quantumaniaReview.sources) assert.ok(decode(quantumaniaHtml).includes(`>${ref.title}</a>`), 'Quantumania source titles stay in the original language');
+assert.ok(archive.includes('SFアニメーション映画ノート'), 'Archive exposes the Ghost in the Shell collection');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/ghost-in-the-shell-1995-review/`), 'Ghost in the Shell route is declared');
+assert.ok(!fs.existsSync('dist/mt2/archives/200707/120351.php'), 'Ghost in the Shell legacy source must not be emitted as static 200');
+const ghostShellHtml = fs.readFileSync('dist/ghost-in-the-shell-1995-review/index.html', 'utf8');
+for (const ref of ghostShellReview.sources) assert.ok(decode(ghostShellHtml).includes(`>${ref.title}</a>`), 'Ghost in the Shell source titles stay in the original language');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -376,6 +394,7 @@ if (origin) {
   assert.ok(sitemap.includes(`${origin}${basePath}/underwater-2020-review/`), 'Underwater review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/tremors-1990-review/`), 'Tremors review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/ant-man-and-the-wasp-quantumania-2023-review/`), 'Quantumania review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/ghost-in-the-shell-1995-review/`), 'Ghost in the Shell review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

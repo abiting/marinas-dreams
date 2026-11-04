@@ -242,3 +242,17 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 文章正式上線後，將使用者指定 `http://10e.org/mt2/archives/200804/280059.php`（同路徑HTTPS亦命中）精確直接301至新文章canonical URL。HTTP／HTTPS含query的Location一致且丟棄query；相鄰 `280059x.php`、`280059.php/extra` 和其他未指定舊路徑仍為真正404。只新增一筆既有Cloudflare Bulk Redirect list item，不更動既有Bulk/Dynamic規則；保留Cloudflare OAuth。
 
 完成證據：正文785字、6段、2個section H2、4個已查讀原文來源；既有141篇object與metadata完全不變。build/check與唯讀整合審核通過142篇／852段／145公開路由。内容commit `5283acd`／Pages run `41744964049`成功，正式新頁對一般訪客、Googlebot與Twitterbot回200，canonical、Article、原文來源、145條manifest／sitemap完整。新頁上線後才新增Bulk item `c350858a20e54c3488726af316e3be82`，operation `5332f956366e4a688cc4837f4adfb941` completed。HTTPS含query直接301，x.php／extra／未指定xxx404；主環境HTTP測試收到Trustpositif網路過濾頁，獨立環境普通GET另確認HTTP及含query均為Cloudflare direct301至新頁且query丟棄，既有Underwater HTTP301與benders HTTPS301回歸正常。清單15筆、原14筆ID全保留，Bulk1條version1、Dynamic10條version10未變；OAuth保留。
+
+
+## 《攻殼機動隊》（Ghost in the Shell, 1995）影評與指定舊URL 301（2026-11-04）
+- [ ] 研究後新增一篇1995年押井守動畫電影《攻殼機動隊》日文影評，明確區別2008年2.0重製與2017年真人版。使用核實的日本正式片名／原題／公開年和導演，正文500–800日文字元、6段、2個H2，2–4個已查讀來源且注碼完整、引用題名和URL保留原文。不虛構評分／私人觀影經驗；只新增一篇，既有142篇與文章URL／metadata不變，不更動既有「日本アニメ映画名作5選」的5篇數量。沿用SEO、canonical、OG／Twitter、Article／Person、sitemap與route manifest，build/check通過；預期143篇／146個公開路由，正式新頁先發布確認200。
+- [ ] 新文章正式上線後，將 `http://10e.org/mt2/archives/200707/120351.php` 與HTTPS同路徑精確直接301至新頁canonical。HTTP／HTTPS含query皆相同Location且query丟棄；相鄰 `120351x.php`、`120351.php/extra`及其他未指定舊路徑仍為真正404。只追加一筆既有Cloudflare Bulk list item，不修改／刪除其他Bulk或Dynamic規則；OAuth依使用者指示保留。
+
+
+## 後續一：《映像詩 里山 〜命めぐる水辺〜》與200904/072253.php（2026-11-04追加）
+- [ ] 完成1995年《攻殻機動隊》後新增日文《映像詩 里山 〜命めぐる水辺〜》影評。查核正式題名、首播／公開年、紀錄片或電視版身分與製作credit，不虛構導演或劇場上映資訊。正文500–800字、6段、2個section H2、2–4筆已查讀來源、原文標題／URL與注碼保留。只新增或若已有同版則完善該篇，保留其餘文章與URL／metadata；SEO、canonical、OG／Twitter、Article／Person、sitemap／manifest完整，先正式新頁200再轉址。
+- [ ] 按使用者本次明確指定，使 `http://10e.org/mt2/archives/200904/072253.php` 及HTTPS同路徑直接301至里山新頁；query丟棄，x.php／extra與未指定舊路徑404。此來源曾有中間設定與撤回更正，先唯讀查明目前是否存在；若仍404僅新增一筆，若确有既有項則只更新此項目，保留所有其他Bulk／Dynamic規則，不改ruleset與OAuth。
+
+## 後續二：《賭俠2之上海灘賭聖》與200503/022253.php（2026-11-04追加）
+- [ ] 里山完成後新增日文《賭俠2之上海灘賭聖》影評，查核原題／英題／日本正式片名、1991年版本和製作資料。必須提到使用者指定的經典「サルの桃盗み（猴子偷桃）」招式，查核其電影脈絡，僅以非露骨的喜劇笑點評論，不描寫實際攻擊操作，也不編造台詞、時間碼或未查證角色。正文500–800字、6段、2個section H2、2–4筆已查讀來源、原文標題／URL及完整注碼；不虛構評分／私人觀影聲稱。只新增一篇（已有同版則保留URL修訂），其他文章與URL／metadata不變，沿用完整SEO、Article／Person、sitemap／manifest並先確認正式新頁200。
+- [ ] 新文章上線後將 `http://10e.org/mt/archives/200503/022253.php` 與HTTPS同路徑精確直接301至該新頁。HTTP／HTTPS含query皆相同Location且query丟棄，x.php／extra和未指定路徑真正404；只增加或更新這一個精確來源，保留其他Bulk／Dynamic規則及OAuth。
