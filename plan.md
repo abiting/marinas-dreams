@@ -319,3 +319,9 @@ Panda Plan核實決策：日本配給Twins／映画.com共同「パンダプラ�
 
 
 Panda Plan完成：commit `02ff4fb3c992b8acbeeebb5d2eadd70874671aca`／Pages run `41765986891`success；正文751字、4個已讀原文來源；148篇／888段／151路由check通過，原147篇data／metadata／HTML byte-identical。正式頁200，Googlebot／Twitterbot200，首屏／canonical／Article／151 manifest／sitemap通過。之後唯一新增item `86be7b2400004c23937ad7bec74f086f`，operation `1d002b382a094ea596ea66483e3f3a75`completed；source `10e.org/mt/archives/200512/050511.php`→`https://10e.org/panda-plan-2024-review/`，四flagsfalse。HTTP／HTTPS direct301含query，Location固定且query丟棄；x.php／extra／xxx404，原hackedpage2與21條舊mapping保留；list22items、Bulk1version1、Dynamic10version10。使用者指定的App URL 200511/260117已記在TODO；遵守「Panda Plan完成後再執行」，將待在本完成commit／Pages成功後開始處理。OAuth保留。
+
+
+使用者追加《仲夏魘》（Midsommar，2019）影評，要求明確提到「生贄」。已列為後續TODO；獨立研究其日本正式名／發行版本及可信批評，6段500–800日文，不把2020日本上映或Director’s Cut誤作原作年份／版本；在完成當前指定App 301後整合並發布，不改其他舊URL。來源題名保持原文，論述需解釋生贄在故事／主題中的作用，不只塞入單詞。
+
+
+使用者後續App轉址已依次完成：Panda Plan文章與指定source均部署／驗收完畢後才執行。app.abiting.cc/archives/3263目標200。只新增item `0131c4efcaae4744bfca1fd354b57aac`／operation `dca3128c1e5444678e456a18bc79fdfc` completed，`10e.org/mt/archives/200511/260117.php`→`https://app.abiting.cc/archives/3263`，四flagsfalse。HTTP／HTTPS直接301且丟棄query；HTTPS neighbor `260117x.php`、suffix `/extra`、unspecified `260118.php`均404；Panda Plan先前mapping保持。list23 items（舊22 IDs全保留）、Bulk1ruleversion1／Dynamic10rulesversion10不變；OAuth保留。下一個內容項是已研究的Midsommar影評。
