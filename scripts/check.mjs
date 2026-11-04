@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 143);
+assert.equal(content.reviews.length, 144);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -65,9 +65,10 @@ const newResearchSlugs = [
   'tremors-1990-review',
   'ant-man-and-the-wasp-quantumania-2023-review',
   'ghost-in-the-shell-1995-review',
+  'satoyama-water-2004-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All eight requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All nine requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -78,10 +79,11 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'ghost-in-the-shell-1995-review', 'New review is appended without rewriting earlier reviews');
-assert.equal(content.reviews.at(-2)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The preceding Quantumania review is preserved');
-assert.equal(content.reviews.at(-3)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
-assert.equal(content.reviews.at(-4)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
+assert.equal(content.reviews.at(-1)?.slug, 'satoyama-water-2004-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-2)?.slug, 'ghost-in-the-shell-1995-review', 'The preceding Ghost in the Shell review is preserved');
+assert.equal(content.reviews.at(-3)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The earlier Quantumania review is preserved');
+assert.equal(content.reviews.at(-4)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
+assert.equal(content.reviews.at(-5)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -131,6 +133,19 @@ assert.equal(ghostShellReview.collection, 'SFアニメーション映画ノー�
 assert.deepEqual(ghostShellReview.productionCountries, ['日本']);
 assert.deepEqual(ghostShellReview.sources.map(ref => ref.title), ['GHOST IN THE SHELL/攻殻機動隊', 'GHOST IN THE SHELL / 攻殻機動隊', 'ハリウッドに影響を与えた日本アニメのマスターピース、哲学的な問いをエンタメに昇華', 'The Puppet Master Was Right: “Ghost in the Shell” at 30']);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|(?:私|僕)[はが][^。]{0,30}(?:観た|見た|観て|見て|鑑賞))/.test(JSON.stringify(ghostShellReview)), 'Philosophical first-person questions are not fabricated personal-viewing claims');
+const satoyamaReview = newResearchReviews[8];
+assert.equal(content.reviews.filter(r => r.originalTitle === '映像詩 里山 命めぐる水辺').length, 1, 'Exactly one Satoyama water documentary review');
+assert.equal(satoyamaReview.name, '映像詩 里山 命めぐる水辺');
+assert.equal(satoyamaReview.year, '2004');
+assert.equal(satoyamaReview.director, '監督名未確認', 'Never invent a named director from planning or production credits');
+assert.equal(satoyamaReview.workType, 'TVEpisode');
+assert.deepEqual(satoyamaReview.productionCompanies, ['NHK', 'NHKエンタープライズ']);
+assert.equal(satoyamaReview.broadcastDate, '2004-04-03');
+assert.equal(satoyamaReview.partOfSeries, 'NHKスペシャル');
+assert.equal(satoyamaReview.releaseYearBasis, '日本初回放送年（2004年4月3日）');
+assert.equal(satoyamaReview.collection, '日本の自然・環境ドキュメンタリー');
+assert.deepEqual(satoyamaReview.sources.map(ref => ref.title), ['ＮＨＫスペシャル 映像詩 里山 命めぐる水辺', '選『映像詩 里山 命めぐる水辺』', 'ＮＨＫスペシャル 映像詩 里山 命めぐる水辺', '「野山のくらし」特集']);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(satoyamaReview)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -249,12 +264,21 @@ for (const routeInfo of manifest.routes) {
     const review = content.reviews.find(r => `/${r.slug}/` === logicalRoute);
     assert.ok(review && review.paragraphs.length === 6 && review.sectionHeadings.length === 2);
     assert.ok((japanese(review.name) || review.collection === animeCollection || newResearchSlugs.includes(review.slug)) && japanese(review.director) && review.paragraphs.every(japanese));
+    assert.equal(article.about['@type'], review.workType || 'Movie', `${route}: correct film or TV work type`);
+    if (review.productionCompanies?.length) {
+      assert.ok(!('director' in article.about), `${route}: unknown director is not fabricated as a Person`);
+      assert.deepEqual(article.about.productionCompany, review.productionCompanies.map(name => ({ '@type': 'Organization', name })));
+      assert.equal(article.about.datePublished, review.broadcastDate);
+      assert.deepEqual(article.about.partOfSeries, { '@type': 'TVSeries', name: review.partOfSeries });
+    } else {
+      assert.deepEqual(article.about.director, { '@type': 'Person', name: review.director });
+    }
     for (const ref of review.sources) assert.ok(decode(html).includes(`href="${ref.url}"`), `${route}: reference URL retained`);
     if (review.slug === 'inception-review') {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -370,6 +394,14 @@ assert.ok(manifest.routes.some(route => route.path === `${basePath}/ghost-in-the
 assert.ok(!fs.existsSync('dist/mt2/archives/200707/120351.php'), 'Ghost in the Shell legacy source must not be emitted as static 200');
 const ghostShellHtml = fs.readFileSync('dist/ghost-in-the-shell-1995-review/index.html', 'utf8');
 for (const ref of ghostShellReview.sources) assert.ok(decode(ghostShellHtml).includes(`>${ref.title}</a>`), 'Ghost in the Shell source titles stay in the original language');
+assert.ok(archive.includes('日本の自然・環境ドキュメンタリー'), 'Archive exposes the Satoyama collection');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/satoyama-water-2004-review/`), 'Satoyama route is declared');
+assert.ok(!fs.existsSync('dist/mt2/archives/200904/072253.php'), 'Satoyama legacy source must not be emitted as static 200');
+const satoyamaHtml = fs.readFileSync('dist/satoyama-water-2004-review/index.html', 'utf8');
+for (const ref of satoyamaReview.sources) assert.ok(decode(satoyamaHtml).includes(`>${ref.title}</a>`), 'Satoyama source titles stay in the original language');
+assert.ok(satoyamaHtml.includes('<dt>制作</dt><dd>NHK・NHKエンタープライズ</dd>'));
+assert.ok(satoyamaHtml.includes('<dt>初回放送年</dt><dd>2004'));
+assert.ok(!satoyamaHtml.includes('監督名未確認'), 'Unknown director is not misrepresented in visible HTML or schema');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -395,6 +427,7 @@ if (origin) {
   assert.ok(sitemap.includes(`${origin}${basePath}/tremors-1990-review/`), 'Tremors review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/ant-man-and-the-wasp-quantumania-2023-review/`), 'Quantumania review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/ghost-in-the-shell-1995-review/`), 'Ghost in the Shell review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/satoyama-water-2004-review/`), 'Satoyama review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

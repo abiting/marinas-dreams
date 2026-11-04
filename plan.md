@@ -271,3 +271,8 @@ Quantumania完成證據：commit `5283acd945bd946e5834406478d6ec7b0802d7ae`／Pa
 ## 使用者追加：里山與上海灘賭聖（2026-11-04 08:24）
 先完成Ghost in the Shell的新頁與301，再依序發布《映像詩 里山 〜命めぐる水辺〜》和《賭俠2之上海灘賭聖》。後者需提「サルの桃盗み（猴子偷桃）」經典招式，以查證的非露骨喜劇分析呈現。用独立研究筆記準備題名／版本／年份與製作credit，避免把電視紀錄片當劇場長片，或把1991上海灘賭聖與其他賭俠混同；查不到具名導演不虛構。兩篇sourceappend、check新增精確斷言與數量，其他頁資料与URL不動。沿用main／Pages，毎頁先確認200才設精確Cloudflare301。
 200904/072253.php曾是中間設定而後續更正撤回；plan第190行記錄當時已404，故必須唯讀查清現有list，不能依早期片段或記憶直接覆寫。200503/022253.php則先查是否已有精確項。最新明確追加兩篇為本次工作，不自動建立隔日排程，也不讓舊每日篇數偏好阻止本次使用者明確要求。所有未指定相鄰與suffix仍404，OAuth保留。
+
+
+Ghost完成：commit `0fece236516fc65832c2748abd4790b92e9801e0`／Pages run `41747016909`成功，正式頁200及146路由／來源原題／Article／canonical／sitemap驗收通過。正文785字、6段、4來源，143篇／858段，舊142篇与metadata保持。第16筆item `9431607770c943d1b05aef8b166b13a0`，operation `6882ef28e4a6483b9e632939983c1ced` completed。HTTPS含query與独立環境普通HTTP含query皆direct301到新頁且丟棄query；x.php／extra／未指定xxx404，benders／Scrabby HTTPS與Quantumania HTTP回歸正常。Bulk原15筆保留且16筆、1條version1，Dynamic10條version10未改，OAuth保留。
+
+里山研究：正式播出名「映像詩 里山 命めぐる水辺」，NHKスペシャル2004年4月3日初回放送（49分），不是1999年第一作，也不是2005再放送／里山II商品版。監督名官方未確認，放送ライブラリー明示制作NHK・NHKエンタープライズ，不把今森光彦企画或制作統括當導演。採slug `satoyama-water-2004-review`、collection「日本の自然・環境ドキュメンタリー」，將TVEpisode／制作会社／初回放送年作為單篇opt-in metadata；builder default維持既有Movie與監督欄，旧143頁输出必須逐頁byte不變，僅里山增加correctTVEpisode about schema和真实productionCompany，不创建假「監督名未確認」Person。正式頁200後才新增200904/072253.php精確301，該source現無mapping，不覆寫200903/310230.php→app映射。

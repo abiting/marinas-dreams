@@ -245,9 +245,11 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 ## 《攻殼機動隊》（Ghost in the Shell, 1995）影評與指定舊URL 301（2026-11-04）
-- [ ] 研究後新增一篇1995年押井守動畫電影《攻殼機動隊》日文影評，明確區別2008年2.0重製與2017年真人版。使用核實的日本正式片名／原題／公開年和導演，正文500–800日文字元、6段、2個H2，2–4個已查讀來源且注碼完整、引用題名和URL保留原文。不虛構評分／私人觀影經驗；只新增一篇，既有142篇與文章URL／metadata不變，不更動既有「日本アニメ映画名作5選」的5篇數量。沿用SEO、canonical、OG／Twitter、Article／Person、sitemap與route manifest，build/check通過；預期143篇／146個公開路由，正式新頁先發布確認200。
-- [ ] 新文章正式上線後，將 `http://10e.org/mt2/archives/200707/120351.php` 與HTTPS同路徑精確直接301至新頁canonical。HTTP／HTTPS含query皆相同Location且query丟棄；相鄰 `120351x.php`、`120351.php/extra`及其他未指定舊路徑仍為真正404。只追加一筆既有Cloudflare Bulk list item，不修改／刪除其他Bulk或Dynamic規則；OAuth依使用者指示保留。
+- [x] 研究後新增一篇1995年押井守動畫電影《攻殼機動隊》日文影評，明確區別2008年2.0重製與2017年真人版。使用核實的日本正式片名／原題／公開年和導演，正文500–800日文字元、6段、2個H2，2–4個已查讀來源且注碼完整、引用題名和URL保留原文。不虛構評分／私人觀影經驗；只新增一篇，既有142篇與文章URL／metadata不變，不更動既有「日本アニメ映画名作5選」的5篇數量。沿用SEO、canonical、OG／Twitter、Article／Person、sitemap與route manifest，build/check通過；預期143篇／146個公開路由，正式新頁先發布確認200。
+- [x] 新文章正式上線後，將 `http://10e.org/mt2/archives/200707/120351.php` 與HTTPS同路徑精確直接301至新頁canonical。HTTP／HTTPS含query皆相同Location且query丟棄；相鄰 `120351x.php`、`120351.php/extra`及其他未指定舊路徑仍為真正404。只追加一筆既有Cloudflare Bulk list item，不修改／刪除其他Bulk或Dynamic規則；OAuth依使用者指示保留。
 
+
+完成證據：正文785字／6段／4來源；143篇／858段／146路由build/check及唯讀審核通過，既有142篇與metadata原樣。內容commit `0fece23`／Pages run `41747016909`成功，正式新頁200（普通訪客／Googlebot／Twitterbot）、來源原文題名、canonical／Article／146路由／sitemap完整。Bulk item `9431607770c943d1b05aef8b166b13a0`，operation `6882ef28e4a6483b9e632939983c1ced` completed；原15筆ID保留、現16筆，Bulk1條version1／Dynamic10條version10未變。HTTPS含query301、x.php／extra／xxx404、benders／Scrabby回歸通過；獨立環境普通GET確認HTTP及含query由Cloudflare直接301且query丟棄，Quantumania HTTP对照正確。OAuth保留。
 
 ## 後續一：《映像詩 里山 〜命めぐる水辺〜》與200904/072253.php（2026-11-04追加）
 - [ ] 完成1995年《攻殻機動隊》後新增日文《映像詩 里山 〜命めぐる水辺〜》影評。查核正式題名、首播／公開年、紀錄片或電視版身分與製作credit，不虛構導演或劇場上映資訊。正文500–800字、6段、2個section H2、2–4筆已查讀來源、原文標題／URL與注碼保留。只新增或若已有同版則完善該篇，保留其餘文章與URL／metadata；SEO、canonical、OG／Twitter、Article／Person、sitemap／manifest完整，先正式新頁200再轉址。
