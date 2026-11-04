@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 148);
+assert.equal(content.reviews.length, 149);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -70,9 +70,10 @@ const newResearchSlugs = [
   'good-morning-vietnam-1987-review',
   'slotherhouse-2023-review',
   'panda-plan-2024-review',
+  'midsommar-2019-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All thirteen requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All fourteen requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -83,15 +84,16 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'panda-plan-2024-review', 'New review is appended without rewriting earlier reviews');
-assert.equal(content.reviews.at(-2)?.slug, 'slotherhouse-2023-review', 'The preceding Slotherhouse review is preserved');
-assert.equal(content.reviews.at(-3)?.slug, 'good-morning-vietnam-1987-review', 'The earlier Vietnam review is preserved');
-assert.equal(content.reviews.at(-4)?.slug, 'god-of-gamblers-iii-back-to-shanghai-1991-review', 'The earlier Shanghai review is preserved');
-assert.equal(content.reviews.at(-5)?.slug, 'satoyama-water-2004-review', 'The earlier Satoyama review is preserved');
-assert.equal(content.reviews.at(-6)?.slug, 'ghost-in-the-shell-1995-review', 'The earlier Ghost in the Shell review is preserved');
-assert.equal(content.reviews.at(-7)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The earlier Quantumania review is preserved');
-assert.equal(content.reviews.at(-8)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
-assert.equal(content.reviews.at(-9)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
+assert.equal(content.reviews.at(-1)?.slug, 'midsommar-2019-review', 'New review is appended without rewriting earlier reviews');
+assert.equal(content.reviews.at(-2)?.slug, 'panda-plan-2024-review', 'The preceding Panda Plan review is preserved');
+assert.equal(content.reviews.at(-3)?.slug, 'slotherhouse-2023-review', 'The preceding Slotherhouse review is preserved');
+assert.equal(content.reviews.at(-4)?.slug, 'good-morning-vietnam-1987-review', 'The earlier Vietnam review is preserved');
+assert.equal(content.reviews.at(-5)?.slug, 'god-of-gamblers-iii-back-to-shanghai-1991-review', 'The earlier Shanghai review is preserved');
+assert.equal(content.reviews.at(-6)?.slug, 'satoyama-water-2004-review', 'The earlier Satoyama review is preserved');
+assert.equal(content.reviews.at(-7)?.slug, 'ghost-in-the-shell-1995-review', 'The earlier Ghost in the Shell review is preserved');
+assert.equal(content.reviews.at(-8)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The earlier Quantumania review is preserved');
+assert.equal(content.reviews.at(-9)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
+assert.equal(content.reviews.at(-10)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -202,6 +204,18 @@ assert.deepEqual(pandaReview.productionCountries, ['中国']);
 assert.deepEqual(pandaReview.sources.map(ref => ref.title), ['パンダプラン', 'パンダプラン', 'Panda Plan (2024) Review', 'MAAC Review: Panda Plan']);
 assert.ok(!('plainbody' in pandaReview), 'Count actual six-paragraph review, not a separate summary');
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(pandaReview)));
+const midsommarReview = newResearchReviews[13];
+assert.equal(content.reviews.filter(r => r.originalTitle === 'Midsommar').length, 1, 'Exactly one Midsommar review');
+assert.equal(midsommarReview.name, 'ミッドサマー');
+assert.equal(midsommarReview.year, '2019');
+assert.equal(midsommarReview.director, 'アリ・アスター');
+assert.equal(midsommarReview.releaseYearBasis, '米国劇場公開年（2019年7月3日。日本公開：2020年2月21日）');
+assert.equal(midsommarReview.edition, "2019年のオリジナル劇場公開版（日本公開版：147分）。A24が案内する171分のDirector's Cutとは別版。");
+assert.equal(midsommarReview.collection, 'フォークホラー映画ノート');
+assert.deepEqual(midsommarReview.productionCountries, ['アメリカ合衆国', 'スウェーデン']);
+assert.deepEqual(midsommarReview.sources.map(ref => ref.title), ['Midsommar', 'ミッドサマー', 'Midsommar review – outrageous black-comic carnival of agony', "Myth-busting Midsommar: why today's shockers need to do more with folk horror"]);
+assert.ok(midsommarReview.paragraphs.join('').includes('生贄'), 'Requested 生贄 theme is explicitly discussed');
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(midsommarReview)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -334,7 +348,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -464,7 +478,7 @@ assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy
 const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
 for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
 assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
-assert.equal(manifest.routes.length, 151, '148 reviews plus three site pages');
+assert.equal(manifest.routes.length, 152, '149 reviews plus three site pages');
 assert.ok(archive.includes('戦争とユーモアの映画ノート'), 'Archive exposes the Vietnam film collection');
 assert.ok(manifest.routes.some(route => route.path === `${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam route is declared');
 assert.ok(!fs.existsSync('dist/mt2/archives/201005/040329.php'), 'Vietnam legacy source must not be emitted as static 200');
@@ -480,6 +494,11 @@ assert.ok(manifest.routes.some(route => route.path === `${basePath}/panda-plan-2
 assert.ok(!fs.existsSync('dist/mt/archives/200512/050511.php'), 'Panda legacy source must not be emitted as static 200');
 const pandaHtml = fs.readFileSync('dist/panda-plan-2024-review/index.html', 'utf8');
 for (const ref of pandaReview.sources) assert.ok(decode(pandaHtml).includes(`>${ref.title}</a>`), 'Panda Plan source titles stay in the original language');
+assert.ok(archive.includes('フォークホラー映画ノート'), 'Archive exposes the Midsommar collection');
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/midsommar-2019-review/`), 'Midsommar route is declared');
+const midsommarHtml = fs.readFileSync('dist/midsommar-2019-review/index.html', 'utf8');
+for (const ref of midsommarReview.sources) assert.ok(decode(midsommarHtml).includes(`>${ref.title}</a>`), 'Midsommar source titles stay in the original language');
+assert.ok(midsommarHtml.includes('生贄'), 'Requested Midsommar theme is in the initial HTML');
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -510,6 +529,7 @@ if (origin) {
   assert.ok(sitemap.includes(`${origin}${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/slotherhouse-2023-review/`), 'Slotherhouse review is in sitemap');
   assert.ok(sitemap.includes(`${origin}${basePath}/panda-plan-2024-review/`), 'Panda Plan review is in sitemap');
+  assert.ok(sitemap.includes(`${origin}${basePath}/midsommar-2019-review/`), 'Midsommar review is in sitemap');
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

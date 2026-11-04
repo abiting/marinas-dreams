@@ -325,3 +325,6 @@ Panda Plan完成：commit `02ff4fb3c992b8acbeeebb5d2eadd70874671aca`／Pages run
 
 
 使用者後續App轉址已依次完成：Panda Plan文章與指定source均部署／驗收完畢後才執行。app.abiting.cc/archives/3263目標200。只新增item `0131c4efcaae4744bfca1fd354b57aac`／operation `dca3128c1e5444678e456a18bc79fdfc` completed，`10e.org/mt/archives/200511/260117.php`→`https://app.abiting.cc/archives/3263`，四flagsfalse。HTTP／HTTPS直接301且丟棄query；HTTPS neighbor `260117x.php`、suffix `/extra`、unspecified `260118.php`均404；Panda Plan先前mapping保持。list23 items（舊22 IDs全保留）、Bulk1ruleversion1／Dynamic10rulesversion10不變；OAuth保留。下一個內容項是已研究的Midsommar影評。
+
+
+Midsommar內容審核PASS：A24原始美國劇場公開日2019-07-03／作品年2019；日本正式片名『ミッドサマー』、日本上映2020-02-21，映画.com日本劇場版147分。A24另標明171分Director's Cut；不把該時長套用原劇場版。RogerEbert頁首140分與三方147／171版本資料衝突，不採用。Hårga寫成電影架空共同體，未代表真實瑞典民俗；日文評論明確分析「生贄」如何在共同體以秩序與歸屬為名把人身代價化。新review slug `midsommar-2019-review`、collection「フォークホラー映画ノート」、四筆來源標題／URL採原文，段落504字／6段／4 source IDs、兩H2；build/check PASS，149篇／894段／152 routes，原148篇data／metadata與已生成HTML逐篇byte-identical。只依使用者請求新增review，沒有指定任何舊URL，故不建Midsommar redirect；待Pages確認後完成TODO。
