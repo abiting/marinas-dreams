@@ -262,3 +262,8 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 新文章上線後將 `http://10e.org/mt/archives/200503/022253.php` 與HTTPS同路徑精確直接301至該新頁。HTTP／HTTPS含query皆相同Location且query丟棄，x.php／extra和未指定路徑真正404；只增加或更新這一個精確來源，保留其他Bulk／Dynamic規則及OAuth。
 
 完成證據：1991年香港電影、日本題ゴッド・ギャンブラー III、原中文題保留，正文780字／6段／4原文來源，指定「サルの桃盗み（猴子偷桃）」已於首屏HTML正文呈現，未編造台詞／時間碼。145篇／870段／148路由build/check通過，舊144篇data與HTML逐頁byte不變；最初e54350e的139篇、metadata與articleHTML亦逐頁原樣。內容commit `ef6871f`／Pages run `41749434835`成功，新頁普通訪客／Googlebot／Twitterbot200，來源原題／canonical／Article／manifest／sitemap通過後才新增第18筆item `5a750947f05148498851bf94e5da4697`、operation `481ef44b734444168dd672d2131b72a6`completed。來源是/mt/archives/200503/022253.php（不是/mt2），HTTP（獨立普通GET）及HTTPS含query direct301至新頁、query丟棄；x.php／extra／xxx404，benders／Scrabby HTTPS及里山HTTP回歸正確。原17筆ID全保留，Bulk1條version1／Dynamic10條version10不變，OAuth保留。
+
+
+## 《早安越南》日文影評與指定舊URL精確301（2026-11-04）
+- [ ] 新增《Good Morning, Vietnam》（1987）一篇日文影評，核實日本正式片名、製作／初公開年與導演；6段正文500–800字、2個由builder產生的H2、2–4筆已查讀來源，來源題名保留原文。只append一篇，不改既有145篇內容／metadata／URL；完整首屏SEO、canonical https://10e.org、OG／Twitter／Article、manifest與sitemap。預期146篇／149路由，不虛構評分或私人觀影經歷。
+- [ ] 先發布並確認新文章正式200與SEO，再只將 `http://10e.org/mt2/archives/201005/040329.php`（及HTTPS）精確HTTP301到新文章正式URL。query丟棄、include_subdomains／subpath_matching／preserve_query_string／preserve_path_suffix全部false，相鄰`040329x.php`／`040329.php/extra`與其他未指定失效路徑保持真正404。新增前核對Bulk18筆來源不存在、Bulk1條version1與Dynamic10條version10不變，不覆寫／刪除任何ruleset或舊mapping。保留Cloudflare OAuth；文章新需求立即依序完成，不自動建立排程。
