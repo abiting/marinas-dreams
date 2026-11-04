@@ -7636,6 +7636,71 @@
       "publishedAt": "2026-11-04",
       "modifiedAt": "2026-11-04",
       "readMinutes": 3
+    },
+    {
+      "slug": "flow-2024-review",
+      "title": "『Flow』レビュー：言葉を持たない猫が、他者と生きることを学ぶ",
+      "name": "Flow",
+      "fullName": "Flow / Straume（2024）",
+      "originalTitle": "Straume",
+      "year": "2024",
+      "director": "ギンツ・ジルバロディス",
+      "theme": "洪水に漂う動物たちの視点から、孤独と信頼、違いを抱えた共生を描く",
+      "seoTitle": "『Flow』猫の漂流と無言の共生を読む｜10eKokoro's Dream",
+      "description": "2024年のアニメーション映画『Flow』を、猫の低い視点、台詞のない動物たちの仕草、洪水と小舟の空間、Blenderの映像設計から読む。ラトビア・フランス・ベルギー合作、85分。日本公開は2025年3月14日。",
+      "subtitle": "同じ言葉がなくても、同じ舟に乗れるのか",
+      "sectionHeadings": [
+        "猫の目線と、言葉を使わない物語",
+        "違いを残したまま、ともに流れる"
+      ],
+      "paragraphs": [
+        "『Flow』はギンツ・ジルバロディス監督の2024年作で、原題は『Straume』。ラトビア、フランス、ベルギーによる85分のアニメーションだ。日本では2025年3月14日に公開された。洪水に住処を奪われた猫が、異なる動物たちの乗る小舟へ逃げ込み、孤独な生存から協力へ踏み出す。<sup><a href=\"#source-2\">[2]</a></sup> <sup><a href=\"#source-3\">[3]</a></sup>",
+        "台詞がないことは、感情が薄いことではない。猫の警戒する姿勢、犬の近づき方、カピバラの落ち着きが、関係の距離を伝える。動物を人間の台詞の代役にせず、仕草の違いに笑いと緊張を宿すため、共感は説明を理解するより先に身体の反応から生まれる。<sup><a href=\"#source-4\">[4]</a></sup>",
+        "カメラは猫の高さへ降り、動きながら空間をたどる。水位の上昇や足場の消失が、風景の変化ではなく、身体に迫る危険として感じられる。美しい水面に心を奪われても、その下には沈んだ世界がある。景色を眺める楽しさと、そこに居続けられない不安が重なる。<sup><a href=\"#source-4\">[4]</a></sup>",
+        "Blenderで作られた映像は、毛並みの細密さだけで生命を競わない。動きの説得力と、光や水が広げる奥行きが、簡潔な造形を生きた存在へ変える。小舟という限られた場所では、他者との距離を選び直す動作そのものが物語になる。<sup><a href=\"#source-1\">[1]</a></sup> <sup><a href=\"#source-4\">[4]</a></sup>",
+        "協力は、皆が同じ性格になることではない。警戒や執着を抱えたまま、相手を頼る必要が生まれる。監督が本作のチーム制作を、信頼を学ぶ猫の旅に重ねる言葉も興味深い。助け合いを美しい標語で済ませず、違う存在と場所を分け合う難しさとして見せる。<sup><a href=\"#source-1\">[1]</a></sup> <sup><a href=\"#source-4\">[4]</a></sup>",
+        "洪水の原因や人間の不在を説明しきらないため、世界の謎に明快な答えを求めると距離を感じるかもしれない。ただ、その余白を環境への警告だけに閉じないことが本作の強さだ。漂流の不確かさは消えなくても、隣の命へ手を伸ばすことはできる。『Flow』はかわいい猫の冒険を、言葉の外で他者を信じる映画へ深めている。<sup><a href=\"#source-3\">[3]</a></sup> <sup><a href=\"#source-4\">[4]</a></sup>"
+      ],
+      "sources": [
+        {
+          "id": "1",
+          "title": "映画『Flow』公式サイト | 2025年3月14日（金）よりTOHOシネマズ日比谷ほか全国公開",
+          "url": "https://flow-movie.com/"
+        },
+        {
+          "id": "2",
+          "title": "Flow",
+          "url": "https://eiga.com/movie/102556/"
+        },
+        {
+          "id": "3",
+          "title": "FLOW",
+          "url": "https://www.festival-cannes.com/en/f/flow/"
+        },
+        {
+          "id": "4",
+          "title": "Flow: charming animal odyssey turns its limited resources into strengths",
+          "url": "https://www.bfi.org.uk/sight-and-sound/reviews/flow-charming-animal-odyssey-turns-its-limited-resources-into-strengths"
+        }
+      ],
+      "collection": "国際アニメーション映画ノート",
+      "categoryLabel": "洪水の世界を猫の視点でたどる無対話アニメーション",
+      "productionCountries": [
+        "ラトビア",
+        "フランス",
+        "ベルギー"
+      ],
+      "releaseYearBasis": "製作年（2024年。日本公開：2025年3月14日）",
+      "edition": "2024年のギンツ・ジルバロディス監督作（日本劇場公開版：85分、台詞なし）",
+      "keywords": [
+        "Flow Straume 映画",
+        "Flow 猫 洪水",
+        "ギンツ・ジルバロディス",
+        "台詞なし アニメーション",
+        "Blender 映画 共生"
+      ],
+      "publishedAt": "2026-11-04T13:55:29+08:00",
+      "modifiedAt": "2026-11-04T13:55:29+08:00"
     }
   ],
   "authorName": "10eKokoro",

@@ -336,3 +336,12 @@ Midsommar內容審核PASS：A24原始美國劇場公開日2019-07-03／作品年
 
 
 2026-11-04指定abiurl redirect現場驗收完成。item `d5aa7ca3a9ee43749f3bdc1eea3725c8`／operation `53e03fcef78d425d89ac24dc708920e2`completed，`10e.org/mt2/archives/200709/100347.php`→`https://abiurl.me/sAAOui`，301及四flagsfalse。HTTP／HTTPS exact、含query均直接回301且Location保留使用者指定短網址原樣、query丟棄；相鄰100347x.php、suffix extra、未指定100348.php404。已確認短網址自身下一跳為301至`https://10e.org/midsommar-2019-review/`（200）；故保留短網址作第一跳，無替換目標。App archive 3263與Panda Plan mapping HTTP／HTTPS回歸PASS。第24筆後list24、舊23 IDs全保留，Bulk1version1／Dynamic10version10不變；Cloudflare OAuth保留。
+
+
+2026-11-04新增《喵的奇幻漂流》（Flow）任務：沿用現有靜態JSON review資料／HTML build，不重建框架。以已研究來源確認作品及日本正式題名、版本和製作credit；使用原文source titles，正文依本站6段500–800字／兩H2規格，新增唯一slug與最貼切既有collection（若無則使用準確窄分類），以`src/content.json`單筆append。`scripts/check.mjs`延續所有舊斷言並更新總數150 reviews／153 routes；生成SEO／JSON-LD／sitemap／manus-routes後檢查，不動既有149篇與URL。使用者明確指定舊路徑`/mt2/archives/200705/160244.php`→新Flow頁，按先部署後轉址；部署頁先正式200，Cloudflare目前已知list24 items、Bulk1／Dynamic10，只在唯讀基線再次核實且source不存在時新增一條exact mapping，四個include-subdomains／subpath／query／suffix flags全部false。HTTP／HTTPS連含querydirect 301；相鄰與suffix仍404；不覆寫／刪除既有24個項目或ruleset，保留OAuth。
+
+Flow研究完成：日本正式題與英題都保留『Flow』、原題Straume（映画.com核對），作品年2024製作／85分／ラトビア・フランス・ベルギー合作，日本2025-03-14公開；導演ギンツ・ジルバロディス。日本發行方ファインフィルムズ，不用初查猜測GAGA；本片是團隊Blender製作，未誤稱單人製作或無聲電影。選唯一slug `flow-2024-review`、新collection「国際アニメーション映画ノート」，不加進日本固定動漫5選或SF collection。使用日本官方H1原文、映画.com「Flow」、Cannes「FLOW」、BFI已讀H1「Flow: charming animal odyssey turns its limited resources into strengths」（非search snippet改寫）；以低位鏡頭、動物非台詞式表情／行為、協作與水景的魅力／危險並置分析，不把洪水因由、宗教寓言／人類下落認作被影片說明的事實。
+
+Flow內容新增整合：6段實際747字、4sources均有對應sourceIDs引用，SEO title符合30–60字／description符合50–160字範圍，build/checkPASS150篇／900段／153routes；JSsyntax/diffcheck通過。與HEAD相比原149篇JSON／metadata／每篇HTML逐頁byte-identical，只有新Flow與首頁、archive、manifest、sitemap必要變化及check/TODO/plan。TODO僅appendFlow新條件，不改歷史。先讀取newarticle整合review，確認正式Pages部署後才新增唯一Cloudflare exact mapping。
+
+Flow唯讀審核內容／sources／H2／SEO／153routesPASS；未設定legacy mapping符合本任務「部署頁200後才新增」階段，沒有提前宣告301完成。審核識別新文原先缺publishedAt／modifiedAt使builderfallback到舊站日期；修正僅在Flow JSON加入2026-11-04本次實際timestamp兩欄，並增加datePublished／dateModified／visiblebyline／sitemap lastmod專屬assertions，不改builder或舊149篇日期。既有未知路徑仍按正式站404，不因agent提到本地fallback改寬鬆routing。
