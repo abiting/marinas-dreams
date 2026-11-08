@@ -338,3 +338,8 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 兩目標已由獨立網路確認200；核對Cloudflare 28筆基線、兩source不存在、Dynamic不重疊。操作後確認operation完成、恰新增兩筆、HTTP／HTTPS含query Location正確、未指定路徑404、Bulk／Dynamic規則不變並保留OAuth。
 
 完成證據：兩個目標均200，短網址 `https://abiurl.me/BKKWr5` 第一跳後301到 `https://10e.org/suspiria-1977-review/` 並200。Cloudflare bulk operation `7757337fd1c2494199ed678165aa42e8` completed，只新增Diana item `8089db5bcfae4f7daf94db460fc0bb02` 與Suspiria item `12ac87e160da48c8b7ff5f46e31faeb5`；list 28→30，原28項全保留，Bulk 1/version1、Dynamic 10/version10未變。普通GET獨立驗收兩來源HTTP／HTTPS含query皆直接301至各自精確目標且query丟棄；Diana近似／suffix及Suspiria近似／suffix皆404。Cloudflare OAuth未登出或撤銷。
+
+
+## 《杉原千畝》（2015）日文影評與指定舊URL精確301
+- [ ] 研究並新增2015年電影《杉原千畝 スギハラチウネ》一篇日文影評，六段正文總長500–800字、2–4筆已查讀來源保留原文題名／URL，查核導演／上映版本並區分電影敘事與歷史史實。不虛構評分或觀影經歷，使用相關中長尾SEO關鍵字。只append一篇，不改既有150篇資料／網址；使用實際本次發布日期，首屏HTML／canonical／OG／Twitter／Article schema／sitemap／154路由完整。
+- [ ] 新文章正式發布並驗收200後，才將使用者指定 `http://10e.org/flashchiune/chiune.htm`（同host HTTPS亦命中）精確直接301至新文章https正式URL；query丟棄，子網域／子路徑／尾綴不匹配，相鄰及未指定舊路徑維持真正404。只新增一筆Cloudflare Bulk Redirect，原30項／Bulk1條及Dynamic10條均保留，不撤銷OAuth。

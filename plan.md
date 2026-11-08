@@ -371,3 +371,9 @@ Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩
 
 <h3>Diana與Suspiria兩筆精確301完成</h3>
 兩目標均200。Cloudflare一次bulk operation `7757337fd1c2494199ed678165aa42e8` completed，只新增兩筆：item `8089db5bcfae4f7daf94db460fc0bb02`，`10e.org/samcimg3/diana3.jpg`→`https://10e.org/one-missed-call-2004-review/`；item `12ac87e160da48c8b7ff5f46e31faeb5`，`10e.org/mt2/archives/200804/240055.php`→使用者最後指定的`https://abiurl.me/BKKWr5`。兩者HTTP／HTTPS含query皆直接301至精確Location且不傳query；近似／suffix四種邊界都404。獨立GET確認short URL本身301至`https://10e.org/suspiria-1977-review/`且該頁200。list30，舊28 items保留；Bulk1/version1、Dynamic10/version10不變；Cloudflare OAuth未登出或撤銷。
+
+
+## 杉原千畝（2015）單篇與flashchiune指定舊URL
+沿用src/content.json append-only及既有靜態builder，研究2015年日本傳記電影的官方版本、戲劇敘事與命のビザ史實，六段日文500–800字、來源原題、正式日期與中長尾SEO。候選slug `sugihara-chiune-2015-review`；只新增此篇，保留150篇及既有article URL。GitHub Pages指定commit成功且正式新頁200／SEO驗收後，才將 `/flashchiune/chiune.htm` 精確301到新頁，不擴大匹配子路徑；Cloudflare以30筆list基線append一筆，保留Bulk1與Dynamic10及OAuth。
+
+杉原千畝定稿：正式題「杉原千畝 スギハラチウネ」、國際題PERSONA NON GRATA、2015年12月5日日本公開、チェリン・グラック執導、139分；新分類「歴史・伝記映画ノート」。四來源為JFDB、JACAR、FCCJ與Toho Kingdom，原題不翻寫。六段實際去標籤／引註／空白正文675字（研究員含引註的724字不是站內正文基準）。發布／修改日期2026-11-08T09:09:48+08:00。build/check通過151篇／154路由；前150篇JSON及逐頁HTML byte完全相同。尚待指定commit的Pages發布與正式200驗收後才設定301。
