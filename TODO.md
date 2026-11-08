@@ -325,3 +325,9 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 驗收operation完成、HTTP／HTTPS含query Location精確、目標200、相鄰／suffix404、既有mapping回歸及清單／規則數。
 
 完成證據：目標 `https://abiting.cc/wp-content/uploads/2026/11/locust.jpg` 為200 image/jpeg。item `95d1d16f157f42ff8bc799388d493338`／operation `a4042103342c4cddbdd8d54d6264d23c` completed，list 26→27且原26項ID全保留；Bulk 1/version1、Dynamic 10/version10不變。獨立GET驗收HTTP／HTTPS含query均直接301至精確目標、query丟棄；`inago.jpgx`、`inago.jpg/extra`、`inagox.jpg`為真正404；之前hairy.jpg mapping回歸PASS。Cloudflare OAuth未登出或撤銷。
+
+<h2>指定路徑：/zghost3/ 精確301</h2>
+- [x] 將使用者指定 `http://10e.org/zghost3/`（同host HTTPS亦命中）精確直接301至 `https://10e.org/house-1977-review/`；僅該路徑，不啟用子路徑匹配、不保留query或path suffix、不匹配子網域。`/zghost3/anything`、`/zghost30/`及未指定舊路徑維持真正404。只新增一筆Bulk Redirect，保留所有既有mapping及Dynamic rules，Cloudflare OAuth維持授權。
+- [x] 操作完成後確認operation completed、HTTP／HTTPS含query Location精確並丟棄query，目標200，邊界404、list只增一筆且既有映射／規則基線不變。
+
+完成證據：目標 `https://10e.org/house-1977-review/` 獨立一般GET回200。Cloudflare item `d10da0614a694b3abe25f09db0e2477e`／operation `1a7fcd2328eb4bf58c16f925a0ff443c` completed；list 27→28且原27項保留，Bulk rule仍1條／version1，Dynamic仍10條／version10。HTTP／HTTPS對 `/zghost3/` 及含query請求均直接301至精確目標、不傳query；`/zghost3/anything`及`/zghost30/`為真正404。Cloudflare OAuth未登出或撤銷。

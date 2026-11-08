@@ -359,3 +359,9 @@ Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩
 
 <h3>inago.jpg精確轉址完成</h3>
 目標 `https://abiting.cc/wp-content/uploads/2026/11/locust.jpg` 回200 image/jpeg。Cloudflare單筆item `95d1d16f157f42ff8bc799388d493338`／operation `a4042103342c4cddbdd8d54d6264d23c` completed：`10e.org/samcimg/inago.jpg`→目標，301且不含子網域／子路徑／query／尾綴。獨立一般GET驗收HTTP／HTTPS（含query）全部精確Location；inago.jpgx／inago.jpg/extra／inagox.jpg均404，hairy.jpg前項回歸PASS。list27筆、原26 IDs保留；Bulk1/version1、Dynamic10/version10維持，OAuth保留。
+
+<h3>zghost3精確路徑轉址</h3>
+使用者明確指定 `/zghost3/` 僅此路徑301到既有House 1977 review `https://10e.org/house-1977-review/`；此非wildcard，子路徑與相鄰路徑保持404。目標經HTTP可達性確認後，唯讀重驗27筆list與Bulk／Dynamic基線，再新增單一item、直接驗收兩種scheme及404邊界。
+
+<h3>zghost3精確301完成</h3>
+目標 `https://10e.org/house-1977-review/` 已由獨立一般GET確認200。Cloudflare Bulk item `d10da0614a694b3abe25f09db0e2477e`／operation `1a7fcd2328eb4bf58c16f925a0ff443c` completed：`10e.org/zghost3/`→House頁，301，include_subdomains/subpath_matching/preserve_query_string/preserve_path_suffix皆false。HTTP／HTTPS含query direct Location正確且不傳query；子路徑`/zghost3/anything`與近似路徑`/zghost30/`均404。list28項、舊27 ID保留；Bulk1/version1／Dynamic10/version10不變；OAuth保留。
