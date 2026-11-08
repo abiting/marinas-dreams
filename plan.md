@@ -397,3 +397,5 @@ Edward完成：內容commit `ae0af25030533fa68ee84d4ac3ce33bf0731d06d`／Pages `
 Interstellar查重發現既有 `/interstellar-review/`（2014）。改採重新研究、必要時僅修訂此篇，保留現有URL、原發表日期及SEO/source URL；不建立重複頁。其餘151篇資料不變；現有152篇／155路由不增加。再將使用者指定200811/150154.php 301至這個既有URL，必須先驗收修訂頁正式上線。日日是好日仍為新增一篇，完成後預期153篇／156路由。
 
 日日是好日追加指定來源：`https://abiurl.me/LsmvAg` 必須保留為其中一筆sources.url，先查讀其展開頁內容，sources.title使用來源原文標題；不得擅自展開換URL或未讀虛構該頁內容。此筆計入2–4個來源總數。
+
+Interstellar修訂定稿：六段681字；保留 `/interstellar-review/`、原title／seoTitle／description、原發表日2026-10-17T09:18:45+08:00與既有BFI／Paramount source URL。已讀正文來源為BFI與RogerEbert；Paramount舊URL目前轉至頂頁，HTML title確為`Paramount`，以原文題名保留並顯示未能讀取作品本文的註記，不用此不可讀連結作電影事實根據。新增SF・宇宙映画ノート與5個中長尾SEO詞，modifiedAt使用本次實際時間；其他151篇不變，全站仍152篇／155路由。修訂頁部署且正式200／正文驗收後才新增200811/150154.php精確301。

@@ -268,6 +268,23 @@ assert.deepEqual(edwardReview.sources.map(ref => ref.url), ['https://www.20thcen
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(edwardReview)));
 assert.match(edwardReview.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
 assert.equal(edwardReview.modifiedAt, edwardReview.publishedAt);
+const interstellarReview = content.reviews.find(r => r.slug === 'interstellar-review');
+assert.equal(content.reviews.filter(r => r.originalTitle === 'Interstellar').length, 1);
+assert.equal(interstellarReview.name, 'インターステラー');
+assert.equal(interstellarReview.year, '2014');
+assert.equal(interstellarReview.seoTitle, "インターステラーレビュー | 10eKokoro's Dream");
+assert.equal(interstellarReview.publishedAt, '2026-10-17T09:18:45+08:00');
+assert.match(interstellarReview.modifiedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
+const interstellarPlain = decode(interstellarReview.paragraphs.join('')).replace(/<[^>]+>/g, '').replace(/\[\d+\]/g, '').replace(/\s+/g, '');
+assert.ok(interstellarPlain.length >= 500 && interstellarPlain.length <= 800);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(interstellarReview)));
+assert.deepEqual(interstellarReview.sources.map(r => r.title), ['Interstellar (2014)', 'Paramount', 'Interstellar']);
+assert.deepEqual(interstellarReview.sources.map(r => r.url), ['https://www.bfi.org.uk/film/b07de850-8dd4-5fe1-a1e1-8d27fec041c1/interstellar', 'https://www.paramountmovies.com/movies/interstellar', 'https://www.rogerebert.com/reviews/interstellar-2014']);
+assert.equal(interstellarReview.sources[1].unavailable, true);
+assert.ok(interstellarReview.sources[1].edition.includes('作品本文は確認できず'));
+const interstellarCited = new Set(interstellarReview.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
+assert.deepEqual([...interstellarCited].sort(), ['1', '3'], 'Do not cite an unreadable retained legacy link as evidence');
+assert.equal(interstellarReview.keywords.length, 5);
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -579,6 +596,13 @@ const edwardArticle = JSON.parse(edwardHtml.match(/<script type="application\/ld
 assert.equal(edwardArticle.datePublished, edwardReview.publishedAt);
 assert.equal(edwardArticle.dateModified, edwardReview.modifiedAt);
 assert.ok(edwardHtml.includes('2026年11月8日公開'));
+const interstellarHtml = fs.readFileSync('dist/interstellar-review/index.html', 'utf8');
+for (const ref of interstellarReview.sources) assert.ok(decode(interstellarHtml).includes(`>${ref.title}</a>`));
+assert.ok(interstellarHtml.includes('作品本文は確認できず'));
+assert.ok(!fs.existsSync('dist/mt2/archives/200811/150154.php'));
+const interstellarArticle = JSON.parse(interstellarHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
+assert.equal(interstellarArticle.datePublished, interstellarReview.publishedAt);
+assert.equal(interstellarArticle.dateModified, interstellarReview.modifiedAt);
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -616,6 +640,8 @@ if (origin) {
   assert.ok(!sitemap.includes('/flashchiune/chiune.htm'));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/edward-scissorhands-1990-review/</loc><lastmod>2026-11-08</lastmod>`));
   assert.ok(!sitemap.includes('/mt2/archives/200904/012303.php'));
+  assert.ok(sitemap.includes(`<loc>${origin}${basePath}/interstellar-review/</loc><lastmod>2026-11-08</lastmod>`));
+  assert.ok(!sitemap.includes('/mt2/archives/200811/150154.php'));
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
