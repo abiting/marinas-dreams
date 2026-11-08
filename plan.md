@@ -411,3 +411,7 @@ Interstellar完成：commit `7d938ca02d183ad6bba7869c95d7a1ef9f3f39a7`／Pages�
 
 Beauty Water定稿：日本題「整形水」、原題기기괴괴 성형수 / Beauty Water、チョ・ギョンフン執導；韓國2020製作／日本2021年9月23日公開、85分PG12（日本版本）。六段635字，四原文來源／5個長尾詞，publishedAt／modifiedAt2026-11-08T09:54:08+08:00。不將主程序的非露骨描述要求誤寫成電影本身「非露骨」，改用來源確認的原作變形抑制；首次source相鄰sup間加空格。build/check154篇／157路由PASS，原153篇JSON／URL／HTML逐頁不變。check的硬編碼末尾offset合併為自Underwater以來所有新文完整順序assert，既有內容／來源／SEO斷言保留並加本篇版次／日期／source精確assert。
 Joy局部修正：日本官方頁的2015-12-25「劇場公開日」未能證明地區為日本，year／releaseYearBasis採可確認的2015製作年；日本2017-11-22影音發行資訊保留，避免誤稱日本院線初映。兩篇seoTitle補本站brand，Joy正文原794字未改。
+
+Beauty Water完成：commit `fb156af4055c24fc54f2a76f3d87a7bf03778e54`／Pages `42436272426` 成功，主環境連線無response中斷，独立網路普通GET確認正式新頁與Googlebot／Twitterbot都200，HTML SHA256與已發佈14170bytes完全匹配；157route、sitemap、robots也逐檔指紋匹配。通過後才增第37筆item `23247e47d4124a1c8607b1e90c3f2f55`／operation `c5eca27aa53e4d0da7a91308a43a4ef2` completed。原36映射e0894f2f、Bulkc4ab4582與Dynamicc83ffe9e維持（Bulk1version1／Dynamic10version10）；独立9項HTTP／HTTPS與query direct301、三邊界404、target200及日日是好日回歸全PASS。原153篇及OAuth保留，之後才整合Joy。
+
+Joy定稿：日本題「ジョイ」、原題Joy，2015製作／デヴィッド・O・ラッセル執導；不將日本官方網站的通用2015-12-25劇場日期斷言為日本院線公開日，日本2017-11-22影音發行資訊另列。六段794字、四原文來源、6長尾詞、SEO51字，collection「労働と家族の映画ノート」；publishedAt／modifiedAt2026-11-08T10:00:11+08:00。原人物Joy Mangano與電影的合成人物／脚色界線清楚，不冒充紀錄片。build/check155篇／158路由PASS，原154篇JSON／URL／HTML逐頁完全不變。下一步正式Pages發布、新頁200驗收後才新增200911/220650.php精確301。

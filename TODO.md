@@ -374,8 +374,10 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 <h2>後續：《整容液》（Beauty Water，2020）日文影評與指定301</h2>
-- [ ] 研究後新增韓國電影Beauty Water（2020）一篇日文影評，核實日本正式題名、導演、韓國原始年份及日本公開年份／版本。六段正文500–800字、2個正文H2、2–4筆已查讀原文來源、3–8個中長尾SEO詞，不虛構評分或觀影經歷；只append一篇、保護當時所有舊文章資料／URL。使用實際發布日，canonical／OG／Twitter／Article／Person／sitemap／route manifest完整。
-- [ ] 日日是好日這輪完成後依序部署本篇，新文章正式200後才將 `http://10e.org/mt2/archives/200612/230051.php`（同路徑HTTPS亦命中）精確direct301至新頁；query丟棄、子網域／子路徑／尾綴不匹配，相鄰及未指定路徑真正404，只append唯一Bulk item，原規則及OAuth保留。
+- [x] 研究後新增韓國電影Beauty Water（2020）一篇日文影評，核實日本正式題名、導演、韓國原始年份及日本公開年份／版本。六段正文500–800字、2個正文H2、2–4筆已查讀原文來源、3–8個中長尾SEO詞，不虛構評分或觀影經歷；只append一篇、保護當時所有舊文章資料／URL。使用實際發布日，canonical／OG／Twitter／Article／Person／sitemap／route manifest完整。
+- [x] 日日是好日這輪完成後依序部署本篇，新文章正式200後才將 `http://10e.org/mt2/archives/200612/230051.php`（同路徑HTTPS亦命中）精確direct301至新頁；query丟棄、子網域／子路徑／尾綴不匹配，相鄰及未指定路徑真正404，只append唯一Bulk item，原規則及OAuth保留。
+
+完成證據：日本題整形水、韓國2020／日本2021公開、六段635字、四原文來源／5長尾詞；内容commit `fb156af4055c24fc54f2a76f3d87a7bf03778e54`，Pages `42436272426` 成功。主環境first GET無HTTP狀態而RemoteDisconnected；改用獨立網路確認新頁／Googlebot／Twitterbot200且HTML SHA256 `1c9f99fa4b6213649f88389d75d50641c4fb78c18dc9583d6b6fa532c71dd663`完全匹配；157route／sitemap／robots SHA全部一致後才增item `23247e47d4124a1c8607b1e90c3f2f55`，operation `c5eca27aa53e4d0da7a91308a43a4ef2` completed。list36→37、原36映射e0894f2f及Bulk1version1／Dynamic10version10指紋不變。独立9項PASS：HTTP／HTTPS含query精確301、query丟棄、三近似／尾綴404、新頁200与日日是好日回歸。原153篇data／URL／HTML與OAuth保留。
 
 <h2>後續：《翻轉幸福》（Joy）日文影評與指定301</h2>
 - [ ] 研究後新增Joy一篇日文影評，核實日本正式題名、原作品年與導演，區分電影改編與真實人物经历，不寫成未查證紀錄片。六段500–800字、2個正文H2、2–4筆已查讀來源保留原文題名／URL、3–8個中長尾SEO詞，不虛構評分或觀影；只append一篇，保護原文章資料與URL，使用實際發布日，完整SEO／Article／Person／canonical／sitemap／route manifest。
