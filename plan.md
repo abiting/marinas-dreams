@@ -377,3 +377,6 @@ Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩
 沿用src/content.json append-only及既有靜態builder，研究2015年日本傳記電影的官方版本、戲劇敘事與命のビザ史實，六段日文500–800字、來源原題、正式日期與中長尾SEO。候選slug `sugihara-chiune-2015-review`；只新增此篇，保留150篇及既有article URL。GitHub Pages指定commit成功且正式新頁200／SEO驗收後，才將 `/flashchiune/chiune.htm` 精確301到新頁，不擴大匹配子路徑；Cloudflare以30筆list基線append一筆，保留Bulk1與Dynamic10及OAuth。
 
 杉原千畝定稿：正式題「杉原千畝 スギハラチウネ」、國際題PERSONA NON GRATA、2015年12月5日日本公開、チェリン・グラック執導、139分；新分類「歴史・伝記映画ノート」。四來源為JFDB、JACAR、FCCJ與Toho Kingdom，原題不翻寫。六段實際去標籤／引註／空白正文675字（研究員含引註的724字不是站內正文基準）。發布／修改日期2026-11-08T09:09:48+08:00。build/check通過151篇／154路由；前150篇JSON及逐頁HTML byte完全相同。尚待指定commit的Pages發布與正式200驗收後才設定301。
+
+## 杉原千畝影評與精確301完成
+內容commit `56da432c1a443688a5f59cc812f8c1e076fead46`、Pages工作 `42433232992` 成功；正式 `https://10e.org/sugihara-chiune-2015-review/` 的一般訪客／Googlebot／Twitterbot皆200，六段675字正文／四原文來源／canonical／Article／日期／154路由與sitemap PASS。Cloudflare於新頁發布後才新增唯一item `47d0660d7dfa40cc929e0779978d63bf`，operation `d9c5d1b0e3944da49415caf23a8a1207` completed，`10e.org/flashchiune/chiune.htm`精確301到新頁，四個匹配／保留旗標皆false。原30映射指紋`dcdcfdd9`、Bulk`c4ab4582`、Dynamic`c83ffe9e`新增前後一致（排除新項目後比較）；list31／Bulk1/version1／Dynamic10/version10。獨立一般GET驗收兩協定含query direct301、不傳query；chiunex.htm、chiune.html、chiune.htm/extra與未指定路徑404，Diana／Suspiria前項回歸PASS。所有前150篇資料與HTML保留；OAuth未撤銷。

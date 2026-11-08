@@ -341,5 +341,7 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 ## 《杉原千畝》（2015）日文影評與指定舊URL精確301
-- [ ] 研究並新增2015年電影《杉原千畝 スギハラチウネ》一篇日文影評，六段正文總長500–800字、2–4筆已查讀來源保留原文題名／URL，查核導演／上映版本並區分電影敘事與歷史史實。不虛構評分或觀影經歷，使用相關中長尾SEO關鍵字。只append一篇，不改既有150篇資料／網址；使用實際本次發布日期，首屏HTML／canonical／OG／Twitter／Article schema／sitemap／154路由完整。
-- [ ] 新文章正式發布並驗收200後，才將使用者指定 `http://10e.org/flashchiune/chiune.htm`（同host HTTPS亦命中）精確直接301至新文章https正式URL；query丟棄，子網域／子路徑／尾綴不匹配，相鄰及未指定舊路徑維持真正404。只新增一筆Cloudflare Bulk Redirect，原30項／Bulk1條及Dynamic10條均保留，不撤銷OAuth。
+- [x] 研究並新增2015年電影《杉原千畝 スギハラチウネ》一篇日文影評，六段正文總長500–800字、2–4筆已查讀來源保留原文題名／URL，查核導演／上映版本並區分電影敘事與歷史史實。不虛構評分或觀影經歷，使用相關中長尾SEO關鍵字。只append一篇，不改既有150篇資料／網址；使用實際本次發布日期，首屏HTML／canonical／OG／Twitter／Article schema／sitemap／154路由完整。
+- [x] 新文章正式發布並驗收200後，才將使用者指定 `http://10e.org/flashchiune/chiune.htm`（同host HTTPS亦命中）精確直接301至新文章https正式URL；query丟棄，子網域／子路徑／尾綴不匹配，相鄰及未指定舊路徑維持真正404。只新增一筆Cloudflare Bulk Redirect，原30項／Bulk1條及Dynamic10條均保留，不撤銷OAuth。
+
+完成證據：內容commit `56da432c1a443688a5f59cc812f8c1e076fead46` 的Pages工作 `42433232992` 成功；正式 `https://10e.org/sugihara-chiune-2015-review/` 回200且初始HTML／Googlebot／Twitterbot／四原文來源／Article／canonical／154路由與sitemap全部通過。六段實際正文675字，前150篇JSON与HTML全部不變，日期2026-11-08T09:09:48+08:00。Cloudflare item `47d0660d7dfa40cc929e0779978d63bf`／operation `d9c5d1b0e3944da49415caf23a8a1207` completed，list30→31；指紋比對原30映射及Bulk／Dynamic規則保留，仍Bulk1/version1、Dynamic10/version10。独立普通GET共11組PASS：HTTP／HTTPS含query皆直接301且query丟棄；chiunex.htm、chiune.htm/extra、chiune.html、未指定/mt2/archives/xxx皆404，新頁200；Diana與Suspiria既有映射回歸PASS。OAuth未登出／撤銷。
