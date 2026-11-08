@@ -403,3 +403,8 @@ Interstellar修訂定稿：六段681字；保留 `/interstellar-review/`、原ti
 Interstellar完成：commit `7d938ca02d183ad6bba7869c95d7a1ef9f3f39a7`／Pages工作 `42435190053` 成功，既有URL的681字修訂正式200／原SEO／Source／Article／155路由PASS後才新增item `d0efca91108b4c64881aa35e657bf8a5`，operation `6292791f254a40b1add2b24c93b21dbf` completed。原34映射指紋cb954060与Bulk／Dynamic保持，list35／Bulk1/version1／Dynamic10/version10；独立9項HTTP／HTTPS／query301、邊界404與Edward回歸PASS。其餘151篇JSON与HTML不变、原發表日及SEO／URL保留。接下來新增日日是好日一篇，不把台灣2019當日本初映年。
 
 日日是好日定稿：大森立嗣執導、日本2018年10月13日公開／台灣2019年2月1日公開；保留原日文題，fullName含Every Day a Good Day。六段實際688字，四原文來源（JFDB、開眼、Hollywood Reporter、指定`https://abiurl.me/LsmvAg`）。陶藝短網址精確保留，source edition明示茶碗／陶磁史背景、非電影制作公開資料；正文消除「短縮URL遷移先」查證旁白，以器物與感官的電影分析自然引用。publishedAt／modifiedAt2026-11-08T09:42:58+08:00；collection「日々の暮らしを描く映画ノート」。build/check153篇／156路由PASS，前152篇data／URL／HTML逐頁完全不變。待正式Pages部署／新頁200之後才新增200502/270305.php單筆精確301。
+
+日日是好日完成：commit `f2f2305198390c27f63a0c0628c3d6b602aa286e`／Pages `42435537516` 成功，正式新頁200／688字全文／四原文來源與LsmvAg／Article／156路由PASS後，新增第36筆item `a6f2baad33d543de9d9bc94fe04f7224`，operation `7b91f7634384430894e79f391249fc7b` completed。原35映射fingerprint71dc39d4及Bulkc4ab4582／Dynamicc83ffe9e不變（1/version1、10/version10）。独立10項HTTP／HTTPS／query301、三近似／suffix404、新頁200及Interstellar／Edward回歸全PASS。日本2018／台湾2019正確區分，指定陶藝短網址保持，其他152篇data／HTML不變，OAuth未撤銷。
+
+## 追加Beauty Water與Joy（2026-11-08）
+查重確認當前153篇中沒有Beauty Water／整形水或Joy／ジョイ，兩篇各新增一頁。研究與原文來源筆記可平行處理，但先收尾日日是好日，再依序Beauty Water→Joy：每篇附加、全站build/check／舊文章byte保護、Pages指定commit部署、正式新頁200驗收後才增該片唯一Bulk item。原source分別 `/mt2/archives/200612/230051.php`、`/mt2/archives/200911/220650.php`，HTTP／HTTPS皆直接301，query丟棄、精確路徑不匹配subpath或subdomain，其餘404。沿用六段500–800字、來源原題／URL、實際發布日和原canonical/SEO結構，Cloudflare原36項及1Bulk／10Dynamic規則不變。

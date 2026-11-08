@@ -367,5 +367,16 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 完成證據：Interstellar保留既有 `/interstellar-review/`、SEO、原發表日及原BFI／Paramount URL，修訂為六段681字；Paramount現轉頂頁，source原題以直接HTML確認的Paramount顯示，並註記作品正文未確認、不作根據。內容commit `7d938ca02d183ad6bba7869c95d7a1ef9f3f39a7`、Pages工作 `42435190053` 成功。正式修訂頁200／一般及bot／正文來源／Article／155路由PASS後才新增item `d0efca91108b4c64881aa35e657bf8a5`，operation `6292791f254a40b1add2b24c93b21dbf` completed；list34→35，原34映射指紋cb954060與Bulk／Dynamic不變。獨立9項PASS：兩協定含query direct301、query丟棄、三邊界404、目標200与Edward回歸正常。其餘151篇／URL／HTML保留，OAuth保留。
 
 <h2>後續：《日日是好日》日文研究影評與指定301</h2>
-- [ ] 研究後新增《日日是好日》一篇日文影評；其中一個參考連結必須保留使用者指定 `https://abiurl.me/LsmvAg`，查讀其目的頁、引用原文題名，不自行展開替換短網址；核實使用者提到2019所對應上映地區、日文正式題名和作品原始年份／版本，不把不同地區公開年混為製作年。六段500–800字、2個正文H2、2–4笔已查讀原文來源、中長尾SEO詞，不虛構評分／观影；只append、保留當時全站既有文章URL与資料，實際發布日及完整SEO／Article／Person／canonical／sitemap／route manifest。
-- [ ] Interstellar完成後依序發布本篇，正式新文章200後才將 `http://10e.org/mt/archives/200502/270305.php`（HTTPS同路徑亦命中）精確直接301至新頁；query丟棄，不匹配子網域／子路徑／尾綴。相鄰及其他未指定舊路徑仍404，只append一筆Bulk mapping，保留全部原規則和OAuth。
+- [x] 研究後新增《日日是好日》一篇日文影評；其中一個參考連結必須保留使用者指定 `https://abiurl.me/LsmvAg`，查讀其目的頁、引用原文題名，不自行展開替換短網址；核實使用者提到2019所對應上映地區、日文正式題名和作品原始年份／版本，不把不同地區公開年混為製作年。六段500–800字、2個正文H2、2–4笔已查讀原文來源、中長尾SEO詞，不虛構評分／观影；只append、保留當時全站既有文章URL与資料，實際發布日及完整SEO／Article／Person／canonical／sitemap／route manifest。
+- [x] Interstellar完成後依序發布本篇，正式新文章200後才將 `http://10e.org/mt/archives/200502/270305.php`（HTTPS同路徑亦命中）精確直接301至新頁；query丟棄，不匹配子網域／子路徑／尾綴。相鄰及其他未指定舊路徑仍404，只append一筆Bulk mapping，保留全部原規則和OAuth。
+
+完成證據：日本2018年10月13日／台灣2019年2月1日、六段688字、四原文來源（含使用者指定https://abiurl.me/LsmvAg，作茶碗／陶磁史背景，非電影公開資料）與發布日2026-11-08T09:42:58+08:00。內容commit `f2f2305198390c27f63a0c0628c3d6b602aa286e`／Pages `42435537516` 成功。新頁 `https://10e.org/every-day-a-good-day-2018-review/` 正式200／全文／原文來源／Article／156路由與sitemap PASS後，才新增item `a6f2baad33d543de9d9bc94fe04f7224`，operation `7b91f7634384430894e79f391249fc7b` completed；list35→36、原35指紋71dc39d4、Bulk1/version1與Dynamic10/version10保留。独立10項PASS：兩協定含query直接301／query丟棄、三近似或尾綴404、新頁200与Interstellar／Edward回歸。原152篇JSON／URL／HTML不變，OAuth保留。
+
+
+<h2>後續：《整容液》（Beauty Water，2020）日文影評與指定301</h2>
+- [ ] 研究後新增韓國電影Beauty Water（2020）一篇日文影評，核實日本正式題名、導演、韓國原始年份及日本公開年份／版本。六段正文500–800字、2個正文H2、2–4筆已查讀原文來源、3–8個中長尾SEO詞，不虛構評分或觀影經歷；只append一篇、保護當時所有舊文章資料／URL。使用實際發布日，canonical／OG／Twitter／Article／Person／sitemap／route manifest完整。
+- [ ] 日日是好日這輪完成後依序部署本篇，新文章正式200後才將 `http://10e.org/mt2/archives/200612/230051.php`（同路徑HTTPS亦命中）精確direct301至新頁；query丟棄、子網域／子路徑／尾綴不匹配，相鄰及未指定路徑真正404，只append唯一Bulk item，原規則及OAuth保留。
+
+<h2>後續：《翻轉幸福》（Joy）日文影評與指定301</h2>
+- [ ] 研究後新增Joy一篇日文影評，核實日本正式題名、原作品年與導演，區分電影改編與真實人物经历，不寫成未查證紀錄片。六段500–800字、2個正文H2、2–4筆已查讀來源保留原文題名／URL、3–8個中長尾SEO詞，不虛構評分或觀影；只append一篇，保護原文章資料與URL，使用實際發布日，完整SEO／Article／Person／canonical／sitemap／route manifest。
+- [ ] Beauty Water完成後發布本篇，先驗收正式新文章200再将 `http://10e.org/mt2/archives/200911/220650.php`（同路徑HTTPS亦命中）精確direct301至新頁；query丟棄、不匹配subdomain／subpath／suffix，近似及未指定路徑404。只append一筆Bulk mapping，保留原規則和OAuth。
