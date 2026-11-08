@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 155);
+assert.equal(content.reviews.length, 156);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -77,6 +77,7 @@ const newResearchSlugs = [
   'every-day-a-good-day-2018-review',
   'beauty-water-2020-review',
   'joy-2015-review',
+  'the-day-after-tomorrow-2004-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
 assert.ok(newResearchReviews.every(Boolean), 'All requested researched reviews are present');
@@ -319,6 +320,21 @@ assert.deepEqual(joy2015ReviewData.sources.map(ref => ref.url), ["https://www.20
 assert.match(joy2015ReviewData.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
 assert.equal(joy2015ReviewData.modifiedAt, joy2015ReviewData.publishedAt);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(joy2015ReviewData)));
+const theDayAfterTomorrow2004ReviewData = content.reviews.find(r => r.slug === "the-day-after-tomorrow-2004-review");
+assert.equal(content.reviews.filter(r => r.originalTitle === "The Day After Tomorrow").length, 1);
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.name, "デイ・アフター・トゥモロー");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.originalTitle, "The Day After Tomorrow");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.year, "2004");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.director, "ローランド・エメリッヒ");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.releaseYearBasis, "製作年・米国劇場公開年（2004年）");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.edition, "2004年の劇場公開版（124分）。日本劇場公開は2004年6月5日。");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.collection, "気候と災害の映画ノート");
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.productionCountries, ["アメリカ"]);
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.sources.map(ref => ref.title), ["The Day After Tomorrow", "デイ・アフター・トゥモロー", "The Day after Tomorrow", "The Day After Tomorrow at 20: a strangely prescient ecological warning"]);
+assert.deepEqual(theDayAfterTomorrow2004ReviewData.sources.map(ref => ref.url), ["https://www.20thcenturystudios.com/movies/the-day-after-tomorrow", "https://eiga.com/movie/1047/", "https://www.rogerebert.com/reviews/the-day-after-tomorrow-2004", "https://www.theguardian.com/film/article/2024/jun/05/the-day-after-tomorrow-20-year-anniversary-where-to-watch-streaming"]);
+assert.match(theDayAfterTomorrow2004ReviewData.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
+assert.equal(theDayAfterTomorrow2004ReviewData.modifiedAt, theDayAfterTomorrow2004ReviewData.publishedAt);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(theDayAfterTomorrow2004ReviewData)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -451,7 +467,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', "韓国アニメーション映画ノート", "労働と家族の映画ノート", ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', "韓国アニメーション映画ノート", "労働と家族の映画ノート", "気候と災害の映画ノート", ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -581,7 +597,7 @@ assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy
 const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
 for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
 assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
-assert.equal(manifest.routes.length, 158, '155 reviews plus three site pages');
+assert.equal(manifest.routes.length, 159, '156 reviews plus three site pages');
 assert.ok(archive.includes('戦争とユーモアの映画ノート'), 'Archive exposes the Vietnam film collection');
 assert.ok(manifest.routes.some(route => route.path === `${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam route is declared');
 assert.ok(!fs.existsSync('dist/mt2/archives/201005/040329.php'), 'Vietnam legacy source must not be emitted as static 200');
@@ -664,6 +680,14 @@ for (const ref of joy2015ReviewData.sources) assert.ok(decode(joy2015ReviewDataH
 const joy2015ReviewDataArticle = JSON.parse(joy2015ReviewDataHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
 assert.equal(joy2015ReviewDataArticle.datePublished, joy2015ReviewData.publishedAt);
 assert.equal(joy2015ReviewDataArticle.dateModified, joy2015ReviewData.modifiedAt);
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/the-day-after-tomorrow-2004-review/`));
+assert.ok(!fs.existsSync("dist/mt/archives/200501/010244.php"));
+assert.ok(archive.includes(theDayAfterTomorrow2004ReviewData.collection));
+const theDayAfterTomorrow2004ReviewDataHtml = fs.readFileSync("dist/the-day-after-tomorrow-2004-review/index.html", 'utf8');
+for (const ref of theDayAfterTomorrow2004ReviewData.sources) assert.ok(decode(theDayAfterTomorrow2004ReviewDataHtml).includes(`>${ref.title}</a>`));
+const theDayAfterTomorrow2004ReviewDataArticle = JSON.parse(theDayAfterTomorrow2004ReviewDataHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
+assert.equal(theDayAfterTomorrow2004ReviewDataArticle.datePublished, theDayAfterTomorrow2004ReviewData.publishedAt);
+assert.equal(theDayAfterTomorrow2004ReviewDataArticle.dateModified, theDayAfterTomorrow2004ReviewData.modifiedAt);
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -679,6 +703,8 @@ assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
+  assert.ok(sitemap.includes(`<loc>${origin}${basePath}/the-day-after-tomorrow-2004-review/</loc><lastmod>2026-11-08</lastmod>`));
+  assert.ok(!sitemap.includes("/mt/archives/200501/010244.php"));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/joy-2015-review/</loc><lastmod>2026-11-08</lastmod>`));
   assert.ok(!sitemap.includes("/mt2/archives/200911/220650.php"));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/beauty-water-2020-review/</loc><lastmod>2026-11-08</lastmod>`));

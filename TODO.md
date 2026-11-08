@@ -384,3 +384,13 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] Beauty Water完成後發布本篇，先驗收正式新文章200再将 `http://10e.org/mt2/archives/200911/220650.php`（同路徑HTTPS亦命中）精確direct301至新頁；query丟棄、不匹配subdomain／subpath／suffix，近似及未指定路徑404。只append一筆Bulk mapping，保留原規則和OAuth。
 
 完成證據：日本題ジョイ／2015製作／六段794字／四原文来源与6長尾詞，不冒充紀錄片、不誤標日本院線日期；發布日2026-11-08T10:00:11+08:00。内容commit `7f2dd84c5f7111f1f69d562e2ab3b2630edfc912`，Pages `42436666328` 成功。正式新頁 `https://10e.org/joy-2015-review/` 一般／bot200、794字正文／四來源／Article／158route／sitemap／robots PASS後才增item `017c9612ff074bb5b53c3c9c88632f9c`，operation `d847ef56ec62464eb12661c606636714` completed。list37→38、原37映射9f386122與Bulkc4ab4582／Dynamicc83ffe9e不變（1version1／10version10）。独立驗收7項PASS：HTTP／HTTPS含querydirect301、query丟棄、suffix404、target200、Beauty Water回歸；兩個相鄰探針逾時後只針對220650x.php／220651.php補查，兩者皆404且無Location，全部9項條件完成。原154篇JSON／URL／HTML與OAuth保留。
+
+
+<h2>《明天過後》（The Day After Tomorrow，2004）影評與指定301</h2>
+- [ ] 查證日本正式片名、年份、導演、災難設定及科學批評脈絡後新增一篇日文影評。六段正文500–800字、2個H2、2–4筆已查讀來源，source title保留原文，不自行翻譯；3–8個長尾SEO詞，不虛構評分或私人觀影；只append一篇，原有文章資料與URL不變。記錄實際發布日，並確保metadata、canonical、OG/Twitter、Article／Person schema、route manifest、sitemap完整。
+- [ ] 先發布新文章並驗收正式頁200，再將 `http://10e.org/mt/archives/200501/010244.php`（同精確路徑HTTPS亦命中）直接301到新影評canonical URL；不傳query、不匹配subdomain／子路徑／尾綴，鄰近與未指定舊路徑保持真正404。只新增單筆Bulk mapping，保留其餘規則及Cloudflare OAuth。
+
+<h2>指定單一路徑：/imgpage/1026head.htm精確301</h2>
+- [x] 將 `http://10e.org/imgpage/1026head.htm` 精確301至 `https://abiting.cc/archives/16830`；HTTP／HTTPS同路徑命中，不傳query、不保留path suffix；相鄰或未指定路徑維持404，只新增單筆Bulk mapping，不覆寫其他轉址規則或撤銷OAuth。
+
+完成證據：目標https://abiting.cc/archives/16830先200；item `6b802505758941b18545d37cff7f6d0a`／operation `3938f6e2916a4f49adbb356c8b18f0ab` completed；list38→39且原38項指紋6ee140fe、Bulkc4ab4582／Dynamicc83ffe9e完全保留（1version1／10version10）。獨立普通GET七項PASS：HTTP／HTTPS含query精確direct301、query丟棄、近似／suffix404、target200；OAuth未撤銷。

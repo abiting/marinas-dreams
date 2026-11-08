@@ -417,3 +417,10 @@ Beauty Water完成：commit `fb156af4055c24fc54f2a76f3d87a7bf03778e54`／Pages `
 Joy定稿：日本題「ジョイ」、原題Joy，2015製作／デヴィッド・O・ラッセル執導；不將日本官方網站的通用2015-12-25劇場日期斷言為日本院線公開日，日本2017-11-22影音發行資訊另列。六段794字、四原文來源、6長尾詞、SEO51字，collection「労働と家族の映画ノート」；publishedAt／modifiedAt2026-11-08T10:00:11+08:00。原人物Joy Mangano與電影的合成人物／脚色界線清楚，不冒充紀錄片。build/check155篇／158路由PASS，原154篇JSON／URL／HTML逐頁完全不變。下一步正式Pages發布、新頁200驗收後才新增200911/220650.php精確301。
 
 Joy完成：内容commit `7f2dd84c5f7111f1f69d562e2ab3b2630edfc912`／Pages `42436666328` 成功。正式新頁200／794字全文／四原文來源／Article／158路由／sitemap／robots全PASS後才增第38筆item `017c9612ff074bb5b53c3c9c88632f9c`，operation `d847ef56ec62464eb12661c606636714` completed。原37映射9f386122、Bulkc4ab4582／Dynamicc83ffe9e維持；Bulk1version1／Dynamic10version10未改。独立GET7項成功（兩協定含query direct301與query丟棄、suffix404、新頁200、Beauty Water回歸）；兩相鄰探針timeout後只補查220650x.php／220651.php，兩者404／無Location PASS，全部9項完成。這輪五篇（Edward新增、Interstellar保留既有URL修訂、日日是好日／Beauty Water／Joy新增）及另兩筆外部目標301均完成；網站155篇／158路由，除指定Interstellar修訂外舊資料／網址保留，OAuth未撤銷。
+
+## 追加《明天過後》與圖片路徑redirect（2026-11-08）
+查重檢查155篇既有影評是否已有《The Day After Tomorrow》；只新增一篇日文評論。先多來源查證日本正式片名／2004年版本／導演／氣候災難表現，再依現有review資料模型append，六段500–800字與2–4筆來源原題，保護所有舊內容／URL。完成build/check及日期、canonical、Article、sitemap／156篇與159路由檢查後發布，正式新頁200才為 `/mt/archives/200501/010244.php`新增精確301。圖片來源`/imgpage/1026head.htm`目標`https://abiting.cc/archives/16830`，目標可獨立預先驗收，且在遵守list／ruleset capacity基線後可先獨立新增；兩筆只作精確單筆Bulk mapping，query／suffix不保留，未指定路徑維持404。保留既有規則及Cloudflare OAuth。
+
+圖片頁1026head.htm完成：目標200確認後以單筆POST新增item `6b802505758941b18545d37cff7f6d0a`／operation `3938f6e2916a4f49adbb356c8b18f0ab` completed。list38→39，原38映射6ee140fe與Bulkc4ab4582／Dynamicc83ffe9e不變；仍Bulk1version1／Dynamic10version10。獨立一般GET7項PASS（HTTP／HTTPS含query直接301至abiting.cc/archives/16830、query丟棄、近似／suffix404及target200）；OAuth保留。電影新頁尚待build/check與正式發布，先不建立010244.php轉址。
+
+《明天過後》定稿：日本正式名「デイ・アフター・トゥモロー」、英文The Day After Tomorrow、ローランド・エメリッヒ執導、2004年美國劇場用電影124分／日本公開2004年6月5日；slug `the-day-after-tomorrow-2004-review`，新collection「気候と災害の映画ノート」。六段正文754字、四筆原文來源、6個中長尾SEO詞，實際publishedAt／modifiedAt2026-11-08T10:12:40+08:00。本文分析都市災難特效、圖書館求生、父子救援的類型公式、墨西哥避難的國境反轉，並明確不把劇中幾日冰封當科學預測。只append一筆並以本篇精確斷言更新check，舊155篇與URL不修改。
