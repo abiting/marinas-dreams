@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 152);
+assert.equal(content.reviews.length, 153);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -74,9 +74,10 @@ const newResearchSlugs = [
   'flow-2024-review',
   'sugihara-chiune-2015-review',
   'edward-scissorhands-1990-review',
+  'every-day-a-good-day-2018-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All seventeen requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All eighteen requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -87,8 +88,9 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'edward-scissorhands-1990-review', 'New Edward review is appended');
-const previousReviews = content.reviews.slice(0, -1);
+assert.equal(content.reviews.at(-1)?.slug, 'every-day-a-good-day-2018-review', 'New tea film review is appended');
+assert.equal(content.reviews.at(-2)?.slug, 'edward-scissorhands-1990-review', 'Edward is preserved');
+const previousReviews = content.reviews.slice(0, -2);
 assert.equal(previousReviews.at(-1)?.slug, 'sugihara-chiune-2015-review', 'The preceding Sugihara review is preserved');
 assert.equal(previousReviews.at(-2)?.slug, 'flow-2024-review', 'The preceding Flow review is preserved');
 assert.equal(previousReviews.at(-3)?.slug, 'midsommar-2019-review', 'The preceding Midsommar review is preserved');
@@ -285,6 +287,20 @@ assert.ok(interstellarReview.sources[1].edition.includes('作品本文は確認�
 const interstellarCited = new Set(interstellarReview.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
 assert.deepEqual([...interstellarCited].sort(), ['1', '3'], 'Do not cite an unreadable retained legacy link as evidence');
 assert.equal(interstellarReview.keywords.length, 5);
+const everyDayReview = newResearchReviews[17];
+assert.equal(content.reviews.filter(r => r.originalTitle === '日日是好日').length, 1);
+assert.equal(everyDayReview.name, '日日是好日');
+assert.equal(everyDayReview.year, '2018');
+assert.equal(everyDayReview.director, '大森立嗣');
+assert.equal(everyDayReview.releaseYearBasis, '日本劇場公開年（2018年10月13日。台湾公開：2019年2月1日）');
+assert.deepEqual(everyDayReview.productionCountries, ['日本']);
+assert.equal(everyDayReview.collection, '日々の暮らしを描く映画ノート');
+assert.deepEqual(everyDayReview.sources.map(ref => ref.title), ['JFDB - 日日是好日', '日日是好日 Nichinichi Kore Kojitsu', '‘Every Day a Good Day’ (‘Nichinichikorekojitsu’): Film Review | Tokyo 2018', 'Japanese ceramics: from Jōmon pots to Raku tea bowls']);
+assert.deepEqual(everyDayReview.sources.map(ref => ref.url), ['https://jfdb.jp/title/8335', 'https://app2.atmovies.com.tw/film/fnjp57575778/', 'https://www.hollywoodreporter.com/movies/movie-reviews/day-a-good-day-nichinichikorekojitsu-film-review-tokyo-2018-1154655/', 'https://abiurl.me/LsmvAg']);
+assert.ok(everyDayReview.sources[3].edition.includes('背景資料'));
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(everyDayReview)));
+assert.match(everyDayReview.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
+assert.equal(everyDayReview.modifiedAt, everyDayReview.publishedAt);
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -417,7 +433,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -547,7 +563,7 @@ assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy
 const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
 for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
 assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
-assert.equal(manifest.routes.length, 155, '152 reviews plus three site pages');
+assert.equal(manifest.routes.length, 156, '153 reviews plus three site pages');
 assert.ok(archive.includes('戦争とユーモアの映画ノート'), 'Archive exposes the Vietnam film collection');
 assert.ok(manifest.routes.some(route => route.path === `${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam route is declared');
 assert.ok(!fs.existsSync('dist/mt2/archives/201005/040329.php'), 'Vietnam legacy source must not be emitted as static 200');
@@ -603,6 +619,17 @@ assert.ok(!fs.existsSync('dist/mt2/archives/200811/150154.php'));
 const interstellarArticle = JSON.parse(interstellarHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
 assert.equal(interstellarArticle.datePublished, interstellarReview.publishedAt);
 assert.equal(interstellarArticle.dateModified, interstellarReview.modifiedAt);
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/every-day-a-good-day-2018-review/`));
+assert.ok(archive.includes(everyDayReview.collection));
+assert.ok(!fs.existsSync('dist/mt/archives/200502/270305.php'));
+const everyDayHtml = fs.readFileSync('dist/every-day-a-good-day-2018-review/index.html', 'utf8');
+for (const ref of everyDayReview.sources) assert.ok(decode(everyDayHtml).includes(`>${ref.title}</a>`));
+assert.ok(everyDayHtml.includes('href="https://abiurl.me/LsmvAg"'));
+assert.ok(everyDayHtml.includes('映画の制作・公開情報の出典ではありません'));
+const everyDayArticle = JSON.parse(everyDayHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
+assert.equal(everyDayArticle.datePublished, everyDayReview.publishedAt);
+assert.equal(everyDayArticle.dateModified, everyDayReview.modifiedAt);
+assert.ok(everyDayHtml.includes('2026年11月8日公開'));
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -642,6 +669,8 @@ if (origin) {
   assert.ok(!sitemap.includes('/mt2/archives/200904/012303.php'));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/interstellar-review/</loc><lastmod>2026-11-08</lastmod>`));
   assert.ok(!sitemap.includes('/mt2/archives/200811/150154.php'));
+  assert.ok(sitemap.includes(`<loc>${origin}${basePath}/every-day-a-good-day-2018-review/</loc><lastmod>2026-11-08</lastmod>`));
+  assert.ok(!sitemap.includes('/mt/archives/200502/270305.php'));
 }
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');

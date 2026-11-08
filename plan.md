@@ -399,3 +399,7 @@ Interstellar查重發現既有 `/interstellar-review/`（2014）。改採重新�
 日日是好日追加指定來源：`https://abiurl.me/LsmvAg` 必須保留為其中一筆sources.url，先查讀其展開頁內容，sources.title使用來源原文標題；不得擅自展開換URL或未讀虛構該頁內容。此筆計入2–4個來源總數。
 
 Interstellar修訂定稿：六段681字；保留 `/interstellar-review/`、原title／seoTitle／description、原發表日2026-10-17T09:18:45+08:00與既有BFI／Paramount source URL。已讀正文來源為BFI與RogerEbert；Paramount舊URL目前轉至頂頁，HTML title確為`Paramount`，以原文題名保留並顯示未能讀取作品本文的註記，不用此不可讀連結作電影事實根據。新增SF・宇宙映画ノート與5個中長尾SEO詞，modifiedAt使用本次實際時間；其他151篇不變，全站仍152篇／155路由。修訂頁部署且正式200／正文驗收後才新增200811/150154.php精確301。
+
+Interstellar完成：commit `7d938ca02d183ad6bba7869c95d7a1ef9f3f39a7`／Pages工作 `42435190053` 成功，既有URL的681字修訂正式200／原SEO／Source／Article／155路由PASS後才新增item `d0efca91108b4c64881aa35e657bf8a5`，operation `6292791f254a40b1add2b24c93b21dbf` completed。原34映射指紋cb954060与Bulk／Dynamic保持，list35／Bulk1/version1／Dynamic10/version10；独立9項HTTP／HTTPS／query301、邊界404與Edward回歸PASS。其餘151篇JSON与HTML不变、原發表日及SEO／URL保留。接下來新增日日是好日一篇，不把台灣2019當日本初映年。
+
+日日是好日定稿：大森立嗣執導、日本2018年10月13日公開／台灣2019年2月1日公開；保留原日文題，fullName含Every Day a Good Day。六段實際688字，四原文來源（JFDB、開眼、Hollywood Reporter、指定`https://abiurl.me/LsmvAg`）。陶藝短網址精確保留，source edition明示茶碗／陶磁史背景、非電影制作公開資料；正文消除「短縮URL遷移先」查證旁白，以器物與感官的電影分析自然引用。publishedAt／modifiedAt2026-11-08T09:42:58+08:00；collection「日々の暮らしを描く映画ノート」。build/check153篇／156路由PASS，前152篇data／URL／HTML逐頁完全不變。待正式Pages部署／新頁200之後才新增200502/270305.php單筆精確301。

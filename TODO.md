@@ -361,8 +361,10 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 完成證據：Edward内容commit `ae0af25030533fa68ee84d4ac3ce33bf0731d06d`／Pages工作 `42434390703` 成功。正式新頁 `https://10e.org/edward-scissorhands-1990-review/` 回200，一般／Googlebot／Twitterbot正文与四原文來源、canonical／Article／155路由／sitemap PASS。六段實際797字，日期2026-11-08T09:26:16+08:00，原151篇資料及HTML保留。之後才新增item `0c67066521ea444996e583924965db75`，operation `3b1287248c604458bedeb466febb5991` completed，list33→34，原33映射及Bulk1/version1、Dynamic10/version10指紋不變。獨立GET 12項PASS：兩協定含query direct301、query丟棄；四條近似／尾綴／未指定404、新頁200及本輪前兩筆与Sugihara回歸正常。OAuth保留。
 
 <h2>後續：《星際效應》（Interstellar）日文影評與指定301</h2>
-- [ ] 已發現既有 `/interstellar-review/`；研究並修訂該篇日文影評，不建立重複頁或變更既有URL：核實日本正式題名、導演與首映／製作年，六段500–800字、2個正文H2、2–4笔已查讀來源，引用原文標題與URL、中長尾SEO詞，不虛構評分／觀影經歷。只修訂此篇，保持其餘151篇資料／URL不變，保留既有發表日與SEO並使用實際本次修改日期，canonical／OG／Twitter／Article／Person／sitemap／route manifest完整。
-- [ ] 本轮Edward全部驗收完成後才開始其發布；先部署新文章並驗收正式200，再將 `http://10e.org/mt2/archives/200811/150154.php`（同路徑HTTPS亦命中）精確直接301至新頁；query不保留、不匹配subdomain／subpath／suffix，相鄰及未指定路徑仍真正404。只新增一筆Bulk item，保留既有規則及OAuth。
+- [x] 已發現既有 `/interstellar-review/`；研究並修訂該篇日文影評，不建立重複頁或變更既有URL：核實日本正式題名、導演與首映／製作年，六段500–800字、2個正文H2、2–4笔已查讀來源，引用原文標題與URL、中長尾SEO詞，不虛構評分／觀影經歷。只修訂此篇，保持其餘151篇資料／URL不變，保留既有發表日與SEO並使用實際本次修改日期，canonical／OG／Twitter／Article／Person／sitemap／route manifest完整。
+- [x] 本轮Edward全部驗收完成後才開始其發布；先部署新文章並驗收正式200，再將 `http://10e.org/mt2/archives/200811/150154.php`（同路徑HTTPS亦命中）精確直接301至新頁；query不保留、不匹配subdomain／subpath／suffix，相鄰及未指定路徑仍真正404。只新增一筆Bulk item，保留既有規則及OAuth。
+
+完成證據：Interstellar保留既有 `/interstellar-review/`、SEO、原發表日及原BFI／Paramount URL，修訂為六段681字；Paramount現轉頂頁，source原題以直接HTML確認的Paramount顯示，並註記作品正文未確認、不作根據。內容commit `7d938ca02d183ad6bba7869c95d7a1ef9f3f39a7`、Pages工作 `42435190053` 成功。正式修訂頁200／一般及bot／正文來源／Article／155路由PASS後才新增item `d0efca91108b4c64881aa35e657bf8a5`，operation `6292791f254a40b1add2b24c93b21dbf` completed；list34→35，原34映射指紋cb954060與Bulk／Dynamic不變。獨立9項PASS：兩協定含query direct301、query丟棄、三邊界404、目標200与Edward回歸正常。其餘151篇／URL／HTML保留，OAuth保留。
 
 <h2>後續：《日日是好日》日文研究影評與指定301</h2>
 - [ ] 研究後新增《日日是好日》一篇日文影評；其中一個參考連結必須保留使用者指定 `https://abiurl.me/LsmvAg`，查讀其目的頁、引用原文題名，不自行展開替換短網址；核實使用者提到2019所對應上映地區、日文正式題名和作品原始年份／版本，不把不同地區公開年混為製作年。六段500–800字、2個正文H2、2–4笔已查讀原文來源、中長尾SEO詞，不虛構評分／观影；只append、保留當時全站既有文章URL与資料，實際發布日及完整SEO／Article／Person／canonical／sitemap／route manifest。
