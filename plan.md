@@ -380,3 +380,12 @@ Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩
 
 ## 杉原千畝影評與精確301完成
 內容commit `56da432c1a443688a5f59cc812f8c1e076fead46`、Pages工作 `42433232992` 成功；正式 `https://10e.org/sugihara-chiune-2015-review/` 的一般訪客／Googlebot／Twitterbot皆200，六段675字正文／四原文來源／canonical／Article／日期／154路由與sitemap PASS。Cloudflare於新頁發布後才新增唯一item `47d0660d7dfa40cc929e0779978d63bf`，operation `d9c5d1b0e3944da49415caf23a8a1207` completed，`10e.org/flashchiune/chiune.htm`精確301到新頁，四個匹配／保留旗標皆false。原30映射指紋`dcdcfdd9`、Bulk`c4ab4582`、Dynamic`c83ffe9e`新增前後一致（排除新項目後比較）；list31／Bulk1/version1／Dynamic10/version10。獨立一般GET驗收兩協定含query direct301、不傳query；chiunex.htm、chiune.html、chiune.htm/extra與未指定路徑404，Diana／Suspiria前項回歸PASS。所有前150篇資料與HTML保留；OAuth未撤銷。
+
+## 新增三項指定工作（2026-11-08）
+依使用者順序先驗證並新增兩筆精確舊路徑：`/mt2/archives/200608/210343.php`→`https://abiting.cc/archives/16830`，`/mt/archives/200605/260129.php`→`https://list.abitingpokedex.com/pokemon/buzzwole/`。目標須先確認可用，Bulk清單需唯讀檢查來源不存在及既有規則基線；HTTP／HTTPS直接301、query丟棄，邊界和未指定舊路徑404。
+
+上述兩筆完成後，研究並新增《剪刀手愛德華》（Edward Scissorhands，1990）一篇日文影評，沿用現有靜態JSON生成器，確認日本正式片名、來源原文標題及文章metadata，slug先做碰撞檢查；六段、500–800字、兩個H2、2–4個已查讀來源。只append，不改既有151篇。跑build/check並驗收152篇／155路由、首頁與文章SEO、Article與sitemap，先推送並等待GitHub Pages，再驗收正式文章200；僅此時新增使用者指定`/mt2/archives/200904/012303.php`精確301至新頁，query丟棄，其他舊路徑維持404。保留所有既有Bulk／Dynamic規則及Cloudflare OAuth。
+
+前兩筆舊URL轉址完成：operation `9fea9fdc1f524724b3a334804a1624ac` completed，清單31→33；item `12e806f5157f41e581d4b81b9c42b90f` 及 `6f0ef04d607f4caebc3cde04843705a3`。兩個新target先驗收200；HTTP／HTTPS及query均直接精確301且不傳query，五項近似、尾綴及相鄰路徑404；獨立普通GET 17項全PASS。既有Sugihara與hairy mappings回歸正常；Bulk1/version1、Dynamic10/version10未變，OAuth保留。接下來僅研究及新增《剪刀手愛德華》，其舊URL仍待新頁正式部署驗收後才轉址。
+
+Edward定稿：日本正式題「シザーハンズ」、原題Edward Scissorhands、ティム・バートン執導；1990年按美國公開年，日本公開1991年7月13日。片長有104／105分來源表記差，文章不宣稱單一片長。新分類「ゴシック・ファンタジー映画ノート」、slug `edward-scissorhands-1990-review`，六段實際797字，四原文來源與5個中長尾SEO詞；publishedAt／modifiedAt `2026-11-08T09:26:16+08:00`。build/check152篇／155路由PASS，原151篇JSON／網址／逐頁HTML全保留。舊`/mt2/archives/200904/012303.php`尚未新增轉址，仍等新頁正式部署與200驗收。

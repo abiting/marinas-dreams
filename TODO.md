@@ -345,3 +345,14 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 新文章正式發布並驗收200後，才將使用者指定 `http://10e.org/flashchiune/chiune.htm`（同host HTTPS亦命中）精確直接301至新文章https正式URL；query丟棄，子網域／子路徑／尾綴不匹配，相鄰及未指定舊路徑維持真正404。只新增一筆Cloudflare Bulk Redirect，原30項／Bulk1條及Dynamic10條均保留，不撤銷OAuth。
 
 完成證據：內容commit `56da432c1a443688a5f59cc812f8c1e076fead46` 的Pages工作 `42433232992` 成功；正式 `https://10e.org/sugihara-chiune-2015-review/` 回200且初始HTML／Googlebot／Twitterbot／四原文來源／Article／canonical／154路由與sitemap全部通過。六段實際正文675字，前150篇JSON与HTML全部不變，日期2026-11-08T09:09:48+08:00。Cloudflare item `47d0660d7dfa40cc929e0779978d63bf`／operation `d9c5d1b0e3944da49415caf23a8a1207` completed，list30→31；指紋比對原30映射及Bulk／Dynamic規則保留，仍Bulk1/version1、Dynamic10/version10。独立普通GET共11組PASS：HTTP／HTTPS含query皆直接301且query丟棄；chiunex.htm、chiune.htm/extra、chiune.html、未指定/mt2/archives/xxx皆404，新頁200；Diana與Suspiria既有映射回歸PASS。OAuth未登出／撤銷。
+
+
+<h2>兩筆指定舊URL精確301</h2>
+- [x] 將 `http://10e.org/mt2/archives/200608/210343.php`（HTTPS同一路徑亦命中）直接301至 `https://abiting.cc/archives/16830`；query不保留，只匹配該完整路徑。
+- [x] 將 `http://10e.org/mt/archives/200605/260129.php`（HTTPS同一路徑亦命中）直接301至 `https://list.abitingpokedex.com/pokemon/buzzwole/`；query不保留，只匹配該完整路徑。兩筆不得改變任何既有Bulk或Dynamic mapping；近似路徑、尾綴及未指定舊路徑仍須404。
+
+完成證據：Cloudflare bulk operation `9fea9fdc1f524724b3a334804a1624ac` completed，原清單31筆增為33筆。新增item `12e806f5157f41e581d4b81b9c42b90f`（200608/210343.php→abiting.cc/archives/16830）及 `6f0ef04d607f4caebc3cde04843705a3`（200605/260129.php→Buzzwole），只精確匹配、不保留query／path suffix。Bulk仍1條/version1；Dynamic仍10條/version10。兩個目的頁均200。獨立普通GET 17項全部PASS：兩來源HTTP／HTTPS含query皆301到精確Location，query丟棄，五條近似／尾綴／相鄰路徑404，先前Sugihara與hairy映射回歸正常。Cloudflare OAuth保留。
+
+<h2>《剪刀手愛德華》（Edward Scissorhands）研究影評與指定301</h2>
+- [ ] 研究後新增一篇《剪刀手愛德華》（Edward Scissorhands，1990）日文影評；採核實的日本正式片名與版本資訊，六段、正文約500–800字、2個H2、2–4筆已查讀來源並保留來源原文標題／URL，使用中長尾SEO詞，不虛構評分或個人觀影經驗。只新增一篇，不改既有151篇及其網址；文章使用本次發布日期，SEO／canonical／OG／Twitter／Article／Person／sitemap／route manifest完整，build/check預期152篇／155路由。
+- [ ] 新頁正式部署並驗收200後，才將 `http://10e.org/mt2/archives/200904/012303.php`（HTTPS同路徑亦命中）精確直接301至新頁canonical URL；query不保留。相鄰路徑、尾綴、子路徑及其他未指定失效舊URL維持真正404；只新增一筆Cloudflare Bulk item、不覆寫其他規則並保留OAuth。
