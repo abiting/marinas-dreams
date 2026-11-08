@@ -331,3 +331,10 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 操作完成後確認operation completed、HTTP／HTTPS含query Location精確並丟棄query，目標200，邊界404、list只增一筆且既有映射／規則基線不變。
 
 完成證據：目標 `https://10e.org/house-1977-review/` 獨立一般GET回200。Cloudflare item `d10da0614a694b3abe25f09db0e2477e`／operation `1a7fcd2328eb4bf58c16f925a0ff443c` completed；list 27→28且原27項保留，Bulk rule仍1條／version1，Dynamic仍10條／version10。HTTP／HTTPS對 `/zghost3/` 及含query請求均直接301至精確目標、不傳query；`/zghost3/anything`及`/zghost30/`為真正404。Cloudflare OAuth未登出或撤銷。
+
+<h2>兩筆指定舊URL：Diana圖片與Suspiria影評精確301</h2>
+- [x] `10e.org/samcimg3/diana3.jpg` 精確直接301至 `https://10e.org/one-missed-call-2004-review/`；HTTP／HTTPS均命中、丟棄query、不匹配子路徑／相鄰路徑。只新增一筆item。
+- [x] `10e.org/mt2/archives/200804/240055.php` 精確直接301至 `https://abiurl.me/BKKWr5`；HTTP／HTTPS均命中、丟棄query、不匹配suffix／相鄰路徑。只新增一筆item。
+- [x] 兩目標已由獨立網路確認200；核對Cloudflare 28筆基線、兩source不存在、Dynamic不重疊。操作後確認operation完成、恰新增兩筆、HTTP／HTTPS含query Location正確、未指定路徑404、Bulk／Dynamic規則不變並保留OAuth。
+
+完成證據：兩個目標均200，短網址 `https://abiurl.me/BKKWr5` 第一跳後301到 `https://10e.org/suspiria-1977-review/` 並200。Cloudflare bulk operation `7757337fd1c2494199ed678165aa42e8` completed，只新增Diana item `8089db5bcfae4f7daf94db460fc0bb02` 與Suspiria item `12ac87e160da48c8b7ff5f46e31faeb5`；list 28→30，原28項全保留，Bulk 1/version1、Dynamic 10/version10未變。普通GET獨立驗收兩來源HTTP／HTTPS含query皆直接301至各自精確目標且query丟棄；Diana近似／suffix及Suspiria近似／suffix皆404。Cloudflare OAuth未登出或撤銷。

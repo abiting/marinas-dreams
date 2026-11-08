@@ -365,3 +365,9 @@ Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩
 
 <h3>zghost3精確301完成</h3>
 目標 `https://10e.org/house-1977-review/` 已由獨立一般GET確認200。Cloudflare Bulk item `d10da0614a694b3abe25f09db0e2477e`／operation `1a7fcd2328eb4bf58c16f925a0ff443c` completed：`10e.org/zghost3/`→House頁，301，include_subdomains/subpath_matching/preserve_query_string/preserve_path_suffix皆false。HTTP／HTTPS含query direct Location正確且不傳query；子路徑`/zghost3/anything`與近似路徑`/zghost30/`均404。list28項、舊27 ID保留；Bulk1/version1／Dynamic10/version10不變；OAuth保留。
+
+<h3>Diana圖片與Suspiria文章舊URL轉址</h3>
+使用者明確指定兩筆單一路徑：`10e.org/samcimg3/diana3.jpg`→`https://10e.org/one-missed-call-2004-review/`、`10e.org/mt2/archives/200804/240055.php`→`https://abiurl.me/BKKWr5（該短網址檢查後會301到https://10e.org/suspiria-1977-review/）`。兩目標已由獨立一般GET確認200。按exact Bulk item執行，各自host限定、query丟棄、不保留suffix／subpath；唯讀複核28筆來源及規則基線後才新增，逐一驗收HTTP／HTTPS與404邊界。
+
+<h3>Diana與Suspiria兩筆精確301完成</h3>
+兩目標均200。Cloudflare一次bulk operation `7757337fd1c2494199ed678165aa42e8` completed，只新增兩筆：item `8089db5bcfae4f7daf94db460fc0bb02`，`10e.org/samcimg3/diana3.jpg`→`https://10e.org/one-missed-call-2004-review/`；item `12ac87e160da48c8b7ff5f46e31faeb5`，`10e.org/mt2/archives/200804/240055.php`→使用者最後指定的`https://abiurl.me/BKKWr5`。兩者HTTP／HTTPS含query皆直接301至精確Location且不傳query；近似／suffix四種邊界都404。獨立GET確認short URL本身301至`https://10e.org/suspiria-1977-review/`且該頁200。list30，舊28 items保留；Bulk1/version1、Dynamic10/version10不變；Cloudflare OAuth未登出或撤銷。
