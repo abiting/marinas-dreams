@@ -408,3 +408,6 @@ Interstellar完成：commit `7d938ca02d183ad6bba7869c95d7a1ef9f3f39a7`／Pages�
 
 ## 追加Beauty Water與Joy（2026-11-08）
 查重確認當前153篇中沒有Beauty Water／整形水或Joy／ジョイ，兩篇各新增一頁。研究與原文來源筆記可平行處理，但先收尾日日是好日，再依序Beauty Water→Joy：每篇附加、全站build/check／舊文章byte保護、Pages指定commit部署、正式新頁200驗收後才增該片唯一Bulk item。原source分別 `/mt2/archives/200612/230051.php`、`/mt2/archives/200911/220650.php`，HTTP／HTTPS皆直接301，query丟棄、精確路徑不匹配subpath或subdomain，其餘404。沿用六段500–800字、來源原題／URL、實際發布日和原canonical/SEO結構，Cloudflare原36項及1Bulk／10Dynamic規則不變。
+
+Beauty Water定稿：日本題「整形水」、原題기기괴괴 성형수 / Beauty Water、チョ・ギョンフン執導；韓國2020製作／日本2021年9月23日公開、85分PG12（日本版本）。六段635字，四原文來源／5個長尾詞，publishedAt／modifiedAt2026-11-08T09:54:08+08:00。不將主程序的非露骨描述要求誤寫成電影本身「非露骨」，改用來源確認的原作變形抑制；首次source相鄰sup間加空格。build/check154篇／157路由PASS，原153篇JSON／URL／HTML逐頁不變。check的硬編碼末尾offset合併為自Underwater以來所有新文完整順序assert，既有內容／來源／SEO斷言保留並加本篇版次／日期／source精確assert。
+Joy局部修正：日本官方頁的2015-12-25「劇場公開日」未能證明地區為日本，year／releaseYearBasis採可確認的2015製作年；日本2017-11-22影音發行資訊保留，避免誤稱日本院線初映。兩篇seoTitle補本站brand，Joy正文原794字未改。

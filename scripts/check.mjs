@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 153);
+assert.equal(content.reviews.length, 154);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -75,9 +75,10 @@ const newResearchSlugs = [
   'sugihara-chiune-2015-review',
   'edward-scissorhands-1990-review',
   'every-day-a-good-day-2018-review',
+  'beauty-water-2020-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
-assert.ok(newResearchReviews.every(Boolean), 'All eighteen requested researched reviews are present');
+assert.ok(newResearchReviews.every(Boolean), 'All requested researched reviews are present');
 assert.equal(newResearchReviews[0].name, 'クルーシブル');
 assert.equal(newResearchReviews[0].year, '1996');
 assert.equal(newResearchReviews[1].name, 'Chaos: The Manson Murders');
@@ -88,21 +89,7 @@ assert.equal(newResearchReviews[3].originalTitle, 'The Good, The Bad, The Hungry
 assert.equal(newResearchReviews[3].year, '2019');
 assert.equal(newResearchReviews[3].director, 'ニコール・ルーカス・ヘイムズ');
 assert.equal(newResearchReviews[3].collection, 'スポーツドキュメンタリー映画ノート');
-assert.equal(content.reviews.at(-1)?.slug, 'every-day-a-good-day-2018-review', 'New tea film review is appended');
-assert.equal(content.reviews.at(-2)?.slug, 'edward-scissorhands-1990-review', 'Edward is preserved');
-const previousReviews = content.reviews.slice(0, -2);
-assert.equal(previousReviews.at(-1)?.slug, 'sugihara-chiune-2015-review', 'The preceding Sugihara review is preserved');
-assert.equal(previousReviews.at(-2)?.slug, 'flow-2024-review', 'The preceding Flow review is preserved');
-assert.equal(previousReviews.at(-3)?.slug, 'midsommar-2019-review', 'The preceding Midsommar review is preserved');
-assert.equal(previousReviews.at(-4)?.slug, 'panda-plan-2024-review', 'The preceding Panda Plan review is preserved');
-assert.equal(previousReviews.at(-5)?.slug, 'slotherhouse-2023-review', 'The preceding Slotherhouse review is preserved');
-assert.equal(previousReviews.at(-6)?.slug, 'good-morning-vietnam-1987-review', 'The earlier Vietnam review is preserved');
-assert.equal(previousReviews.at(-7)?.slug, 'god-of-gamblers-iii-back-to-shanghai-1991-review', 'The earlier Shanghai review is preserved');
-assert.equal(previousReviews.at(-8)?.slug, 'satoyama-water-2004-review', 'The earlier Satoyama review is preserved');
-assert.equal(previousReviews.at(-9)?.slug, 'ghost-in-the-shell-1995-review', 'The earlier Ghost in the Shell review is preserved');
-assert.equal(previousReviews.at(-10)?.slug, 'ant-man-and-the-wasp-quantumania-2023-review', 'The earlier Quantumania review is preserved');
-assert.equal(previousReviews.at(-11)?.slug, 'tremors-1990-review', 'The earlier Tremors review is preserved');
-assert.equal(previousReviews.at(-12)?.slug, 'underwater-2020-review', 'The earlier Underwater review is preserved');
+assert.deepEqual(content.reviews.slice(-newResearchSlugs.slice(4).length).map(r => r.slug), newResearchSlugs.slice(4), 'All reviews appended since Underwater retain their exact order');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '1')?.title, 'The Good, The Bad, The Hungry');
 assert.equal(newResearchReviews[3].sources.find(ref => ref.id === '3')?.title, "Takeru Kobayashi's hot dog eating rivalry with Joey Chestnut");
 assert.ok(newResearchReviews[0].paragraphs.join('').includes('完全な記録ではない'), 'Crucible distinguishes drama from historical record');
@@ -301,6 +288,21 @@ assert.ok(everyDayReview.sources[3].edition.includes('背景資料'));
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(everyDayReview)));
 assert.match(everyDayReview.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
 assert.equal(everyDayReview.modifiedAt, everyDayReview.publishedAt);
+const beautyWater2020ReviewData = content.reviews.find(r => r.slug === "beauty-water-2020-review");
+assert.equal(content.reviews.filter(r => r.originalTitle === "기기괴괴 성형수 / Beauty Water").length, 1);
+assert.deepEqual(beautyWater2020ReviewData.name, "整形水");
+assert.deepEqual(beautyWater2020ReviewData.originalTitle, "기기괴괴 성형수 / Beauty Water");
+assert.deepEqual(beautyWater2020ReviewData.year, "2020");
+assert.deepEqual(beautyWater2020ReviewData.director, "チョ・ギョンフン");
+assert.deepEqual(beautyWater2020ReviewData.releaseYearBasis, "製作年（2020年。日本劇場公開：2021年9月23日）");
+assert.deepEqual(beautyWater2020ReviewData.edition, "2020年製作の韓国長編アニメーション。日本劇場公開版（85分、PG12）");
+assert.deepEqual(beautyWater2020ReviewData.collection, "韓国アニメーション映画ノート");
+assert.deepEqual(beautyWater2020ReviewData.productionCountries, ["韓国"]);
+assert.deepEqual(beautyWater2020ReviewData.sources.map(ref => ref.title), ["Beauty Water (2020)", "整形水", "【進化する韓国アニメーション！ サイコホラー『整形水』の何がそんなに「ヤバイ！」のか？】前編：アニメーションだからこそ描ける、肉体の変化と揺れる感情", "Beauty Water"]);
+assert.deepEqual(beautyWater2020ReviewData.sources.map(ref => ref.url), ["https://www.koreanfilm.or.kr/eng/films/index/filmsView.jsp?movieCd=20201687&play=Y", "https://eiga.com/movie/95337/", "https://www.cinemart.co.jp/article/news/20210930004852.html", "https://www.easternkicks.com/reviews/beauty-water/"]);
+assert.match(beautyWater2020ReviewData.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
+assert.equal(beautyWater2020ReviewData.modifiedAt, beautyWater2020ReviewData.publishedAt);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(beautyWater2020ReviewData)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -433,7 +435,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', "韓国アニメーション映画ノート", ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -563,7 +565,7 @@ assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy
 const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
 for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
 assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
-assert.equal(manifest.routes.length, 156, '153 reviews plus three site pages');
+assert.equal(manifest.routes.length, 157, '154 reviews plus three site pages');
 assert.ok(archive.includes('戦争とユーモアの映画ノート'), 'Archive exposes the Vietnam film collection');
 assert.ok(manifest.routes.some(route => route.path === `${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam route is declared');
 assert.ok(!fs.existsSync('dist/mt2/archives/201005/040329.php'), 'Vietnam legacy source must not be emitted as static 200');
@@ -630,6 +632,14 @@ const everyDayArticle = JSON.parse(everyDayHtml.match(/<script type="application
 assert.equal(everyDayArticle.datePublished, everyDayReview.publishedAt);
 assert.equal(everyDayArticle.dateModified, everyDayReview.modifiedAt);
 assert.ok(everyDayHtml.includes('2026年11月8日公開'));
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/beauty-water-2020-review/`));
+assert.ok(!fs.existsSync("dist/mt2/archives/200612/230051.php"));
+assert.ok(archive.includes(beautyWater2020ReviewData.collection));
+const beautyWater2020ReviewDataHtml = fs.readFileSync("dist/beauty-water-2020-review/index.html", 'utf8');
+for (const ref of beautyWater2020ReviewData.sources) assert.ok(decode(beautyWater2020ReviewDataHtml).includes(`>${ref.title}</a>`));
+const beautyWater2020ReviewDataArticle = JSON.parse(beautyWater2020ReviewDataHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
+assert.equal(beautyWater2020ReviewDataArticle.datePublished, beautyWater2020ReviewData.publishedAt);
+assert.equal(beautyWater2020ReviewDataArticle.dateModified, beautyWater2020ReviewData.modifiedAt);
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -645,6 +655,8 @@ assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
+  assert.ok(sitemap.includes(`<loc>${origin}${basePath}/beauty-water-2020-review/</loc><lastmod>2026-11-08</lastmod>`));
+  assert.ok(!sitemap.includes("/mt2/archives/200612/230051.php"));
   assert.equal((sitemap.match(/<loc>/g) || []).length, content.reviews.length + 3);
   assert.ok(robots.includes(`Sitemap: ${origin}${basePath}/sitemap.xml`));
   assert.ok(sitemap.includes(`${origin}${basePath}/about-10ekokoro/`));
