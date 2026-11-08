@@ -354,5 +354,16 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 完成證據：Cloudflare bulk operation `9fea9fdc1f524724b3a334804a1624ac` completed，原清單31筆增為33筆。新增item `12e806f5157f41e581d4b81b9c42b90f`（200608/210343.php→abiting.cc/archives/16830）及 `6f0ef04d607f4caebc3cde04843705a3`（200605/260129.php→Buzzwole），只精確匹配、不保留query／path suffix。Bulk仍1條/version1；Dynamic仍10條/version10。兩個目的頁均200。獨立普通GET 17項全部PASS：兩來源HTTP／HTTPS含query皆301到精確Location，query丟棄，五條近似／尾綴／相鄰路徑404，先前Sugihara與hairy映射回歸正常。Cloudflare OAuth保留。
 
 <h2>《剪刀手愛德華》（Edward Scissorhands）研究影評與指定301</h2>
-- [ ] 研究後新增一篇《剪刀手愛德華》（Edward Scissorhands，1990）日文影評；採核實的日本正式片名與版本資訊，六段、正文約500–800字、2個H2、2–4筆已查讀來源並保留來源原文標題／URL，使用中長尾SEO詞，不虛構評分或個人觀影經驗。只新增一篇，不改既有151篇及其網址；文章使用本次發布日期，SEO／canonical／OG／Twitter／Article／Person／sitemap／route manifest完整，build/check預期152篇／155路由。
-- [ ] 新頁正式部署並驗收200後，才將 `http://10e.org/mt2/archives/200904/012303.php`（HTTPS同路徑亦命中）精確直接301至新頁canonical URL；query不保留。相鄰路徑、尾綴、子路徑及其他未指定失效舊URL維持真正404；只新增一筆Cloudflare Bulk item、不覆寫其他規則並保留OAuth。
+- [x] 研究後新增一篇《剪刀手愛德華》（Edward Scissorhands，1990）日文影評；採核實的日本正式片名與版本資訊，六段、正文約500–800字、2個H2、2–4筆已查讀來源並保留來源原文標題／URL，使用中長尾SEO詞，不虛構評分或個人觀影經驗。只新增一篇，不改既有151篇及其網址；文章使用本次發布日期，SEO／canonical／OG／Twitter／Article／Person／sitemap／route manifest完整，build/check預期152篇／155路由。
+- [x] 新頁正式部署並驗收200後，才將 `http://10e.org/mt2/archives/200904/012303.php`（HTTPS同路徑亦命中）精確直接301至新頁canonical URL；query不保留。相鄰路徑、尾綴、子路徑及其他未指定失效舊URL維持真正404；只新增一筆Cloudflare Bulk item、不覆寫其他規則並保留OAuth。
+
+
+完成證據：Edward内容commit `ae0af25030533fa68ee84d4ac3ce33bf0731d06d`／Pages工作 `42434390703` 成功。正式新頁 `https://10e.org/edward-scissorhands-1990-review/` 回200，一般／Googlebot／Twitterbot正文与四原文來源、canonical／Article／155路由／sitemap PASS。六段實際797字，日期2026-11-08T09:26:16+08:00，原151篇資料及HTML保留。之後才新增item `0c67066521ea444996e583924965db75`，operation `3b1287248c604458bedeb466febb5991` completed，list33→34，原33映射及Bulk1/version1、Dynamic10/version10指紋不變。獨立GET 12項PASS：兩協定含query direct301、query丟棄；四條近似／尾綴／未指定404、新頁200及本輪前兩筆与Sugihara回歸正常。OAuth保留。
+
+<h2>後續：《星際效應》（Interstellar）日文影評與指定301</h2>
+- [ ] 已發現既有 `/interstellar-review/`；研究並修訂該篇日文影評，不建立重複頁或變更既有URL：核實日本正式題名、導演與首映／製作年，六段500–800字、2個正文H2、2–4笔已查讀來源，引用原文標題與URL、中長尾SEO詞，不虛構評分／觀影經歷。只修訂此篇，保持其餘151篇資料／URL不變，保留既有發表日與SEO並使用實際本次修改日期，canonical／OG／Twitter／Article／Person／sitemap／route manifest完整。
+- [ ] 本轮Edward全部驗收完成後才開始其發布；先部署新文章並驗收正式200，再將 `http://10e.org/mt2/archives/200811/150154.php`（同路徑HTTPS亦命中）精確直接301至新頁；query不保留、不匹配subdomain／subpath／suffix，相鄰及未指定路徑仍真正404。只新增一筆Bulk item，保留既有規則及OAuth。
+
+<h2>後續：《日日是好日》日文研究影評與指定301</h2>
+- [ ] 研究後新增《日日是好日》一篇日文影評；其中一個參考連結必須保留使用者指定 `https://abiurl.me/LsmvAg`，查讀其目的頁、引用原文題名，不自行展開替換短網址；核實使用者提到2019所對應上映地區、日文正式題名和作品原始年份／版本，不把不同地區公開年混為製作年。六段500–800字、2個正文H2、2–4笔已查讀原文來源、中長尾SEO詞，不虛構評分／观影；只append、保留當時全站既有文章URL与資料，實際發布日及完整SEO／Article／Person／canonical／sitemap／route manifest。
+- [ ] Interstellar完成後依序發布本篇，正式新文章200後才將 `http://10e.org/mt/archives/200502/270305.php`（HTTPS同路徑亦命中）精確直接301至新頁；query丟棄，不匹配子網域／子路徑／尾綴。相鄰及其他未指定舊路徑仍404，只append一筆Bulk mapping，保留全部原規則和OAuth。

@@ -389,3 +389,11 @@ Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩
 前兩筆舊URL轉址完成：operation `9fea9fdc1f524724b3a334804a1624ac` completed，清單31→33；item `12e806f5157f41e581d4b81b9c42b90f` 及 `6f0ef04d607f4caebc3cde04843705a3`。兩個新target先驗收200；HTTP／HTTPS及query均直接精確301且不傳query，五項近似、尾綴及相鄰路徑404；獨立普通GET 17項全PASS。既有Sugihara與hairy mappings回歸正常；Bulk1/version1、Dynamic10/version10未變，OAuth保留。接下來僅研究及新增《剪刀手愛德華》，其舊URL仍待新頁正式部署驗收後才轉址。
 
 Edward定稿：日本正式題「シザーハンズ」、原題Edward Scissorhands、ティム・バートン執導；1990年按美國公開年，日本公開1991年7月13日。片長有104／105分來源表記差，文章不宣稱單一片長。新分類「ゴシック・ファンタジー映画ノート」、slug `edward-scissorhands-1990-review`，六段實際797字，四原文來源與5個中長尾SEO詞；publishedAt／modifiedAt `2026-11-08T09:26:16+08:00`。build/check152篇／155路由PASS，原151篇JSON／網址／逐頁HTML全保留。舊`/mt2/archives/200904/012303.php`尚未新增轉址，仍等新頁正式部署與200驗收。
+
+## 追加兩篇需求（2026-11-08）
+使用者要求本輪Edward完成後，依序新增Interstellar與《日日是好日》日文影評，來源原題／日期／版本需核實；《日日是好日》的2019需辨識上映地區，不能直接當日本初映年或作品製作年。兩篇研究可平行、各自獨立來源筆記與草稿，但文章發布和精確301依序操作，維持既有site資料模型與網址。Interstellar source `/mt2/archives/200811/150154.php`；日日是好日source `/mt/archives/200502/270305.php`。每篇六段500–800字、兩個正文H2、2–4已讀原文來源与中長尾SEO詞，只append；每篇先build/check→Pages部署→正式新頁200驗收，再僅新增其精確Bulk mapping，HTTP／HTTPS／query皆direct301、query丟棄；邊界及其他舊路徑404、原規則與OAuth保留。
+
+Edward完成：內容commit `ae0af25030533fa68ee84d4ac3ce33bf0731d06d`／Pages `42434390703` 成功，正式新頁200與全文／原文來源／SEO／155路由PASS後才加第34筆item `0c67066521ea444996e583924965db75`，operation `3b1287248c604458bedeb466febb5991` completed。原33映射指紋`1ec1aa1c`及Bulk`c4ab4582`／Dynamic`c83ffe9e`完全保留；独立HTTP／HTTPS与query精確301、四邊界404與前兩筆／Sugihara回歸共12項PASS。原151篇及OAuth保留。
+Interstellar查重發現既有 `/interstellar-review/`（2014）。改採重新研究、必要時僅修訂此篇，保留現有URL、原發表日期及SEO/source URL；不建立重複頁。其餘151篇資料不變；現有152篇／155路由不增加。再將使用者指定200811/150154.php 301至這個既有URL，必須先驗收修訂頁正式上線。日日是好日仍為新增一篇，完成後預期153篇／156路由。
+
+日日是好日追加指定來源：`https://abiurl.me/LsmvAg` 必須保留為其中一筆sources.url，先查讀其展開頁內容，sources.title使用來源原文標題；不得擅自展開換URL或未讀虛構該頁內容。此筆計入2–4個來源總數。
