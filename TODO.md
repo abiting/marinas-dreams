@@ -311,3 +311,17 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 查證Flow作品原題與日本正式片名、年份／導演／製作來源及值得分析的視聽設計，新增一篇日文影評：正文6段、500–800字、2個H2、2–4筆已讀來源；來源標題一律保留來源原文。只新增一篇，不改原有149篇、既有文章URL／metadata；無虛構分數或私人觀影經驗。保留完整首頁／detail HTML SEO、canonical／OG／Twitter、Person／Article schema、sitemap與manus-routes；更新全站精確檢查為150篇／153條路由。
 - [x] 新頁先部署，確認正式目標URL HTTP 200與正文／SEO／來源／Article／canonical／sitemap／route manifest後，才將使用者指定 `http://10e.org/mt2/archives/200705/160244.php`（HTTP及HTTPS）直接301到新頁正式URL。只新增唯一的exact-path Bulk Redirect，`include_subdomains:false`、`subpath_matching:false`、`preserve_query_string:false`、`preserve_path_suffix:false`；丟棄query。其他24筆Cloudflare mapping、含hackedpage2目錄prefix及既有電影／App項目皆保留；account Bulk規則1條／version1、zone Dynamic規則10條／version10不變；不得使用PUT或覆寫既有ruleset/list。HTTP／HTTPS及帶query都直接回301、Location正確；相鄰 `160244x.php`、suffix `/extra` 與其他未指定舊路徑維持真正404。保留Cloudflare OAuth。
 完成證據：『Flow』／原題Straume，2024年製作、ギンツ・ジルバロディス、85分、ラトビア・フランス・ベルギー合作；日本2025-03-14公開。日文正文747字／6段／4筆來源原文H1；collection国際アニメーション映画ノート，不改日本動畫固定5選。Flow個別publishedAt／modifiedAt為2026-11-04T13:55:29+08:00，byline／Article／sitemap一致。build/check150篇／900段／153路由PASS，原149篇data／metadata／URL／HTML逐頁byte-identical；內容審核PASS。文章commit `efbd7440a9050c3b0895734f93204bac33737253`，Pages run `41782252445`success；正式新頁200，normal／Googlebot／Twitterbot、4來源／canonical／Article／153routes／sitemap／robots驗收通過。然後只新增Cloudflare item `3ecf4fea817e4385892d5e0065336751`，operation `e6d66d326e3640099883ffd203e93cd7` completed：`10e.org/mt2/archives/200705/160244.php`→`https://10e.org/flow-2024-review/`，301、四flagsfalse。HTTP／HTTPS含query皆direct301且Location不帶query；相鄰160244x.php、suffix `/extra`、未指定xxx404。舊benders.gif／Scrabby／abiurl／hackedpage2 prefix回歸PASS；原24items IDs全保留，list25items、Bulk1條version1／Dynamic10條version10不變；OAuth保留。
+
+<h2>指定圖片舊URL：/samcimg3/hairy.jpg 精確301</h2>
+- [x] 將使用者指定的 `https://10e.org/samcimg3/hairy.jpg`（同host HTTP也命中）直接301至 `https://abiting.cc/archives/16830`。丟棄query、不保留路徑後綴、不匹配子網域或相鄰路徑；`hairy.jpg/extra`、`hairyx.jpg`及未指定路徑維持真正404。只新增一筆Cloudflare Bulk Redirect item，保留其他mapping與規則，OAuth保持授權。
+- [x] 新增後確認operation完成、list只增加此唯一item、HTTP／HTTPS含query Location精確且不帶query，目標200，邊界404，既有mapping回歸正常。
+
+完成證據：目標 `https://abiting.cc/archives/16830` 回200。Cloudflare item `08448963038b438dbf251c18f51b3577`、operation `d5c003e335234661910de86776ec16bc` completed，list 25→26，既有25個ID全保留；唯一Bulk rule仍1條/version1，Dynamic仍10條/version10。獨立一般GET確認HTTP及HTTPS（含`?probe=1`）均直接301到精確目標且不傳query；`hairyx.jpg`、`hairy.jpg/extra`、`hairy.jpgx`為真正404。既有 `/samcimg3/iguananeko.jpg` 和 `/samcimg3/wain12.jpg`兩筆仍各自轉到原目標。Cloudflare OAuth保持授權。
+
+先前驗收完成：item `08448963038b438dbf251c18f51b3577`／operation `d5c003e335234661910de86776ec16bc`，26筆清單與原25 ID保留；HTTP／HTTPS query／404邊界均PASS。
+
+<h2>指定圖片舊URL：/samcimg/inago.jpg 精確301</h2>
+- [x] 將使用者指定 `http://10e.org/samcimg/inago.jpg` 精確直接301至 `https://abiting.cc/wp-content/uploads/2026/11/locust.jpg`；同host HTTPS命中、query丟棄、不保留路徑尾綴、不匹配子網域或相鄰路徑；近似及未指定舊路徑維持真正404。只新增一筆Cloudflare Bulk Redirect item，保留hairy與所有既有映射，OAuth不撤銷。
+- [x] 驗收operation完成、HTTP／HTTPS含query Location精確、目標200、相鄰／suffix404、既有mapping回歸及清單／規則數。
+
+完成證據：目標 `https://abiting.cc/wp-content/uploads/2026/11/locust.jpg` 為200 image/jpeg。item `95d1d16f157f42ff8bc799388d493338`／operation `a4042103342c4cddbdd8d54d6264d23c` completed，list 26→27且原26項ID全保留；Bulk 1/version1、Dynamic 10/version10不變。獨立GET驗收HTTP／HTTPS含query均直接301至精確目標、query丟棄；`inago.jpgx`、`inago.jpg/extra`、`inagox.jpg`為真正404；之前hairy.jpg mapping回歸PASS。Cloudflare OAuth未登出或撤銷。

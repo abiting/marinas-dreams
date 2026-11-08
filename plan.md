@@ -347,3 +347,15 @@ Flow內容新增整合：6段實際747字、4sources均有對應sourceIDs引用�
 Flow唯讀審核內容／sources／H2／SEO／153routesPASS；未設定legacy mapping符合本任務「部署頁200後才新增」階段，沒有提前宣告301完成。審核識別新文原先缺publishedAt／modifiedAt使builderfallback到舊站日期；修正僅在Flow JSON加入2026-11-04本次實際timestamp兩欄，並增加datePublished／dateModified／visiblebyline／sitemap lastmod專屬assertions，不改builder或舊149篇日期。既有未知路徑仍按正式站404，不因agent提到本地fallback改寬鬆routing。
 
 Flow完成：日文評論747字／6段／4sourceIDs、來源原文H1與URL、兩H2、個別published/modified2026-11-04T13:55:29+08:00；正式頁`https://10e.org/flow-2024-review/`200。文章commit `efbd7440a9050c3b0895734f93204bac33737253`／Pages `41782252445`success；regular、Googlebot、Twitterbot首屏及canonical／Article／Person／source／153routes／sitemap／robots全PASS，發布日期schema/byline一致。確認目標200後只新增item `3ecf4fea817e4385892d5e0065336751`／operation `e6d66d326e3640099883ffd203e93cd7`completed，source `10e.org/mt2/archives/200705/160244.php`→新頁，301四flagsfalse。HTTP／HTTPS（均含query測例）直接Location新頁、不帶query；相鄰160244x.php／suffixextra／未指定xxx404，benders.gif／Scrabby／abiurl／hackedpage2prefix回歸正確。list25、舊24IDs保留，Bulk1version1／Dynamic10version10未變；Cloudflare OAuth依要求保留。原149篇資料／metadata／URL／HTML均byte-identical；只有Flow和必要首頁／archive／manifest／sitemap變化，TODO兩項完成。
+
+<h3>指定圖片舊URL：samcimg3/hairy.jpg</h3>
+下一筆由使用者明確指定的精確Bulk Redirect：`10e.org/samcimg3/hairy.jpg` → `https://abiting.cc/archives/16830`。目標已檢查回200；Cloudflare OAuth保持原狀。正式操作前唯讀確認來源不存在、list與ruleset容量／現況不變；新增後以HTTP／HTTPS、query丟棄、相鄰404及既有映射回歸驗收；不動Dynamic ruleset或其他Bulk項目。
+
+<h3>hairy.jpg精確轉址完成</h3>
+`https://abiting.cc/archives/16830`目標200。Cloudflare Bulk list新增唯一item `08448963038b438dbf251c18f51b3577`／operation `d5c003e335234661910de86776ec16bc` completed：source `10e.org/samcimg3/hairy.jpg` direct301 target，四個false flags（不含subdomains／subpath、丟query、不保留suffix）。普通GET獨立環境HTTP／HTTPS含query Location完全相符；相鄰hairyx、suffixextra、hairy.jpgx均404。`iguananeko.jpg`、`wain12.jpg`原映射保留。list26筆（之前25 IDs全保留），Bulk1/version1，Dynamic10/version10；OAuth保留。
+
+<h3>inago.jpg圖片精確轉址</h3>
+使用者在hairy.jpg mapping完成後追加 `10e.org/samcimg/inago.jpg` → `https://abiting.cc/wp-content/uploads/2026/11/locust.jpg`。兩筆按獨立精確路徑處理；先核實圖片target與Cloudflare list無重複，再追加；HTTP／HTTPS直接301、query丟棄、suffix不保留，near miss維持404。
+
+<h3>inago.jpg精確轉址完成</h3>
+目標 `https://abiting.cc/wp-content/uploads/2026/11/locust.jpg` 回200 image/jpeg。Cloudflare單筆item `95d1d16f157f42ff8bc799388d493338`／operation `a4042103342c4cddbdd8d54d6264d23c` completed：`10e.org/samcimg/inago.jpg`→目標，301且不含子網域／子路徑／query／尾綴。獨立一般GET驗收HTTP／HTTPS（含query）全部精確Location；inago.jpgx／inago.jpg/extra／inagox.jpg均404，hairy.jpg前項回歸PASS。list27筆、原26 IDs保留；Bulk1/version1、Dynamic10/version10維持，OAuth保留。
