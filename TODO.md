@@ -387,8 +387,10 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 <h2>《明天過後》（The Day After Tomorrow，2004）影評與指定301</h2>
-- [ ] 查證日本正式片名、年份、導演、災難設定及科學批評脈絡後新增一篇日文影評。六段正文500–800字、2個H2、2–4筆已查讀來源，source title保留原文，不自行翻譯；3–8個長尾SEO詞，不虛構評分或私人觀影；只append一篇，原有文章資料與URL不變。記錄實際發布日，並確保metadata、canonical、OG/Twitter、Article／Person schema、route manifest、sitemap完整。
-- [ ] 先發布新文章並驗收正式頁200，再將 `http://10e.org/mt/archives/200501/010244.php`（同精確路徑HTTPS亦命中）直接301到新影評canonical URL；不傳query、不匹配subdomain／子路徑／尾綴，鄰近與未指定舊路徑保持真正404。只新增單筆Bulk mapping，保留其餘規則及Cloudflare OAuth。
+- [x] 查證日本正式片名、年份、導演、災難設定及科學批評脈絡後新增一篇日文影評。六段正文500–800字、2個H2、2–4筆已查讀來源，source title保留原文，不自行翻譯；3–8個長尾SEO詞，不虛構評分或私人觀影；只append一篇，原有文章資料與URL不變。記錄實際發布日，並確保metadata、canonical、OG/Twitter、Article／Person schema、route manifest、sitemap完整。
+- [x] 先發布新文章並驗收正式頁200，再將 `http://10e.org/mt/archives/200501/010244.php`（同精確路徑HTTPS亦命中）直接301到新影評canonical URL；不傳query、不匹配subdomain／子路徑／尾綴，鄰近與未指定舊路徑保持真正404。只新增單筆Bulk mapping，保留其餘規則及Cloudflare OAuth。
+
+完成證據：日本正式片名デイ・アフター・トゥモロー／2004美國124分／日本2004年6月5日公開，六段754字／四原文來源／6長尾詞，實際日期2026-11-08T10:12:40+08:00。build/check156篇／159路由與舊155篇JSON／HTML逐頁保留PASS；唯讀整合審核PASS。内容commit `6dc8a5f88998dfb84d175f954dc4b476a5b42476`／Pages `42437687595` success；正式頁一般／Googlebot／Twitterbot200、正文／原文引用／canonical／Article／159route／sitemap／robotsPASS後才增item `3f5df519aff74c018b7f020df9d99c35`，operation `23e9b0db4ec04c48832f83a296e58044` completed。list39→40，原39項指紋7640f52c與Bulkc4ab4582／Dynamicc83ffe9e完全保留（1version1／10version10）。獨立10項全PASS：HTTP／HTTPS含query精確301、query丟棄、三近似／suffix404、新頁200、圖片1026head.htm與benders.gif回歸；OAuth保留。
 
 <h2>指定單一路徑：/imgpage/1026head.htm精確301</h2>
 - [x] 將 `http://10e.org/imgpage/1026head.htm` 精確301至 `https://abiting.cc/archives/16830`；HTTP／HTTPS同路徑命中，不傳query、不保留path suffix；相鄰或未指定路徑維持404，只新增單筆Bulk mapping，不覆寫其他轉址規則或撤銷OAuth。
