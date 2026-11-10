@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { writeLegacySitemaps } from './legacy-sitemap.mjs';
 
 const root = process.cwd();
 const data = JSON.parse(fs.readFileSync(path.join(root, 'src/content.json'), 'utf8'));
@@ -176,5 +177,6 @@ if (origin) {
   fs.writeFileSync(path.join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routesWithDates.map((route) => `  <url><loc>${escape(absolute(route.path))}</loc><lastmod>${escape(dateOnly(route.lastmod))}</lastmod></url>`).join('\n')}\n</urlset>\n`);
   fs.writeFileSync(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}${basePath}/sitemap.xml\n`);
 }
+writeLegacySitemaps(output, origin, basePath);
 fs.writeFileSync(path.join(output, '.nojekyll'), '');
 console.log(`Built ${routes.length} complete Japanese HTML pages for ${brand}${origin ? ` at ${origin}` : ' (canonical origin pending publication)'}.`);

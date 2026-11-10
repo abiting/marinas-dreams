@@ -1,0 +1,473 @@
+{
+  "version": 1,
+  "snapshotDate": "2026-11-10",
+  "ruleCount": 51,
+  "entries": [
+    {
+      "path": "/flashchiune/chiune.htm",
+      "target": "https://10e.org/sugihara-chiune-2015-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/hackedpage2/",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/hackedpage2/199902_www.eia.or.jp.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199902_www.pronet.com.mx.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199903_www.cndh.org.mx.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199903_www.occaviationandspace.edu.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199903_www.venezuela.gov.ve.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199904_mass.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199906_www.senate.gov.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199909_www.empirehonda.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199911_www.dare.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/199912_www.e-lysian.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_halflife.calamp.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_riserva.certo.it.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_www.indiadaily.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_www.mjk-ajinomoto.co.id.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_www.prestonchain.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_www.val.sf.ee.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_www.valiantspirit.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200101_www.wise.ac.jp.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_perldev.digitalcreators.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.aga.kure-u.ac.jp.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.bigisgood.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.buziosvirtual.com.br.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.cfsig.org.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.co.calaveras.ca.us.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.ehelp.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.ezysite.net.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.happytour.co.kr.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.magicgate.co.uk.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.mp.ro.gov.br.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.nike.com.hk.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.peba.gov.sk.ca.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.sandusky.k12.mi.us.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200102_www.xplaces.net.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.flowerdj.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.honda-motor.com.tw.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.inchcape.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.kss.com.tw.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.luxury.net.tw.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.scomcenter.com.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/200104_www.t1club.com.tw.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/hackedpage2/gazoudake.htm",
+      "target": "https://10e.org/the-uninvited-1944-review/",
+      "basis": "Historical inventory within explicitly authorized hackedpage2/ prefix"
+    },
+    {
+      "path": "/imgpage/1026head.htm",
+      "target": "https://abiting.cc/archives/16830",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200501/010244.php",
+      "target": "https://10e.org/the-day-after-tomorrow-2004-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200502/270305.php",
+      "target": "https://10e.org/every-day-a-good-day-2018-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200503/022253.php",
+      "target": "https://10e.org/god-of-gamblers-iii-back-to-shanghai-1991-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200508/160103.php",
+      "target": "https://10e.org/the-good-the-bad-the-hungry-2019-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200511/260117.php",
+      "target": "https://app.abiting.cc/archives/3263",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200512/050511.php",
+      "target": "https://10e.org/panda-plan-2024-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200603/142154.php",
+      "target": "https://list.abitingpokedex.com",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/200605/260129.php",
+      "target": "https://list.abitingpokedex.com/pokemon/buzzwole/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/img2/catt2_8.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/Bazaart_2026-10-18_132913.jpeg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt/archives/img2/mitubishi.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/image0083819.jpg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200608/210343.php",
+      "target": "https://abiting.cc/archives/16830",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200612/210159.php",
+      "target": "https://scrabby.abiting.cc/archives/299",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200612/230051.php",
+      "target": "https://10e.org/beauty-water-2020-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200701/050537.php",
+      "target": "https://scrabby.abiting.cc/archives/299",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200705/082350.php",
+      "target": "https://10e.org/unidentified-murder-2025-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200705/112333.php",
+      "target": "https://10e.org/secret-life-of-pearls-2016-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200705/160244.php",
+      "target": "https://10e.org/flow-2024-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200707/120351.php",
+      "target": "https://10e.org/ghost-in-the-shell-1995-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200709/100347.php",
+      "target": "https://abiurl.me/sAAOui",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200712/230337.php",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/mecca1da1.jpg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200804/240055.php",
+      "target": "https://abiurl.me/BKKWr5",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200804/280059.php",
+      "target": "https://10e.org/ant-man-and-the-wasp-quantumania-2023-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200805/280244.php",
+      "target": "https://10e.org/slotherhouse-2023-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200807/042305.php",
+      "target": "https://10e.org/underwater-2020-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200808/170209.php",
+      "target": "https://app.abiting.cc",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200811/150154.php",
+      "target": "https://10e.org/interstellar-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200812/122337.php",
+      "target": "https://10e.org/crouching-tiger-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200903/310230.php",
+      "target": "https://app.abiting.cc/archives/5371",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200904/012303.php",
+      "target": "https://10e.org/edward-scissorhands-1990-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200904/072253.php",
+      "target": "https://10e.org/satoyama-water-2004-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200911/220650.php",
+      "target": "https://10e.org/joy-2015-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200911/250337.php",
+      "target": "https://10e.org/chaos-the-manson-murders-2025-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/200912/152304.php",
+      "target": "https://10e.org/the-crucible-1996-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/201002/282300.php",
+      "target": "https://app.abiting.cc/archives/tag/apple-music",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/201005/040329.php",
+      "target": "https://10e.org/good-morning-vietnam-1987-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/mt2/archives/201007/270356.php",
+      "target": "https://10e.org/tremors-1990-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg/benders.gif",
+      "target": "https://coai.abiting.cc/archives/838",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg/inago.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/11/locust.jpg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg/nekocat1.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/IMG_4608.jpeg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg/nekocat2.jpg",
+      "target": "https://abitingpokedex.com/wp-content/uploads/2026/10/IMG_4611.jpg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg/no_hair_cat.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/No-hair-cat-scaled.jpeg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg3/diana3.jpg",
+      "target": "https://10e.org/one-missed-call-2004-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg3/hairy.jpg",
+      "target": "https://abiting.cc/archives/16830",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg3/iguananeko.jpg",
+      "target": "https://abitingpokedex.com/wp-content/uploads/2026/10/e88a75f2c608249c1116dc6b2207f254_0.jpeg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg3/macchomachomacho.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/image9999810.jpeg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg3/wain12.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/sicilian.jpgLarge.jpg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/samcimg4/ainshuuma3.jpg",
+      "target": "https://abiting.cc/wp-content/uploads/2026/10/577bc2069f52728261b170214ee1423a_0.jpeg",
+      "basis": "Cloudflare enabled 301 rule"
+    },
+    {
+      "path": "/zghost3/",
+      "target": "https://10e.org/house-1977-review/",
+      "basis": "Cloudflare enabled 301 rule"
+    }
+  ],
+  "verifiedAt": "2026-11-10T11:52:09+08:00",
+  "verifiedProtocols": [
+    "http",
+    "https"
+  ],
+  "candidateSha256": "cc3ad2deec3b0c4e162fff5f50bdcc189fa6a2915fd38a1f89c3300312b21173"
+}

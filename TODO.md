@@ -399,5 +399,12 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 ## 《UFO離奇命案》（Unidentified Murder）影評與指定舊URL精確301（2026-11-10）
-- [ ] 研究後只新增一篇此香港電影日文影評，使用核實的原名「UFO離奇命案」與英題「Unidentified Murder」，作品年採2025；不得臆造未查證的日文片名，香港／台灣2026上映資訊與作品年分開。正文6段、500–800字、2個H2、2–4筆已讀來源；來源標題與URL保持原文，SEO使用中長尾詞，沒有虛構評分或第一人稱觀影聲稱。既有156篇及文章URL／內容不變；新文章首屏SEO、canonical、OG、Twitter、Article／Person schema、sitemap與manifest完整；新增後157篇／160路由。
-- [ ] 正式新頁部署並驗收200後，才將 `http://10e.org/mt2/archives/200705/082350.php`（HTTPS同路徑亦命中）精確直接301至新文章canonical URL，丟棄query、不保留路徑後綴。相鄰、suffix及其他未指定舊路徑維持真正404；只新增一筆既有Cloudflare Bulk list項目，不改Dynamic或其他mapping，保留OAuth。
+- [x] 研究後只新增一篇此香港電影日文影評，使用核實的原名「UFO離奇命案」與英題「Unidentified Murder」，作品年採2025；不得臆造未查證的日文片名，香港／台灣2026上映資訊與作品年分開。正文6段、500–800字、2個H2、2–4筆已讀來源；來源標題與URL保持原文，SEO使用中長尾詞，沒有虛構評分或第一人稱觀影聲稱。既有156篇及文章URL／內容不變；新文章首屏SEO、canonical、OG、Twitter、Article／Person schema、sitemap與manifest完整；新增後157篇／160路由。
+- [x] 正式新頁部署並驗收200後，才將 `http://10e.org/mt2/archives/200705/082350.php`（HTTPS同路徑亦命中）精確直接301至新文章canonical URL，丟棄query、不保留路徑後綴。相鄰、suffix及其他未指定舊路徑維持真正404；只新增一筆既有Cloudflare Bulk list項目，不改Dynamic或其他mapping，保留OAuth。
+
+完成證據：內容commit9f819a09e0bddb0f0af725096d1d843d70893bc6，Pages42751117255 success；正式新頁200、800字／四來源／雙導演／日期／canonical／Article／160路由／sitemap均PASS。item852ffe67136b475dad77f4ec8ade4640／operationf58e704eb1c442e79ce66a6aa5fe61e6 completed；list40→41且原40items指紋93fde31b／Bulkc4ab4582／Dynamicc83ffe9e保留。獨立GET十項PASS：兩協定含query direct301、近似／suffix／相鄰404、target200、明天過後與圖片映射回歸。OAuth保留。
+
+
+## 已301舊網址sitemap（2026-11-10）
+- [ ] 依即時Cloudflare已生效規則建立獨立`/legacy-301-sitemap.xml`索引與HTTP／HTTPS各自子sitemap；列出精確舊路徑、已授權hackedpage2目錄內歷史盤點的已知實際URL並逐一驗收301，沒有萬用字元、虛構子頁、query、未指定404或外站目的URL。UTF-8／正確XML namespace、完全絕對URL、去重，不猜測lastmod、不塞priority／changefreq。
+- [ ] 在10e.org正式發布XML並驗收200／可解析與清單一致，維持157篇／160路由、文章資料／HTML、既有正式`/sitemap.xml`与robots.txt不變，不新增或修改redirect。提供GSC Domain資源提交索引方式、HTTPS URL-prefix只提交HTTPS子圖的選項，說明舊轉址頁不索引／警告正常且不保證加速抓取；不代提交GSC。

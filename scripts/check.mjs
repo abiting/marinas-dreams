@@ -769,4 +769,32 @@ if (origin) {
 assert.ok(fs.existsSync(`dist${content.bannerPath}`), 'New banner is in the build output');
 assert.ok(!fs.existsSync('dist/manus-storage/marina-banner_5b9233cb.jpg'), 'Old branded banner not public');
 assert.ok(!fs.readFileSync('assets/main.js', 'utf8').includes('Link copied'));
+if (origin === 'https://10e.org' && !basePath) {
+  const legacy = JSON.parse(fs.readFileSync('src/legacy-301-urls.json', 'utf8'));
+  assert.equal(legacy.version, 1);
+  assert.equal(legacy.ruleCount, 51);
+  assert.equal(legacy.entries.length, 92);
+  assert.equal(new Set(legacy.entries.map(entry => entry.path)).size, 92);
+  assert.deepEqual(legacy.verifiedProtocols, ['http', 'https']);
+  assert.ok(!Number.isNaN(Date.parse(legacy.verifiedAt)));
+  const legacyIndex = fs.readFileSync('dist/legacy-301-sitemap.xml', 'utf8');
+  assert.ok(legacyIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'));
+  assert.deepEqual([...legacyIndex.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1])), ['http', 'https'].map(scheme => `${origin}/legacy-301-sitemap-${scheme}.xml`));
+  const canonical = fs.readFileSync('dist/sitemap.xml', 'utf8');
+  for (const scheme of ['http', 'https']) {
+    const xml = fs.readFileSync(`dist/legacy-301-sitemap-${scheme}.xml`, 'utf8');
+    assert.ok(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>'));
+    assert.ok(xml.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'));
+    assert.ok(!/<(?:lastmod|priority|changefreq)>/.test(xml));
+    const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1]));
+    assert.deepEqual(urls, legacy.entries.map(entry => `${scheme}://10e.org${entry.path}`));
+    for (const entry of legacy.entries) {
+      assert.ok(!canonical.includes(`<loc>${origin}${entry.path}</loc>`), 'Redirected old URL stays out of the canonical sitemap');
+      assert.ok(!/[\s*?#\\]/.test(entry.path));
+    }
+  }
+  assert.ok(!manifest.routes.some(route => route.path.includes('legacy-301-sitemap')), 'Sitemaps are documents, not content routes');
+  assert.ok(!fs.readFileSync('dist/robots.txt', 'utf8').includes('legacy-301-sitemap'));
+  console.log('PASS separate legacy 301 sitemap index / 92 HTTP URLs / 92 HTTPS URLs; canonical sitemap unchanged');
+}
 console.log(`PASS ${content.reviews.length} Japanese reviews / ${content.reviews.length * 6} paragraphs, ${content.reviews.length + 3} routes, including the Japanese anime and researched European film collections, earlier series, article-end banner, SEO and shared author.`);

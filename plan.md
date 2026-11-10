@@ -433,3 +433,10 @@ Joy完成：内容commit `7f2dd84c5f7111f1f69d562e2ab3b2630edfc912`／Pages `424
 整合決策：slug `unidentified-murder-2025-review`，沿用「香港コメディ映画ノート」分類；正文六段800字、4個已查讀原文來源、6個長尾keywords。保留中文原題與英文題，不另造日文名稱。兩位導演郭家禧／李振傑各為一個Movie.director Person；新增可選`directors`陣列僅本篇使用，所有舊電影仍走既有單一director處理，無需改舊資料。標題／摘要為自然日文，不宣稱親自觀影。正式頁驗收200前不建立指定082350.php轉址；Cloudflare唯讀基線40筆、原items93fde31b／Bulkc4ab4582／Dynamicc83ffe9e，Bulk1version1／Dynamic10version10且新source無重疊。
 
 本地建置與check完成：157篇／160路由全部PASS，原156篇JSON、metadata和HTML逐頁byte-identical。實際publishedAt／modifiedAt為2026-11-10T11:38:42+08:00；雙導演Movie.director陣列精確驗證通過。原通用check的單導演假設只增可選directors分支，不放寬舊單導演或TV作品檢查。文章正式發佈與精確301仍待完成。
+
+UFO影評與精確301完成：內容commit9f819a0／Pages42751117255 success，正式頁200与SEO／四原文來源／雙導演／160路由PASS。item852ffe67136b475dad77f4ec8ade4640／operationf58e704eb1c442e79ce66a6aa5fe61e6 completed，第41Bulk項，原40項及Bulk／Dynamic指紋完全保留；十項獨立HTTP／HTTPS／query／404／舊映射回歸PASS，OAuth保留。
+
+## 已301舊網址sitemap（2026-11-10）
+Google官方site-move-with-url-changes的Monitor traffic段允許提交舊URL sitemap觀察遷移，並說舊轉址URL警告正常；build-sitemap說提交僅提示，不保證下載或抓取。此站是選定舊頁的語意轉址而非整站搬家，不使用Change of Address。獨立索引`legacy-301-sitemap.xml`連結HTTP／HTTPS協定分圖；Domain資源可涵蓋兩者，HTTPS URL-prefix資源只提交HTTPS子圖。正式canonical sitemap／robots／文章／manifest都維持原樣。清單來自41Bulk項和10Dynamic規則，共51項；hackedpage2只展開歷史CSV中的已知實際路徑，不用XML萬用字元、不臆造所有可能子頁。不寫造假的lastmod、priority／changefreq；清單是本次驗收快照，之後新301需同步更新。
+
+舊sitemap本地整合完成：92去重舊路徑，HTTP／HTTPS各92條，全部非跟隨GET301，inputSHA256 cc3ad2deec3b0c4e162fff5f50bdcc189fa6a2915fd38a1f89c3300312b21173。僅兩個Dynamic根target在Location補標準根尾斜線，保留原始回應並按相同URI判斷，未改任何規則。新增`src/legacy-301-urls.json`為已驗收快照、`scripts/legacy-sitemap.mjs`於正式10e.org根建置輸出索引＋2協定分圖；157篇／160route全站check及Python XML parse PASS，所有157篇HTML／data与首頁／索引／正式sitemap／robots／manifest逐byte與HEAD相同。正式XML200驗收仍待發布。
