@@ -86,6 +86,8 @@ const workSchema = (article) => {
   const work = { '@type': article.workType || 'Movie', name: article.fullName };
   if (article.productionCompanies?.length) {
     work.productionCompany = article.productionCompanies.map(name => ({ '@type': 'Organization', name }));
+  } else if (article.directors?.length) {
+    work.director = article.directors.map(name => ({ '@type': 'Person', name }));
   } else {
     work.director = { '@type': 'Person', name: article.director };
   }

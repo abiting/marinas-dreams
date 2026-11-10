@@ -426,3 +426,10 @@ Joy完成：内容commit `7f2dd84c5f7111f1f69d562e2ab3b2630edfc912`／Pages `424
 《明天過後》定稿：日本正式名「デイ・アフター・トゥモロー」、英文The Day After Tomorrow、ローランド・エメリッヒ執導、2004年美國劇場用電影124分／日本公開2004年6月5日；slug `the-day-after-tomorrow-2004-review`，新collection「気候と災害の映画ノート」。六段正文754字、四筆原文來源、6個中長尾SEO詞，實際publishedAt／modifiedAt2026-11-08T10:12:40+08:00。本文分析都市災難特效、圖書館求生、父子救援的類型公式、墨西哥避難的國境反轉，並明確不把劇中幾日冰封當科學預測。只append一筆並以本篇精確斷言更新check，舊155篇與URL不修改。
 
 《明天過後》全部完成：commit `6dc8a5f88998dfb84d175f954dc4b476a5b42476`／Pages `42437687595` success；正式新頁一般／Googlebot／Twitterbot200、754字全文與四原文來源、canonical／Article、159路由／sitemap／robots全PASS後才以單筆POST增第40項item `3f5df519aff74c018b7f020df9d99c35`，operation `23e9b0db4ec04c48832f83a296e58044` completed。原39映射7640f52c、Bulkc4ab4582與Dynamicc83ffe9e不變（1version1／10version10）。獨立10項一般GET驗收全PASS：舊010244.php HTTP／HTTPS含query direct301至新canonical、query丟棄，三nearby／suffix404，新頁200，1026head.htm與benders.gif映射回歸。兩項使用者要求均完成，網站156篇／159路由、原155篇資料／URL／HTML保留，OAuth未撤銷。
+
+## 《UFO離奇命案》日文影評與指定舊URL301（2026-11-10）
+使用金馬影展與NYAFF均列的2025作品年，繁中原名「UFO離奇命案」並列英文「Unidentified Murder」；不臆造日文官方片名。香港／台灣於2026上映，不與作品年份混用。節展列86／87分不一致，文章避免將單一片長當定論。研究筆記：`/home/ubuntu/source-title-audit/unidentified-murder-2025-2026-11-10.md`。只追加一篇日文評論，引用保持四來源頁面原題，確認原156篇及其URL完全不變；預期157篇／160路由。新頁上線200且SEO驗收後，方新增`/mt2/archives/200705/082350.php`唯一精確301，query與suffix不保留；其他未指定路徑維持404，不修改既有redirect規則，保留Cloudflare OAuth。
+
+整合決策：slug `unidentified-murder-2025-review`，沿用「香港コメディ映画ノート」分類；正文六段800字、4個已查讀原文來源、6個長尾keywords。保留中文原題與英文題，不另造日文名稱。兩位導演郭家禧／李振傑各為一個Movie.director Person；新增可選`directors`陣列僅本篇使用，所有舊電影仍走既有單一director處理，無需改舊資料。標題／摘要為自然日文，不宣稱親自觀影。正式頁驗收200前不建立指定082350.php轉址；Cloudflare唯讀基線40筆、原items93fde31b／Bulkc4ab4582／Dynamicc83ffe9e，Bulk1version1／Dynamic10version10且新source無重疊。
+
+本地建置與check完成：157篇／160路由全部PASS，原156篇JSON、metadata和HTML逐頁byte-identical。實際publishedAt／modifiedAt為2026-11-10T11:38:42+08:00；雙導演Movie.director陣列精確驗證通過。原通用check的單導演假設只增可選directors分支，不放寬舊單導演或TV作品檢查。文章正式發佈與精確301仍待完成。

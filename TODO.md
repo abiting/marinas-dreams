@@ -396,3 +396,8 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 將 `http://10e.org/imgpage/1026head.htm` 精確301至 `https://abiting.cc/archives/16830`；HTTP／HTTPS同路徑命中，不傳query、不保留path suffix；相鄰或未指定路徑維持404，只新增單筆Bulk mapping，不覆寫其他轉址規則或撤銷OAuth。
 
 完成證據：目標https://abiting.cc/archives/16830先200；item `6b802505758941b18545d37cff7f6d0a`／operation `3938f6e2916a4f49adbb356c8b18f0ab` completed；list38→39且原38項指紋6ee140fe、Bulkc4ab4582／Dynamicc83ffe9e完全保留（1version1／10version10）。獨立普通GET七項PASS：HTTP／HTTPS含query精確direct301、query丟棄、近似／suffix404、target200；OAuth未撤銷。
+
+
+## 《UFO離奇命案》（Unidentified Murder）影評與指定舊URL精確301（2026-11-10）
+- [ ] 研究後只新增一篇此香港電影日文影評，使用核實的原名「UFO離奇命案」與英題「Unidentified Murder」，作品年採2025；不得臆造未查證的日文片名，香港／台灣2026上映資訊與作品年分開。正文6段、500–800字、2個H2、2–4筆已讀來源；來源標題與URL保持原文，SEO使用中長尾詞，沒有虛構評分或第一人稱觀影聲稱。既有156篇及文章URL／內容不變；新文章首屏SEO、canonical、OG、Twitter、Article／Person schema、sitemap與manifest完整；新增後157篇／160路由。
+- [ ] 正式新頁部署並驗收200後，才將 `http://10e.org/mt2/archives/200705/082350.php`（HTTPS同路徑亦命中）精確直接301至新文章canonical URL，丟棄query、不保留路徑後綴。相鄰、suffix及其他未指定舊路徑維持真正404；只新增一筆既有Cloudflare Bulk list項目，不改Dynamic或其他mapping，保留OAuth。

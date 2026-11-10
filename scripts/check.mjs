@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 156);
+assert.equal(content.reviews.length, 157);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -78,6 +78,7 @@ const newResearchSlugs = [
   'beauty-water-2020-review',
   'joy-2015-review',
   'the-day-after-tomorrow-2004-review',
+  'unidentified-murder-2025-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
 assert.ok(newResearchReviews.every(Boolean), 'All requested researched reviews are present');
@@ -335,6 +336,22 @@ assert.deepEqual(theDayAfterTomorrow2004ReviewData.sources.map(ref => ref.url), 
 assert.match(theDayAfterTomorrow2004ReviewData.publishedAt, /^2026-11-08T\d{2}:\d{2}:\d{2}\+08:00$/);
 assert.equal(theDayAfterTomorrow2004ReviewData.modifiedAt, theDayAfterTomorrow2004ReviewData.publishedAt);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(theDayAfterTomorrow2004ReviewData)));
+const unidentifiedMurder2025ReviewData = content.reviews.find(r => r.slug === "unidentified-murder-2025-review");
+assert.equal(content.reviews.filter(r => r.originalTitle === "Unidentified Murder").length, 1);
+assert.deepEqual(unidentifiedMurder2025ReviewData.name, "UFO離奇命案");
+assert.deepEqual(unidentifiedMurder2025ReviewData.originalTitle, "Unidentified Murder");
+assert.deepEqual(unidentifiedMurder2025ReviewData.year, "2025");
+assert.deepEqual(unidentifiedMurder2025ReviewData.director, "郭家禧、李振傑");
+assert.deepEqual(unidentifiedMurder2025ReviewData.directors, ["郭家禧", "李振傑"]);
+assert.deepEqual(unidentifiedMurder2025ReviewData.releaseYearBasis, "作品年（2025年。金馬影展・NYAFF表記）");
+assert.deepEqual(unidentifiedMurder2025ReviewData.edition, "香港の長編映画。金馬影展では86分、NYAFFでは87分と表記。香港公開2026年7月4日、台湾公開2026年11月6日。");
+assert.deepEqual(unidentifiedMurder2025ReviewData.collection, "香港コメディ映画ノート");
+assert.deepEqual(unidentifiedMurder2025ReviewData.productionCountries, ["香港"]);
+assert.deepEqual(unidentifiedMurder2025ReviewData.sources.map(ref => ref.title), ["UFO離奇命案", "Unidentified Murder", "Unidentified Murder review – playful sendup of alien abduction and true crime influencers in Hong Kong", "UFO離奇命案 Unidentified Murder"]);
+assert.deepEqual(unidentifiedMurder2025ReviewData.sources.map(ref => ref.url), ["https://www.goldenhorse.org.tw/film/programme/films/detail/4436", "https://www.nyaff.org/nyaff26/films/unidentified-murder", "https://www.theguardian.com/film/2026/sep/07/unidentified-review-playful-sendup-of-alien-abduction-and-true-influencers-in-hong-kong", "https://www.atmovies.com.tw/movie/fuhk38857175/"]);
+assert.match(unidentifiedMurder2025ReviewData.publishedAt, /^2026-11-10T\d{2}:\d{2}:\d{2}\+08:00$/);
+assert.equal(unidentifiedMurder2025ReviewData.modifiedAt, unidentifiedMurder2025ReviewData.publishedAt);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(unidentifiedMurder2025ReviewData)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -459,6 +476,8 @@ for (const routeInfo of manifest.routes) {
       assert.deepEqual(article.about.productionCompany, review.productionCompanies.map(name => ({ '@type': 'Organization', name })));
       assert.equal(article.about.datePublished, review.broadcastDate);
       assert.deepEqual(article.about.partOfSeries, { '@type': 'TVSeries', name: review.partOfSeries });
+    } else if (review.directors?.length) {
+      assert.deepEqual(article.about.director, review.directors.map(name => ({ '@type': 'Person', name })));
     } else {
       assert.deepEqual(article.about.director, { '@type': 'Person', name: review.director });
     }
@@ -597,7 +616,7 @@ assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy
 const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
 for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
 assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
-assert.equal(manifest.routes.length, 159, '156 reviews plus three site pages');
+assert.equal(manifest.routes.length, 160, '157 reviews plus three site pages');
 assert.ok(archive.includes('戦争とユーモアの映画ノート'), 'Archive exposes the Vietnam film collection');
 assert.ok(manifest.routes.some(route => route.path === `${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam route is declared');
 assert.ok(!fs.existsSync('dist/mt2/archives/201005/040329.php'), 'Vietnam legacy source must not be emitted as static 200');
@@ -688,6 +707,15 @@ for (const ref of theDayAfterTomorrow2004ReviewData.sources) assert.ok(decode(th
 const theDayAfterTomorrow2004ReviewDataArticle = JSON.parse(theDayAfterTomorrow2004ReviewDataHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
 assert.equal(theDayAfterTomorrow2004ReviewDataArticle.datePublished, theDayAfterTomorrow2004ReviewData.publishedAt);
 assert.equal(theDayAfterTomorrow2004ReviewDataArticle.dateModified, theDayAfterTomorrow2004ReviewData.modifiedAt);
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/unidentified-murder-2025-review/`));
+assert.ok(!fs.existsSync("dist/mt2/archives/200705/082350.php"));
+assert.ok(archive.includes(unidentifiedMurder2025ReviewData.collection));
+const unidentifiedMurder2025ReviewDataHtml = fs.readFileSync("dist/unidentified-murder-2025-review/index.html", 'utf8');
+for (const ref of unidentifiedMurder2025ReviewData.sources) assert.ok(decode(unidentifiedMurder2025ReviewDataHtml).includes(`>${ref.title}</a>`));
+const unidentifiedMurder2025ReviewDataArticle = JSON.parse(unidentifiedMurder2025ReviewDataHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
+assert.equal(unidentifiedMurder2025ReviewDataArticle.datePublished, unidentifiedMurder2025ReviewData.publishedAt);
+assert.equal(unidentifiedMurder2025ReviewDataArticle.dateModified, unidentifiedMurder2025ReviewData.modifiedAt);
+assert.deepEqual(unidentifiedMurder2025ReviewDataArticle.about.director, [{ "@type": "Person", name: "郭家禧" }, { "@type": "Person", name: "李振傑" }]);
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -703,6 +731,8 @@ assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
+  assert.ok(sitemap.includes(`<loc>${origin}${basePath}/unidentified-murder-2025-review/</loc><lastmod>2026-11-10</lastmod>`));
+  assert.ok(!sitemap.includes("/mt2/archives/200705/082350.php"));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/the-day-after-tomorrow-2004-review/</loc><lastmod>2026-11-08</lastmod>`));
   assert.ok(!sitemap.includes("/mt/archives/200501/010244.php"));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/joy-2015-review/</loc><lastmod>2026-11-08</lastmod>`));
