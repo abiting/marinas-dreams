@@ -442,3 +442,9 @@ Google官方site-move-with-url-changes的Monitor traffic段允許提交舊URL si
 舊sitemap本地整合完成：92去重舊路徑，HTTP／HTTPS各92條，全部非跟隨GET301，inputSHA256 cc3ad2deec3b0c4e162fff5f50bdcc189fa6a2915fd38a1f89c3300312b21173。僅兩個Dynamic根target在Location補標準根尾斜線，保留原始回應並按相同URI判斷，未改任何規則。新增`src/legacy-301-urls.json`為已驗收快照、`scripts/legacy-sitemap.mjs`於正式10e.org根建置輸出索引＋2協定分圖；157篇／160route全站check及Python XML parse PASS，所有157篇HTML／data与首頁／索引／正式sitemap／robots／manifest逐byte與HEAD相同。正式XML200驗收仍待發布。
 
 舊301 sitemap完成：commit6268dc9a65560601ac7efeb64a7dc2abf4f23db9／Pages42752474544 success；https://10e.org/legacy-301-sitemap.xml及兩份-http／-https子圖均正式200 application/xml、XML解析且與dist逐byte相同。正式sitemap／robots與UFO新影評亦200且輸出原樣。完整92路徑／184個兩協定已301 URL是本次驗收快照；GSC僅提供手動提交方式，不代提交或新增監控，不保證爬取加速。舊轉址頁未索引正常，Domain資源提交索引、HTTPS URL-prefix資源提交HTTPS子圖。使用者可下載含3XML／已驗收CSV／GSC說明的ZIP。原157篇及所有Cloudflare規則保持不變。
+
+
+<h2>BanG Dream! Ave Mujica prima aurora（2026-11-10）</h2>
+沿用日本影評網站與既有資料模型，新增2026年新作電影一篇，不改舊157篇；研究正式片名／credit／公開日與續作身份，保留來源原文標題。使用者具體觀感是影評主軸：前半舞臺劇有吸引力，但篇幅太長擠壓後半人物／劇情鋪陳，後半情節擁擠且起承轉合生硬；正文保留正反兩面，不假稱外媒一致評價、不虛構前半精確分鐘數。6段500–800字、兩個正文H2、實際發布日期与完整SEO。已有固定動漫五選不擴張為六選，可採新增音樂動畫筆記分類。只新增article，不建立redirect或更新既有舊301 sitemap；預期158篇／161內容路由。
+
+Ave Mujica定稿：785字／6段、2個正文H2、4筆已查讀原文heading來源；title59字／description111字，5個中長尾關鍵字。正式name／originalTitle為BanG Dream! Ave Mujica prima aurora、2026年新作，日本2026年10月16日公開、柿本広大導演；edition不填有差異的56／58分鐘。新增音楽アニメーション映画ノート，不動固定日本動漫五選。正文明確保留「前半の舞台劇は、とても見応えがある」「前半の舞台劇は冗長」「後半は逆に、展開を詰め込みすぎ」「起承転結がぎこちない」，並提出縮緊舞臺段落、將時間給後半情感鋪陳的評價；無評分或觀影聲稱。publishedAt／modifiedAt2026-11-10T17:50:55+08:00。本地build/check158篇／161route PASS；原157篇JSON／HTML及src舊301快照／3份舊XML／robots逐byte等同HEAD。本次沒有redirect，正式部署仍待完成。

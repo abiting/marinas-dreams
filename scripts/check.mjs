@@ -13,7 +13,7 @@ const forbidden = /Abramovi|アブラモ|アブラム|The Artist Is Present|Mari
 assert.equal(content.siteName, brand);
 assert.equal(content.language, 'ja');
 assert.equal(content.authorName, '10eKokoro');
-assert.equal(content.reviews.length, 157);
+assert.equal(content.reviews.length, 158);
 assert.equal(content.about.length, 3);
 assert.ok(!forbidden.test(JSON.stringify(content)), 'Removed content must not reappear');
 assert.ok(!JSON.stringify(content).includes('マリナ'), 'Old author display name is absent from all content and SEO fields');
@@ -79,6 +79,7 @@ const newResearchSlugs = [
   'joy-2015-review',
   'the-day-after-tomorrow-2004-review',
   'unidentified-murder-2025-review',
+  'bang-dream-ave-mujica-prima-aurora-2026-review',
 ];
 const newResearchReviews = newResearchSlugs.map(slug => content.reviews.find(review => review.slug === slug));
 assert.ok(newResearchReviews.every(Boolean), 'All requested researched reviews are present');
@@ -352,6 +353,21 @@ assert.deepEqual(unidentifiedMurder2025ReviewData.sources.map(ref => ref.url), [
 assert.match(unidentifiedMurder2025ReviewData.publishedAt, /^2026-11-10T\d{2}:\d{2}:\d{2}\+08:00$/);
 assert.equal(unidentifiedMurder2025ReviewData.modifiedAt, unidentifiedMurder2025ReviewData.publishedAt);
 assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(unidentifiedMurder2025ReviewData)));
+const bangDreamAveMujicaPrimaAurora2026ReviewData = content.reviews.find(r => r.slug === "bang-dream-ave-mujica-prima-aurora-2026-review");
+assert.equal(content.reviews.filter(r => r.originalTitle === "BanG Dream! Ave Mujica prima aurora").length, 1);
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.name, "BanG Dream! Ave Mujica prima aurora");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.originalTitle, "BanG Dream! Ave Mujica prima aurora");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.year, "2026");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.director, "柿本広大");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.releaseYearBasis, "2026年製作、日本では2026年10月16日に劇場公開。TVアニメの続編となる新作映画。");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.edition, "2026年劇場公開版");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.collection, "音楽アニメーション映画ノート");
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.productionCountries, ["日本"]);
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.sources.map(ref => ref.title), ["Introduction", "staff-cast", "BanG Dream! Ave Mujica prima aurora", "映画「BanG Dream! Ave Mujica prima aurora」"]);
+assert.deepEqual(bangDreamAveMujicaPrimaAurora2026ReviewData.sources.map(ref => ref.url), ["https://avemujica-movie.bang-dream.com/introduction/", "https://avemujica-movie.bang-dream.com/staff-cast/", "https://eiga.com/movie/104473/", "https://airport-anifes.jp/programs/ev-bang-dream/"]);
+assert.match(bangDreamAveMujicaPrimaAurora2026ReviewData.publishedAt, /^2026-11-10T\d{2}:\d{2}:\d{2}\+08:00$/);
+assert.equal(bangDreamAveMujicaPrimaAurora2026ReviewData.modifiedAt, bangDreamAveMujicaPrimaAurora2026ReviewData.publishedAt);
+assert.ok(!/(reviewRating|点満点|鑑賞した|観ました|私[はが]|僕[はが])/.test(JSON.stringify(bangDreamAveMujicaPrimaAurora2026ReviewData)));
 const crouchingReviews = content.reviews.filter(r => r.originalTitle?.includes('Crouching Tiger, Hidden Dragon'));
 assert.equal(crouchingReviews.length, 1, 'Update the existing film review instead of adding a duplicate');
 const crouchingReview = crouchingReviews[0];
@@ -486,7 +502,7 @@ for (const routeInfo of manifest.routes) {
       assert.ok(decode(html).includes('href="https://abiurl.me/VdCbIO"'), `${route}: requested BFI short URL is linked`);
       assert.ok(!decode(html).includes('https://www.bfi.org.uk/film/7666aa5b-0e00-50bc-8814-0028479d8767/inception'), `${route}: former long BFI URL is absent`);
     }
-    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', "韓国アニメーション映画ノート", "労働と家族の映画ノート", "気候と災害の映画ノート", ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
+    const researchedCollections = ['日本ホラー名作20選', '日本の成人向け映画史20選', '欧米ゴースト映画10選', '名探偵コナン映画ノート', '中国陶磁ドキュメンタリー映画ノート', '魔女狩りと集団心理の映画', '現代犯罪ドキュメンタリー', '自然と素材のドキュメンタリー', 'スポーツドキュメンタリー映画ノート', 'SF・怪物映画ノート', 'スーパーヒーロー映画ノート', 'SFアニメーション映画ノート', '日本の自然・環境ドキュメンタリー', '香港コメディ映画ノート', '戦争とユーモアの映画ノート', 'ホラーコメディ映画ノート', 'アクションコメディ映画ノート', 'フォークホラー映画ノート', '国際アニメーション映画ノート', '歴史・伝記映画ノート', 'ゴシック・ファンタジー映画ノート', '日々の暮らしを描く映画ノート', "韓国アニメーション映画ノート", "労働と家族の映画ノート", "気候と災害の映画ノート", "音楽アニメーション映画ノート", ...europeanReviewCollections, taiwanGangsterCollection, animeCollection];
     if (researchedCollections.includes(review.collection)) {
       assert.equal(review.sources.length >= 2 && review.sources.length <= 4, true, `${route}: 2–4 researched references`);
       const cited = new Set(review.paragraphs.flatMap(p => [...p.matchAll(/href=["']#source-([^"']+)["']/g)].map(m => m[1])));
@@ -616,7 +632,7 @@ assert.ok(!fs.existsSync('dist/mt/archives/200503/022253.php'), 'Shanghai legacy
 const shanghaiHtml = fs.readFileSync('dist/god-of-gamblers-iii-back-to-shanghai-1991-review/index.html', 'utf8');
 for (const ref of shanghaiReview.sources) assert.ok(decode(shanghaiHtml).includes(`>${ref.title}</a>`), 'Shanghai source titles stay in the original language');
 assert.ok(shanghaiHtml.includes('サルの桃盗み（猴子偷桃）'), 'Requested move appears in the initial HTML');
-assert.equal(manifest.routes.length, 160, '157 reviews plus three site pages');
+assert.equal(manifest.routes.length, 161, '158 reviews plus three site pages');
 assert.ok(archive.includes('戦争とユーモアの映画ノート'), 'Archive exposes the Vietnam film collection');
 assert.ok(manifest.routes.some(route => route.path === `${basePath}/good-morning-vietnam-1987-review/`), 'Good Morning Vietnam route is declared');
 assert.ok(!fs.existsSync('dist/mt2/archives/201005/040329.php'), 'Vietnam legacy source must not be emitted as static 200');
@@ -716,6 +732,13 @@ const unidentifiedMurder2025ReviewDataArticle = JSON.parse(unidentifiedMurder202
 assert.equal(unidentifiedMurder2025ReviewDataArticle.datePublished, unidentifiedMurder2025ReviewData.publishedAt);
 assert.equal(unidentifiedMurder2025ReviewDataArticle.dateModified, unidentifiedMurder2025ReviewData.modifiedAt);
 assert.deepEqual(unidentifiedMurder2025ReviewDataArticle.about.director, [{ "@type": "Person", name: "郭家禧" }, { "@type": "Person", name: "李振傑" }]);
+assert.ok(manifest.routes.some(route => route.path === `${basePath}/bang-dream-ave-mujica-prima-aurora-2026-review/`));
+assert.ok(archive.includes(bangDreamAveMujicaPrimaAurora2026ReviewData.collection));
+const bangDreamAveMujicaPrimaAurora2026ReviewDataHtml = fs.readFileSync("dist/bang-dream-ave-mujica-prima-aurora-2026-review/index.html", 'utf8');
+for (const ref of bangDreamAveMujicaPrimaAurora2026ReviewData.sources) assert.ok(decode(bangDreamAveMujicaPrimaAurora2026ReviewDataHtml).includes(`>${ref.title}</a>`));
+const bangDreamAveMujicaPrimaAurora2026ReviewDataArticle = JSON.parse(bangDreamAveMujicaPrimaAurora2026ReviewDataHtml.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'].find(item => item['@type'] === 'Article');
+assert.equal(bangDreamAveMujicaPrimaAurora2026ReviewDataArticle.datePublished, bangDreamAveMujicaPrimaAurora2026ReviewData.publishedAt);
+assert.equal(bangDreamAveMujicaPrimaAurora2026ReviewDataArticle.dateModified, bangDreamAveMujicaPrimaAurora2026ReviewData.modifiedAt);
 const ceramicsHtml = fs.readFileSync(`dist/${ceramicsReview.slug}/index.html`, 'utf8');
 assert.ok(ceramicsHtml.includes('https://cpaceramics.com/blog/chinese-ceramics/'), 'Ceramics Practice Alliance link uses the corrected .com domain');
 assert.ok(ceramicsHtml.includes('Chinese ceramics: the reason we call it china'), 'Requested source article title is present');
@@ -731,6 +754,7 @@ assert.ok(!forbidden.test(fs.readFileSync('dist/404.html', 'utf8')));
 if (origin) {
   const sitemap = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const robots = fs.readFileSync('dist/robots.txt', 'utf8');
+  assert.ok(sitemap.includes(`<loc>${origin}${basePath}/bang-dream-ave-mujica-prima-aurora-2026-review/</loc><lastmod>2026-11-10</lastmod>`));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/unidentified-murder-2025-review/</loc><lastmod>2026-11-10</lastmod>`));
   assert.ok(!sitemap.includes("/mt2/archives/200705/082350.php"));
   assert.ok(sitemap.includes(`<loc>${origin}${basePath}/the-day-after-tomorrow-2004-review/</loc><lastmod>2026-11-08</lastmod>`));

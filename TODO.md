@@ -410,3 +410,8 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 - [x] 在10e.org正式發布XML並驗收200／可解析與清單一致，維持157篇／160路由、文章資料／HTML、既有正式`/sitemap.xml`与robots.txt不變，不新增或修改redirect。提供GSC Domain資源提交索引方式、HTTPS URL-prefix只提交HTTPS子圖的選項，說明舊轉址頁不索引／警告正常且不保證加速抓取；不代提交GSC。
 
 完成證據：sitemap commit6268dc9a65560601ac7efeb64a7dc2abf4f23db9／Pages42752474544 success；索引與HTTP／HTTPS兩份子XML均正式200 application/xml，與建置輸出逐byte一致、namespace與XML解析PASS。92舊路徑×2協定共184個普通非跟隨GET301，無未指定404、沒有新的轉址操作；157篇／160route、原文章／canonical sitemap／robots／manifest均原樣。CSV和5檔完整ZIP已提供下載準備；GSC需使用者手動提交，索引適用Domain資源、HTTPS子圖適用HTTPS URL-prefix；明示轉址未索引正常／不保證抓取加速與快照需後續同步。
+
+
+<h2>《BanG Dream! Ave Mujica prima aurora》日文影評（2026-11-10）</h2>
+- [ ] 研究後新增此2026年劇場版日文影評，核實正式片名、導演、日本公開日期與新作電影版本，不能寫成TV總集編。正文6段500–800字、2個H2、2–4筆已讀來源保留原文標題／URL及中長尾SEO詞。明確寫入使用者觀感：「前半段舞臺劇很好看，但實在太冗長，導致下半段塞太多劇情，起承轉合很生硬」；以影評判斷呈現，不冒充外部來源原話，不虛構評分、觀影經驗、劇情或精確前後半分鐘數。
+- [ ] 只append一篇，保護既有157篇內容、文章URL與來源／SEO；新文章使用實際發布日，首屏日文／canonical／OG／Twitter／Article／Person／正式sitemap／manifest完整，158篇／161路由。建置驗證後部署并驗收正式200。保留獨立舊301 sitemap、所有Cloudflare規則及OAuth；本次沒有使用者指定舊URL，不新增任何301。
