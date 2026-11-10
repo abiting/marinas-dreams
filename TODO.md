@@ -406,5 +406,7 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 ## 已301舊網址sitemap（2026-11-10）
-- [ ] 依即時Cloudflare已生效規則建立獨立`/legacy-301-sitemap.xml`索引與HTTP／HTTPS各自子sitemap；列出精確舊路徑、已授權hackedpage2目錄內歷史盤點的已知實際URL並逐一驗收301，沒有萬用字元、虛構子頁、query、未指定404或外站目的URL。UTF-8／正確XML namespace、完全絕對URL、去重，不猜測lastmod、不塞priority／changefreq。
-- [ ] 在10e.org正式發布XML並驗收200／可解析與清單一致，維持157篇／160路由、文章資料／HTML、既有正式`/sitemap.xml`与robots.txt不變，不新增或修改redirect。提供GSC Domain資源提交索引方式、HTTPS URL-prefix只提交HTTPS子圖的選項，說明舊轉址頁不索引／警告正常且不保證加速抓取；不代提交GSC。
+- [x] 依即時Cloudflare已生效規則建立獨立`/legacy-301-sitemap.xml`索引與HTTP／HTTPS各自子sitemap；列出精確舊路徑、已授權hackedpage2目錄內歷史盤點的已知實際URL並逐一驗收301，沒有萬用字元、虛構子頁、query、未指定404或外站目的URL。UTF-8／正確XML namespace、完全絕對URL、去重，不猜測lastmod、不塞priority／changefreq。
+- [x] 在10e.org正式發布XML並驗收200／可解析與清單一致，維持157篇／160路由、文章資料／HTML、既有正式`/sitemap.xml`与robots.txt不變，不新增或修改redirect。提供GSC Domain資源提交索引方式、HTTPS URL-prefix只提交HTTPS子圖的選項，說明舊轉址頁不索引／警告正常且不保證加速抓取；不代提交GSC。
+
+完成證據：sitemap commit6268dc9a65560601ac7efeb64a7dc2abf4f23db9／Pages42752474544 success；索引與HTTP／HTTPS兩份子XML均正式200 application/xml，與建置輸出逐byte一致、namespace與XML解析PASS。92舊路徑×2協定共184個普通非跟隨GET301，無未指定404、沒有新的轉址操作；157篇／160route、原文章／canonical sitemap／robots／manifest均原樣。CSV和5檔完整ZIP已提供下載準備；GSC需使用者手動提交，索引適用Domain資源、HTTPS子圖適用HTTPS URL-prefix；明示轉址未索引正常／不保證抓取加速與快照需後續同步。
