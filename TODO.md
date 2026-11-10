@@ -413,5 +413,7 @@ Tremors完成證據：正文731字、六段與4個原文來源；既有140篇obj
 
 
 <h2>《BanG Dream! Ave Mujica prima aurora》日文影評（2026-11-10）</h2>
-- [ ] 研究後新增此2026年劇場版日文影評，核實正式片名、導演、日本公開日期與新作電影版本，不能寫成TV總集編。正文6段500–800字、2個H2、2–4筆已讀來源保留原文標題／URL及中長尾SEO詞。明確寫入使用者觀感：「前半段舞臺劇很好看，但實在太冗長，導致下半段塞太多劇情，起承轉合很生硬」；以影評判斷呈現，不冒充外部來源原話，不虛構評分、觀影經驗、劇情或精確前後半分鐘數。
-- [ ] 只append一篇，保護既有157篇內容、文章URL與來源／SEO；新文章使用實際發布日，首屏日文／canonical／OG／Twitter／Article／Person／正式sitemap／manifest完整，158篇／161路由。建置驗證後部署并驗收正式200。保留獨立舊301 sitemap、所有Cloudflare規則及OAuth；本次沒有使用者指定舊URL，不新增任何301。
+- [x] 研究後新增此2026年劇場版日文影評，核實正式片名、導演、日本公開日期與新作電影版本，不能寫成TV總集編。正文6段500–800字、2個H2、2–4筆已讀來源保留原文標題／URL及中長尾SEO詞。明確寫入使用者觀感：「前半段舞臺劇很好看，但實在太冗長，導致下半段塞太多劇情，起承轉合很生硬」；以影評判斷呈現，不冒充外部來源原話，不虛構評分、觀影經驗、劇情或精確前後半分鐘數。
+- [x] 只append一篇，保護既有157篇內容、文章URL與來源／SEO；新文章使用實際發布日，首屏日文／canonical／OG／Twitter／Article／Person／正式sitemap／manifest完整，158篇／161路由。建置驗證後部署并驗收正式200。保留獨立舊301 sitemap、所有Cloudflare規則及OAuth；本次沒有使用者指定舊URL，不新增任何301。
+
+完成證據：內容commit3a7e02657f6d393bc74ac89636e8aa07e71d3808／Pages42794619974 success；正式新頁https://10e.org/bang-dream-ave-mujica-prima-aurora-2026-review/回200，785字／6段、4原文heading來源、指定前半精彩但冗長／後半詰め込み與起承転結ぎこちない均保留，Googlebot／Twitterbot與canonical／Article／161路由／sitemap／robots驗收PASS。原157篇JSON／HTML及3份舊301 XML逐byte原樣，無新增轉址或Cloudflare操作。

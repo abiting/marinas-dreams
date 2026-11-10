@@ -448,3 +448,5 @@ Google官方site-move-with-url-changes的Monitor traffic段允許提交舊URL si
 沿用日本影評網站與既有資料模型，新增2026年新作電影一篇，不改舊157篇；研究正式片名／credit／公開日與續作身份，保留來源原文標題。使用者具體觀感是影評主軸：前半舞臺劇有吸引力，但篇幅太長擠壓後半人物／劇情鋪陳，後半情節擁擠且起承轉合生硬；正文保留正反兩面，不假稱外媒一致評價、不虛構前半精確分鐘數。6段500–800字、兩個正文H2、實際發布日期与完整SEO。已有固定動漫五選不擴張為六選，可採新增音樂動畫筆記分類。只新增article，不建立redirect或更新既有舊301 sitemap；預期158篇／161內容路由。
 
 Ave Mujica定稿：785字／6段、2個正文H2、4筆已查讀原文heading來源；title59字／description111字，5個中長尾關鍵字。正式name／originalTitle為BanG Dream! Ave Mujica prima aurora、2026年新作，日本2026年10月16日公開、柿本広大導演；edition不填有差異的56／58分鐘。新增音楽アニメーション映画ノート，不動固定日本動漫五選。正文明確保留「前半の舞台劇は、とても見応えがある」「前半の舞台劇は冗長」「後半は逆に、展開を詰め込みすぎ」「起承転結がぎこちない」，並提出縮緊舞臺段落、將時間給後半情感鋪陳的評價；無評分或觀影聲稱。publishedAt／modifiedAt2026-11-10T17:50:55+08:00。本地build/check158篇／161route PASS；原157篇JSON／HTML及src舊301快照／3份舊XML／robots逐byte等同HEAD。本次沒有redirect，正式部署仍待完成。
+
+Ave Mujica影評正式完成：commit3a7e02657f6d393bc74ac89636e8aa07e71d3808／Pages42794619974 success；正式新頁https://10e.org/bang-dream-ave-mujica-prima-aurora-2026-review/200，六段785字与指定前半舞臺劇精彩但太長／後半過度塞劇情、起承転結生硬均保留。普通讀取／Googlebot／Twitterbot、四原文來源／canonical／OG／Article／161route／sitemap／robots均PASS；158篇、原157篇JSON與HTML、舊301 XML及規則保留。本次無指定舊URL所以不新增301，TODO兩項於正式公開後勾選完成。
